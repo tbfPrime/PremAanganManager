@@ -22,21 +22,21 @@ public class PremAanganManager extends Application {
     @Override
     public void start(Stage primaryStage) {
         Button btn = new Button();
-        btn.setText("Say 'Hello World'");
+        btn.setText("PremAanganManager Button");
         btn.setOnAction(new EventHandler<ActionEvent>() {
             
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("Hello World!");
+                System.out.println("Welcome to Prem Aangan Manager. Lets Begin!");
             }
         });
         
         StackPane root = new StackPane();
         root.getChildren().add(btn);
         
-        Scene scene = new Scene(root, 300, 250);
+        Scene scene = new Scene(root, 800, 600);
         
-        primaryStage.setTitle("Hello World!");
+        primaryStage.setTitle("Prem Aangan Manager");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
