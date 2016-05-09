@@ -1,51 +1,34 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+// JavaFX test program
 package premaanganmanager;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import premaanganmanager.base.ui.SceneContainer;
+import premaanganmanager.base.ui.StageContainer;
 
-/**
- *
- * @author TBF
- */
-public class PremAanganManager extends Application {
-    
+public class PremAanganManager extends Application{
     @Override
-    public void start(Stage primaryStage) {
-        Button btn = new Button();
-        btn.setText("PremAanganManager Button");
-        btn.setOnAction(new EventHandler<ActionEvent>() {
-            
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Welcome to Prem Aangan Manager. Lets Begin!");
-            }
-        });
+    public void start(Stage stage1){
+               
+        GridPane gridpane1 = new GridPane();
         
-        StackPane root = new StackPane();
-        root.getChildren().add(btn);
+        StageContainer stg1 = new StageContainer();
+        SceneContainer sc1 = new SceneContainer();
         
-        Scene scene = new Scene(root, 800, 600);
+        Scene scene1 = new Scene(gridpane1, 800, 600);
         
-        primaryStage.setTitle("Prem Aangan Manager");
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        stg1.printDemo();
+        sc1.printDemo();
+       
+        stage1.setTitle("Prem Aangan Manager 1.0");
+        stage1.setScene(scene1);
+        stage1.show();
     }
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
+    
+    public static void main(String args[]){
+        System.out.println("PremAanganManager | main called.");
         launch(args);
     }
-    
 }
