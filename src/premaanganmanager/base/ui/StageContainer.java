@@ -2,16 +2,13 @@
 
 package premaanganmanager.base.ui;
 
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
 public class StageContainer{
-        
-    public void printDemo(){
-        System.out.println("StageContainer | printDemo called.");
-    }
-    public void printSecondDemo(){
-        System.out.println("StageContainer | printSecondDemo called.");
-    }
+    private Stage applicationStage = new Stage();
     
-    public void printThirdDemo(){
-        System.out.println("StageContainer | printThirdDemo called.");
-    }    
+    public void setApplicationScene(Scene scene){ applicationStage.setScene(scene); }
+    
+    public Stage getApplicationStage(){ return applicationStage; }
 }

@@ -2,16 +2,20 @@
 
 package premaanganmanager.base.ui;
 
+
+import javafx.scene.Scene;
+import premaanganmanager.base.controller.ui.UIControl;
+
 public class SceneContainer{
+    private UIControl o_UIControl;
     
-    public void printDemo(){
-        System.out.println("SceneContainer | printDemo called.");
-    }
-    public void printSecondDemo(){
-        System.out.println("SceneContainer | printSecondDemo called.");
-    }
+    // list of all scene objects
+    private Login o_loginScene;
     
-    public void printThirdDemo(){
-        System.out.println("SceneContainer | printThirdDemo called.");
-    }    
+    // Public function
+    public SceneContainer(UIControl o_UIControl){
+        this.o_UIControl = o_UIControl;
+        o_loginScene = new Login(this.o_UIControl);
+    }
+    public Scene getLoginScene(){ return o_loginScene.getLoginScene(); }
 }
