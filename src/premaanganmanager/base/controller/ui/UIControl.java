@@ -17,28 +17,45 @@ public class UIControl {
     private SceneContainer o_SceneContainer;
     private StageContainer o_StageContainer;
     private Labels o_Label;
+    private MainController o_MainController;
     
-    // Public functions
-    public UIControl(){
+    // Constructor
+    public UIControl(MainController o_MainController){
+        this.o_MainController = o_MainController;
+        
         o_Label = new Labels();
         initializeApplicationVariables();
 
         o_SceneContainer = new SceneContainer(this);
         o_StageContainer = new StageContainer();
     }
-    
-    public Stage getApplicationStage(){ return o_StageContainer.getApplicationStage(); }
+
+    // Public function that return references
     public Labels getLabelsReference(){ return o_Label; }
+    public MainController getMainControllerRef(){ return o_MainController; }
+    
+    
+    // Public functions
+    public Stage getApplicationStage(){ return o_StageContainer.getApplicationStage(); }
     
     public void initializeApplicationVariables(){
         System.out.println("Initializing Application wide varaibles.");
         o_Label.setDefaultValuesToAllLabels();
     }
     
-    public void setLoginScene(){
+    public void setLoginGuestAdminScene(){
         try{
             if(o_Label == null){ System.out.println("Labels not initialized."); }
-            else{ o_StageContainer.setApplicationScene(o_SceneContainer.getLoginScene()); }
+            else{ o_StageContainer.setApplicationScene(o_SceneContainer.setLoginGuestAdminScene()); }
+        } catch(Exception e){
+            System.out.println("Labels not initialized | " + e);
+        }
+    }
+    
+    public void setLoginAdminOnlyScene(){
+        try{
+            if(o_Label == null){ System.out.println("Labels not initialized."); }
+            else{ o_StageContainer.setApplicationScene(o_SceneContainer.setLoginAdminOnlyScene()); }
         } catch(Exception e){
             System.out.println("Labels not initialized | " + e);
         }

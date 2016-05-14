@@ -12,11 +12,11 @@ package premaanganmanager.configurable;
 public class Labels {
     // public enum to get/set lables from this file.
     public enum labelTag{
-        LOGINTITLE, LOGIN, GUEST, ADMIN, ADMIN1, ADMIN2, ADMIN3, KEY        
+        LOGINTITLE, LOGIN, GUEST, ADMIN, ADMIN1, ADMIN2, ADMIN3, KEY, PASSWORDPROMPT        
     }
     
     // List of all  labels used in PAM
-    private String l_LoginTitle, l_Login, l_Guest, l_Admin, l_Admin1, l_Admin2, l_Admin3, l_Key;
+    private String l_LoginTitle, l_Login, l_Guest, l_Admin, l_Admin1, l_Admin2, l_Admin3, l_Key, l_PasswordPrompt;
     
     // public functions.
     public void setLabel(labelTag tag, String value){
@@ -29,6 +29,7 @@ public class Labels {
             case ADMIN2: l_Admin2 = value; break;
             case ADMIN3: l_Admin3 = value; break;
             case KEY: l_Key = value; break;
+            case PASSWORDPROMPT: l_PasswordPrompt = value; break;
         }
     }
     
@@ -42,6 +43,7 @@ public class Labels {
             case ADMIN2: return l_Admin2;
             case ADMIN3: return l_Admin3;
             case KEY: return l_Key;
+            case PASSWORDPROMPT: return l_PasswordPrompt;
         }
         return "NA";
     }
@@ -56,5 +58,6 @@ public class Labels {
         setLabel(Labels.labelTag.ADMIN2, "Admin 2");
         setLabel(Labels.labelTag.ADMIN3, "Admin 3");
         setLabel(Labels.labelTag.KEY, "Key");
+        setLabel(labelTag.PASSWORDPROMPT, "Enter Admin Key");
     }
 }

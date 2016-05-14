@@ -7,11 +7,13 @@ package premaanganmanager.base.controller.ui;
 
 import premaanganmanager.base.controller.background.SqliteConnector;
 import java.sql.*;
+import premaanganmanager.configurable.MainController;
 /**
  *
  * @author Trevor Fernandes
  */
 public class UIModel {
+    private MainController o_MainController;
     private SqliteConnector o_SqliteConnector;
     private Connection o_Connection;
     
@@ -19,7 +21,8 @@ public class UIModel {
      * Constructor to UIModel initializes connection to sqlite database.
      * @return 
      */
-    public UIModel(){
+    public UIModel(MainController o_MainController){
+        this.o_MainController = o_MainController;
         connectToSqliteDB();
     }
     

@@ -18,17 +18,14 @@ public class MainController extends Application{
     
     // Contructor for MainController
     public MainController(){
-        o_UIControl = new UIControl();
-        o_UIModel = new UIModel();
+        o_UIControl = new UIControl(this);
+        o_UIModel = new UIModel(this);
     }
-    
-    // Public functions
-    public UIControl getUIControlReference(){ return o_UIControl; }
     
     @Override
     public void start(Stage applicationStage){        
-        applicationStage = o_UIControl.getApplicationStage();
-        o_UIControl.setLoginScene();
+        applicationStage = getApplicationStage();
+        setLoginGuestAdminScene();
         
         try {
             if(o_UIModel.isValueCorrect("Sunil")){ System.out.println("Name exists in DB."); }
@@ -43,5 +40,22 @@ public class MainController extends Application{
     
     public static void launchApplication(String args[]){
         launch(args);
+    }
+    
+    // Public functions
+    public UIControl getUIControlReference(){ return o_UIControl; }
+    
+    public void setLoginGuestAdminScene(){
+        o_UIControl.setLoginGuestAdminScene();
+    }
+    
+    public void setLoginAdminOnlyScene(){
+        o_UIControl.setLoginAdminOnlyScene();
+    }
+    
+    
+    // Private functions
+    private Stage getApplicationStage(){
+        return o_UIControl.getApplicationStage();
     }
 }

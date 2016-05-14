@@ -31,12 +31,12 @@
                   </Text>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="124.0">
                      <children>
-                        <Button fx:id="o_Guest" mnemonicParsing="false" text="NA">
+                        <Button fx:id="o_Guest" mnemonicParsing="false" onAction="#guestButtonAction" text="NA">
                            <font>
                               <Font size="35.0" />
                            </font>
                         </Button>
-                        <Button fx:id="o_Admin" mnemonicParsing="false" text="NA">
+                        <Button fx:id="o_Admin" mnemonicParsing="false" onAction="#adminButtonAction" text="NA">
                            <font>
                               <Font size="35.0" />
                            </font>
