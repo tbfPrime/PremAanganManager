@@ -24,36 +24,50 @@
                         <Font size="60.0" />
                      </font>
                   </Text>
-                  <Text fx:id="o_Login" strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
+                  <Text fx:id="o_LoginSubtitle" strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
                      <font>
                         <Font size="27.0" />
                      </font>
                   </Text>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100.0">
                      <children>
-                        <Button fx:id="o_Admin1" mnemonicParsing="false" onAction="#guestButtonAction" text="NA">
+                        <Button fx:id="o_Admin1" mnemonicParsing="false" onAction="#admin1ButtonAction" text="NA">
                            <font>
                               <Font size="35.0" />
                            </font>
                         </Button>
-                        <Button fx:id="o_Admin2" mnemonicParsing="false" text="NA">
+                        <Button fx:id="o_Admin2" mnemonicParsing="false" onAction="#admin2ButtonAction" text="NA">
                            <font>
                               <Font size="35.0" />
                            </font>
                         </Button>
-                        <Button fx:id="o_Admin3" mnemonicParsing="false" onAction="#adminButtonAction" text="NA">
+                        <Button fx:id="o_Admin3" mnemonicParsing="false" onAction="#admin3ButtonAction" text="NA">
                            <font>
                               <Font size="35.0" />
                            </font>
                         </Button>
                      </children>
                   </HBox>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                  <AnchorPane prefHeight="73.0" prefWidth="800.0">
                      <children>
-                        <PasswordField fx:id="o_PasswordField" layoutX="307.0" layoutY="85.0" />
-                        <Text fx:id="o_Key" layoutX="238.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                        <PasswordField fx:id="o_PasswordField" layoutX="313.0" layoutY="22.0" />
+                        <Text fx:id="o_Key" layoutX="230.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
                      </children>
                   </AnchorPane>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0">
+                     <children>
+                        <Button fx:id="o_Back" alignment="CENTER" mnemonicParsing="false" onAction="#backButtonAction" text="NA">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="o_Login" alignment="CENTER" mnemonicParsing="false" onAction="#loginButtonAction" text="NA">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
                </children>
             </VBox>
          </children>

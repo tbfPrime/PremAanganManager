@@ -10,16 +10,11 @@ public class SceneContainer{
     private UIControl o_UIControl;
     
     // list of all scene objects
-    private Login o_loginScene;
+    public Login login;
     
     //Constructor
     public SceneContainer(UIControl o_UIControl){
         this.o_UIControl = o_UIControl;
-        o_loginScene = new Login(this.o_UIControl);
+        login = new Login(this.o_UIControl);
     }
-    
-    // Public function
-    public Scene setLoginGuestAdminScene(){ return o_loginScene.setLoginGuestAdminScene(); }
-    public Scene setLoginAdminOnlyScene(){ return o_loginScene.setLoginAdminOnlyScene(); }
-//    public void createLoginGuestAdminScene(){ o_loginScene.createLoginAdminOnlyScene(); }
 }
