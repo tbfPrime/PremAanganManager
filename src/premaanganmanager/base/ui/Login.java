@@ -90,7 +90,7 @@ public class Login{
     // Action on clicking Login button on Admin only screen
     public void loginButtonAction(){
         System.out.println("Login | loginButtonAction");
-        verifyLogin();
+        if(verifyLogin()){ uiControl.setAppContainer(); };
     }
                 
     // Creates  and returns the Login Scene with Guest and Admin buttons.
@@ -170,14 +170,11 @@ public class Login{
         }
     }
     
-    private void verifyLogin(){
+    private boolean verifyLogin(){
         System.out.println("Login | verifyLogin");
         password = o_PasswordField.getText();
-        if(password.length() == 0){ System.out.println("No Password entered. Exiting."); return; }
-        try {
-            System.out.println("Login Successful: " + uiControl.uiModel.isLoginCorrect(username, password));
-        } catch (SQLException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        if(password.length() == 0){ System.out.println("No Password entered. Exiting."); return false; }
+        try { return uiControl.uiModel.isLoginCorrect(username, password); }
+        catch (SQLException ex) { Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex); return false; }
     }
 }

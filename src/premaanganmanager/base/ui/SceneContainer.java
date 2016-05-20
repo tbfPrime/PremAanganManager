@@ -7,14 +7,17 @@ import javafx.scene.Scene;
 import premaanganmanager.base.controller.ui.UIControl;
 
 public class SceneContainer{
-    private UIControl o_UIControl;
+    private UIControl uiControl;
     
     // list of all scene objects
     public Login login;
+    public AppContainer appContainer;
     
     //Constructor
     public SceneContainer(UIControl o_UIControl){
-        this.o_UIControl = o_UIControl;
-        login = new Login(this.o_UIControl);
+        this.uiControl = o_UIControl;
+        
+        login = new Login(this.uiControl);
+        appContainer = new AppContainer(this.uiControl);
     }
 }

@@ -43,4 +43,8 @@ public class UIControl {
     public void setLoginAdminOnlyScene(){
         stageContainer.setApplicationScene(sceneContainer.login.setLoginAdminOnlyScene());
     }
+    
+    public void setAppContainer(){
+        stageContainer.setApplicationScene(sceneContainer.appContainer.setAppContainer());
+    }
 }

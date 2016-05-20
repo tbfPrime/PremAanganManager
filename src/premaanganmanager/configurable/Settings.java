@@ -5,9 +5,6 @@
  */
 package premaanganmanager.configurable;
 
-//import premaanganmanager.*;
-
-import com.sun.webkit.UIClient;
 import premaanganmanager.base.controller.ui.UIControl;
 
 /**
