@@ -15,7 +15,6 @@ nbproject/*
 *.so
 *.log
 *.out
-*~
 *.swp
 *.DS_Store
 *.lock

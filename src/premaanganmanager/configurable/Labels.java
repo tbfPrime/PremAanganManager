@@ -56,7 +56,7 @@ public class Labels {
         return "NA";
     }
     
-    // Sets all labels to default value.
+    // Sets all labels to default value
     public final void setDefaultValuesToAllLabels(){
         setLabel(labelTag.APPLICATIONTITLE, "Prem Aangan Manager 1.0");
         setLabel(Labels.labelTag.LOGINTITLE, "Prem Aangan Manager");
