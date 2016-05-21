@@ -46,5 +46,6 @@ public class UIControl {
     
     public void setAppContainer(){
         stageContainer.setApplicationScene(sceneContainer.appContainer.setAppContainer());
+        sceneContainer.appContainer.displayScreen(AppContainer.screenTag.HOME);
     }
 }
