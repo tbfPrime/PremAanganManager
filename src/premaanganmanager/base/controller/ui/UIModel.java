@@ -5,8 +5,14 @@
  */
 package premaanganmanager.base.controller.ui;
 
-import premaanganmanager.base.controller.background.SqliteConnector;
+import premaanganmanager.base.controller.background.*;
 import java.sql.*;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
+//import javax.
 /**
  *
  * @author Trevor Fernandes
@@ -14,6 +20,8 @@ import java.sql.*;
 public class UIModel {
     private SqliteConnector o_SqliteConnector;
     private Connection o_Connection;
+    private EntityManagerFactory emf;
+    private EntityManager em;
     
     /**
      * Constructor to UIModel initializes connection to sqlite database.
@@ -22,6 +30,7 @@ public class UIModel {
     public UIModel(){
         connectToSqliteDB();
     }
+    
     
     /**
      * isDbConnected checks if the database is connected.
@@ -39,44 +48,42 @@ public class UIModel {
     
     public boolean isLoginCorrect(String username, String password) throws SQLException{
         System.out.println("UIModel | isLoginCorrect | username: " + username + " | password: " + password);
-        PreparedStatement o_PreparedStatement = null;
-        ResultSet o_ResultSet = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet result = null;
         String query = "select * from users where username = ? and password = ?";
         try{
-            o_PreparedStatement = o_Connection.prepareStatement(query);
-            o_PreparedStatement.setString(1, username);
-            o_PreparedStatement.setString(2, password);
+            preparedStatement = o_Connection.prepareStatement(query);
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, password);
             
-            o_ResultSet = o_PreparedStatement.executeQuery();
+            result = preparedStatement.executeQuery();
             
-            if(o_ResultSet.next()){ return true; }
-            else{ return false; }
+            if(result.next()){ System.out.println("Login successful | username: " + username); return true; }
+            else{ System.out.println("Login unSuccessful | username: " + username); return false; }
         } catch(Exception e){
+            System.err.println("UIModel | isLoginCorrect | Error: " + e);
             return false;
         } finally{
-            o_PreparedStatement.close();
-            o_ResultSet.close();
+            preparedStatement.close();
+            result.close();
         }
     }
     
-    public boolean isValueCorrect(String value) throws SQLException{
-        PreparedStatement o_PreparedStatement = null;
-        ResultSet o_ResultSet = null;
-        String query = "select * from Student where firstname = ?";
-        try{
-            o_PreparedStatement = o_Connection.prepareStatement(query);
-            o_PreparedStatement.setString(1, value);
-            
-            o_ResultSet = o_PreparedStatement.executeQuery();
-            
-            if(o_ResultSet.next()){ return true; }
-            else{ return false; }
-        } catch(Exception e){
-            return false;
-        } finally{
-            o_PreparedStatement.close();
-            o_ResultSet.close();
-        }
+    
+    public List<ApplicationLabels> fetchAllLabels(){
+        System.out.println("UIModel | fetchAllLabels");
+        
+        emf = Persistence.createEntityManagerFactory("PremAanganManagerPU");
+        em = emf.createEntityManager();
+        
+        Query rq = em.createNamedQuery("ApplicationLabels.findAll");
+        List<ApplicationLabels> result = rq.getResultList();
+        return result;
+    }
+    
+    public void closeDBObjects(){
+        em.close();
+        emf.close();
     }
     
     /**

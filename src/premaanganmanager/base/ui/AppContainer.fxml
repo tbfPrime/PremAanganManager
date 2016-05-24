@@ -12,11 +12,11 @@
    <left>
       <VBox alignment="BOTTOM_LEFT" prefHeight="400.0" prefWidth="128.0" spacing="5.0" BorderPane.alignment="CENTER">
          <children>
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="NA" VBox.vgrow="ALWAYS" onAction="#homeButtonAction" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="BROWSE" VBox.vgrow="ALWAYS" onAction="#browseButtonAction" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="NA" VBox.vgrow="ALWAYS" onAction="#addButtonAction" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="NA" textAlignment="CENTER" textFill="#d04444" VBox.vgrow="ALWAYS" onAction="#searchButtonAction" />
-            <Button layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="NA" VBox.vgrow="ALWAYS" onAction="#settingsButtonAction" />
+            <Button fx:id="menuHomeButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#homeButtonAction" text="NA" VBox.vgrow="ALWAYS" />
+            <Button fx:id="menuBrowseButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#browseButtonAction" text="BROWSE" VBox.vgrow="ALWAYS" />
+            <Button fx:id="menuAddButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addButtonAction" text="NA" VBox.vgrow="ALWAYS" />
+            <Button fx:id="menuSearchButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#searchButtonAction" text="NA" textAlignment="CENTER" textFill="#d04444" VBox.vgrow="ALWAYS" />
+            <Button fx:id="menuSettingsButton" layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#settingsButtonAction" text="NA" VBox.vgrow="ALWAYS" />
          </children>
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -26,7 +26,7 @@
    <top>
       <BorderPane prefHeight="56.0" prefWidth="800.0" BorderPane.alignment="CENTER">
          <left>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to  Prem Aangan Manager" BorderPane.alignment="CENTER">
+            <Text fx:id="headerText" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" BorderPane.alignment="CENTER">
                <font>
                   <Font size="27.0" />
                </font>
@@ -36,7 +36,7 @@
             </Text>
          </left>
          <right>
-            <ComboBox prefWidth="150.0" promptText="Logout" BorderPane.alignment="CENTER" />
+            <ComboBox fx:id="logoutComboBox" promptText="NA" BorderPane.alignment="CENTER" />
          </right>
       </BorderPane>
    </top>

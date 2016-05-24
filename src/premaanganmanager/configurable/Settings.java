@@ -5,6 +5,8 @@
  */
 package premaanganmanager.configurable;
 
+import java.util.List;
+import premaanganmanager.base.controller.background.*;
 import premaanganmanager.base.controller.ui.UIControl;
 
 /**
@@ -27,7 +29,15 @@ public class Settings {
     public void initializeApplicationVariables(){
         System.out.println("Settings | initializeApplicationVariables");
         labels = new Labels();
+        setDefaultValuesToAllLabels();
+    }
+    
+    public final void setDefaultValuesToAllLabels(){
+        List<ApplicationLabels> labels = uiControl.uiModel.fetchAllLabels();
         
-        labels.setDefaultValuesToAllLabels();
-    }    
+        for(ApplicationLabels tempLabels : labels){
+            this.labels.setLabel(Labels.labelTag.valueOf(tempLabels.getTag()),tempLabels.getValue());
+        }
+        uiControl.uiModel.closeDBObjects();
+    }
 }

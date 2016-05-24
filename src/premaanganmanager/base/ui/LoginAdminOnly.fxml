@@ -19,29 +19,29 @@
             </ImageView>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
                <children>
-                  <Text fx:id="o_LoginTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
+                  <Text fx:id="loginTitleText" strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
                      <font>
                         <Font size="60.0" />
                      </font>
                   </Text>
-                  <Text fx:id="o_LoginSubtitle" strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
+                  <Text fx:id="loginSubtitle2Text" strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
                      <font>
                         <Font size="27.0" />
                      </font>
                   </Text>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100.0">
                      <children>
-                        <Button fx:id="o_Admin1" mnemonicParsing="false" onAction="#admin1ButtonAction" text="NA">
+                        <Button fx:id="admin1Button" mnemonicParsing="false" onAction="#admin1ButtonAction" text="NA">
                            <font>
                               <Font size="35.0" />
                            </font>
                         </Button>
-                        <Button fx:id="o_Admin2" mnemonicParsing="false" onAction="#admin2ButtonAction" text="NA">
+                        <Button fx:id="admin2Button" mnemonicParsing="false" onAction="#admin2ButtonAction" text="NA">
                            <font>
                               <Font size="35.0" />
                            </font>
                         </Button>
-                        <Button fx:id="o_Admin3" mnemonicParsing="false" onAction="#admin3ButtonAction" text="NA">
+                        <Button fx:id="admin3Button" mnemonicParsing="false" onAction="#admin3ButtonAction" text="NA">
                            <font>
                               <Font size="35.0" />
                            </font>
@@ -50,18 +50,18 @@
                   </HBox>
                   <AnchorPane prefHeight="73.0" prefWidth="800.0">
                      <children>
-                        <PasswordField fx:id="o_PasswordField" layoutX="313.0" layoutY="22.0" />
-                        <Text fx:id="o_Key" layoutX="230.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                        <PasswordField fx:id="passwordField" layoutX="313.0" layoutY="22.0" />
+                        <Text fx:id="passwordLabelText" layoutX="230.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
                      </children>
                   </AnchorPane>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0">
                      <children>
-                        <Button fx:id="o_Back" alignment="CENTER" mnemonicParsing="false" onAction="#backButtonAction" text="NA">
+                        <Button fx:id="backButton" alignment="CENTER" mnemonicParsing="false" onAction="#backButtonAction" text="NA">
                            <font>
                               <Font size="24.0" />
                            </font>
                         </Button>
-                        <Button fx:id="o_Login" alignment="CENTER" mnemonicParsing="false" onAction="#loginButtonAction" text="NA">
+                        <Button fx:id="loginButton" alignment="CENTER" mnemonicParsing="false" onAction="#loginButtonAction" text="NA">
                            <font>
                               <Font size="24.0" />
                            </font>

@@ -8,11 +8,16 @@ package premaanganmanager.base.ui;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.text.Text;
 import premaanganmanager.base.controller.ui.UIControl;
+import premaanganmanager.configurable.Labels;
 
 /**
  *
@@ -26,6 +31,15 @@ public class AppContainer {
     
     private Scene appContainerScene;
     private BorderPane root;
+    
+    @FXML
+    private Button menuHomeButton, menuBrowseButton, menuAddButton, menuSearchButton, menuSettingsButton;
+    
+    @FXML
+    private Text headerText;
+    
+    @FXML
+    private ComboBox logoutComboBox;
     
     // Contructor with params
     public AppContainer(UIControl uiControl){
@@ -83,6 +97,8 @@ public class AppContainer {
             loader.setController(this);
             root = loader.load();
             appContainerScene = new Scene(root);
+            setLogOutComboBox();
+            setHomeLabels();
             return appContainerScene;
 //            loginScene.getStylesheets().add(Login.class.getResource("Login.css").toExternalForm());
         } catch (IOException e) {
@@ -90,6 +106,23 @@ public class AppContainer {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, e);
             return null;
         }
+    }
+    
+    //private functions
+    private void setHomeLabels(){
+        menuHomeButton.setText(uiControl.settings.labels.getLabel(Labels.labelTag.MENU_HOME));
+        menuBrowseButton.setText(uiControl.settings.labels.getLabel(Labels.labelTag.MENU_BROWSE));
+        menuAddButton.setText(uiControl.settings.labels.getLabel(Labels.labelTag.MENU_ADD));
+        menuSearchButton.setText(uiControl.settings.labels.getLabel(Labels.labelTag.MENU_SEARCH));
+        menuSettingsButton.setText(uiControl.settings.labels.getLabel(Labels.labelTag.MENU_SETTINGS));
+        headerText.setText(uiControl.settings.labels.getLabel(Labels.labelTag.HEADER_TITLE));
+        logoutComboBox.setPromptText(uiControl.settings.labels.getLabel(Labels.labelTag.HEADER_LOGOUT));
+    }
+    
+    private void setLogOutComboBox(){
+        logoutComboBox.getItems().addAll(
+                uiControl.settings.labels.getLabel(Labels.labelTag.HEADER_SWITCH_ADMIN),
+                uiControl.settings.labels.getLabel(Labels.labelTag.HEADER_LOGOUT));
     }
     
     private void setHomeScreen(){

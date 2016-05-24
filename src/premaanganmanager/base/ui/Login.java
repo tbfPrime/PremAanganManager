@@ -38,13 +38,13 @@ public class Login{
     private enum adminTag{ ADMIN1, ADMIN2, ADMIN3 }
     
     @FXML
-    private Text o_LoginTitle, o_LoginSubtitle, o_Key;
+    private Text loginTitleText, loginSubtitle1Text, loginSubtitle2Text, passwordLabelText;
     
     @FXML
-    private Button o_Guest, o_Admin, o_Admin1, o_Admin2, o_Admin3, o_Back, o_Login;
+    private Button guestButton, adminButton, admin1Button, admin2Button, admin3Button, backButton, loginButton;
     
     @FXML
-    private PasswordField o_PasswordField;
+    private PasswordField passwordField;
     
     // Constructor to Login Scene. Takes UIControl object as param.
     public Login(UIControl uiControl) {
@@ -53,44 +53,52 @@ public class Login{
     }
     
     // Action on clicking Guest button
+    @FXML
     public void guestButtonAction(){
         System.out.println("Login | guestButtonAction");
+        loginAsGuest();
     }
     
     // Action on clicking Admin button
+    @FXML
     public void adminButtonAction(){
         System.out.println("Login | adminButtonAction");
         displayLoginAdminOnlyScene();
     }
     
     // Action on clicking Admin1 button
+    @FXML
     public void admin1ButtonAction(){
         System.out.println("Login | admin1ButtonAction");
         selectAdminButton(adminTag.ADMIN1);
     }
     
     // Action on clicking Admin2 button
+    @FXML
     public void admin2ButtonAction(){
         System.out.println("Login | admin2ButtonAction");
         selectAdminButton(adminTag.ADMIN2);
     }
     
     // Action on clicking Admin3 button
+    @FXML
     public void admin3ButtonAction(){
         System.out.println("Login | admin3ButtonAction");
         selectAdminButton(adminTag.ADMIN3);
     }
  
     // Action on clicking Back button on Admin only screen
+    @FXML
     public void backButtonAction(){
         System.out.println("Login | backButtonAction");
         displayLoginGuestAdminScene();
     }
     
     // Action on clicking Login button on Admin only screen
+    @FXML
     public void loginButtonAction(){
         System.out.println("Login | loginButtonAction");
-        if(verifyLogin()){ uiControl.setAppContainer(); };
+        loginAction();
     }
                 
     // Creates  and returns the Login Scene with Guest and Admin buttons.
@@ -129,22 +137,22 @@ public class Login{
     
     // Private functions    
     private void setLoginGuestAdminLabels(){
-        o_LoginTitle.setText(uiControl.settings.labels.getLabel(Labels.labelTag.LOGINTITLE));
-        o_LoginSubtitle.setText(uiControl.settings.labels.getLabel(Labels.labelTag.LOGINSUBTITLE));
-        o_Guest.setText(uiControl.settings.labels.getLabel(Labels.labelTag.GUEST));
-        o_Admin.setText(uiControl.settings.labels.getLabel(Labels.labelTag.ADMIN));
+        loginTitleText.setText(uiControl.settings.labels.getLabel(Labels.labelTag.LOGIN_TITLE));
+        loginSubtitle1Text.setText(uiControl.settings.labels.getLabel(Labels.labelTag.LOGIN_SUBTITLE1));
+        guestButton.setText(uiControl.settings.labels.getLabel(Labels.labelTag.GUEST));
+        adminButton.setText(uiControl.settings.labels.getLabel(Labels.labelTag.ADMIN));
     }
     
     private void setLoginAdminOnlyLabels(){
-        o_LoginTitle.setText(uiControl.settings.labels.getLabel(Labels.labelTag.LOGINTITLE));
-        o_LoginSubtitle.setText(uiControl.settings.labels.getLabel(Labels.labelTag.LOGINSUBTITLE));
-        o_Admin1.setText(uiControl.settings.labels.getLabel(Labels.labelTag.ADMIN1));
-        o_Admin2.setText(uiControl.settings.labels.getLabel(Labels.labelTag.ADMIN2));
-        o_Admin3.setText(uiControl.settings.labels.getLabel(Labels.labelTag.ADMIN3));
-        o_Key.setText(uiControl.settings.labels.getLabel(Labels.labelTag.KEY));
-        o_PasswordField.setPromptText(uiControl.settings.labels.getLabel(Labels.labelTag.PASSWORDPROMPT));
-        o_Back.setText(uiControl.settings.labels.getLabel(Labels.labelTag.BACK));
-        o_Login.setText(uiControl.settings.labels.getLabel(Labels.labelTag.LOGIN));
+        loginTitleText.setText(uiControl.settings.labels.getLabel(Labels.labelTag.LOGIN_TITLE));
+        loginSubtitle2Text.setText(uiControl.settings.labels.getLabel(Labels.labelTag.LOGIN_SUBTITLE2));
+        admin1Button.setText(uiControl.settings.labels.getLabel(Labels.labelTag.ADMIN1));
+        admin2Button.setText(uiControl.settings.labels.getLabel(Labels.labelTag.ADMIN2));
+        admin3Button.setText(uiControl.settings.labels.getLabel(Labels.labelTag.ADMIN3));
+        passwordLabelText.setText(uiControl.settings.labels.getLabel(Labels.labelTag.PASSWORD));
+        passwordField.setPromptText(uiControl.settings.labels.getLabel(Labels.labelTag.PASSWORD_PROMPT));
+        backButton.setText(uiControl.settings.labels.getLabel(Labels.labelTag.BACK));
+        loginButton.setText(uiControl.settings.labels.getLabel(Labels.labelTag.LOGIN));
     }
     
     private void displayLoginAdminOnlyScene(){
@@ -159,22 +167,36 @@ public class Login{
         String defaultColor = "#000000";
         String selectedColor = "red";
         
-        o_Admin1.setTextFill(Paint.valueOf(defaultColor));
-        o_Admin2.setTextFill(Paint.valueOf(defaultColor));
-        o_Admin3.setTextFill(Paint.valueOf(defaultColor));
+        admin1Button.setTextFill(Paint.valueOf(defaultColor));
+        admin2Button.setTextFill(Paint.valueOf(defaultColor));
+        admin3Button.setTextFill(Paint.valueOf(defaultColor));
         
         switch(tag){
-            case ADMIN1: o_Admin1.setTextFill(Paint.valueOf(selectedColor)); username = admin1Username; break;
-            case ADMIN2: o_Admin2.setTextFill(Paint.valueOf(selectedColor)); username = admin2Username; break;
-            case ADMIN3: o_Admin3.setTextFill(Paint.valueOf(selectedColor)); username = admin3Username; break;
+            case ADMIN1: admin1Button.setTextFill(Paint.valueOf(selectedColor)); username = admin1Username; break;
+            case ADMIN2: admin2Button.setTextFill(Paint.valueOf(selectedColor)); username = admin2Username; break;
+            case ADMIN3: admin3Button.setTextFill(Paint.valueOf(selectedColor)); username = admin3Username; break;
         }
+    }
+    
+    private void loginAsGuest(){
+        username = "guest";
+        loginAction();
     }
     
     private boolean verifyLogin(){
         System.out.println("Login | verifyLogin");
-        password = o_PasswordField.getText();
+        
+        if(username != null && username.equalsIgnoreCase("guest")){ password = "guest"; }
+        else{ password = passwordField.getText(); }
+        
         if(password.length() == 0){ System.out.println("No Password entered. Exiting."); return false; }
+        
         try { return uiControl.uiModel.isLoginCorrect(username, password); }
-        catch (SQLException ex) { Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex); return false; }
+        catch (SQLException ex) { System.err.println("Login | VerifyLogin | Error: " + ex); return false; }
+    }
+    
+    private void loginAction(){
+        if(verifyLogin()){ uiControl.setAppContainer(); }
+        else{ System.out.println("Login | verifyLogin | Failed to verify login"); }
     }
 }

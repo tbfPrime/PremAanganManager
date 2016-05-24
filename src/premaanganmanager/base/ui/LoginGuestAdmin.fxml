@@ -19,24 +19,24 @@
             </ImageView>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
                <children>
-                  <Text fx:id="o_LoginTitle" fill="#02c352" strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
+                  <Text fx:id="loginTitleText" fill="#02c352" strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
                      <font>
                         <Font size="60.0" />
                      </font>
                   </Text>
-                  <Text fx:id="o_LoginSubtitle" strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
+                  <Text fx:id="loginSubtitle1Text" strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
                      <font>
                         <Font size="27.0" />
                      </font>
                   </Text>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="124.0">
                      <children>
-                        <Button fx:id="o_Guest" mnemonicParsing="false" onAction="#guestButtonAction" text="NA">
+                        <Button fx:id="guestButton" mnemonicParsing="false" onAction="#guestButtonAction" text="NA">
                            <font>
                               <Font size="35.0" />
                            </font>
                         </Button>
-                        <Button fx:id="o_Admin" mnemonicParsing="false" onAction="#adminButtonAction" text="NA">
+                        <Button fx:id="adminButton" mnemonicParsing="false" onAction="#adminButtonAction" text="NA">
                            <font>
                               <Font size="35.0" />
                            </font>

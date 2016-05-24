@@ -32,7 +32,7 @@ public class UIControl {
     public Stage getApplicationStage(){ return stageContainer.getApplicationStage(); }
     
     public void initializeApplicationStage(){
-        stageContainer.currentStage.setTitle(settings.labels.getLabel(Labels.labelTag.APPLICATIONTITLE));
+        stageContainer.currentStage.setTitle(settings.labels.getLabel(Labels.labelTag.APPLICATION_TITLE));
         setLoginGuestAdminScene();
     }
     
