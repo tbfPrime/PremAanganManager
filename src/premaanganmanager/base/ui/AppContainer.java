@@ -21,7 +21,7 @@ import premaanganmanager.configurable.Labels;
 
 /**
  *
- * @author Trevor Fernandes & Eugenia Bernate
+ * @author Trevor Fernandes & Eugenia Bernate Thomas
  */
 public class AppContainer {
     public UIControl uiControl;
