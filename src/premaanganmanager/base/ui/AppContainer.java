@@ -64,6 +64,16 @@ public class AppContainer {
         System.out.println("AppContainer | browseButtonAction");
         displayScreen(screenTag.BROWSE);
     }
+
+    @FXML
+    public void logoutComboBoxButtonAction(){
+        System.out.println("AppContainer | logoutComboBoxButtonAction | Value: " + logoutComboBox.getValue().toString());
+        if(logoutComboBox.getValue().toString().equalsIgnoreCase(uiControl.settings.labels.getLabel(Labels.labelTag.HEADER_SWITCH_ADMIN))){
+            uiControl.setLoginAdminOnlyScene();
+        } else if(logoutComboBox.getValue().toString().equalsIgnoreCase(uiControl.settings.labels.getLabel(Labels.labelTag.HEADER_LOGOUT))){
+            uiControl.setLoginGuestAdminScene();
+        }
+    }
     
     @FXML
     public void addButtonAction(){

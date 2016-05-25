@@ -36,7 +36,7 @@
             </Text>
          </left>
          <right>
-            <ComboBox fx:id="logoutComboBox" promptText="NA" BorderPane.alignment="CENTER" />
+            <ComboBox fx:id="logoutComboBox" promptText="NA" onAction="#logoutComboBoxButtonAction"  BorderPane.alignment="CENTER" />
          </right>
       </BorderPane>
    </top>
