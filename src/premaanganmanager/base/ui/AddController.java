@@ -8,7 +8,9 @@ package premaanganmanager.base.ui;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 
 /**
@@ -16,7 +18,23 @@ import javafx.scene.layout.AnchorPane;
  * @author Trevor Fernandes
  */
 public class AddController {
-        public AnchorPane setAdd(){
+    
+    private AppContainer appContainer;
+   
+    @FXML
+    private Button addToDBButton;
+    
+    @FXML
+    private void addToDBAction(){
+        System.out.println("AddController | addToDBAction");
+        appContainer.uiControl.uiModel.pushToDummyTable();
+    }
+    
+    public AddController(AppContainer appContainer){
+        this.appContainer = appContainer;
+    }
+    
+    public AnchorPane setAdd(){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/premaanganmanager/base/ui/Add.fxml"));
             loader.setController(this);

@@ -48,8 +48,8 @@ public class AppContainer {
         this.uiControl = uiControl;
         
         homeController = new HomeController();
-        browseController = new BrowseController();
-        addController = new AddController();
+        browseController = new BrowseController(this);
+        addController = new AddController(this);
         searchController = new SearchController();
         settingsController = new SettingsController();
     }
@@ -93,9 +93,9 @@ public class AppContainer {
     public void logoutComboBoxButtonAction(){
         System.out.println("AppContainer | logoutComboBoxButtonAction | Value: " + logoutComboBox.getValue().toString());
         if(logoutComboBox.getValue().toString().equalsIgnoreCase(uiControl.settings.labels.getLabel(Labels.labelTag.HEADER_SWITCH_ADMIN))){
-            uiControl.setLoginAdminOnlyScene();
+            uiControl.logoutToAdminScreen();
         } else if(logoutComboBox.getValue().toString().equalsIgnoreCase(uiControl.settings.labels.getLabel(Labels.labelTag.HEADER_LOGOUT))){
-            uiControl.setLoginGuestAdminScene();
+            uiControl.logoutToGuestAdminScreen();
         }
     }
     

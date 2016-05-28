@@ -36,6 +36,18 @@ public class UIControl {
         setLoginGuestAdminScene();
     }
     
+    public void logoutToAdminScreen(){
+        System.out.println("UIControl | logoutToAdminScreen()");
+        closeDBObjects();
+        setLoginAdminOnlyScene();
+    }
+    
+    public void logoutToGuestAdminScreen(){
+        System.out.println("UIControl | logoutToGuestAdminScreen");
+        closeDBObjects();
+        setLoginGuestAdminScene();
+    }
+    
     public void setLoginGuestAdminScene(){
         stageContainer.setApplicationScene(sceneContainer.login.setLoginGuestAdminScene()); 
     }
@@ -45,7 +57,16 @@ public class UIControl {
     }
     
     public void setAppContainer(){
+        createDBObjects();
         stageContainer.setApplicationScene(sceneContainer.appContainer.setAppContainer());
         sceneContainer.appContainer.displayScreen(AppContainer.screenTag.HOME);
+    }
+    
+    public void closeDBObjects(){
+        uiModel.closeDBObjects();
+    }
+    
+    public void createDBObjects(){
+        uiModel.createDBObjects();
     }
 }

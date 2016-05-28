@@ -5,6 +5,7 @@
     <class>premaanganmanager.base.controller.background.ApplicationLabels</class>
     <class>premaanganmanager.base.controller.background.Student</class>
     <class>premaanganmanager.base.controller.background.Users</class>
+    <class>premaanganmanager.base.controller.background.Dummy</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:sqlite:PremAanganManager.sqlite"/>
       <property name="javax.persistence.jdbc.user" value=""/>

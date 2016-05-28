@@ -8,6 +8,8 @@ package premaanganmanager.base.controller.ui;
 import premaanganmanager.base.controller.background.*;
 import java.sql.*;
 import java.util.List;
+import java.util.Observable;
+import javafx.collections.ObservableList;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -69,26 +71,57 @@ public class UIModel {
         }
     }
     
+    public List<Dummy> fetchAllDummy(){
+        System.out.println("UIModel | fetchAllDummy");
+        
+        Query q = em.createNamedQuery("Dummy.findAll");
+        List<Dummy> result = q.getResultList();
+        return result;
+    }
     
+    public void pushToDummyTable(){
+        System.out.println("UIModel | pushToDummyTable");
+        Dummy d = new Dummy();
+        d.setDummyValue("Jam");
+        
+        em.getTransaction().begin();
+        em.persist(d);
+        em.getTransaction().commit();
+        
+        System.out.println("Entry added to dummy.");
+    }
+    
+    /**
+     * Fetch all application labels.
+     */      
     public List<ApplicationLabels> fetchAllLabels(){
         System.out.println("UIModel | fetchAllLabels");
-        
-        emf = Persistence.createEntityManagerFactory("PremAanganManagerPU");
-        em = emf.createEntityManager();
         
         Query rq = em.createNamedQuery("ApplicationLabels.findAll");
         List<ApplicationLabels> result = rq.getResultList();
         return result;
     }
+
+    /**
+     * Creates all  DB Objects.
+     */    
+    public void createDBObjects(){
+        System.out.println("UIModel | createDBObjects");
+        emf = Persistence.createEntityManagerFactory("PremAanganManagerPU");
+        em = emf.createEntityManager();
+    }
     
+    /**
+     * Closes all  DB Objects.
+     */
     public void closeDBObjects(){
+        System.out.println("UIModel | closeDBObjects");
         em.close();
         emf.close();
     }
     
     /**
      * connectToSqliteDB creates a connection to sqlite database.
-     * @return 
      */
     private void connectToSqliteDB(){
         o_Connection = o_SqliteConnector.connector();        

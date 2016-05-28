@@ -28,8 +28,12 @@ public class Settings {
     
     public void initializeApplicationVariables(){
         System.out.println("Settings | initializeApplicationVariables");
+        uiControl.createDBObjects();
+        
         labels = new Labels();
         setDefaultValuesToAllLabels();
+        
+        uiControl.closeDBObjects();
     }
     
     public final void setDefaultValuesToAllLabels(){
@@ -38,6 +42,5 @@ public class Settings {
         for(ApplicationLabels tempLabels : labels){
             this.labels.setLabel(Labels.labelTag.valueOf(tempLabels.getTag()),tempLabels.getValue());
         }
-        uiControl.uiModel.closeDBObjects();
     }
 }
