@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "ApplicationLabels.findAll", query = "SELECT a FROM ApplicationLabels a"),
-    @NamedQuery(name = "ApplicationLabels.findById", query = "SELECT a FROM ApplicationLabels a WHERE a.id = :id"),
+    @NamedQuery(name = "ApplicationLabels.findByApplicationLabelsId", query = "SELECT a FROM ApplicationLabels a WHERE a.applicationLabelsId = :applicationLabelsId"),
     @NamedQuery(name = "ApplicationLabels.findByTag", query = "SELECT a FROM ApplicationLabels a WHERE a.tag = :tag"),
     @NamedQuery(name = "ApplicationLabels.findByValue", query = "SELECT a FROM ApplicationLabels a WHERE a.value = :value"),
     @NamedQuery(name = "ApplicationLabels.findByDefaultValue", query = "SELECT a FROM ApplicationLabels a WHERE a.defaultValue = :defaultValue")})
@@ -33,8 +33,8 @@ public class ApplicationLabels implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "id")
-    private Integer id;
+    @Column(name = "application_labels_id")
+    private Integer applicationLabelsId;
     @Column(name = "tag")
     private String tag;
     @Column(name = "value")
@@ -45,16 +45,16 @@ public class ApplicationLabels implements Serializable {
     public ApplicationLabels() {
     }
 
-    public ApplicationLabels(Integer id) {
-        this.id = id;
+    public ApplicationLabels(Integer applicationLabelsId) {
+        this.applicationLabelsId = applicationLabelsId;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getApplicationLabelsId() {
+        return applicationLabelsId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setApplicationLabelsId(Integer applicationLabelsId) {
+        this.applicationLabelsId = applicationLabelsId;
     }
 
     public String getTag() {
@@ -84,7 +84,7 @@ public class ApplicationLabels implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (applicationLabelsId != null ? applicationLabelsId.hashCode() : 0);
         return hash;
     }
 
@@ -95,7 +95,7 @@ public class ApplicationLabels implements Serializable {
             return false;
         }
         ApplicationLabels other = (ApplicationLabels) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.applicationLabelsId == null && other.applicationLabelsId != null) || (this.applicationLabelsId != null && !this.applicationLabelsId.equals(other.applicationLabelsId))) {
             return false;
         }
         return true;
@@ -103,7 +103,7 @@ public class ApplicationLabels implements Serializable {
 
     @Override
     public String toString() {
-        return "premaanganmanager.base.controller.background.ApplicationLabels[ id=" + id + " ]";
+        return "premaanganmanager.base.controller.background.ApplicationLabels[ applicationLabelsId=" + applicationLabelsId + " ]";
     }
     
 }

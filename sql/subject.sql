@@ -1,0 +1,2 @@
+DROP TABLE IF EXISTS "subject";
+CREATE TABLE "subject" ("subject_id" INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL  UNIQUE , "subject_name" TEXT NOT NULL );

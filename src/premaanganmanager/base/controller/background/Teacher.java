@@ -20,37 +20,37 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Trevor Fernandes
  */
 @Entity
-@Table(name = "student")
+@Table(name = "teacher")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Student.findAll", query = "SELECT s FROM Student s"),
-    @NamedQuery(name = "Student.findByStudentId", query = "SELECT s FROM Student s WHERE s.studentId = :studentId"),
-    @NamedQuery(name = "Student.findByStudentPhotoId", query = "SELECT s FROM Student s WHERE s.studentPhotoId = :studentPhotoId"),
-    @NamedQuery(name = "Student.findByFirstName", query = "SELECT s FROM Student s WHERE s.firstName = :firstName"),
-    @NamedQuery(name = "Student.findByMiddleName", query = "SELECT s FROM Student s WHERE s.middleName = :middleName"),
-    @NamedQuery(name = "Student.findByLastName", query = "SELECT s FROM Student s WHERE s.lastName = :lastName"),
-    @NamedQuery(name = "Student.findByAddress", query = "SELECT s FROM Student s WHERE s.address = :address"),
-    @NamedQuery(name = "Student.findByDob", query = "SELECT s FROM Student s WHERE s.dob = :dob"),
-    @NamedQuery(name = "Student.findByPlaceOfBirth", query = "SELECT s FROM Student s WHERE s.placeOfBirth = :placeOfBirth"),
-    @NamedQuery(name = "Student.findByReligion", query = "SELECT s FROM Student s WHERE s.religion = :religion"),
-    @NamedQuery(name = "Student.findByOtherReligion", query = "SELECT s FROM Student s WHERE s.otherReligion = :otherReligion"),
-    @NamedQuery(name = "Student.findByEmailId", query = "SELECT s FROM Student s WHERE s.emailId = :emailId"),
-    @NamedQuery(name = "Student.findByEmergencyContactPerson", query = "SELECT s FROM Student s WHERE s.emergencyContactPerson = :emergencyContactPerson"),
-    @NamedQuery(name = "Student.findByEmergencyContactNumber", query = "SELECT s FROM Student s WHERE s.emergencyContactNumber = :emergencyContactNumber"),
-    @NamedQuery(name = "Student.findByEducationalBackground", query = "SELECT s FROM Student s WHERE s.educationalBackground = :educationalBackground"),
-    @NamedQuery(name = "Student.findByLanguages", query = "SELECT s FROM Student s WHERE s.languages = :languages"),
-    @NamedQuery(name = "Student.findByHobbies", query = "SELECT s FROM Student s WHERE s.hobbies = :hobbies"),
-    @NamedQuery(name = "Student.findByPlace", query = "SELECT s FROM Student s WHERE s.place = :place"),
-    @NamedQuery(name = "Student.findByDate", query = "SELECT s FROM Student s WHERE s.date = :date")})
-public class Student implements Serializable {
+    @NamedQuery(name = "Teacher.findAll", query = "SELECT t FROM Teacher t"),
+    @NamedQuery(name = "Teacher.findByTeacherId", query = "SELECT t FROM Teacher t WHERE t.teacherId = :teacherId"),
+    @NamedQuery(name = "Teacher.findByTeacherPhotoId", query = "SELECT t FROM Teacher t WHERE t.teacherPhotoId = :teacherPhotoId"),
+    @NamedQuery(name = "Teacher.findByFirstName", query = "SELECT t FROM Teacher t WHERE t.firstName = :firstName"),
+    @NamedQuery(name = "Teacher.findByMiddleName", query = "SELECT t FROM Teacher t WHERE t.middleName = :middleName"),
+    @NamedQuery(name = "Teacher.findByLastName", query = "SELECT t FROM Teacher t WHERE t.lastName = :lastName"),
+    @NamedQuery(name = "Teacher.findByAddress", query = "SELECT t FROM Teacher t WHERE t.address = :address"),
+    @NamedQuery(name = "Teacher.findByDob", query = "SELECT t FROM Teacher t WHERE t.dob = :dob"),
+    @NamedQuery(name = "Teacher.findByPlaceOfBirth", query = "SELECT t FROM Teacher t WHERE t.placeOfBirth = :placeOfBirth"),
+    @NamedQuery(name = "Teacher.findByReligion", query = "SELECT t FROM Teacher t WHERE t.religion = :religion"),
+    @NamedQuery(name = "Teacher.findByOtherReligion", query = "SELECT t FROM Teacher t WHERE t.otherReligion = :otherReligion"),
+    @NamedQuery(name = "Teacher.findByEmailId", query = "SELECT t FROM Teacher t WHERE t.emailId = :emailId"),
+    @NamedQuery(name = "Teacher.findByEmergencyContactPerson", query = "SELECT t FROM Teacher t WHERE t.emergencyContactPerson = :emergencyContactPerson"),
+    @NamedQuery(name = "Teacher.findByEmergencyContactNumber", query = "SELECT t FROM Teacher t WHERE t.emergencyContactNumber = :emergencyContactNumber"),
+    @NamedQuery(name = "Teacher.findByEducationalBackground", query = "SELECT t FROM Teacher t WHERE t.educationalBackground = :educationalBackground"),
+    @NamedQuery(name = "Teacher.findByLanguages", query = "SELECT t FROM Teacher t WHERE t.languages = :languages"),
+    @NamedQuery(name = "Teacher.findByHobbies", query = "SELECT t FROM Teacher t WHERE t.hobbies = :hobbies"),
+    @NamedQuery(name = "Teacher.findByPlace", query = "SELECT t FROM Teacher t WHERE t.place = :place"),
+    @NamedQuery(name = "Teacher.findByDate", query = "SELECT t FROM Teacher t WHERE t.date = :date")})
+public class Teacher implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "student_id")
-    private Integer studentId;
-    @Column(name = "student_photo_id")
-    private String studentPhotoId;
+    @Column(name = "teacher_id")
+    private Integer teacherId;
+    @Column(name = "teacher_photo_id")
+    private String teacherPhotoId;
     @Basic(optional = false)
     @Column(name = "first_name")
     private String firstName;
@@ -85,32 +85,32 @@ public class Student implements Serializable {
     @Column(name = "date")
     private String date;
 
-    public Student() {
+    public Teacher() {
     }
 
-    public Student(Integer studentId) {
-        this.studentId = studentId;
+    public Teacher(Integer teacherId) {
+        this.teacherId = teacherId;
     }
 
-    public Student(Integer studentId, String firstName) {
-        this.studentId = studentId;
+    public Teacher(Integer teacherId, String firstName) {
+        this.teacherId = teacherId;
         this.firstName = firstName;
     }
 
-    public Integer getStudentId() {
-        return studentId;
+    public Integer getTeacherId() {
+        return teacherId;
     }
 
-    public void setStudentId(Integer studentId) {
-        this.studentId = studentId;
+    public void setTeacherId(Integer teacherId) {
+        this.teacherId = teacherId;
     }
 
-    public String getStudentPhotoId() {
-        return studentPhotoId;
+    public String getTeacherPhotoId() {
+        return teacherPhotoId;
     }
 
-    public void setStudentPhotoId(String studentPhotoId) {
-        this.studentPhotoId = studentPhotoId;
+    public void setTeacherPhotoId(String teacherPhotoId) {
+        this.teacherPhotoId = teacherPhotoId;
     }
 
     public String getFirstName() {
@@ -244,18 +244,18 @@ public class Student implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (studentId != null ? studentId.hashCode() : 0);
+        hash += (teacherId != null ? teacherId.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Student)) {
+        if (!(object instanceof Teacher)) {
             return false;
         }
-        Student other = (Student) object;
-        if ((this.studentId == null && other.studentId != null) || (this.studentId != null && !this.studentId.equals(other.studentId))) {
+        Teacher other = (Teacher) object;
+        if ((this.teacherId == null && other.teacherId != null) || (this.teacherId != null && !this.teacherId.equals(other.teacherId))) {
             return false;
         }
         return true;
@@ -263,7 +263,7 @@ public class Student implements Serializable {
 
     @Override
     public String toString() {
-        return "premaanganmanager.base.controller.background.Student[ studentId=" + studentId + " ]";
+        return "premaanganmanager.base.controller.background.Teacher[ teacherId=" + teacherId + " ]";
     }
     
 }

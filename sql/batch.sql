@@ -1,0 +1,2 @@
+DROP TABLE IF EXISTS "batch";
+CREATE TABLE "batch" ("batch_id" INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , "academic_year" TEXT NOT NULL );

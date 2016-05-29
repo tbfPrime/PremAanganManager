@@ -16,7 +16,7 @@ public class SqliteConnector {
     
     public static Connection connector(){
         try{
-            Class.forName("org.sqlite.JDBC");
+            java.lang.Class.forName("org.sqlite.JDBC");
             Connection dbCon = DriverManager.getConnection("jdbc:sqlite:PremAanganManager.sqlite");
             return dbCon;
         } catch(Exception e){

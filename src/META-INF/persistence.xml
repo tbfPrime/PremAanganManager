@@ -6,6 +6,25 @@
     <class>premaanganmanager.base.controller.background.Student</class>
     <class>premaanganmanager.base.controller.background.Users</class>
     <class>premaanganmanager.base.controller.background.Dummy</class>
+    <class>premaanganmanager.base.controller.background.Course</class>
+    <class>premaanganmanager.base.controller.background.TeacherFamilyInfo</class>
+    <class>premaanganmanager.base.controller.background.FamilyInfo</class>
+    <class>premaanganmanager.base.controller.background.CourseDuration</class>
+    <class>premaanganmanager.base.controller.background.Timetable</class>
+    <class>premaanganmanager.base.controller.background.StudentFamilyInfo</class>
+    <class>premaanganmanager.base.controller.background.TeacherSubject</class>
+    <class>premaanganmanager.base.controller.background.StudentAttendance</class>
+    <class>premaanganmanager.base.controller.background.TeacherPhoto</class>
+    <class>premaanganmanager.base.controller.background.Batch</class>
+    <class>premaanganmanager.base.controller.background.StudentPhoto</class>
+    <class>premaanganmanager.base.controller.background.BatchClassCourse</class>
+    <class>premaanganmanager.base.controller.background.Teacher</class>
+    <class>premaanganmanager.base.controller.background.TimetableClass</class>
+    <class>premaanganmanager.base.controller.background.Timebreak</class>
+    <class>premaanganmanager.base.controller.background.ClassStudent</class>
+    <class>premaanganmanager.base.controller.background.TeacherAttendance</class>
+    <class>premaanganmanager.base.controller.background.Subject</class>
+    <class>premaanganmanager.base.controller.background.Class</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:sqlite:PremAanganManager.sqlite"/>
       <property name="javax.persistence.jdbc.user" value=""/>
