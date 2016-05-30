@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text layoutX="25.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prem Aangan" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="25.0">
+         <font>
+            <Font size="52.0" />
+         </font></Text>
+      <Text layoutX="28.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A new hope for a new tomorrow" AnchorPane.leftAnchor="28.0">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Text>
+      <Text layoutX="28.0" layoutY="226.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Our Vision">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Text>
+      <Text layoutX="28.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To uplift and empower the underprivileged of our society, to lead a better quality life" wrappingWidth="396.33203125">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <HBox alignment="CENTER_RIGHT" layoutX="575.0" layoutY="475.0" spacing="40.0" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="25.0">
+         <children>
+            <Button fx:id="addStudentBackButton" mnemonicParsing="false" text="NA" onAction="#addStudentBackAction" >
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Button>
+            <Button fx:id="addStudentSaveButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="NA">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

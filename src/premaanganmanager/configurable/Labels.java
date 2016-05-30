@@ -5,41 +5,36 @@
  */
 package premaanganmanager.configurable;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 /**
  *
  * @author Trevor Fernandes
  */
 public class Labels {
-    // public enum to get/set lables from this file.
+    // public enum to tag lables from this file.
     public enum labelTag{
-        // Common labels.
-// Common labels.
-// Common labels.
-// Common labels.
-// Common labels.
-// Common labels.
-// Common labels.
-// Common labels.
-        APPLICATION_TITLE,BACK,                                                 // Application wide
-        MENU_HOME, MENU_BROWSE, MENU_ADD, MENU_SEARCH, MENU_SETTINGS,           // Menu labels.
-        HEADER_TITLE, HEADER_LOGOUT, HEADER_SWITCH_ADMIN,                       // Header labels.
-        
+        // Common
+        APPLICATION_TITLE, BACK, SAVE,                                                               // Application wide
+        MENU_HOME, MENU_BROWSE, MENU_ADD, MENU_SEARCH, MENU_SETTINGS,                                // Menu labels.
+        HEADER_LOGOUT, HEADER_SWITCH_ADMIN,                                                          // Header labels.
+        HEADER_TITLE,
+            
         // Login
-        LOGIN_TITLE, LOGIN_SUBTITLE1, LOGIN_SUBTITLE2, LOGIN_HELP1, LOGIN_HELP2, LOGIN_ERROR1,    // Login labels common to both the login screens.
-        GUEST, ADMIN,                                                           // Login Guest Admin specific labels.
-        ADMIN1, ADMIN2, ADMIN3, PASSWORD, PASSWORD_PROMPT, LOGIN,                    // Admin only specific labels.
+        LOGIN_TITLE, LOGIN_SUBTITLE1, LOGIN_SUBTITLE2, LOGIN_HELP1, LOGIN_HELP2, LOGIN_ERROR1,       // Login labels common to both the login screens.
+        GUEST, ADMIN,                                                                                // Login Guest Admin specific labels.
+        ADMIN1, ADMIN2, ADMIN3, PASSWORD, PASSWORD_PROMPT, LOGIN,                                    // Admin only specific labels.
         
         // Home and 'About this software'
-        HOME_TITLE, HOME_SUBTITLE1, HOME_SUBTITLE2, HOME_SUBTITLE3,             // Home labels.
+        HOME_TITLE, HOME_SUBTITLE1, HOME_SUBTITLE2, HOME_SUBTITLE3,                                   // Home labels.
         HOME_ABOUT_THIS_SOFTWARE,
+        
+        // Add 
+        ADD_STUDENT, ADD_TEACHER, ADD_SUBJECT, ADD_ATTENDANCE,                                        // Add Screen labels.
+        ADD_COURSE, ADD_BATCH, ADD_CLASS, ADD_TIMETABLE                                              
     }
     
     // List of all  labels used in PAM
     // Common labels.
-    private String l_ApplicationTitle, l_Back;
+    private String l_ApplicationTitle, l_Back, l_Save;
     private String l_MenuHome, l_MenuBrowse, l_MenuAdd, l_MenuSearch, l_MenuSettings;
     private String l_HeaderTitle, l_HeaderLogout, l_HeaderSwitchAdmin;
 
@@ -49,12 +44,16 @@ public class Labels {
     // Home and 'About this software'
     private String l_HomeTitle, l_HomeSubtitle1, l_HomeSubtitle2, l_HomeSubtitle3, l_HomeAboutThisSoftware;
     
+    // Add
+    private String l_addStudent, l_addTeacher, l_addSubject, l_addAttendance, l_addCourse, l_addBatch, l_addClass, l_addTimetable;
+    
     
     // public functions.
     public void setLabel(labelTag tag, String value){
         switch(tag){
             case APPLICATION_TITLE: l_ApplicationTitle = value; break;
             case BACK: l_Back = value; break;
+            case SAVE: l_Save = value; break;
             
             case MENU_HOME: l_MenuHome = value; break;
             case MENU_BROWSE: l_MenuBrowse = value; break;
@@ -84,6 +83,15 @@ public class Labels {
             case HOME_SUBTITLE2: l_HomeSubtitle2 = value; break;
             case HOME_SUBTITLE3: l_HomeSubtitle3 = value; break;
             case HOME_ABOUT_THIS_SOFTWARE: l_HomeAboutThisSoftware = value; break;
+            
+            case ADD_STUDENT: l_addStudent = value; break;
+            case ADD_TEACHER: l_addTeacher = value; break;
+            case ADD_SUBJECT: l_addSubject = value; break;
+            case ADD_ATTENDANCE: l_addAttendance = value; break;
+            case ADD_COURSE: l_addCourse = value; break;
+            case ADD_BATCH: l_addBatch = value; break;
+            case ADD_CLASS: l_addClass = value; break;
+            case ADD_TIMETABLE: l_addTimetable = value; break;
         }
     }
     
@@ -91,6 +99,7 @@ public class Labels {
         switch(tag){
             case APPLICATION_TITLE: return l_ApplicationTitle; 
             case BACK: return l_Back;
+            case SAVE: return l_Save;
 
             case MENU_HOME: return l_MenuHome;
             case MENU_BROWSE: return l_MenuBrowse;
@@ -120,40 +129,16 @@ public class Labels {
             case HOME_SUBTITLE2: return l_HomeSubtitle2;
             case HOME_SUBTITLE3: return l_HomeSubtitle3;
             case HOME_ABOUT_THIS_SOFTWARE: return l_HomeAboutThisSoftware;
+            
+            case ADD_STUDENT: return l_addStudent;
+            case ADD_TEACHER: return l_addTeacher;
+            case ADD_SUBJECT: return l_addSubject;
+            case ADD_ATTENDANCE: return l_addAttendance;
+            case ADD_COURSE: return l_addCourse;
+            case ADD_BATCH: return l_addBatch;
+            case ADD_CLASS: return l_addClass;
+            case ADD_TIMETABLE: return l_addTimetable;
         }
         return "NA";
     }
-//    
-//    // Sets all labels to default value
-//    public final void setDefaultValuesToAllLabels() throws SQLException{
-//        setLabel(labelTag.APPLICATION_TITLE, "Prem Aangan Manager 1.0");
-//        setLabel(labelTag.BACK, "Back");
-//        
-//        setLabel(Labels.labelTag.LOGIN_TITLE, "Prem Aangan Manager");
-//        setLabel(labelTag.LOGIN_SUBTITLE1, "Login To Start");
-//        setLabel(labelTag.LOGIN_HELP1, "Please click on one of the above login options to begin.");
-//        setLabel(Labels.labelTag.GUEST, "Guest");
-//        setLabel(Labels.labelTag.ADMIN, "Admin");
-//        setLabel(Labels.labelTag.ADMIN1, "Admin 1");
-//        setLabel(Labels.labelTag.ADMIN2, "Admin 2");
-//        setLabel(Labels.labelTag.ADMIN3, "Admin 3");
-//        setLabel(Labels.labelTag.PASSWORD, "Key");
-//        setLabel(labelTag.PASSWORD_PROMPT, "Enter Admin Key");
-//        setLabel(Labels.labelTag.LOGIN, "Login");
-//        
-//        setLabel(Labels.labelTag.MENU_HOME, "Home");
-//        setLabel(Labels.labelTag.MENU_BROWSE, "Browse");
-//        setLabel(Labels.labelTag.MENU_ADD, "Add");
-//        setLabel(Labels.labelTag.MENU_SEARCH, "Search");
-//        setLabel(Labels.labelTag.MENU_SETTINGS, "Settings");
-//        
-//        setLabel(Labels.labelTag.HEADER_TITLE, "Home");
-//        
-//        
-//        try{
-////            ResultSet result = ui
-//        } catch(Exception e){
-//            System.err.println("Labels | setDefaultValuesToAllLabels | Error " + e);
-//        }
-//    }
 }
