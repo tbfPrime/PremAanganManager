@@ -91,6 +91,16 @@ public class UIModel {
         System.out.println("Entry added to dummy.");
     }
     
+    public void saveStudentForm(Student student){
+        System.out.println("UIModel | saveStudentForm");
+        
+        em.getTransaction().begin();
+        em.persist(student);
+        em.getTransaction().commit();
+        
+        System.out.println("UIModel | saveStudentForm | Entry saved.");
+    }
+    
     /**
      * Fetch all application labels.
      */      

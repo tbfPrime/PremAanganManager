@@ -56,7 +56,7 @@ public class AppContainer {
     
     public enum screenTag{
         HOME, BROWSE, ADD, SEARCH, SETTINGS,
-        ADD_STUDENT
+        ADD_STUDENT, BROWSE_TABLE
     }
     
     @FXML
@@ -109,6 +109,7 @@ public class AppContainer {
             case SEARCH: setSearchScreen(); break;
             case SETTINGS: setSettingsScreen(); break;
             case ADD_STUDENT: setAddStudentScreen(); break;
+            case BROWSE_TABLE: setBrowseTableScreen(); break;
         }
     }
     
@@ -151,7 +152,7 @@ public class AppContainer {
     }
     
     private void setBrowseScreen(){
-        root.setCenter(browseController.setBrowseHome());
+        root.setCenter(browseController.setBrowseScreenMenu());
     }
     
     private void setAddScreen(){
@@ -168,5 +169,9 @@ public class AppContainer {
     
     private void setAddStudentScreen(){
         root.setCenter(addController.setAddStudentScreen());
-    }    
+    }
+    
+    private void setBrowseTableScreen(){
+        root.setCenter(browseController.setBrowseTable());
+    }
 }

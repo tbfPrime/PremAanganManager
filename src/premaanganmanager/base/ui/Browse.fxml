@@ -7,9 +7,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <Text layoutX="81.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="THIS IS BROWSE" />
-      <TableView fx:id="browseTable" layoutX="251.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0" />
-   </children>
+<AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Button fx:id="browseStudentButton" mnemonicParsing="false" text="NA" onAction="#browseStudentButtonAction" >
+            <font>
+                <Font size="30.0" />
+            </font>
+        </Button>
+    </children>
 </AnchorPane>

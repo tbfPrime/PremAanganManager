@@ -12,11 +12,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import premaanganmanager.base.controller.background.Dummy;
+import premaanganmanager.configurable.Labels;
 
 /**
  * FXML Controller class
@@ -32,11 +34,19 @@ public class BrowseController{
     private TableColumn idColumn;
     private TableColumn dummyValueColumn;
     
+    @FXML
+    private Button browseStudentButton;
+    
+    @FXML
+    private void browseStudentButtonAction(){
+        appContainer.displayScreen(AppContainer.screenTag.BROWSE_TABLE);
+    }
+    
     public BrowseController(AppContainer appContainer){
         this.appContainer = appContainer;
     }
     
-    public void setBrowseTable(){
+    public void setBrowseDummyTable(){
         idColumn = new TableColumn();
         dummyValueColumn = new TableColumn();
         
@@ -65,18 +75,34 @@ public class BrowseController{
         browseTable.getColumns().addAll(idColumn,dummyValueColumn);
     }
     
-    public AnchorPane setBrowseHome(){
+    public AnchorPane setBrowseScreenMenu(){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/premaanganmanager/base/ui/Browse.fxml"));
             loader.setController(this);
             AnchorPane homeBase = loader.load();
-            setBrowseTable();
+            setBrowseScreenMenuLabels();
             return homeBase;
-//            loginScene.getStylesheets().add(Login.class.getResource("Login.css").toExternalForm());
         } catch (IOException e) {
             System.out.println("Error | AppContainer | setBrowseHome | " + e);
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, e);
             return null;
         }
+    }
+    
+    public AnchorPane setBrowseTable(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/premaanganmanager/base/ui/BrowseTable.fxml"));
+            loader.setController(this);
+            AnchorPane homeBase = loader.load();
+            return homeBase;
+        } catch (IOException e) {
+            System.out.println("Error | AppContainer | setBrowseHome | " + e);
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, e);
+            return null;
+        }
+    }
+    
+    private void setBrowseScreenMenuLabels(){
+        browseStudentButton.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.BROWSE_STUDENT));
     }
 }

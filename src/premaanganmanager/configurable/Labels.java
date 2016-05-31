@@ -13,23 +13,29 @@ public class Labels {
     // public enum to tag lables from this file.
     public enum labelTag{
         // Common
-        APPLICATION_TITLE, BACK, SAVE,                                                               // Application wide
-        MENU_HOME, MENU_BROWSE, MENU_ADD, MENU_SEARCH, MENU_SETTINGS,                                // Menu labels.
-        HEADER_LOGOUT, HEADER_SWITCH_ADMIN,                                                          // Header labels.
+        APPLICATION_TITLE, BACK, SAVE,
+        MENU_HOME, MENU_BROWSE, MENU_ADD, MENU_SEARCH, MENU_SETTINGS,
+        HEADER_LOGOUT, HEADER_SWITCH_ADMIN,
         HEADER_TITLE,
             
         // Login
-        LOGIN_TITLE, LOGIN_SUBTITLE1, LOGIN_SUBTITLE2, LOGIN_HELP1, LOGIN_HELP2, LOGIN_ERROR1,       // Login labels common to both the login screens.
-        GUEST, ADMIN,                                                                                // Login Guest Admin specific labels.
-        ADMIN1, ADMIN2, ADMIN3, PASSWORD, PASSWORD_PROMPT, LOGIN,                                    // Admin only specific labels.
+        LOGIN_TITLE, LOGIN_SUBTITLE1, LOGIN_SUBTITLE2, LOGIN_HELP1, LOGIN_HELP2, LOGIN_ERROR1,
+        GUEST, ADMIN,
+        ADMIN1, ADMIN2, ADMIN3, PASSWORD, PASSWORD_PROMPT, LOGIN,
         
         // Home and 'About this software'
-        HOME_TITLE, HOME_SUBTITLE1, HOME_SUBTITLE2, HOME_SUBTITLE3,                                   // Home labels.
+        HOME_TITLE, HOME_SUBTITLE1, HOME_SUBTITLE2, HOME_SUBTITLE3,
         HOME_ABOUT_THIS_SOFTWARE,
         
         // Add 
-        ADD_STUDENT, ADD_TEACHER, ADD_SUBJECT, ADD_ATTENDANCE,                                        // Add Screen labels.
-        ADD_COURSE, ADD_BATCH, ADD_CLASS, ADD_TIMETABLE                                              
+        ADD_STUDENT, ADD_TEACHER, ADD_SUBJECT, ADD_ATTENDANCE,
+        ADD_COURSE, ADD_BATCH, ADD_CLASS, ADD_TIMETABLE,
+        
+        // Add Student
+        ADD_STUDENT_FIRST_NAME, ADD_STUDENT_MIDDLE_NAME, ADD_STUDENT_LAST_NAME,
+        
+        // Browse
+        BROWSE_STUDENT, BROWSE_TEACHER
     }
     
     // List of all  labels used in PAM
@@ -46,6 +52,12 @@ public class Labels {
     
     // Add
     private String l_addStudent, l_addTeacher, l_addSubject, l_addAttendance, l_addCourse, l_addBatch, l_addClass, l_addTimetable;
+    
+    // Add Student
+    private String l_addStudentFirstName, l_addStudentMiddleName, l_addStudentLastName;
+    
+    // Browse
+    private String l_browseStudent, l_browseTeacher;
     
     
     // public functions.
@@ -92,6 +104,13 @@ public class Labels {
             case ADD_BATCH: l_addBatch = value; break;
             case ADD_CLASS: l_addClass = value; break;
             case ADD_TIMETABLE: l_addTimetable = value; break;
+            
+            case ADD_STUDENT_FIRST_NAME: l_addStudentFirstName = value; break;
+            case ADD_STUDENT_MIDDLE_NAME: l_addStudentMiddleName = value; break;
+            case ADD_STUDENT_LAST_NAME: l_addStudentLastName = value; break;
+            
+            case BROWSE_STUDENT: l_browseStudent = value; break;
+            case BROWSE_TEACHER: l_browseTeacher = value; break;
         }
     }
     
@@ -138,6 +157,13 @@ public class Labels {
             case ADD_BATCH: return l_addBatch;
             case ADD_CLASS: return l_addClass;
             case ADD_TIMETABLE: return l_addTimetable;
+            
+            case ADD_STUDENT_FIRST_NAME: return l_addStudentFirstName;
+            case ADD_STUDENT_MIDDLE_NAME: return l_addStudentMiddleName;
+            case ADD_STUDENT_LAST_NAME: return l_addStudentLastName;
+            
+            case BROWSE_STUDENT: return l_browseStudent;
+            case BROWSE_TEACHER: return l_browseTeacher;
         }
         return "NA";
     }

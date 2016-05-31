@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -9,25 +12,6 @@
 
 <AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Text layoutX="25.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prem Aangan" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="25.0">
-         <font>
-            <Font size="52.0" />
-         </font></Text>
-      <Text layoutX="28.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A new hope for a new tomorrow" AnchorPane.leftAnchor="28.0">
-         <font>
-            <Font size="26.0" />
-         </font>
-      </Text>
-      <Text layoutX="28.0" layoutY="226.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Our Vision">
-         <font>
-            <Font size="28.0" />
-         </font>
-      </Text>
-      <Text layoutX="28.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To uplift and empower the underprivileged of our society, to lead a better quality life" wrappingWidth="396.33203125">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Text>
       <HBox alignment="CENTER_RIGHT" layoutX="575.0" layoutY="475.0" spacing="40.0" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="25.0">
          <children>
             <Button fx:id="addStudentBackButton" mnemonicParsing="false" text="NA" onAction="#addStudentBackAction" >
@@ -35,12 +19,72 @@
                   <Font size="30.0" />
                </font>
             </Button>
-            <Button fx:id="addStudentSaveButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="NA">
+            <Button fx:id="addStudentSaveButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="NA" onAction="#addStudentSaveAction" >
                <font>
                   <Font size="30.0" />
                </font>
             </Button>
          </children>
       </HBox>
+      <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="25.0" layoutY="23.0" prefHeight="464.0" prefWidth="750.0" AnchorPane.bottomAnchor="110.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="25.0">
+         <content>
+            <VBox maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="349.0" prefWidth="303.0">
+               <children>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <VBox maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+                                 <children>
+                                    <HBox alignment="CENTER_RIGHT" maxWidth="150.0" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text fx:id="addStudentFirstName" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                       </children>
+                                    </HBox>
+                                    <TextField fx:id="addStudentFirstNameField" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+                                 <children>
+                                    <HBox alignment="CENTER_RIGHT" maxWidth="150.0" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text fx:id="addStudentMiddleName" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                       </children>
+                                    </HBox>
+                                    <TextField fx:id="addStudentMiddleNameField" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+                                 <children>
+                                    <HBox alignment="CENTER_RIGHT" maxWidth="150.0" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text fx:id="addStudentLastName" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                       </children>
+                                    </HBox>
+                                    <TextField fx:id="addStudentLastNameField" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+                                 </padding>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a2d2ff" height="200.0" stroke="BLACK" strokeType="INSIDE" width="200.0" HBox.hgrow="ALWAYS">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </Rectangle>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
    </children>
 </AnchorPane>
