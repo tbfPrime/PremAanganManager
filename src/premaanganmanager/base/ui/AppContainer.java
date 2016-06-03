@@ -34,14 +34,53 @@ public class AppContainer {
     private Scene appContainerScene;
     private BorderPane root;
     
+    // Menu
     @FXML
     private Button menuHomeButton, menuBrowseButton, menuAddButton, menuSearchButton, menuSettingsButton;
     
+    // Header
     @FXML
-    private Text headerText;
-    
+    private Text headerText;    
     @FXML
     private ComboBox logoutComboBox;
+    
+    // Menu
+    @FXML
+    public void homeButtonAction(){
+        System.out.println("AppContainer | homeButtonAction");
+        displayScreen(screenTag.HOME);
+    }
+    @FXML
+    public void browseButtonAction(){
+        System.out.println("AppContainer | browseButtonAction");
+        displayScreen(screenTag.BROWSE);
+    }
+    @FXML
+    public void addButtonAction(){
+        System.out.println("AppContainer | addButtonAction");
+        displayScreen(screenTag.ADD);
+    }
+    @FXML
+    public void searchButtonAction(){
+        System.out.println("AppContainer | searchButtonAction");
+        displayScreen(screenTag.SEARCH);
+    }
+    @FXML
+    public void settingsButtonAction(){
+        System.out.println("AppContainer | settingsButtonAction");
+        displayScreen(screenTag.SETTINGS);
+    }
+    
+    // Header
+    @FXML
+    public void logoutComboBoxButtonAction(){
+        System.out.println("AppContainer | logoutComboBoxButtonAction | Value: " + logoutComboBox.getValue().toString());
+        if(logoutComboBox.getValue().toString().equalsIgnoreCase(uiControl.settings.labels.getLabel(Labels.labelTag.HEADER_SWITCH_ADMIN))){
+            uiControl.logoutToAdminScreen();
+        } else if(logoutComboBox.getValue().toString().equalsIgnoreCase(uiControl.settings.labels.getLabel(Labels.labelTag.HEADER_LOGOUT))){
+            uiControl.logoutToGuestAdminScreen();
+        }
+    }
     
     // Contructor with params
     public AppContainer(UIControl uiControl){
@@ -55,49 +94,15 @@ public class AppContainer {
     }
     
     public enum screenTag{
+        // Main Menu
         HOME, BROWSE, ADD, SEARCH, SETTINGS,
-        ADD_STUDENT, BROWSE_TABLE
-    }
-    
-    @FXML
-    public void homeButtonAction(){
-        System.out.println("AppContainer | homeButtonAction");
-        displayScreen(screenTag.HOME);
-    }
-    
-    @FXML
-    public void browseButtonAction(){
-        System.out.println("AppContainer | browseButtonAction");
-        displayScreen(screenTag.BROWSE);
-    }
-
-    
-    @FXML
-    public void addButtonAction(){
-        System.out.println("AppContainer | addButtonAction");
-        displayScreen(screenTag.ADD);
-    }
-    
-    @FXML
-    public void searchButtonAction(){
-        System.out.println("AppContainer | searchButtonAction");
-        displayScreen(screenTag.SEARCH);
-    }
-    
-    @FXML
-    public void settingsButtonAction(){
-        System.out.println("AppContainer | settingsButtonAction");
-        displayScreen(screenTag.SETTINGS);
-    }
-
-    @FXML
-    public void logoutComboBoxButtonAction(){
-        System.out.println("AppContainer | logoutComboBoxButtonAction | Value: " + logoutComboBox.getValue().toString());
-        if(logoutComboBox.getValue().toString().equalsIgnoreCase(uiControl.settings.labels.getLabel(Labels.labelTag.HEADER_SWITCH_ADMIN))){
-            uiControl.logoutToAdminScreen();
-        } else if(logoutComboBox.getValue().toString().equalsIgnoreCase(uiControl.settings.labels.getLabel(Labels.labelTag.HEADER_LOGOUT))){
-            uiControl.logoutToGuestAdminScreen();
-        }
+        
+        // Add
+        ADD_STUDENT, 
+        
+        // Browse
+        BROWSE_STUDENT_TABLE, BROWSE_TEACHER_TABLE, BROWSE_SUBJECT_TABLE, BROWSE_ATTENDANCE_TABLE,
+        BROWSE_COURSE_TABLE, BROWSE_BATCH_TABLE, BROWSE_CLASS_TABLE, BROWSE_TIMETABLE_TABLE
     }
     
     // Main Screen Display wrapper
@@ -109,7 +114,14 @@ public class AppContainer {
             case SEARCH: setSearchScreen(); break;
             case SETTINGS: setSettingsScreen(); break;
             case ADD_STUDENT: setAddStudentScreen(); break;
-            case BROWSE_TABLE: setBrowseTableScreen(); break;
+            case BROWSE_STUDENT_TABLE:
+            case BROWSE_TEACHER_TABLE:
+            case BROWSE_SUBJECT_TABLE:
+            case BROWSE_ATTENDANCE_TABLE:
+            case BROWSE_COURSE_TABLE:
+            case BROWSE_BATCH_TABLE:
+            case BROWSE_CLASS_TABLE:
+            case BROWSE_TIMETABLE_TABLE: setBrowseTableScreen(tag); break;
         }
     }
     
@@ -122,7 +134,6 @@ public class AppContainer {
             setLogOutComboBox();
             setHomeLabels();
             return appContainerScene;
-//            loginScene.getStylesheets().add(Login.class.getResource("Login.css").toExternalForm());
         } catch (IOException e) {
             System.out.println("Error | AppContainer | setLoginGuestAdminScene | " + e);
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, e);
@@ -130,17 +141,7 @@ public class AppContainer {
         }
     }
     
-    //private functions
-    private void setHomeLabels(){
-        menuHomeButton.setText(uiControl.settings.labels.getLabel(Labels.labelTag.MENU_HOME));
-        menuBrowseButton.setText(uiControl.settings.labels.getLabel(Labels.labelTag.MENU_BROWSE));
-        menuAddButton.setText(uiControl.settings.labels.getLabel(Labels.labelTag.MENU_ADD));
-        menuSearchButton.setText(uiControl.settings.labels.getLabel(Labels.labelTag.MENU_SEARCH));
-        menuSettingsButton.setText(uiControl.settings.labels.getLabel(Labels.labelTag.MENU_SETTINGS));
-        headerText.setText(uiControl.settings.labels.getLabel(Labels.labelTag.HEADER_TITLE));
-        logoutComboBox.setPromptText(uiControl.settings.labels.getLabel(Labels.labelTag.HEADER_LOGOUT));
-    }
-    
+    // Private Functions
     private void setLogOutComboBox(){
         logoutComboBox.getItems().addAll(
                 uiControl.settings.labels.getLabel(Labels.labelTag.HEADER_SWITCH_ADMIN),
@@ -171,7 +172,17 @@ public class AppContainer {
         root.setCenter(addController.setAddStudentScreen());
     }
     
-    private void setBrowseTableScreen(){
-        root.setCenter(browseController.setBrowseTable());
+    private void setBrowseTableScreen(screenTag tag){
+        root.setCenter(browseController.setBrowseTable(tag));
+    }
+    
+    private void setHomeLabels(){
+        menuHomeButton.setText(uiControl.settings.labels.getLabel(Labels.labelTag.MENU_HOME));
+        menuBrowseButton.setText(uiControl.settings.labels.getLabel(Labels.labelTag.MENU_BROWSE));
+        menuAddButton.setText(uiControl.settings.labels.getLabel(Labels.labelTag.MENU_ADD));
+        menuSearchButton.setText(uiControl.settings.labels.getLabel(Labels.labelTag.MENU_SEARCH));
+        menuSettingsButton.setText(uiControl.settings.labels.getLabel(Labels.labelTag.MENU_SETTINGS));
+        headerText.setText(uiControl.settings.labels.getLabel(Labels.labelTag.HEADER_TITLE));
+        logoutComboBox.setPromptText(uiControl.settings.labels.getLabel(Labels.labelTag.HEADER_LOGOUT));
     }
 }

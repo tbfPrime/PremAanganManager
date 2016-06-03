@@ -17,7 +17,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import premaanganmanager.base.controller.background.Dummy;
+import premaanganmanager.base.controller.background.Student;
 import premaanganmanager.configurable.Labels;
 
 /**
@@ -39,42 +39,15 @@ public class BrowseController{
     
     @FXML
     private void browseStudentButtonAction(){
-        appContainer.displayScreen(AppContainer.screenTag.BROWSE_TABLE);
+        appContainer.displayScreen(AppContainer.screenTag.BROWSE_STUDENT_TABLE);
     }
     
+    // Constructor
     public BrowseController(AppContainer appContainer){
         this.appContainer = appContainer;
     }
     
-    public void setBrowseDummyTable(){
-        idColumn = new TableColumn();
-        dummyValueColumn = new TableColumn();
-        
-//        Dummy d1 = new Dummy();
-//        Dummy d2 = new Dummy();
-//        
-//        d1.setId(90);
-//        d1.setDummyValue("Big");
-//        
-//        d2.setId(100);
-//        d2.setDummyValue("Small");
-        
-        final ObservableList data = FXCollections.observableArrayList(appContainer.uiControl.uiModel.fetchAllDummy());
-//        final ObservableList data =  FXCollections.observableArrayList(
-//                d2,d1
-//        );
-        
-        
-        idColumn.setCellValueFactory(new PropertyValueFactory<Dummy,Integer>("id"));
-        dummyValueColumn.setCellValueFactory(new PropertyValueFactory<Dummy,String>("dummyValue"));
-        
-        idColumn.setText("ID");
-        dummyValueColumn.setText("Dummy Value");
-        
-        browseTable.setItems(data);
-        browseTable.getColumns().addAll(idColumn,dummyValueColumn);
-    }
-    
+    // Public functions
     public AnchorPane setBrowseScreenMenu(){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/premaanganmanager/base/ui/Browse.fxml"));
@@ -89,11 +62,12 @@ public class BrowseController{
         }
     }
     
-    public AnchorPane setBrowseTable(){
+    public AnchorPane setBrowseTable(AppContainer.screenTag tag){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/premaanganmanager/base/ui/BrowseTable.fxml"));
             loader.setController(this);
             AnchorPane homeBase = loader.load();
+            dispayTable(tag);
             return homeBase;
         } catch (IOException e) {
             System.out.println("Error | AppContainer | setBrowseHome | " + e);
@@ -102,6 +76,35 @@ public class BrowseController{
         }
     }
     
+    // private functions
+    private void dispayTable(AppContainer.screenTag tag){
+        switch(tag){
+            case BROWSE_STUDENT_TABLE: displayStudentTable(); break;
+        }
+    }
+    
+    private void displayStudentTable(){
+        TableColumn col_id = new TableColumn();
+        TableColumn col_firstName = new TableColumn();
+        TableColumn col_middleName = new TableColumn();
+        TableColumn col_lastName = new TableColumn();
+        
+        col_id.setText("ID");
+        col_firstName.setText("First Name");
+        col_middleName.setText("Middle Name");
+        col_lastName.setText("Last Name");
+        
+        final ObservableList data = FXCollections.observableArrayList(appContainer.uiControl.uiModel.fetchAllStudent());
+        
+        col_id.setCellValueFactory(new PropertyValueFactory<Student,Integer>("studentId"));
+        col_firstName.setCellValueFactory(new PropertyValueFactory<Student,Integer>("firstName"));
+        col_middleName.setCellValueFactory(new PropertyValueFactory<Student,Integer>("middleName"));
+        col_lastName.setCellValueFactory(new PropertyValueFactory<Student,Integer>("lastName"));
+        
+        browseTable.setItems(data);
+        browseTable.getColumns().addAll(col_id,col_firstName,col_middleName,col_lastName);
+    }
+
     private void setBrowseScreenMenuLabels(){
         browseStudentButton.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.BROWSE_STUDENT));
     }

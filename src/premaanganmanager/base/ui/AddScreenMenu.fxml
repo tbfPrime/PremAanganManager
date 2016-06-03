@@ -32,6 +32,5 @@
             <Button fx:id="addAttendanceButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" text="Button" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
          </children>
       </GridPane>
-      <Button fx:id="addToDBButton" layoutX="421.0" layoutY="333.0" mnemonicParsing="false" onAction="#addToDBAction" text="Add to  DB" />
    </children>
 </AnchorPane>

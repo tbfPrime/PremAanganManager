@@ -71,26 +71,6 @@ public class UIModel {
         }
     }
     
-    public List<Dummy> fetchAllDummy(){
-        System.out.println("UIModel | fetchAllDummy");
-        
-        Query q = em.createNamedQuery("Dummy.findAll");
-        List<Dummy> result = q.getResultList();
-        return result;
-    }
-    
-    public void pushToDummyTable(){
-        System.out.println("UIModel | pushToDummyTable");
-        Dummy d = new Dummy();
-        d.setDummyValue("Jam");
-        
-        em.getTransaction().begin();
-        em.persist(d);
-        em.getTransaction().commit();
-        
-        System.out.println("Entry added to dummy.");
-    }
-    
     public void saveStudentForm(Student student){
         System.out.println("UIModel | saveStudentForm");
         
@@ -99,6 +79,15 @@ public class UIModel {
         em.getTransaction().commit();
         
         System.out.println("UIModel | saveStudentForm | Entry saved.");
+    }
+    
+    public List<Student> fetchAllStudent(){
+        System.out.println("UIModel | fetchAllStudent");
+        
+        Query q = em.createNamedQuery("Student.findAll");
+        List<Student> result = q.getResultList();
+        System.out.println("UIModel | fetchAllStudent | result: " + result.size());
+        return result;
     }
     
     /**

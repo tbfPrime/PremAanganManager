@@ -29,6 +29,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Student.findByFirstName", query = "SELECT s FROM Student s WHERE s.firstName = :firstName"),
     @NamedQuery(name = "Student.findByMiddleName", query = "SELECT s FROM Student s WHERE s.middleName = :middleName"),
     @NamedQuery(name = "Student.findByLastName", query = "SELECT s FROM Student s WHERE s.lastName = :lastName"),
+    @NamedQuery(name = "Student.findByEnrollmentNumber", query = "SELECT s FROM Student s WHERE s.enrollmentNumber = :enrollmentNumber"),
     @NamedQuery(name = "Student.findByAddress", query = "SELECT s FROM Student s WHERE s.address = :address"),
     @NamedQuery(name = "Student.findByDob", query = "SELECT s FROM Student s WHERE s.dob = :dob"),
     @NamedQuery(name = "Student.findByPlaceOfBirth", query = "SELECT s FROM Student s WHERE s.placeOfBirth = :placeOfBirth"),
@@ -58,6 +59,8 @@ public class Student implements Serializable {
     private String middleName;
     @Column(name = "last_name")
     private String lastName;
+    @Column(name = "enrollment_number")
+    private Integer enrollmentNumber;
     @Column(name = "address")
     private String address;
     @Column(name = "dob")
@@ -135,6 +138,14 @@ public class Student implements Serializable {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public Integer getEnrollmentNumber() {
+        return enrollmentNumber;
+    }
+
+    public void setEnrollmentNumber(Integer enrollmentNumber) {
+        this.enrollmentNumber = enrollmentNumber;
     }
 
     public String getAddress() {

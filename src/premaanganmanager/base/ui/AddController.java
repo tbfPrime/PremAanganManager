@@ -27,44 +27,39 @@ public class AddController {
    
     // Add
     @FXML
-    private Button addToDBButton, addStudentButton, addTeacherButton, addBatchButton, addClassButton, addCourseButton, addSubjectButton, addTimetableButton, addAttendanceButton;
+    private Button addStudentButton, addTeacherButton, addBatchButton, addClassButton, addCourseButton, addSubjectButton, addTimetableButton, addAttendanceButton;
     
     // Add Student
     @FXML
-    private Button addStudentBackButton, addStudentSaveButton;
-    
+    private Button addStudentBackButton, addStudentSaveButton;    
     @FXML
     private Text addStudentFirstName, addStudentMiddleName, addStudentLastName;
-    
     @FXML
     private TextField addStudentFirstNameField, addStudentMiddleNameField, addStudentLastNameField;
     
-    @FXML
-    private void addToDBAction(){
-        System.out.println("AddController | addToDBAction");
-        appContainer.uiControl.uiModel.pushToDummyTable();
-    }
-    
+    // Add
     @FXML
     private void addStudentButtonAction(){
         appContainer.displayScreen(AppContainer.screenTag.ADD_STUDENT);
     }
     
+    // Add Student
     @FXML
     private void addStudentBackAction(){
         appContainer.displayScreen(AppContainer.screenTag.ADD);
     }
-    
     @FXML
     private void addStudentSaveAction(){
         System.out.println("AddController | addStudentSaveAction");
         saveStudentRecord();
     }
     
+    // Constructor
     public AddController(AppContainer appContainer){
         this.appContainer = appContainer;
     }
     
+    // Public Functions
     public AnchorPane setAddScreenMenu(){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/premaanganmanager/base/ui/AddScreenMenu.fxml"));
@@ -72,7 +67,6 @@ public class AddController {
             AnchorPane addBase = loader.load();
             setAddScreenMenuLabels();
             return addBase;
-//            loginScene.getStylesheets().add(Login.class.getResource("Login.css").toExternalForm());
         } catch (IOException e) {
             System.out.println("Error | AppContainer | setAddScreenMenu | " + e);
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, e);
@@ -87,12 +81,31 @@ public class AddController {
             AnchorPane addBase = loader.load();
             setAddStudentScreenLabels();
             return addBase;
-//            loginScene.getStylesheets().add(Login.class.getResource("Login.css").toExternalForm());
         } catch (IOException e) {
             System.out.println("Error | AppContainer | setAddStudentScreen | " + e);
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, e);
             return null;
         }
+    }
+    
+    // Private Functions
+    private void saveStudentRecord(){
+        System.out.println("AddController | saveStudentRecord");
+        appContainer.uiControl.uiModel.saveStudentForm(getStudentRecordFromUI());
+    }
+    
+    private Student getStudentRecordFromUI(){
+        System.out.println("AddController | getStudentRecordFromUI");
+        
+        Student student = new Student();
+        
+        student.setFirstName(addStudentFirstNameField.getText());
+        student.setMiddleName(addStudentMiddleNameField.getText());
+        student.setLastName(addStudentLastNameField.getText());
+        
+        System.out.println("Student name: " + student.getFirstName() + " " + student.getMiddleName() + " " + student.getLastName());
+        
+        return student;
     }
 
     private void setAddScreenMenuLabels(){
@@ -112,22 +125,5 @@ public class AddController {
         addStudentFirstName.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FIRST_NAME));
         addStudentMiddleName.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_MIDDLE_NAME));
         addStudentLastName.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_LAST_NAME));
-    }
-    
-    private void saveStudentRecord(){
-        System.out.println("AddController | saveStudentRecord");
-        appContainer.uiControl.uiModel.saveStudentForm(getStudentRecordFromUI());
-    }
-    
-    private Student getStudentRecordFromUI(){
-        System.out.println("AddController | getStudentRecordFromUI");
-        
-        Student student = new Student();
-        
-        student.setFirstName(addStudentFirstNameField.getText());
-        student.setMiddleName(addStudentMiddleNameField.getText());
-        student.setLastName(addStudentLastNameField.getText());
-        
-        return student;
     }
 }
