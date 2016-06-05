@@ -20,7 +20,8 @@ public class Labels {
         HEADER_TITLE,
         
         ALERT_INFO, ALERT_WARNING, ALERT_ERROR, ALERT_CONFIRMATION,
-        ALERT_MESSAGE_IS_EMPTY, ALERT_MESSAGE_CONFIRM_FIELD_EMPTY,
+        ALERT_MESSAGE_IS_EMPTY, ALERT_MESSAGE_CONFIRM_FIELD_EMPTY, 
+        ALERT_MESSAGE_STUDENT_SAVE_SUCCESS, ALERT_MESSAGE_ERROR_SAVE,
             
         // Login
         LOGIN_TITLE, LOGIN_SUBTITLE1, LOGIN_SUBTITLE2, LOGIN_HELP1, LOGIN_HELP2, LOGIN_ERROR1,
@@ -58,6 +59,7 @@ public class Labels {
     private String l_HeaderTitle, l_HeaderLogout, l_HeaderSwitchAdmin;
     private String l_AlertInfo, l_AlertWarning, l_AlertERROR, l_AlertConfirmation;
     private String l_AlertMessageIsEmpty, l_AlertMessageConfirmFieldEmpty;
+    private String l_AlertMessageStudentSaveSuccess, l_AlertMessageErrorSave;
 
     // Login
     private String l_LoginTitle, l_LoginSubtitle1, l_LoginSubtitle2, l_LoginHelp, l_Guest, l_Admin, l_Admin1, l_Admin2, l_Admin3, l_Key, l_PasswordPrompt, l_Login;
@@ -108,6 +110,8 @@ public class Labels {
             
             case ALERT_MESSAGE_IS_EMPTY: l_AlertMessageIsEmpty = value; break;
             case ALERT_MESSAGE_CONFIRM_FIELD_EMPTY: l_AlertMessageConfirmFieldEmpty = value; break;
+            case ALERT_MESSAGE_STUDENT_SAVE_SUCCESS: l_AlertMessageStudentSaveSuccess = value; break;
+            case ALERT_MESSAGE_ERROR_SAVE: l_AlertMessageErrorSave = value; break;
 
             case LOGIN_TITLE: l_LoginTitle = value; break;
             case LOGIN_SUBTITLE1: l_LoginSubtitle1 = value; break;
@@ -195,6 +199,8 @@ public class Labels {
             
             case ALERT_MESSAGE_IS_EMPTY: return l_AlertMessageIsEmpty;
             case ALERT_MESSAGE_CONFIRM_FIELD_EMPTY: return l_AlertMessageConfirmFieldEmpty;
+            case ALERT_MESSAGE_STUDENT_SAVE_SUCCESS: return l_AlertMessageStudentSaveSuccess;
+            case ALERT_MESSAGE_ERROR_SAVE: return l_AlertMessageErrorSave;
             
             case LOGIN_TITLE: return l_LoginTitle;
             case LOGIN_SUBTITLE1: return l_LoginSubtitle1;

@@ -71,16 +71,21 @@ public class UIModel {
         }
     }
     
-    public void saveStudentForm(Student student){
+    public boolean saveStudentForm(Student student){
         System.out.println("UIModel | saveStudentForm");
-        
-        em.getTransaction().begin();
-        em.persist(student);
-        em.getTransaction().commit();
-        
-        System.out.println("Value of Student ID: " + student.getStudentId());
-        
-        System.out.println("UIModel | saveStudentForm | Entry saved.");
+        try{
+            em.getTransaction().begin();
+            em.persist(student);
+            em.getTransaction().commit();
+            
+            System.out.println("Value of Student ID: " + student.getStudentId());
+            
+            System.out.println("UIModel | saveStudentForm | Entry saved.");
+            return true;
+        } catch(Exception e){
+            System.out.println("UIModel | saveStudentForm | Error saving student data. Message: " + e);
+            return false;
+        }
     }
     
     public List<Student> fetchAllStudent(){

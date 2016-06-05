@@ -60,17 +60,9 @@ public class Login{
     @FXML
     public void guestButtonAction(){
         System.out.println("Login | guestButtonAction");
-//        Alert alert = new Alert(AlertType.CONFIRMATION);
-//        alert.setTitle("Confirmation Dialog");
-//        alert.setHeaderText(null);
-//        alert.setContentText("Are you ok with this?");
-//        
-//        Optional<ButtonType> result = alert.showAndWait();
-//        if (result.get() == ButtonType.OK){
-//            // ... user chose OK
-//        } else {
-//            // ... user chose CANCEL or closed the dialog
-//        }
+        String temp = "Student: ? saved successfully!";
+        
+        System.out.println("Show >> " + temp.replace("?", "Sushil Kumar Pandey"));
         loginAsGuest();
     }
     

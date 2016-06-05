@@ -9,7 +9,10 @@ import java.util.Optional;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.DialogPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import org.eclipse.persistence.descriptors.invalidation.DailyCacheInvalidationPolicy;
 import premaanganmanager.base.ui.*;
 import premaanganmanager.configurable.*;
 /**
@@ -22,7 +25,7 @@ public class UIControl {
     public StageContainer stageContainer;
     public Settings settings;
     
-    public enum alertType{ INFO, WARNING, WARNING_FIELD_IS_EMPTY, ERROR, CONFIRMATION, CONFIRMATION_FIELD_IS_EMPTY }
+    public enum alertType{ INFO, WARNING, WARNING_FIELD_IS_EMPTY, ERROR, ERROR_SAVE, CONFIRMATION, CONFIRMATION_FIELD_IS_EMPTY }
     
     // Constructor
     public UIControl(PremAanganManager o_MainController){
@@ -100,6 +103,11 @@ public class UIControl {
                 alert.setTitle(settings.labels.getLabel(Labels.labelTag.ALERT_ERROR));
                 alert.setContentText(message);
                 break;
+            case ERROR_SAVE:
+                alert = new Alert(AlertType.ERROR);
+                alert.setTitle(settings.labels.getLabel(Labels.labelTag.ALERT_ERROR));
+                alert.setContentText(settings.labels.getLabel(Labels.labelTag.ALERT_MESSAGE_ERROR_SAVE));
+                break;
             case CONFIRMATION_FIELD_IS_EMPTY:
                 alert = new Alert(AlertType.CONFIRMATION);
                 alert.setTitle(settings.labels.getLabel(Labels.labelTag.ALERT_CONFIRMATION));
@@ -111,11 +119,16 @@ public class UIControl {
                 break;
         }
         
+        DialogPane d = alert.getDialogPane();
+        d.getStylesheets().add(getClass().getResource("Alerts.css").toExternalForm());
+        d.getStyleClass().add("alertClass");
         alert.setHeaderText(null);
         
-        
-        Optional<ButtonType> result = alert.showAndWait();
-        
-        return (result.get() == ButtonType.OK);
+        try{
+            Optional<ButtonType> result = alert.showAndWait();
+            return (result.get() == ButtonType.OK);
+        } catch(Exception e){
+            return false;
+        }
     }
 }

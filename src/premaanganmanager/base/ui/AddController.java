@@ -146,7 +146,13 @@ public class AddController {
         System.out.println("AddController | saveStudentRecord");
         Student student = new Student();
         
-        if(validateStudentForm(student)){ appContainer.uiControl.uiModel.saveStudentForm(student); }
+        if(validateStudentForm(student)){ 
+            if(appContainer.uiControl.uiModel.saveStudentForm(student)){
+                String alertStudentName = addStudentFirstNameField.getText() + (addStudentMiddleNameField.getText().isEmpty() ? "" : " " + addStudentMiddleNameField.getText()) + (addStudentLastNameField.getText().isEmpty() ? "" : " " + addStudentLastNameField.getText());
+                if(appContainer.uiControl.alert(UIControl.alertType.INFO, appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ALERT_MESSAGE_STUDENT_SAVE_SUCCESS).replace("?", alertStudentName))){ addStudentBackAction(); }
+                else{ addStudentBackAction(); }
+            }else{ appContainer.uiControl.alert(UIControl.alertType.ERROR_SAVE, ""); }
+        }
         else{ System.out.println("AddController | saveStudentRecord | Validation of student form failed. Exiting without saving."); }
     }
 
