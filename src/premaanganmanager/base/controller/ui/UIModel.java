@@ -71,6 +71,24 @@ public class UIModel {
         }
     }
     
+    public Integer getStudentID(Student student){
+        System.out.println("UIModel | getStudentID");
+        try{
+            em.getTransaction();
+            em.persist(student);
+            em.flush();
+            em.refresh(student);
+//            em.
+            
+            System.out.println("Value of Student ID: " + student.getStudentId());
+            
+            return student.getStudentId();
+        } catch(Exception e){
+            System.out.println("UIModel | getStudentID | Error fetching student ID. Message: " + e);
+            return null;
+        }        
+    }
+    
     public boolean saveStudentForm(Student student){
         System.out.println("UIModel | saveStudentForm");
         try{
@@ -78,7 +96,7 @@ public class UIModel {
             em.persist(student);
             em.getTransaction().commit();
             
-            System.out.println("Value of Student ID: " + student.getStudentId());
+//            System.out.println("Value of Student ID: " + student.getStudentId());
             
             System.out.println("UIModel | saveStudentForm | Entry saved.");
             return true;

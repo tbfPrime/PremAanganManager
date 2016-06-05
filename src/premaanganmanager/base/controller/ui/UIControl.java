@@ -10,9 +10,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DialogPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import org.eclipse.persistence.descriptors.invalidation.DailyCacheInvalidationPolicy;
 import premaanganmanager.base.ui.*;
 import premaanganmanager.configurable.*;
 /**
@@ -130,5 +129,14 @@ public class UIControl {
         } catch(Exception e){
             return false;
         }
+    }
+    
+    public void configureFileChooserForImages(FileChooser fileChooser){
+        fileChooser.setTitle("Boooooooo");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("All Images","*.*"),
+                new FileChooser.ExtensionFilter("JPG","*.jpg"),
+                new FileChooser.ExtensionFilter("PNG","*.png")
+        );
     }
 }

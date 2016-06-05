@@ -15,6 +15,10 @@ import premaanganmanager.base.controller.ui.UIControl;
  */
 public class Settings {
     public Labels labels;
+    public String photosDir;
+    public String placeHoldersDir;
+    public String tempPhotoFileName;
+    public String placeHolderStudentPhoto;
     private UIControl uiControl;
     
     /**
@@ -33,6 +37,12 @@ public class Settings {
         labels = new Labels();
         setDefaultValuesToAllLabels();
         
+        photosDir = "photos";
+        placeHoldersDir = "resources\\placeholders";
+        
+        placeHolderStudentPhoto = "addStudentPhotoPlaceHolder.jpg";
+        tempPhotoFileName = "tempPhoto";
+                
         uiControl.closeDBObjects();
     }
     

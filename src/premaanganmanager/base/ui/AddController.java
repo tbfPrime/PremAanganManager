@@ -5,7 +5,13 @@
  */
 package premaanganmanager.base.ui;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXML;
@@ -14,9 +20,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 import premaanganmanager.base.controller.background.Student;
 import premaanganmanager.base.controller.ui.UIControl;
 import premaanganmanager.configurable.Labels;
@@ -28,6 +37,8 @@ import premaanganmanager.configurable.Labels;
 public class AddController {
     
     private AppContainer appContainer;
+    private Student student;
+    private String photoFileExtension = "";
    
     // FXML fields
     // Add
@@ -80,9 +91,12 @@ public class AddController {
     
     @FXML 
     private ComboBox addStudentReligionComboBox, addStudentCourseComboBox;
+    
+    @FXML 
+    private ImageView addStudentPhotoView;
 
     @FXML
-    private Button addStudentBackButton, addStudentSaveButton;
+    private Button addStudentBackButton, addStudentSaveButton, addStudentPhotoButton;
     
     @FXML
     private HBox addStudentPersonalDetailsHBox, addStudentOfficeUseOnlyHBox, addStudentFamilyDetailsHBox, addStudentEmergencyContactHBox;
@@ -97,12 +111,18 @@ public class AddController {
     // Add Student
     @FXML
     private void addStudentBackAction(){
+        flushDataOnExitFromAddStudent();
         appContainer.displayScreen(AppContainer.screenTag.ADD);
     }
     @FXML
     private void addStudentSaveAction(){
         System.out.println("AddController | addStudentSaveAction");
         saveStudentRecord();
+    }
+    @FXML
+    private void addStudentPhotoAction(){
+        System.out.println("AddController | addStudentPhotoAction");
+        getStudentPhoto();
     }
     
     // Constructor
@@ -127,9 +147,11 @@ public class AddController {
     
     public AnchorPane setAddStudentScreen(){
         try {
+            student = new Student();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/premaanganmanager/base/ui/AddStudent.fxml"));
             loader.setController(this);
             AnchorPane addBase = loader.load();
+            setDefaultStudentPhotoView();
             setAddStudentPropertyID();
             addBase.getStylesheets().add(AddController.class.getResource("AddStudent.css").toExternalForm());
             setAddStudentScreenLabels();
@@ -142,12 +164,72 @@ public class AddController {
     }
     
     // Private Functions
+    private void getStudentPhoto(){
+        System.out.println("AddController | getStudentPhoto");
+        FileChooser addStudentPhotoFileChooser = new FileChooser();
+        appContainer.uiControl.configureFileChooserForImages(addStudentPhotoFileChooser);
+        File addStudentPhotoFile = addStudentPhotoFileChooser.showOpenDialog(appContainer.uiControl.getApplicationStage());
+        System.out.println("addStudentPhotoFile: " + addStudentPhotoFile.getPath());
+        
+        photoFileExtension = getFileExtensionFromString(addStudentPhotoFile.getPath());
+        Path copyTo = Paths.get(appContainer.uiControl.settings.photosDir, (appContainer.uiControl.settings.tempPhotoFileName + "." + photoFileExtension));
+        try{
+            Files.copy(addStudentPhotoFile.toPath(),copyTo,StandardCopyOption.REPLACE_EXISTING);
+            setStudentPhotoView(copyTo.toUri());
+            System.out.println("AddController | getStudentPhoto | copy successful");
+        } catch(Exception e){
+            System.err.println("AddController | getStudentPhoto | Error: " + e);
+        }
+    }
+    
+    private void setStudentPhotoView(URI uri){
+        try{
+            System.out.println("AddController | setStudentPhotoView | URI: " + uri.toURL().toString());
+            addStudentPhotoView.setImage(new Image(uri.toURL().toString()));
+            addStudentPhotoView.setPreserveRatio(true);
+            addStudentPhotoView.setSmooth(true);
+            addStudentPhotoView.setCache(true);
+        } catch(Exception e){
+            System.err.println("AddController | setStudentPhotoView | Error: " + e);
+        }
+    }
+    
+    private void setDefaultStudentPhotoView(){
+        try{
+            System.out.println("AddController | setDefaultStudentPhotoView");
+            Path defaultStudentPhotoPath = Paths.get(appContainer.uiControl.settings.placeHoldersDir, appContainer.uiControl.settings.placeHolderStudentPhoto);
+            addStudentPhotoView.setImage(new Image(defaultStudentPhotoPath.toUri().toURL().toString()));
+            addStudentPhotoView.setPreserveRatio(true);
+            addStudentPhotoView.setSmooth(true);
+            addStudentPhotoView.setCache(true);
+        } catch(Exception e){
+            System.err.println("AddController | setStudentPhotoView | Error: " + e);
+        }
+    }
+    
+    private String getFileExtensionFromString(String filePath){
+        System.out.println("AddController | getFileExtensionFromString | filePath: " + filePath);
+        int i = filePath.lastIndexOf(".");
+        if(i > 0){ return filePath.substring(i+1); }
+        else{ System.out.println("AddController | getFileExtensionFromString | Incorrect filePath format."); return ""; }
+    }
+    
+    private void flushDataOnExitFromAddStudent(){
+        if(photoFileExtension.isEmpty()){ System.out.println("AddController | flushDataOnExitFromAddStudent | No Photo File to flush."); }
+        else{
+            Path tempPhotoFilePath = Paths.get(appContainer.uiControl.settings.photosDir, (appContainer.uiControl.settings.tempPhotoFileName + "." + photoFileExtension));
+            File tempPhotoFile = new File(tempPhotoFilePath.toAbsolutePath().toString());
+            if(tempPhotoFile.exists()){ tempPhotoFile.delete(); }
+        }
+    }
+    
     private void saveStudentRecord(){
         System.out.println("AddController | saveStudentRecord");
-        Student student = new Student();
         
-        if(validateStudentForm(student)){ 
+        if(validateStudentForm()){ 
             if(appContainer.uiControl.uiModel.saveStudentForm(student)){
+                System.out.println("AddController | saveStudentRecord | Value of Student ID: " + student.getStudentId());
+                savePhotoFile();
                 String alertStudentName = addStudentFirstNameField.getText() + (addStudentMiddleNameField.getText().isEmpty() ? "" : " " + addStudentMiddleNameField.getText()) + (addStudentLastNameField.getText().isEmpty() ? "" : " " + addStudentLastNameField.getText());
                 if(appContainer.uiControl.alert(UIControl.alertType.INFO, appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ALERT_MESSAGE_STUDENT_SAVE_SUCCESS).replace("?", alertStudentName))){ addStudentBackAction(); }
                 else{ addStudentBackAction(); }
@@ -155,13 +237,26 @@ public class AddController {
         }
         else{ System.out.println("AddController | saveStudentRecord | Validation of student form failed. Exiting without saving."); }
     }
+    
+    private void savePhotoFile(){
+        if(photoFileExtension.isEmpty()){ System.out.println("AddController | savePhotoFile | No Photo File to save."); }
+        else{
+            Path fromPhotoFilePath = Paths.get(appContainer.uiControl.settings.photosDir, (appContainer.uiControl.settings.tempPhotoFileName + "." + photoFileExtension));
+            Path toPhotoFilePath = Paths.get(appContainer.uiControl.settings.photosDir, (appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_STUDENT_PHOTO_PREFIX) + student.getStudentId() + "." + photoFileExtension));
+            File fromPhotoFile = new File(fromPhotoFilePath.toAbsolutePath().toString());
+            File toPhotoFile = new File(toPhotoFilePath.toAbsolutePath().toString());
+            if(fromPhotoFile.exists()){ 
+                if(fromPhotoFile.renameTo(toPhotoFile)){ System.out.println("AddController | savePhotoFile | Rename successful."); } 
+            }
+        }
+    }
 
-    private boolean validateStudentForm(Student student){
+    private boolean validateStudentForm(){
         System.out.println("AddController | validateStudentForm");
         
         boolean flagFieldsEmpty = false;
         
-        if(addStudentFirstNameField.getText().isEmpty()){ System.out.println("AddController | validateStudentForm | FirstName empty."); appContainer.uiControl.alert(UIControl.alertType.WARNING_FIELD_IS_EMPTY,addStudentFirstName.getText()); return false; }
+        if(addStudentFirstNameField.getText().isEmpty()){ System.out.println("AddController | validateStudentForm | FirstName empty."); appContainer.uiControl.alert(UIControl.alertType.WARNING_FIELD_IS_EMPTY,appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FIRST_NAME)); return false; }
         else{ student.setFirstName(addStudentFirstNameField.getText()); }
         
         if(addStudentMiddleNameField.getText().isEmpty()){ System.out.println("AddController | validateStudentForm | MiddleName empty."); flagFieldsEmpty = true; }
@@ -192,18 +287,18 @@ public class AddController {
         if(flagFieldsEmpty){ 
             if(appContainer.uiControl.alert(UIControl.alertType.CONFIRMATION_FIELD_IS_EMPTY,addStudentFirstName.getText())){ return true; }
             else{ System.out.println("AddController | validateStudentForm | Please fill up the remaining fields before saving."); return false; }
-        }
-        
-        System.out.println(
-                "-------" + "\n" +
-                "Student firstName: " + student.getFirstName() + "\n" + 
-                "Student middleName: " + student.getMiddleName() + "\n" + 
-                "Student lastName: " + student.getLastName() + "\n" + 
-                "Student DOB: " + student.getDob() + "\n" + 
-                "-------"
-        );
-        
-        return true;
+        } else { return true; }
+//        
+//        System.out.println(
+//                "-------" + "\n" +
+//                "Student firstName: " + student.getFirstName() + "\n" + 
+//                "Student middleName: " + student.getMiddleName() + "\n" + 
+//                "Student lastName: " + student.getLastName() + "\n" + 
+//                "Student DOB: " + student.getDob() + "\n" + 
+//                "-------"
+//        );
+//        
+//        return true;
     }
     
     private void setAddStudentPropertyID(){
@@ -227,70 +322,72 @@ public class AddController {
     private void setAddStudentScreenLabels(){
         addStudentBackButton.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.BACK));
         addStudentSaveButton.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.SAVE));
+        addStudentPhotoButton.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_PASSPORT_PHOTO));
         
         addStudentPersonalDetails.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_PERSONAL_DETAILS));
-        addStudentFirstName.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FIRST_NAME));
-        addStudentMiddleName.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_MIDDLE_NAME));
-        addStudentLastName.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_LAST_NAME));
-        addStudentAddress.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_ADDRESS));
-        addStudentEmail.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_EMAIL));
-        addStudentDOB.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_DATE_OF_BIRTH));
-        addStudentPlaceOfBirth.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_PLACE_OF_BIRTH));
-        addStudentReligion.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_RELIGION));
-        addStudentOtherReligion.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_OTHER_RELIGION));
-        addStudentEducationalBackground.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_EDUCATIONAL_BACKGROUND));
-        addStudentLanguages.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_LANGUAGES));
-        addStudentHobbies.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_HOBBIES));
+        addStudentFirstName.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FIRST_NAME) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END));
+        addStudentMiddleName.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_MIDDLE_NAME) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END));
+        addStudentLastName.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_LAST_NAME) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END));
+        addStudentAddress.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_ADDRESS) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END));
+        addStudentEmail.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_EMAIL) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END));
+        addStudentDOB.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_DATE_OF_BIRTH) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END));
+        addStudentPlaceOfBirth.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_PLACE_OF_BIRTH) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END));
+        addStudentReligion.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_RELIGION) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END));
+        addStudentOtherReligion.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_OTHER_RELIGION) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END));
+        addStudentEducationalBackground.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_EDUCATIONAL_BACKGROUND) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END));
+        addStudentLanguages.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_LANGUAGES) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END));
+        addStudentHobbies.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_HOBBIES) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END));
+        
         addStudentEmergencyContact.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_EMERGENCY_CONTACT));
-        addStudentEmergencyContactPerson.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_EMERGENCY_CONTACT_PERSON));
-        addStudentEmergencyContactTelNo.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_EMERGENCY_CONTACT_TEL_NO));
+        addStudentEmergencyContactPerson.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_EMERGENCY_CONTACT_PERSON) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END));
+        addStudentEmergencyContactTelNo.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_EMERGENCY_CONTACT_TEL_NO) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END));
+        
         addStudentFamilyDetails.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_DETAILS));
+        addStudentFamilyMemberName1.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_NAME) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END));
+        addStudentFamilyMemberAge1.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_AGE) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END));
+        addStudentFamilyMemberRelationship1.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_RELATIONSHIP) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END));
+        addStudentFamilyMemberOccupation1.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_OCCUPATION) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END));
+        addStudentFamilyMemberOccupationalAddress1.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_OCCUPATIONAL_ADDRESS) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END));
+        addStudentFamilyMemberOccupationalTelNo1.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_OCCUPATIONAL_TEL_NO) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END));
         
-        addStudentFamilyMemberName1.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_NAME));
-        addStudentFamilyMemberAge1.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_AGE));
-        addStudentFamilyMemberRelationship1.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_RELATIONSHIP));
-        addStudentFamilyMemberOccupation1.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_OCCUPATION));
-        addStudentFamilyMemberOccupationalAddress1.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_OCCUPATIONAL_ADDRESS));
-        addStudentFamilyMemberOccupationalTelNo1.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_OCCUPATIONAL_TEL_NO));
+        addStudentFamilyMemberName2.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_NAME) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END));
+        addStudentFamilyMemberAge2.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_AGE) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END));
+        addStudentFamilyMemberRelationship2.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_RELATIONSHIP) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END));
+        addStudentFamilyMemberOccupation2.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_OCCUPATION) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END));
+        addStudentFamilyMemberOccupationalAddress2.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_OCCUPATIONAL_ADDRESS) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END));
+        addStudentFamilyMemberOccupationalTelNo2.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_OCCUPATIONAL_TEL_NO) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END));
         
-        addStudentFamilyMemberName2.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_NAME));
-        addStudentFamilyMemberAge2.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_AGE));
-        addStudentFamilyMemberRelationship2.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_RELATIONSHIP));
-        addStudentFamilyMemberOccupation2.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_OCCUPATION));
-        addStudentFamilyMemberOccupationalAddress2.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_OCCUPATIONAL_ADDRESS));
-        addStudentFamilyMemberOccupationalTelNo2.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_OCCUPATIONAL_TEL_NO));
+        addStudentFamilyMemberName3.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_NAME) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END));
+        addStudentFamilyMemberAge3.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_AGE) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END));
+        addStudentFamilyMemberRelationship3.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_RELATIONSHIP) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END));
+        addStudentFamilyMemberOccupation3.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_OCCUPATION) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END));
+        addStudentFamilyMemberOccupationalAddress3.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_OCCUPATIONAL_ADDRESS) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END));
+        addStudentFamilyMemberOccupationalTelNo3.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_OCCUPATIONAL_TEL_NO) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END));
         
-        addStudentFamilyMemberName3.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_NAME));
-        addStudentFamilyMemberAge3.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_AGE));
-        addStudentFamilyMemberRelationship3.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_RELATIONSHIP));
-        addStudentFamilyMemberOccupation3.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_OCCUPATION));
-        addStudentFamilyMemberOccupationalAddress3.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_OCCUPATIONAL_ADDRESS));
-        addStudentFamilyMemberOccupationalTelNo3.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_OCCUPATIONAL_TEL_NO));
+        addStudentFamilyMemberName4.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_NAME) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END));
+        addStudentFamilyMemberAge4.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_AGE) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END));
+        addStudentFamilyMemberRelationship4.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_RELATIONSHIP) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END));
+        addStudentFamilyMemberOccupation4.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_OCCUPATION) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END));
+        addStudentFamilyMemberOccupationalAddress4.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_OCCUPATIONAL_ADDRESS) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END));
+        addStudentFamilyMemberOccupationalTelNo4.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_OCCUPATIONAL_TEL_NO) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END));
         
-        addStudentFamilyMemberName4.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_NAME));
-        addStudentFamilyMemberAge4.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_AGE));
-        addStudentFamilyMemberRelationship4.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_RELATIONSHIP));
-        addStudentFamilyMemberOccupation4.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_OCCUPATION));
-        addStudentFamilyMemberOccupationalAddress4.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_OCCUPATIONAL_ADDRESS));
-        addStudentFamilyMemberOccupationalTelNo4.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_OCCUPATIONAL_TEL_NO));
+        addStudentFamilyMemberName5.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_NAME) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END));
+        addStudentFamilyMemberAge5.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_AGE) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END));
+        addStudentFamilyMemberRelationship5.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_RELATIONSHIP) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END));
+        addStudentFamilyMemberOccupation5.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_OCCUPATION) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END));
+        addStudentFamilyMemberOccupationalAddress5.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_OCCUPATIONAL_ADDRESS) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END));
+        addStudentFamilyMemberOccupationalTelNo5.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_OCCUPATIONAL_TEL_NO) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END));
         
-        addStudentFamilyMemberName5.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_NAME));
-        addStudentFamilyMemberAge5.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_AGE));
-        addStudentFamilyMemberRelationship5.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_RELATIONSHIP));
-        addStudentFamilyMemberOccupation5.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_OCCUPATION));
-        addStudentFamilyMemberOccupationalAddress5.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_OCCUPATIONAL_ADDRESS));
-        addStudentFamilyMemberOccupationalTelNo5.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_OCCUPATIONAL_TEL_NO));
-        
-        addStudentFamilyMemberName6.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_NAME));
-        addStudentFamilyMemberAge6.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_AGE));
-        addStudentFamilyMemberRelationship6.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_RELATIONSHIP));
-        addStudentFamilyMemberOccupation6.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_OCCUPATION));
-        addStudentFamilyMemberOccupationalAddress6.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_OCCUPATIONAL_ADDRESS));
-        addStudentFamilyMemberOccupationalTelNo6.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_OCCUPATIONAL_TEL_NO));
+        addStudentFamilyMemberName6.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_NAME) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END));
+        addStudentFamilyMemberAge6.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_AGE) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END));
+        addStudentFamilyMemberRelationship6.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_RELATIONSHIP) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END));
+        addStudentFamilyMemberOccupation6.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_OCCUPATION) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END));
+        addStudentFamilyMemberOccupationalAddress6.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_OCCUPATIONAL_ADDRESS) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END));
+        addStudentFamilyMemberOccupationalTelNo6.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_OCCUPATIONAL_TEL_NO) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END));
         
         addStudentOfficeUseOnly.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_OFFICE_USE_ONLY));
-        addStudentEnrollmentNo.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_ENROLLMENT_NUMBER));
-        addStudentPlace.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_PLACE));
-        addStudentDate.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_DATE));
+        addStudentEnrollmentNo.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_ENROLLMENT_NUMBER) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END));
+        addStudentPlace.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_PLACE) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END));
+        addStudentDate.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_DATE) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END));
     }
 }

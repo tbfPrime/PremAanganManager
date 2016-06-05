@@ -22,6 +22,8 @@ public class Labels {
         ALERT_INFO, ALERT_WARNING, ALERT_ERROR, ALERT_CONFIRMATION,
         ALERT_MESSAGE_IS_EMPTY, ALERT_MESSAGE_CONFIRM_FIELD_EMPTY, 
         ALERT_MESSAGE_STUDENT_SAVE_SUCCESS, ALERT_MESSAGE_ERROR_SAVE,
+        
+        LABEL_END, LABEL_ID, LABEL_STUDENT_PHOTO_PREFIX, 
             
         // Login
         LOGIN_TITLE, LOGIN_SUBTITLE1, LOGIN_SUBTITLE2, LOGIN_HELP1, LOGIN_HELP2, LOGIN_ERROR1,
@@ -46,7 +48,7 @@ public class Labels {
         ADD_STUDENT_FAMILY_MEMBER_OCCUPATION, ADD_STUDENT_FAMILY_MEMBER_OCCUPATIONAL_ADDRESS, ADD_STUDENT_FAMILY_MEMBER_OCCUPATIONAL_TEL_NO,
         ADD_STUDENT_ENROLLMENT_NUMBER, ADD_STUDENT_PLACE, ADD_STUDENT_DATE,
         ADD_STUDENT_PHOTO, ADD_STUDENT_PERSONAL_DETAILS, ADD_STUDENT_OFFICE_USE_ONLY,
-        ADD_STUDENT_FAMILY_DETAILS, ADD_STUDENT_EMERGENCY_CONTACT,
+        ADD_STUDENT_FAMILY_DETAILS, ADD_STUDENT_EMERGENCY_CONTACT, ADD_STUDENT_PASSPORT_PHOTO,
         
         // Browse
         BROWSE_STUDENT, BROWSE_TEACHER
@@ -60,6 +62,7 @@ public class Labels {
     private String l_AlertInfo, l_AlertWarning, l_AlertERROR, l_AlertConfirmation;
     private String l_AlertMessageIsEmpty, l_AlertMessageConfirmFieldEmpty;
     private String l_AlertMessageStudentSaveSuccess, l_AlertMessageErrorSave;
+    private String l_LabelEnd, l_LabelID, l_LabelStudentPhotoPrefix;
 
     // Login
     private String l_LoginTitle, l_LoginSubtitle1, l_LoginSubtitle2, l_LoginHelp, l_Guest, l_Admin, l_Admin1, l_Admin2, l_Admin3, l_Key, l_PasswordPrompt, l_Login;
@@ -80,7 +83,7 @@ public class Labels {
     private String l_addStudentFamilyMemberOccupation, l_addStudentFamilyMemberOccupationalAddress, l_addStudentFamilyMemberOccupationalTelNo;
     private String l_addStudentEnrollmentNumber, l_addStudentPlace, l_addStudentDate;
     private String l_addStudentPhoto, l_addStudentPersonalDetails, l_addStudentOfficeUseOnly;
-    private String l_addStudentFamilyDetails, l_addStudentEmergencyContact;
+    private String l_addStudentFamilyDetails, l_addStudentEmergencyContact, l_AddStudentPassportPhoto;
     
     // Browse
     private String l_browseStudent, l_browseTeacher;
@@ -112,6 +115,10 @@ public class Labels {
             case ALERT_MESSAGE_CONFIRM_FIELD_EMPTY: l_AlertMessageConfirmFieldEmpty = value; break;
             case ALERT_MESSAGE_STUDENT_SAVE_SUCCESS: l_AlertMessageStudentSaveSuccess = value; break;
             case ALERT_MESSAGE_ERROR_SAVE: l_AlertMessageErrorSave = value; break;
+            
+            case LABEL_END: l_LabelEnd = value; break;
+            case LABEL_ID: l_LabelID = value; break;
+            case LABEL_STUDENT_PHOTO_PREFIX: l_LabelStudentPhotoPrefix = value; break;
 
             case LOGIN_TITLE: l_LoginTitle = value; break;
             case LOGIN_SUBTITLE1: l_LoginSubtitle1 = value; break;
@@ -170,6 +177,7 @@ public class Labels {
             case ADD_STUDENT_OFFICE_USE_ONLY: l_addStudentOfficeUseOnly = value; break;
             case ADD_STUDENT_FAMILY_DETAILS: l_addStudentFamilyDetails = value; break;
             case ADD_STUDENT_EMERGENCY_CONTACT: l_addStudentEmergencyContact = value; break;
+            case ADD_STUDENT_PASSPORT_PHOTO: l_AddStudentPassportPhoto = value; break;
             
             case BROWSE_STUDENT: l_browseStudent = value; break;
             case BROWSE_TEACHER: l_browseTeacher = value; break;
@@ -201,6 +209,10 @@ public class Labels {
             case ALERT_MESSAGE_CONFIRM_FIELD_EMPTY: return l_AlertMessageConfirmFieldEmpty;
             case ALERT_MESSAGE_STUDENT_SAVE_SUCCESS: return l_AlertMessageStudentSaveSuccess;
             case ALERT_MESSAGE_ERROR_SAVE: return l_AlertMessageErrorSave;
+            
+            case LABEL_END: return l_LabelEnd;
+            case LABEL_ID: return l_LabelID;
+            case LABEL_STUDENT_PHOTO_PREFIX: return l_LabelStudentPhotoPrefix;
             
             case LOGIN_TITLE: return l_LoginTitle;
             case LOGIN_SUBTITLE1: return l_LoginSubtitle1;
@@ -259,6 +271,7 @@ public class Labels {
             case ADD_STUDENT_OFFICE_USE_ONLY: return l_addStudentOfficeUseOnly;
             case ADD_STUDENT_FAMILY_DETAILS: return l_addStudentFamilyDetails;
             case ADD_STUDENT_EMERGENCY_CONTACT: return l_addStudentEmergencyContact;
+            case ADD_STUDENT_PASSPORT_PHOTO: return l_AddStudentPassportPhoto;
             
             case BROWSE_STUDENT: return l_browseStudent;
             case BROWSE_TEACHER: return l_browseTeacher;
