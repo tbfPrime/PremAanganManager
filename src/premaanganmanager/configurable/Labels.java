@@ -13,10 +13,14 @@ public class Labels {
     // public enum to tag lables from this file.
     public enum labelTag{
         // Common
+// Common
         APPLICATION_TITLE, BACK, SAVE,
         MENU_HOME, MENU_BROWSE, MENU_ADD, MENU_SEARCH, MENU_SETTINGS,
         HEADER_LOGOUT, HEADER_SWITCH_ADMIN,
         HEADER_TITLE,
+        
+        ALERT_INFO, ALERT_WARNING, ALERT_ERROR, ALERT_CONFIRMATION,
+        ALERT_MESSAGE_IS_EMPTY, ALERT_MESSAGE_CONFIRM_FIELD_EMPTY,
             
         // Login
         LOGIN_TITLE, LOGIN_SUBTITLE1, LOGIN_SUBTITLE2, LOGIN_HELP1, LOGIN_HELP2, LOGIN_ERROR1,
@@ -33,6 +37,15 @@ public class Labels {
         
         // Add Student
         ADD_STUDENT_FIRST_NAME, ADD_STUDENT_MIDDLE_NAME, ADD_STUDENT_LAST_NAME,
+        ADD_STUDENT_ADDRESS, ADD_STUDENT_EMAIL, ADD_STUDENT_DATE_OF_BIRTH,
+        ADD_STUDENT_PLACE_OF_BIRTH, ADD_STUDENT_RELIGION, ADD_STUDENT_OTHER_RELIGION,
+        ADD_STUDENT_COURSE, ADD_STUDENT_EMERGENCY_CONTACT_PERSON, ADD_STUDENT_EMERGENCY_CONTACT_TEL_NO,
+        ADD_STUDENT_EDUCATIONAL_BACKGROUND, ADD_STUDENT_LANGUAGES, ADD_STUDENT_HOBBIES,
+        ADD_STUDENT_FAMILY_MEMBER_NAME, ADD_STUDENT_FAMILY_MEMBER_RELATIONSHIP, ADD_STUDENT_FAMILY_MEMBER_AGE,
+        ADD_STUDENT_FAMILY_MEMBER_OCCUPATION, ADD_STUDENT_FAMILY_MEMBER_OCCUPATIONAL_ADDRESS, ADD_STUDENT_FAMILY_MEMBER_OCCUPATIONAL_TEL_NO,
+        ADD_STUDENT_ENROLLMENT_NUMBER, ADD_STUDENT_PLACE, ADD_STUDENT_DATE,
+        ADD_STUDENT_PHOTO, ADD_STUDENT_PERSONAL_DETAILS, ADD_STUDENT_OFFICE_USE_ONLY,
+        ADD_STUDENT_FAMILY_DETAILS, ADD_STUDENT_EMERGENCY_CONTACT,
         
         // Browse
         BROWSE_STUDENT, BROWSE_TEACHER
@@ -43,6 +56,8 @@ public class Labels {
     private String l_ApplicationTitle, l_Back, l_Save;
     private String l_MenuHome, l_MenuBrowse, l_MenuAdd, l_MenuSearch, l_MenuSettings;
     private String l_HeaderTitle, l_HeaderLogout, l_HeaderSwitchAdmin;
+    private String l_AlertInfo, l_AlertWarning, l_AlertERROR, l_AlertConfirmation;
+    private String l_AlertMessageIsEmpty, l_AlertMessageConfirmFieldEmpty;
 
     // Login
     private String l_LoginTitle, l_LoginSubtitle1, l_LoginSubtitle2, l_LoginHelp, l_Guest, l_Admin, l_Admin1, l_Admin2, l_Admin3, l_Key, l_PasswordPrompt, l_Login;
@@ -55,6 +70,15 @@ public class Labels {
     
     // Add Student
     private String l_addStudentFirstName, l_addStudentMiddleName, l_addStudentLastName;
+    private String l_addStudentAddress, l_addStudentEmail, l_addStudentDOB;
+    private String l_addStudentPlaceOfBirth, l_addStudentReligion, l_addStudentOtherReligion;
+    private String l_addStudentCourse, l_addStudentEmergencyContactPerson, l_addStudentEmergencyContactTelNo;
+    private String l_addStudentEducationalBackground, l_addStudentLanguages, l_addStudentHobbies;
+    private String l_addStudentFamilyMemberName, l_addStudentFamilyMemberRelationship, l_addStudentFamilyMemberAge;
+    private String l_addStudentFamilyMemberOccupation, l_addStudentFamilyMemberOccupationalAddress, l_addStudentFamilyMemberOccupationalTelNo;
+    private String l_addStudentEnrollmentNumber, l_addStudentPlace, l_addStudentDate;
+    private String l_addStudentPhoto, l_addStudentPersonalDetails, l_addStudentOfficeUseOnly;
+    private String l_addStudentFamilyDetails, l_addStudentEmergencyContact;
     
     // Browse
     private String l_browseStudent, l_browseTeacher;
@@ -76,6 +100,14 @@ public class Labels {
             case HEADER_TITLE: l_HeaderTitle = value; break;
             case HEADER_LOGOUT: l_HeaderLogout = value; break;
             case HEADER_SWITCH_ADMIN: l_HeaderSwitchAdmin = value; break;
+            
+            case ALERT_INFO: l_AlertInfo = value; break;
+            case ALERT_WARNING: l_AlertWarning = value; break;
+            case ALERT_ERROR: l_AlertERROR = value; break;
+            case ALERT_CONFIRMATION: l_AlertConfirmation = value; break;
+            
+            case ALERT_MESSAGE_IS_EMPTY: l_AlertMessageIsEmpty = value; break;
+            case ALERT_MESSAGE_CONFIRM_FIELD_EMPTY: l_AlertMessageConfirmFieldEmpty = value; break;
 
             case LOGIN_TITLE: l_LoginTitle = value; break;
             case LOGIN_SUBTITLE1: l_LoginSubtitle1 = value; break;
@@ -108,6 +140,32 @@ public class Labels {
             case ADD_STUDENT_FIRST_NAME: l_addStudentFirstName = value; break;
             case ADD_STUDENT_MIDDLE_NAME: l_addStudentMiddleName = value; break;
             case ADD_STUDENT_LAST_NAME: l_addStudentLastName = value; break;
+            case ADD_STUDENT_ADDRESS: l_addStudentAddress = value; break;
+            case ADD_STUDENT_EMAIL: l_addStudentEmail = value; break;
+            case ADD_STUDENT_DATE_OF_BIRTH: l_addStudentDOB = value; break;
+            case ADD_STUDENT_PLACE_OF_BIRTH: l_addStudentPlaceOfBirth = value; break;
+            case ADD_STUDENT_RELIGION: l_addStudentReligion = value; break;
+            case ADD_STUDENT_OTHER_RELIGION: l_addStudentOtherReligion = value; break;
+            case ADD_STUDENT_COURSE: l_addStudentCourse = value; break;
+            case ADD_STUDENT_EMERGENCY_CONTACT_PERSON: l_addStudentEmergencyContactPerson = value; break;
+            case ADD_STUDENT_EMERGENCY_CONTACT_TEL_NO: l_addStudentEmergencyContactTelNo = value; break;
+            case ADD_STUDENT_EDUCATIONAL_BACKGROUND: l_addStudentEducationalBackground = value; break;
+            case ADD_STUDENT_LANGUAGES: l_addStudentLanguages = value; break;
+            case ADD_STUDENT_HOBBIES: l_addStudentHobbies = value; break;
+            case ADD_STUDENT_FAMILY_MEMBER_NAME: l_addStudentFamilyMemberName = value; break;
+            case ADD_STUDENT_FAMILY_MEMBER_RELATIONSHIP: l_addStudentFamilyMemberRelationship = value; break;
+            case ADD_STUDENT_FAMILY_MEMBER_AGE: l_addStudentFamilyMemberAge = value; break;
+            case ADD_STUDENT_FAMILY_MEMBER_OCCUPATION: l_addStudentFamilyMemberOccupation = value; break;
+            case ADD_STUDENT_FAMILY_MEMBER_OCCUPATIONAL_ADDRESS: l_addStudentFamilyMemberOccupationalAddress = value; break;
+            case ADD_STUDENT_FAMILY_MEMBER_OCCUPATIONAL_TEL_NO: l_addStudentFamilyMemberOccupationalTelNo = value; break;
+            case ADD_STUDENT_ENROLLMENT_NUMBER: l_addStudentEnrollmentNumber = value; break;
+            case ADD_STUDENT_PLACE: l_addStudentPlace = value; break;
+            case ADD_STUDENT_DATE: l_addStudentDate = value; break;
+            case ADD_STUDENT_PHOTO: l_addStudentPhoto = value; break;
+            case ADD_STUDENT_PERSONAL_DETAILS: l_addStudentPersonalDetails = value; break;
+            case ADD_STUDENT_OFFICE_USE_ONLY: l_addStudentOfficeUseOnly = value; break;
+            case ADD_STUDENT_FAMILY_DETAILS: l_addStudentFamilyDetails = value; break;
+            case ADD_STUDENT_EMERGENCY_CONTACT: l_addStudentEmergencyContact = value; break;
             
             case BROWSE_STUDENT: l_browseStudent = value; break;
             case BROWSE_TEACHER: l_browseTeacher = value; break;
@@ -129,6 +187,14 @@ public class Labels {
             case HEADER_TITLE: return l_HeaderTitle;
             case HEADER_LOGOUT: return l_HeaderLogout;
             case HEADER_SWITCH_ADMIN: return l_HeaderSwitchAdmin;
+            
+            case ALERT_INFO: return l_AlertInfo;
+            case ALERT_WARNING: return l_AlertWarning;
+            case ALERT_ERROR: return l_AlertERROR;
+            case ALERT_CONFIRMATION: return l_AlertConfirmation;
+            
+            case ALERT_MESSAGE_IS_EMPTY: return l_AlertMessageIsEmpty;
+            case ALERT_MESSAGE_CONFIRM_FIELD_EMPTY: return l_AlertMessageConfirmFieldEmpty;
             
             case LOGIN_TITLE: return l_LoginTitle;
             case LOGIN_SUBTITLE1: return l_LoginSubtitle1;
@@ -161,6 +227,32 @@ public class Labels {
             case ADD_STUDENT_FIRST_NAME: return l_addStudentFirstName;
             case ADD_STUDENT_MIDDLE_NAME: return l_addStudentMiddleName;
             case ADD_STUDENT_LAST_NAME: return l_addStudentLastName;
+            case ADD_STUDENT_ADDRESS: return l_addStudentAddress;
+            case ADD_STUDENT_EMAIL: return l_addStudentEmail;
+            case ADD_STUDENT_DATE_OF_BIRTH: return l_addStudentDOB;
+            case ADD_STUDENT_PLACE_OF_BIRTH: return l_addStudentPlaceOfBirth;
+            case ADD_STUDENT_RELIGION: return l_addStudentReligion;
+            case ADD_STUDENT_OTHER_RELIGION: return l_addStudentOtherReligion;
+            case ADD_STUDENT_COURSE: return l_addStudentCourse;
+            case ADD_STUDENT_EMERGENCY_CONTACT_PERSON: return l_addStudentEmergencyContactPerson;
+            case ADD_STUDENT_EMERGENCY_CONTACT_TEL_NO: return l_addStudentEmergencyContactTelNo;
+            case ADD_STUDENT_EDUCATIONAL_BACKGROUND: return l_addStudentEducationalBackground;
+            case ADD_STUDENT_LANGUAGES: return l_addStudentLanguages;
+            case ADD_STUDENT_HOBBIES: return l_addStudentHobbies;
+            case ADD_STUDENT_FAMILY_MEMBER_NAME: return l_addStudentFamilyMemberName;
+            case ADD_STUDENT_FAMILY_MEMBER_RELATIONSHIP: return l_addStudentFamilyMemberRelationship;
+            case ADD_STUDENT_FAMILY_MEMBER_AGE: return l_addStudentFamilyMemberAge;
+            case ADD_STUDENT_FAMILY_MEMBER_OCCUPATION: return l_addStudentFamilyMemberOccupation;
+            case ADD_STUDENT_FAMILY_MEMBER_OCCUPATIONAL_ADDRESS: return l_addStudentFamilyMemberOccupationalAddress;
+            case ADD_STUDENT_FAMILY_MEMBER_OCCUPATIONAL_TEL_NO: return l_addStudentFamilyMemberOccupationalTelNo;
+            case ADD_STUDENT_ENROLLMENT_NUMBER: return l_addStudentEnrollmentNumber;
+            case ADD_STUDENT_PLACE: return l_addStudentPlace;
+            case ADD_STUDENT_DATE: return l_addStudentDate;
+            case ADD_STUDENT_PHOTO: return l_addStudentPhoto;
+            case ADD_STUDENT_PERSONAL_DETAILS: return l_addStudentPersonalDetails;
+            case ADD_STUDENT_OFFICE_USE_ONLY: return l_addStudentOfficeUseOnly;
+            case ADD_STUDENT_FAMILY_DETAILS: return l_addStudentFamilyDetails;
+            case ADD_STUDENT_EMERGENCY_CONTACT: return l_addStudentEmergencyContact;
             
             case BROWSE_STUDENT: return l_browseStudent;
             case BROWSE_TEACHER: return l_browseTeacher;

@@ -78,6 +78,8 @@ public class UIModel {
         em.persist(student);
         em.getTransaction().commit();
         
+        System.out.println("Value of Student ID: " + student.getStudentId());
+        
         System.out.println("UIModel | saveStudentForm | Entry saved.");
     }
     

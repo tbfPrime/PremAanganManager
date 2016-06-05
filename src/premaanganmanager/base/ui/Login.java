@@ -7,13 +7,17 @@ package premaanganmanager.base.ui;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.PasswordField;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
@@ -56,6 +60,17 @@ public class Login{
     @FXML
     public void guestButtonAction(){
         System.out.println("Login | guestButtonAction");
+//        Alert alert = new Alert(AlertType.CONFIRMATION);
+//        alert.setTitle("Confirmation Dialog");
+//        alert.setHeaderText(null);
+//        alert.setContentText("Are you ok with this?");
+//        
+//        Optional<ButtonType> result = alert.showAndWait();
+//        if (result.get() == ButtonType.OK){
+//            // ... user chose OK
+//        } else {
+//            // ... user chose CANCEL or closed the dialog
+//        }
         loginAsGuest();
     }
     
