@@ -14,10 +14,16 @@ public class Labels {
     public enum labelTag{
         // Common
 // Common
+// Common
+// Common
         APPLICATION_TITLE, BACK, SAVE,
         MENU_HOME, MENU_BROWSE, MENU_ADD, MENU_SEARCH, MENU_SETTINGS,
         HEADER_LOGOUT, HEADER_SWITCH_ADMIN,
-        HEADER_TITLE,
+        
+        HEADER_WELCOME_TITLE, HEADER_ADD_TITLE, HEADER_ADD_STUDENT_TITLE,
+        HEADER_ADD_TEACHER_TITLE, HEADER_ADD_SUBJECT_TITLE, HEADER_ADD_ATTENDANCE_TITLE,
+        HEADER_ADD_COURSE_TITLE, HEADER_ADD_BATCH_TITLE, HEADER_ADD_CLASS_TITLE,
+        HEADER_ADD_TIMETABLE_TITLE, HEADER_BROWSE_TITLE, HEADER_BROWSE_STUDENT_TITLE,
         
         ALERT_INFO, ALERT_WARNING, ALERT_ERROR, ALERT_CONFIRMATION,
         ALERT_MESSAGE_IS_EMPTY, ALERT_MESSAGE_CONFIRM_FIELD_EMPTY, 
@@ -58,10 +64,18 @@ public class Labels {
     // Common labels.
     private String l_ApplicationTitle, l_Back, l_Save;
     private String l_MenuHome, l_MenuBrowse, l_MenuAdd, l_MenuSearch, l_MenuSettings;
-    private String l_HeaderTitle, l_HeaderLogout, l_HeaderSwitchAdmin;
+    private String l_HeaderLogout, l_HeaderSwitchAdmin;
+    
+    private String l_HeaderWelcomeTitle, l_HeaderAddTitle, l_HeaderAddStudentTitle;
+    private String l_HeaderAddTeacherTitle, l_HeaderAddSubjectTitle, l_HeaderAddAttendanceTitle;
+    private String l_HeaderAddCourseTitle, l_HeaderAddBatchTitle, l_HeaderAddClassTitle;
+    private String l_HeaderAddTimetabelTitle, l_HeaderBrowseTitle, l_HeaderBrowseStudentTitle;
+    
     private String l_AlertInfo, l_AlertWarning, l_AlertERROR, l_AlertConfirmation;
+    
     private String l_AlertMessageIsEmpty, l_AlertMessageConfirmFieldEmpty;
     private String l_AlertMessageStudentSaveSuccess, l_AlertMessageErrorSave;
+    
     private String l_LabelEnd, l_LabelID, l_LabelStudentPhotoPrefix;
 
     // Login
@@ -102,9 +116,21 @@ public class Labels {
             case MENU_SEARCH: l_MenuSearch = value; break;
             case MENU_SETTINGS: l_MenuSettings = value; break;
             
-            case HEADER_TITLE: l_HeaderTitle = value; break;
             case HEADER_LOGOUT: l_HeaderLogout = value; break;
             case HEADER_SWITCH_ADMIN: l_HeaderSwitchAdmin = value; break;
+            
+            case HEADER_WELCOME_TITLE: l_HeaderWelcomeTitle = value; break;
+            case HEADER_ADD_TITLE: l_HeaderAddTitle = value; break;
+            case HEADER_ADD_STUDENT_TITLE: l_HeaderAddStudentTitle = value; break;
+            case HEADER_ADD_TEACHER_TITLE: l_HeaderAddTeacherTitle = value; break;
+            case HEADER_ADD_SUBJECT_TITLE: l_HeaderAddSubjectTitle = value; break;
+            case HEADER_ADD_ATTENDANCE_TITLE: l_HeaderAddAttendanceTitle = value; break;
+            case HEADER_ADD_COURSE_TITLE: l_HeaderAddCourseTitle = value; break;
+            case HEADER_ADD_BATCH_TITLE: l_HeaderAddBatchTitle = value; break;
+            case HEADER_ADD_CLASS_TITLE: l_HeaderAddClassTitle = value; break;
+            case HEADER_ADD_TIMETABLE_TITLE: l_HeaderAddTimetabelTitle = value; break;
+            case HEADER_BROWSE_TITLE: l_HeaderBrowseTitle = value; break;
+            case HEADER_BROWSE_STUDENT_TITLE: l_HeaderBrowseStudentTitle = value; break;
             
             case ALERT_INFO: l_AlertInfo = value; break;
             case ALERT_WARNING: l_AlertWarning = value; break;
@@ -196,9 +222,21 @@ public class Labels {
             case MENU_SEARCH: return l_MenuSearch;
             case MENU_SETTINGS: return l_MenuSettings;
             
-            case HEADER_TITLE: return l_HeaderTitle;
             case HEADER_LOGOUT: return l_HeaderLogout;
             case HEADER_SWITCH_ADMIN: return l_HeaderSwitchAdmin;
+            
+            case HEADER_WELCOME_TITLE: return l_HeaderWelcomeTitle;
+            case HEADER_ADD_TITLE: return l_HeaderAddTitle;
+            case HEADER_ADD_STUDENT_TITLE: return l_HeaderAddStudentTitle;
+            case HEADER_ADD_TEACHER_TITLE: return l_HeaderAddTeacherTitle;
+            case HEADER_ADD_SUBJECT_TITLE: return l_HeaderAddSubjectTitle;
+            case HEADER_ADD_ATTENDANCE_TITLE: return l_HeaderAddAttendanceTitle;
+            case HEADER_ADD_COURSE_TITLE: return l_HeaderAddCourseTitle;
+            case HEADER_ADD_BATCH_TITLE: return l_HeaderAddBatchTitle;
+            case HEADER_ADD_CLASS_TITLE: return l_HeaderAddClassTitle;
+            case HEADER_ADD_TIMETABLE_TITLE: return l_HeaderAddTimetabelTitle;
+            case HEADER_BROWSE_TITLE: return l_HeaderBrowseTitle;
+            case HEADER_BROWSE_STUDENT_TITLE: return l_HeaderBrowseStudentTitle;
             
             case ALERT_INFO: return l_AlertInfo;
             case ALERT_WARNING: return l_AlertWarning;

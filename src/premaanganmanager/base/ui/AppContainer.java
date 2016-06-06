@@ -86,7 +86,7 @@ public class AppContainer {
     public AppContainer(UIControl uiControl){
         this.uiControl = uiControl;
         
-        homeController = new HomeController();
+        homeController = new HomeController(this);
         browseController = new BrowseController(this);
         addController = new AddController(this);
         searchController = new SearchController();
@@ -141,6 +141,10 @@ public class AppContainer {
         }
     }
     
+    public void setHeaderText(String value){
+        headerText.setText(value);
+    }
+    
     // Private Functions
     private void setLogOutComboBox(){
         logoutComboBox.getItems().addAll(
@@ -182,7 +186,7 @@ public class AppContainer {
         menuAddButton.setText(uiControl.settings.labels.getLabel(Labels.labelTag.MENU_ADD));
         menuSearchButton.setText(uiControl.settings.labels.getLabel(Labels.labelTag.MENU_SEARCH));
         menuSettingsButton.setText(uiControl.settings.labels.getLabel(Labels.labelTag.MENU_SETTINGS));
-        headerText.setText(uiControl.settings.labels.getLabel(Labels.labelTag.HEADER_TITLE));
+        headerText.setText(uiControl.settings.labels.getLabel(Labels.labelTag.HEADER_WELCOME_TITLE));
         logoutComboBox.setPromptText(uiControl.settings.labels.getLabel(Labels.labelTag.HEADER_LOGOUT));
     }
 }

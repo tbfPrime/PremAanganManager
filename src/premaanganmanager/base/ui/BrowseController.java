@@ -27,19 +27,30 @@ import premaanganmanager.configurable.Labels;
  */
 public class BrowseController{
     
-    private AppContainer appContainer;
+    private final AppContainer appContainer;
     
     @FXML
     private TableView browseTable;
-    private TableColumn idColumn;
-    private TableColumn dummyValueColumn;
     
+    // Browse
     @FXML
     private Button browseStudentButton;
     
+    // Browse Student
+    @FXML
+    private Button browseStudentBackButton;
+    
+    // Browse
     @FXML
     private void browseStudentButtonAction(){
         appContainer.displayScreen(AppContainer.screenTag.BROWSE_STUDENT_TABLE);
+    }
+    
+    // Browse Student
+    @FXML
+    private void browseStudentBackAction(){
+        System.out.println("BrowseController | browseSrudentBackAction");
+        appContainer.displayScreen(AppContainer.screenTag.BROWSE);
     }
     
     // Constructor
@@ -79,7 +90,7 @@ public class BrowseController{
     // private functions
     private void dispayTable(AppContainer.screenTag tag){
         switch(tag){
-            case BROWSE_STUDENT_TABLE: displayStudentTable(); break;
+            case BROWSE_STUDENT_TABLE: setBrowseStudentScreenLabels(); displayStudentTable(); break;
         }
     }
     
@@ -143,6 +154,14 @@ public class BrowseController{
     }
 
     private void setBrowseScreenMenuLabels(){
+        appContainer.setHeaderText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.HEADER_BROWSE_TITLE));
+        
         browseStudentButton.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.BROWSE_STUDENT));
+    }
+    
+    private void setBrowseStudentScreenLabels(){
+        appContainer.setHeaderText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.HEADER_BROWSE_STUDENT_TITLE));
+        
+        browseStudentBackButton.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.BACK));
     }
 }
