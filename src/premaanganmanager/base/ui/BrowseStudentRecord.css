@@ -12,3 +12,7 @@ and open the template in the editor.
     -fx-background-color: #000000;
     -fx-background-radius: 10;
 }
+
+#RecordHeaderHBox{
+    -fx-background-color: #cccccc;
+}

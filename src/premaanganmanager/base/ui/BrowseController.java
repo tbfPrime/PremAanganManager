@@ -7,7 +7,6 @@ package premaanganmanager.base.ui;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.logging.Level;
@@ -24,6 +23,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import premaanganmanager.base.controller.background.Student;
@@ -50,7 +50,7 @@ public class BrowseController{
     @FXML
     private Button browseStudentBackButton;
     
-    // Browse Student Recrord
+    // Browse Student Record
     @FXML
     private Text browseStudentRecordFirstName;
     
@@ -59,6 +59,9 @@ public class BrowseController{
     
     @FXML
     private StackPane browseStudentRecordPhotoStackPane;
+    
+    @FXML
+    private HBox browseStudentRecordStudentNameHBox;
     
     // Browse
     @FXML
@@ -214,12 +217,13 @@ public class BrowseController{
     
     private void setBrowseStudentRecordID(){
         browseStudentRecordPhotoStackPane.setId("PhotoStackPane");
+        browseStudentRecordStudentNameHBox.setId("RecordHeaderHBox");
     }
     
     private void populateStudentData(){
         System.out.println("BrowseController | populateStudentData");
         
-        browseStudentRecordFirstName.setText(currentStudent.getFirstName());
+        browseStudentRecordFirstName.setText(currentStudent.getFirstName() + " " + currentStudent.getMiddleName() + " " + currentStudent.getLastName());
         
         try{
             Path studentPhotoPath = Paths.get(appContainer.uiControl.settings.photosDir, (appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_STUDENT_PHOTO_PREFIX) + currentStudent.getStudentId() + "." + currentStudent.getStudentPhotoId()));
@@ -233,6 +237,12 @@ public class BrowseController{
         } catch(Exception e){
             System.err.println("BrowseController | populateStudentData | Error: " + e);
         }
+        
+        setStudentRecordProperties();
+    }
+    
+    private void setStudentRecordProperties(){
+//        browseStudentRecordFirstName.wrappingWidthProperty().bind(browseStudentRecordStudentNameHBox.widthProperty());
     }
 
     private void setBrowseScreenMenuLabels(){

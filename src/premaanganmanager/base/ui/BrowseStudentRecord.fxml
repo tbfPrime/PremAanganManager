@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
@@ -11,13 +12,32 @@
 
 <AnchorPane id="AnchorPane" maxWidth="1.7976931348623157E308" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ScrollPane layoutX="42.0" layoutY="34.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="110.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="25.0">
+      <ScrollPane fitToWidth="true" layoutX="42.0" layoutY="34.0" AnchorPane.bottomAnchor="110.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="25.0">
          <content>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
+                  <HBox fx:id="browseStudentRecordStudentNameHBox" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
                      <children>
-                        <StackPane fx:id="browseStudentRecordPhotoStackPane" prefHeight="150.0" prefWidth="200.0">
+                        <HBox alignment="BOTTOM_RIGHT" fillHeight="false" minWidth="-Infinity" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <TextFlow textAlignment="RIGHT" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Text fx:id="browseStudentRecordFirstName" fill="#162379" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="Browse Student Record" wrappingWidth="163.25">
+                                       <font>
+                                          <Font size="30.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </HBox.margin>
+                              </TextFlow>
+                           </children>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </HBox>
+                        <StackPane fx:id="browseStudentRecordPhotoStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="220.0" prefWidth="220.0">
                            <children>
                               <ImageView fx:id="browseStudentRecordPhoto" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
                                  <StackPane.margin>
@@ -27,13 +47,13 @@
                            </children>
                            <HBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </HBox.margin></StackPane>
+                           </HBox.margin>
+                        </StackPane>
                      </children>
                   </HBox>
                </children>
             </VBox>
          </content>
       </ScrollPane>
-      <Text fx:id="browseStudentRecordFirstName" layoutX="209.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Browse Student Record" />
    </children>
 </AnchorPane>
