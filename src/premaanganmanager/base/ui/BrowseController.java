@@ -5,7 +5,11 @@
  */
 package premaanganmanager.base.ui;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
@@ -14,9 +18,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import premaanganmanager.base.controller.background.Student;
 import premaanganmanager.configurable.Labels;
 
@@ -28,6 +37,7 @@ import premaanganmanager.configurable.Labels;
 public class BrowseController{
     
     private final AppContainer appContainer;
+    private Student currentStudent;
     
     @FXML
     private TableView browseTable;
@@ -39,6 +49,16 @@ public class BrowseController{
     // Browse Student
     @FXML
     private Button browseStudentBackButton;
+    
+    // Browse Student Recrord
+    @FXML
+    private Text browseStudentRecordFirstName;
+    
+    @FXML
+    private ImageView browseStudentRecordPhoto;
+    
+    @FXML
+    private StackPane browseStudentRecordPhotoStackPane;
     
     // Browse
     @FXML
@@ -77,11 +97,27 @@ public class BrowseController{
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/premaanganmanager/base/ui/BrowseTable.fxml"));
             loader.setController(this);
-            AnchorPane homeBase = loader.load();
+            AnchorPane browseTableBase = loader.load();
             dispayTable(tag);
-            return homeBase;
+            return browseTableBase;
         } catch (IOException e) {
-            System.out.println("Error | AppContainer | setBrowseHome | " + e);
+            System.out.println("Error | AppContainer | setBrowseTable | " + e);
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, e);
+            return null;
+        }
+    }
+    
+    public AnchorPane setBrowseStudentRecord(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/premaanganmanager/base/ui/BrowseStudentRecord.fxml"));
+            loader.setController(this);
+            AnchorPane browseStudentRecordBase = loader.load();
+            populateStudentData();
+            setBrowseStudentRecordID();
+            browseStudentRecordBase.getStylesheets().add(getClass().getResource("BrowseStudentRecord.css").toExternalForm());
+            return browseStudentRecordBase;
+        } catch (IOException e) {
+            System.out.println("Error | AppContainer | setBrowseStudentRecord | " + e);
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, e);
             return null;
         }
@@ -145,12 +181,58 @@ public class BrowseController{
         col_emergencyContactPerson.setCellValueFactory(new PropertyValueFactory<Student,String>("emergencyContactPerson"));
         col_emergencyContactTelNo.setCellValueFactory(new PropertyValueFactory<Student,String>("emergencyContactNumber"));
         
+        // Get Doubleclick event
+        browseTable.setRowFactory(tv -> {
+            TableRow<Student> row = new TableRow();
+            row.setOnMouseClicked(event -> {
+                if(event.getClickCount() == 2 && (!row.isEmpty())){
+                    Student rowData = row.getItem();
+                    System.out.println("onMouseClicked >> " + rowData);
+                    currentStudent = rowData;
+                    appContainer.displayScreen(AppContainer.screenTag.BROWSE_STUDENT_RECORD);
+                }
+            });
+            return row;
+        });
+        
         browseTable.setItems(data);
         browseTable.getColumns().addAll(
                 col_id,col_firstName,col_middleName,col_lastName,
                 col_address,col_email,col_dob,col_placeOfBirth,
                 col_religion,col_otherReligion,col_educationalBackground,col_languages,col_hobbies,
                 col_emergencyContactPerson,col_emergencyContactTelNo);
+        
+        // Code to get selected item in table.
+//        browseTable.getSelectionModel().selectedItemProperty().addListener((oldValue) -> {
+//            //Check whether item is selected and set value of selected item to Label
+//            if (browseTable.getSelectionModel().getSelectedItem() != null) {
+//                System.out.println("BrowseController | #################  | old: " + oldValue);
+////                lblTool.setText(newValue.getTool());
+//            }
+//        });
+    }
+    
+    private void setBrowseStudentRecordID(){
+        browseStudentRecordPhotoStackPane.setId("PhotoStackPane");
+    }
+    
+    private void populateStudentData(){
+        System.out.println("BrowseController | populateStudentData");
+        
+        browseStudentRecordFirstName.setText(currentStudent.getFirstName());
+        
+        try{
+            Path studentPhotoPath = Paths.get(appContainer.uiControl.settings.photosDir, (appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_STUDENT_PHOTO_PREFIX) + currentStudent.getStudentId() + "." + currentStudent.getStudentPhotoId()));
+            File studentPhoto = new File(studentPhotoPath.toUri());
+            System.out.println("Value of student photo: " + studentPhotoPath.toUri().toURL().toString());
+            if(studentPhoto.exists()){ browseStudentRecordPhoto.setImage(new Image(studentPhotoPath.toUri().toURL().toString())); }
+            else{ 
+                Path studentPlaceHolderPhotoPath = Paths.get(appContainer.uiControl.settings.placeHoldersDir, appContainer.uiControl.settings.placeHolderStudentPhoto);
+                browseStudentRecordPhoto.setImage(new Image(studentPlaceHolderPhotoPath.toUri().toURL().toString()));
+            }
+        } catch(Exception e){
+            System.err.println("BrowseController | populateStudentData | Error: " + e);
+        }
     }
 
     private void setBrowseScreenMenuLabels(){

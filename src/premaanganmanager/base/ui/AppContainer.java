@@ -102,7 +102,10 @@ public class AppContainer {
         
         // Browse
         BROWSE_STUDENT_TABLE, BROWSE_TEACHER_TABLE, BROWSE_SUBJECT_TABLE, BROWSE_ATTENDANCE_TABLE,
-        BROWSE_COURSE_TABLE, BROWSE_BATCH_TABLE, BROWSE_CLASS_TABLE, BROWSE_TIMETABLE_TABLE
+        BROWSE_COURSE_TABLE, BROWSE_BATCH_TABLE, BROWSE_CLASS_TABLE, BROWSE_TIMETABLE_TABLE,
+        
+        // Browse Records
+        BROWSE_STUDENT_RECORD
     }
     
     // Main Screen Display wrapper
@@ -122,6 +125,7 @@ public class AppContainer {
             case BROWSE_BATCH_TABLE:
             case BROWSE_CLASS_TABLE:
             case BROWSE_TIMETABLE_TABLE: setBrowseTableScreen(tag); break;
+            case BROWSE_STUDENT_RECORD: setBrowseStudentRecordScreen(); break;
         }
     }
     
@@ -178,6 +182,10 @@ public class AppContainer {
     
     private void setBrowseTableScreen(screenTag tag){
         root.setCenter(browseController.setBrowseTable(tag));
+    }
+
+    private void setBrowseStudentRecordScreen(){
+        root.setCenter(browseController.setBrowseStudentRecord());
     }
     
     private void setHomeLabels(){

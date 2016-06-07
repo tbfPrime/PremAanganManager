@@ -1,0 +1,14 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 7 Jun, 2016, 10:12:35 PM
+    Author     : Trevor Fernandes
+*/
+
+#PhotoStackPane{
+    -fx-background-color: #000000;
+    -fx-background-radius: 10;
+}

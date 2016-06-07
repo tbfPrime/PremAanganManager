@@ -274,6 +274,8 @@ public class AddController {
         if(addStudentDOBDatePicker.getValue() == null){ System.out.println("AddController | validateStudentForm | DOB empty."); flagFieldsEmpty = true; } // Validate for Date format
         else{ student.setDob(addStudentDOBDatePicker.getValue().toString()); }
         
+        if(photoFileExtension.isEmpty()){ System.out.println("AddController | validateStudentForm | DOB empty."); flagFieldsEmpty = true; } // Validate for Date format
+        else{ student.setStudentPhotoId(photoFileExtension); }
         
 //        student.setPlaceOfBirth(addStudentPlaceOfBirthField.getText());
 //        student.setEducationalBackground(addStudentEducationalBackgroundField.getText());
