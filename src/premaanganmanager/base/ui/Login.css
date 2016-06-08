@@ -21,3 +21,15 @@ and open the template in the editor.
 #BgLogo{
     -fx-opacity: 0.6;
 }
+
+#AdminNormal{
+}
+
+#AdminSelected{
+    -fx-background-color: #ff6666;
+    /*-fx-background-radius: 2;*/
+    -fx-text-fill: #ffffff;
+    -fx-border-color: #993300;
+    -fx-border-width: 2;
+    -fx-border-radius: 2;
+}

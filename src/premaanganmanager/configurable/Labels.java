@@ -34,7 +34,7 @@ public class Labels {
         // Login
         LOGIN_TITLE, LOGIN_SUBTITLE1, LOGIN_SUBTITLE2, LOGIN_HELP1, LOGIN_HELP2, LOGIN_ERROR1,
         GUEST, ADMIN,
-        ADMIN1, ADMIN2, ADMIN3, PASSWORD, PASSWORD_PROMPT, LOGIN,
+        ADMIN1, ADMIN2, ADMIN3, PASSWORD, PASSWORD_PROMPT, PASSWORD_PROMPT_FOR, LOGIN,
         
         // Home and 'About this software'
         HOME_TITLE, HOME_SUBTITLE1, HOME_SUBTITLE2, HOME_SUBTITLE3,
@@ -79,7 +79,8 @@ public class Labels {
     private String l_LabelEnd, l_LabelID, l_LabelStudentPhotoPrefix;
 
     // Login
-    private String l_LoginTitle, l_LoginSubtitle1, l_LoginSubtitle2, l_LoginHelp, l_Guest, l_Admin, l_Admin1, l_Admin2, l_Admin3, l_Key, l_PasswordPrompt, l_Login;
+    private String l_LoginTitle, l_LoginSubtitle1, l_LoginSubtitle2, l_LoginHelp;
+    private String l_Guest, l_Admin, l_Admin1, l_Admin2, l_Admin3, l_Key, l_PasswordPrompt, l_PasswordPromptFor, l_Login;
     
     // Home and 'About this software'
     private String l_HomeTitle, l_HomeSubtitle1, l_HomeSubtitle2, l_HomeSubtitle3, l_HomeAboutThisSoftware;
@@ -157,6 +158,7 @@ public class Labels {
             case ADMIN3: l_Admin3 = value; break;
             case PASSWORD: l_Key = value; break;
             case PASSWORD_PROMPT: l_PasswordPrompt = value; break;
+            case PASSWORD_PROMPT_FOR: l_PasswordPromptFor = value; break;
             case LOGIN: l_Login = value; break;
             
             case HOME_TITLE: l_HomeTitle = value; break;
@@ -263,6 +265,7 @@ public class Labels {
             case ADMIN3: return l_Admin3;
             case PASSWORD: return l_Key;
             case PASSWORD_PROMPT: return l_PasswordPrompt;
+            case PASSWORD_PROMPT_FOR: return l_PasswordPromptFor;
             case LOGIN: return l_Login;
             
             case HOME_TITLE: return l_HomeTitle;

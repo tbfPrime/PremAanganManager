@@ -134,7 +134,7 @@ public class AppContainer {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/premaanganmanager/base/ui/AppContainer.fxml"));
             loader.setController(this);
             root = loader.load();
-            appContainerScene = new Scene(root);
+            appContainerScene = new Scene(root, uiControl.settings.getAppWidth(), uiControl.settings.getAppHeight());
             setLogOutComboBox();
             setHomeLabels();
             return appContainerScene;

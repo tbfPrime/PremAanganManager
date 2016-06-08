@@ -42,7 +42,7 @@ public class Login{
     private enum adminTag{ ADMIN1, ADMIN2, ADMIN3 }
     
     @FXML
-    private Text loginTitleText, loginSubtitle1Text, loginSubtitle2Text, passwordLabelText;
+    private Text loginTitleText, loginSubtitle1Text, loginSubtitle2Text; //, passwordLabelText;
     
     @FXML
     private Button guestButton, adminButton, admin1Button, admin2Button, admin3Button, backButton, loginButton;
@@ -114,7 +114,7 @@ public class Login{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/premaanganmanager/base/ui/LoginGuestAdmin.fxml"));
             loader.setController(this);
             Parent root = loader.load();
-            loginScene = new Scene(root);
+            loginScene = new Scene(root, uiControl.settings.getAppWidth(), uiControl.settings.getAppHeight());
             setLoginGuestAdminLabels();
             return loginScene;
 //            loginScene.getStylesheets().add(Login.class.getResource("Login.css").toExternalForm());
@@ -131,8 +131,8 @@ public class Login{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/premaanganmanager/base/ui/LoginAdminOnly.fxml"));
             loader.setController(this);
             Parent root = loader.load();
-            loginScene = new Scene(root);
-            setLoginAdminOnlyLabels();
+            loginScene = new Scene(root, uiControl.settings.getAppWidth(), uiControl.settings.getAppHeight());
+            setLoginAdminOnlyData();
             return loginScene;
 //            loginScene.getStylesheets().add(Login.class.getResource("Login.css").toExternalForm());
         } catch (IOException e) {
@@ -143,6 +143,19 @@ public class Login{
     }
     
     // Private functions    
+    private void setLoginAdminOnlyData(){
+        admin1Button.getStylesheets().add(getClass().getResource("Login.css").toExternalForm());
+        admin2Button.getStylesheets().add(getClass().getResource("Login.css").toExternalForm());
+        admin3Button.getStylesheets().add(getClass().getResource("Login.css").toExternalForm());
+        
+        admin1Button.setId("AdminNormal");
+        admin2Button.setId("AdminNormal");
+        admin3Button.setId("AdminNormal");
+        
+        setLoginAdminOnlyLabels();
+//        admin1Button.getStyleClass().add("adminSelected");
+    }
+    
     private void setLoginGuestAdminLabels(){
         loginTitleText.setText(uiControl.settings.labels.getLabel(Labels.labelTag.LOGIN_TITLE));
         loginSubtitle1Text.setText(uiControl.settings.labels.getLabel(Labels.labelTag.LOGIN_SUBTITLE1));
@@ -156,7 +169,6 @@ public class Login{
         admin1Button.setText(uiControl.settings.labels.getLabel(Labels.labelTag.ADMIN1));
         admin2Button.setText(uiControl.settings.labels.getLabel(Labels.labelTag.ADMIN2));
         admin3Button.setText(uiControl.settings.labels.getLabel(Labels.labelTag.ADMIN3));
-        passwordLabelText.setText(uiControl.settings.labels.getLabel(Labels.labelTag.PASSWORD));
         passwordField.setPromptText(uiControl.settings.labels.getLabel(Labels.labelTag.PASSWORD_PROMPT));
         backButton.setText(uiControl.settings.labels.getLabel(Labels.labelTag.BACK));
         loginButton.setText(uiControl.settings.labels.getLabel(Labels.labelTag.LOGIN));
@@ -171,17 +183,26 @@ public class Login{
     }
     
     private void selectAdminButton(adminTag tag){
-        String defaultColor = "#000000";
-        String selectedColor = "red";
-        
-        admin1Button.setTextFill(Paint.valueOf(defaultColor));
-        admin2Button.setTextFill(Paint.valueOf(defaultColor));
-        admin3Button.setTextFill(Paint.valueOf(defaultColor));
+        admin1Button.setId("AdminNormal");
+        admin2Button.setId("AdminNormal");
+        admin3Button.setId("AdminNormal");
         
         switch(tag){
-            case ADMIN1: admin1Button.setTextFill(Paint.valueOf(selectedColor)); username = admin1Username; break;
-            case ADMIN2: admin2Button.setTextFill(Paint.valueOf(selectedColor)); username = admin2Username; break;
-            case ADMIN3: admin3Button.setTextFill(Paint.valueOf(selectedColor)); username = admin3Username; break;
+            case ADMIN1: 
+                admin1Button.setId("AdminSelected"); 
+                username = admin1Username; 
+                passwordField.setPromptText(uiControl.settings.labels.getLabel(Labels.labelTag.PASSWORD_PROMPT_FOR) + uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END) + " " + admin1Button.getText());
+                break;
+            case ADMIN2: 
+                admin2Button.setId("AdminSelected"); 
+                username = admin2Username; 
+                passwordField.setPromptText(uiControl.settings.labels.getLabel(Labels.labelTag.PASSWORD_PROMPT_FOR) + uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END) + " " + admin2Button.getText());
+                break;
+            case ADMIN3: 
+                admin3Button.setId("AdminSelected"); 
+                username = admin3Username; 
+                passwordField.setPromptText(uiControl.settings.labels.getLabel(Labels.labelTag.PASSWORD_PROMPT_FOR) + uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END) + " " + admin3Button.getText());
+                break;
         }
     }
     

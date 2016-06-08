@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
@@ -17,53 +18,76 @@
                   <Image url="@../../configurable/images/bg_logo.png" />
                </image>
             </ImageView>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
                <children>
-                  <Text fx:id="loginTitleText" strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
+                  <Text fx:id="loginTitleText" fill="#02c352" strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
                      <font>
                         <Font size="60.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
                   </Text>
                   <Text fx:id="loginSubtitle2Text" strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
                      <font>
                         <Font size="27.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
                   </Text>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100.0">
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                      <children>
-                        <Button fx:id="admin1Button" mnemonicParsing="false" onAction="#admin1ButtonAction" text="NA">
-                           <font>
-                              <Font size="35.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="admin2Button" mnemonicParsing="false" onAction="#admin2ButtonAction" text="NA">
-                           <font>
-                              <Font size="35.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="admin3Button" mnemonicParsing="false" onAction="#admin3ButtonAction" text="NA">
-                           <font>
-                              <Font size="35.0" />
-                           </font>
-                        </Button>
+                        <HBox alignment="CENTER" layoutX="310.0" layoutY="10.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Button fx:id="admin1Button" mnemonicParsing="false" onAction="#admin1ButtonAction" text="NA">
+                                 <font>
+                                    <Font size="35.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Button fx:id="admin2Button" mnemonicParsing="false" onAction="#admin2ButtonAction" text="NA">
+                                 <font>
+                                    <Font size="35.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Button fx:id="admin3Button" mnemonicParsing="false" onAction="#admin3ButtonAction" text="NA">
+                                 <font>
+                                    <Font size="35.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </HBox>
                      </children>
+                     <VBox.margin>
+                        <Insets top="50.0" />
+                     </VBox.margin>
                   </HBox>
-                  <AnchorPane prefHeight="73.0" prefWidth="800.0">
+                  <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <PasswordField fx:id="passwordField" layoutX="313.0" layoutY="22.0" />
-                        <Text fx:id="passwordLabelText" layoutX="230.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                        <PasswordField fx:id="passwordField" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" />
                      </children>
-                  </AnchorPane>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0">
                      <children>
                         <Button fx:id="backButton" alignment="CENTER" mnemonicParsing="false" onAction="#backButtonAction" text="NA">
                            <font>
-                              <Font size="24.0" />
+                              <Font size="30.0" />
                            </font>
                         </Button>
                         <Button fx:id="loginButton" alignment="CENTER" mnemonicParsing="false" onAction="#loginButtonAction" text="NA">
                            <font>
-                              <Font size="24.0" />
+                              <Font size="30.0" />
                            </font>
                         </Button>
                      </children>
