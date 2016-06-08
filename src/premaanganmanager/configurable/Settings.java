@@ -36,6 +36,12 @@ public class Settings {
     public String png_addClass;
     public String png_addTimetable;
     
+    public String png_menuHome;
+    public String png_menuAdd;
+    public String png_menuBrowse;
+    public String png_menuSearch;
+    public String png_menuSettings;
+    
     private UIControl uiControl;
     
     /**
@@ -63,6 +69,7 @@ public class Settings {
         
         placeHolderStudentPhoto = "addStudentPhotoPlaceHolder.jpg";
         tempPhotoFileName = "tempPhoto";
+        
         png_addStudent = "AddStudent.png";
         png_addTeacher = "AddTeacher.png";
         png_addSubject = "AddSubject.png";
@@ -71,6 +78,12 @@ public class Settings {
         png_addBatch = "AddBatch.png";
         png_addClass = "AddClass.png";
         png_addTimetable = "AddTimetable.png";
+        
+        png_menuHome = "MenuHome.png";
+        png_menuAdd = "MenuAdd.png";
+        png_menuBrowse = "MenuBrowse.png";
+        png_menuSearch = "MenuSearch.png";
+        png_menuSettings = "MenuSettings.png";
         
         System.out.println("Settings | initializeApplicationVariables | appWidth: " + appWidth + " | appHeight: " + appHeight);
                 

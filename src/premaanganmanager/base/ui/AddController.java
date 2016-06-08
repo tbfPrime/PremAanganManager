@@ -177,59 +177,76 @@ public class AddController {
     private void setAddScreenMenuGraphics(){
         Path graphicPath;
         double graphicTextGap = 30;
+        double graphicOpacity = 0.7;
         
         graphicPath = Paths.get(appContainer.uiControl.settings.pngDir,appContainer.uiControl.settings.png_addStudent);
         if(new File(graphicPath.toUri()).exists()){
-            addStudentButton.setGraphic(new ImageView(graphicPath.toUri().toString()));
+            ImageView graphic = new ImageView(graphicPath.toUri().toString());
+            graphic.setOpacity(graphicOpacity);
+            addStudentButton.setGraphic(graphic);
             addStudentButton.setContentDisplay(ContentDisplay.TOP);
             addStudentButton.setGraphicTextGap(graphicTextGap);
         }
         
         graphicPath = Paths.get(appContainer.uiControl.settings.pngDir,appContainer.uiControl.settings.png_addTeacher);
         if(new File(graphicPath.toUri()).exists()){
-            addTeacherButton.setGraphic(new ImageView(graphicPath.toUri().toString()));
+            ImageView graphic = new ImageView(graphicPath.toUri().toString());
+            graphic.setOpacity(graphicOpacity);
+            addTeacherButton.setGraphic(graphic);
             addTeacherButton.setContentDisplay(ContentDisplay.TOP);
             addTeacherButton.setGraphicTextGap(graphicTextGap);
         }
         
         graphicPath = Paths.get(appContainer.uiControl.settings.pngDir,appContainer.uiControl.settings.png_addSubject);
         if(new File(graphicPath.toUri()).exists()){
-            addSubjectButton.setGraphic(new ImageView(graphicPath.toUri().toString()));
+            ImageView graphic = new ImageView(graphicPath.toUri().toString());
+            graphic.setOpacity(graphicOpacity);
+            addSubjectButton.setGraphic(graphic);
             addSubjectButton.setContentDisplay(ContentDisplay.TOP);
             addSubjectButton.setGraphicTextGap(graphicTextGap);
         }
         
         graphicPath = Paths.get(appContainer.uiControl.settings.pngDir,appContainer.uiControl.settings.png_addAttendance);
         if(new File(graphicPath.toUri()).exists()){
-            addAttendanceButton.setGraphic(new ImageView(graphicPath.toUri().toString()));
+            ImageView graphic = new ImageView(graphicPath.toUri().toString());
+            graphic.setOpacity(graphicOpacity);
+            addAttendanceButton.setGraphic(graphic);
             addAttendanceButton.setContentDisplay(ContentDisplay.TOP);
             addAttendanceButton.setGraphicTextGap(graphicTextGap);
         }
         
         graphicPath = Paths.get(appContainer.uiControl.settings.pngDir,appContainer.uiControl.settings.png_addCourse);
         if(new File(graphicPath.toUri()).exists()){
-            addCourseButton.setGraphic(new ImageView(graphicPath.toUri().toString()));
+            ImageView graphic = new ImageView(graphicPath.toUri().toString());
+            graphic.setOpacity(graphicOpacity);
+            addCourseButton.setGraphic(graphic);
             addCourseButton.setContentDisplay(ContentDisplay.TOP);
             addCourseButton.setGraphicTextGap(graphicTextGap);
         }
         
         graphicPath = Paths.get(appContainer.uiControl.settings.pngDir,appContainer.uiControl.settings.png_addBatch);
         if(new File(graphicPath.toUri()).exists()){
-            addBatchButton.setGraphic(new ImageView(graphicPath.toUri().toString()));
+            ImageView graphic = new ImageView(graphicPath.toUri().toString());
+            graphic.setOpacity(graphicOpacity);
+            addBatchButton.setGraphic(graphic);
             addBatchButton.setContentDisplay(ContentDisplay.TOP);
             addBatchButton.setGraphicTextGap(graphicTextGap);
         }
         
         graphicPath = Paths.get(appContainer.uiControl.settings.pngDir,appContainer.uiControl.settings.png_addClass);
         if(new File(graphicPath.toUri()).exists()){
-            addClassButton.setGraphic(new ImageView(graphicPath.toUri().toString()));
+            ImageView graphic = new ImageView(graphicPath.toUri().toString());
+            graphic.setOpacity(graphicOpacity);
+            addClassButton.setGraphic(graphic);
             addClassButton.setContentDisplay(ContentDisplay.TOP);
             addClassButton.setGraphicTextGap(graphicTextGap);
         }
         
         graphicPath = Paths.get(appContainer.uiControl.settings.pngDir,appContainer.uiControl.settings.png_addTimetable);
         if(new File(graphicPath.toUri()).exists()){
-            addTimetableButton.setGraphic(new ImageView(graphicPath.toUri().toString()));
+            ImageView graphic = new ImageView(graphicPath.toUri().toString());
+            graphic.setOpacity(graphicOpacity);
+            addTimetableButton.setGraphic(graphic);
             addTimetableButton.setContentDisplay(ContentDisplay.TOP);
             addTimetableButton.setGraphicTextGap(graphicTextGap);
         }

@@ -14,11 +14,6 @@
          <font>
             <Font size="52.0" />
          </font></Text>
-      <Button layoutX="656.0" layoutY="521.0" mnemonicParsing="false" text="Button" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="25.0">
-         <font>
-            <Font size="30.0" />
-         </font>
-      </Button>
       <Text layoutX="28.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A new hope for a new tomorrow" AnchorPane.leftAnchor="28.0">
          <font>
             <Font size="26.0" />

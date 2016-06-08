@@ -8,19 +8,37 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <left>
-      <VBox alignment="BOTTOM_LEFT" prefHeight="400.0" prefWidth="128.0" spacing="5.0" BorderPane.alignment="CENTER">
+      <VBox alignment="BOTTOM_LEFT" prefWidth="128.0" spacing="5.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="menuHomeButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#homeButtonAction" text="NA" VBox.vgrow="ALWAYS" />
-            <Button fx:id="menuAddButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addButtonAction" text="NA" VBox.vgrow="ALWAYS" />
-            <Button fx:id="menuBrowseButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#browseButtonAction" text="NA" VBox.vgrow="ALWAYS" />
-            <Button fx:id="menuSearchButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#searchButtonAction" text="NA" textAlignment="CENTER" textFill="#d04444" VBox.vgrow="ALWAYS" />
-            <Button fx:id="menuSettingsButton" layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#settingsButtonAction" text="NA" VBox.vgrow="ALWAYS" />
+            <Button fx:id="menuHomeButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#homeButtonAction" text="NA" VBox.vgrow="ALWAYS">
+               <font>
+                  <Font size="18.0" />
+               </font></Button>
+            <Button fx:id="menuAddButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addButtonAction" text="NA" VBox.vgrow="ALWAYS">
+               <font>
+                  <Font size="18.0" />
+               </font></Button>
+            <Button fx:id="menuBrowseButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#browseButtonAction" text="NA" VBox.vgrow="ALWAYS">
+               <font>
+                  <Font size="18.0" />
+               </font></Button>
+            <Button fx:id="menuSearchButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#searchButtonAction" text="NA" textAlignment="CENTER" VBox.vgrow="ALWAYS">
+               <font>
+                  <Font size="18.0" />
+               </font></Button>
+            <Button fx:id="menuSettingsButton" layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#settingsButtonAction" text="NA" VBox.vgrow="ALWAYS">
+               <font>
+                  <Font size="18.0" />
+               </font></Button>
          </children>
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
       </VBox>
    </left>
    <top>

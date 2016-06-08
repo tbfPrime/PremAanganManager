@@ -5,7 +5,10 @@
  */
 package premaanganmanager.base.ui;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXML;
@@ -13,6 +16,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ContentDisplay;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import premaanganmanager.base.controller.ui.UIControl;
@@ -135,8 +140,7 @@ public class AppContainer {
             loader.setController(this);
             root = loader.load();
             appContainerScene = new Scene(root, uiControl.settings.getAppWidth(), uiControl.settings.getAppHeight());
-            setLogOutComboBox();
-            setHomeLabels();
+            setAppContainerData();
             return appContainerScene;
         } catch (IOException e) {
             System.out.println("Error | AppContainer | setLoginGuestAdminScene | " + e);
@@ -150,6 +154,63 @@ public class AppContainer {
     }
     
     // Private Functions
+    private void setAppContainerData(){
+        setLogOutComboBox();
+        setAppContainerGraphics();
+        setAppContainerLabels();
+    }
+    
+    private void setAppContainerGraphics(){
+        Path graphicPath;
+        double graphicTextGap = 0;
+        double graphicOpacity = 0.7;
+        
+        graphicPath = Paths.get(uiControl.settings.pngDir,uiControl.settings.png_menuHome);
+        if(new File(graphicPath.toUri()).exists()){
+            ImageView graphic = new ImageView(graphicPath.toUri().toString());
+            graphic.setOpacity(graphicOpacity);
+            menuHomeButton.setGraphic(graphic);
+            menuHomeButton.setContentDisplay(ContentDisplay.TOP);
+            menuHomeButton.setGraphicTextGap(graphicTextGap);
+        }
+        
+        graphicPath = Paths.get(uiControl.settings.pngDir,uiControl.settings.png_menuAdd);
+        if(new File(graphicPath.toUri()).exists()){
+            ImageView graphic = new ImageView(graphicPath.toUri().toString());
+            graphic.setOpacity(graphicOpacity);
+            menuAddButton.setGraphic(graphic);
+            menuAddButton.setContentDisplay(ContentDisplay.TOP);
+            menuAddButton.setGraphicTextGap(graphicTextGap);
+        }
+        
+        graphicPath = Paths.get(uiControl.settings.pngDir,uiControl.settings.png_menuBrowse);
+        if(new File(graphicPath.toUri()).exists()){
+            ImageView graphic = new ImageView(graphicPath.toUri().toString());
+            graphic.setOpacity(graphicOpacity);
+            menuBrowseButton.setGraphic(graphic);
+            menuBrowseButton.setContentDisplay(ContentDisplay.TOP);
+            menuBrowseButton.setGraphicTextGap(graphicTextGap);
+        }
+        
+        graphicPath = Paths.get(uiControl.settings.pngDir,uiControl.settings.png_menuSearch);
+        if(new File(graphicPath.toUri()).exists()){
+            ImageView graphic = new ImageView(graphicPath.toUri().toString());
+            graphic.setOpacity(graphicOpacity);
+            menuSearchButton.setGraphic(graphic);
+            menuSearchButton.setContentDisplay(ContentDisplay.TOP);
+            menuSearchButton.setGraphicTextGap(graphicTextGap);
+        }
+        
+        graphicPath = Paths.get(uiControl.settings.pngDir,uiControl.settings.png_menuSettings);
+        if(new File(graphicPath.toUri()).exists()){
+            ImageView graphic = new ImageView(graphicPath.toUri().toString());
+            graphic.setOpacity(graphicOpacity);
+            menuSettingsButton.setGraphic(graphic);
+            menuSettingsButton.setContentDisplay(ContentDisplay.TOP);
+            menuSettingsButton.setGraphicTextGap(graphicTextGap);
+        }
+    }
+    
     private void setLogOutComboBox(){
         logoutComboBox.getItems().addAll(
                 uiControl.settings.labels.getLabel(Labels.labelTag.HEADER_SWITCH_ADMIN),
@@ -188,13 +249,13 @@ public class AppContainer {
         root.setCenter(browseController.setBrowseStudentRecord());
     }
     
-    private void setHomeLabels(){
+    private void setAppContainerLabels(){
         menuHomeButton.setText(uiControl.settings.labels.getLabel(Labels.labelTag.MENU_HOME));
         menuBrowseButton.setText(uiControl.settings.labels.getLabel(Labels.labelTag.MENU_BROWSE));
         menuAddButton.setText(uiControl.settings.labels.getLabel(Labels.labelTag.MENU_ADD));
         menuSearchButton.setText(uiControl.settings.labels.getLabel(Labels.labelTag.MENU_SEARCH));
         menuSettingsButton.setText(uiControl.settings.labels.getLabel(Labels.labelTag.MENU_SETTINGS));
-        headerText.setText(uiControl.settings.labels.getLabel(Labels.labelTag.HEADER_WELCOME_TITLE));
+//        headerText.setText(uiControl.settings.labels.getLabel(Labels.labelTag.HEADER_WELCOME_TITLE));
         logoutComboBox.setPromptText(uiControl.settings.labels.getLabel(Labels.labelTag.HEADER_LOGOUT));
     }
 }

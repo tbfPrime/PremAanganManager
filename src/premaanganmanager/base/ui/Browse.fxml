@@ -9,7 +9,7 @@
 
 <AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Button fx:id="browseStudentButton" mnemonicParsing="false" text="NA" onAction="#browseStudentButtonAction" >
+        <Button fx:id="browseStudentButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#browseStudentButtonAction" prefHeight="150.0" prefWidth="300.0" text="NA" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0">
             <font>
                 <Font size="30.0" />
             </font>
