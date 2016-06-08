@@ -10,9 +10,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" maxWidth="1.7976931348623157E308" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" maxWidth="1.7976931348623157E308" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ScrollPane fitToWidth="true" layoutX="42.0" layoutY="34.0" AnchorPane.bottomAnchor="110.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="25.0">
+      <ScrollPane fitToWidth="true" layoutX="42.0" layoutY="34.0" AnchorPane.bottomAnchor="110.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="25.0">
          <content>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
@@ -22,9 +22,9 @@
                            <children>
                               <TextFlow textAlignment="RIGHT" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <Text fx:id="browseStudentRecordFirstName" fill="#162379" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="Browse Student Record" wrappingWidth="163.25">
+                                    <Text fx:id="browseStudentRecordFirstName" fill="#393939" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="Browse Student Record" wrappingWidth="163.25">
                                        <font>
-                                          <Font size="30.0" />
+                                          <Font name="System Bold" size="30.0" />
                                        </font>
                                     </Text>
                                  </children>
@@ -51,9 +51,1202 @@
                         </StackPane>
                      </children>
                   </HBox>
+                  <HBox fx:id="browseStudentRecordSectionHeaderPersonalDetailsHBox" alignment="CENTER_LEFT" fillHeight="false" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Text fill="#757575" strokeType="OUTSIDE" strokeWidth="0.0" text="Personal Details">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                           </HBox.margin>
+                        </Text>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </HBox>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <HBox alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="250.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Address:">
+                                       <HBox.margin>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </HBox.margin>
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextFlow maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets bottom="10.0" left="10.0" right="100.0" top="10.0" />
+                                       </HBox.margin>
+                                    </TextFlow>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <HBox alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="250.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="E-Mail ID:">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </HBox.margin>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextFlow maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="sample.text@sampleorganisation.com">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets bottom="10.0" left="10.0" right="100.0" top="10.0" />
+                                       </HBox.margin>
+                                    </TextFlow>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <HBox alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="250.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date Of Birth:">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </HBox.margin>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextFlow maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="29th February 2012">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets bottom="10.0" left="10.0" right="100.0" top="10.0" />
+                                       </HBox.margin>
+                                    </TextFlow>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <HBox alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="250.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Place Of Birth:">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </HBox.margin>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextFlow maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Port Blair">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets bottom="10.0" left="10.0" right="100.0" top="10.0" />
+                                       </HBox.margin>
+                                    </TextFlow>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="430.0" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <HBox alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="250.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Religion:">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </HBox.margin>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextFlow maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Buddhism">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets bottom="10.0" left="10.0" right="100.0" top="10.0" />
+                                       </HBox.margin>
+                                    </TextFlow>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="474.0" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <HBox alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="250.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Eudcationl Background:">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </HBox.margin>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextFlow maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="8th Std. Pass">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets bottom="10.0" left="10.0" right="100.0" top="10.0" />
+                                       </HBox.margin>
+                                    </TextFlow>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="518.0" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <HBox alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="250.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Languages:">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </HBox.margin>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextFlow maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cantonese">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets bottom="10.0" left="10.0" right="100.0" top="10.0" />
+                                       </HBox.margin>
+                                    </TextFlow>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="538.0" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <HBox alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="250.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hobbies:">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </HBox.margin>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextFlow maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Fishing">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets bottom="10.0" left="10.0" right="100.0" top="10.0" />
+                                       </HBox.margin>
+                                    </TextFlow>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <HBox fx:id="browseStudentRecordSectionHeaderCourseDetailsHBox" alignment="CENTER_LEFT" fillHeight="false" layoutX="10.0" layoutY="250.0" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Text fill="#757575" strokeType="OUTSIDE" strokeWidth="0.0" text="Course Details">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                           </HBox.margin>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <HBox alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="250.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Course Name:">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </HBox.margin>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextFlow maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="10th STD">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets bottom="10.0" left="10.0" right="100.0" top="10.0" />
+                                       </HBox.margin>
+                                    </TextFlow>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <HBox alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="250.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Class Name:">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </HBox.margin>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextFlow maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Div. A">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets bottom="10.0" left="10.0" right="100.0" top="10.0" />
+                                       </HBox.margin>
+                                    </TextFlow>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <HBox alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="250.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Enrollment No.:">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </HBox.margin>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextFlow maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="1234567890987654321">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets bottom="10.0" left="10.0" right="100.0" top="10.0" />
+                                       </HBox.margin>
+                                    </TextFlow>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <HBox fx:id="browseStudentRecordSectionHeaderEmergencyContactDetailsHBox" alignment="CENTER_LEFT" fillHeight="false" layoutX="10.0" layoutY="947.0" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Text fill="#757575" strokeType="OUTSIDE" strokeWidth="0.0" text="Emergency Contact Details">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                           </HBox.margin>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <VBox layoutX="10.0" layoutY="1004.0" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <HBox alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="250.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name:">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </HBox.margin>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextFlow maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Arvind K">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets bottom="10.0" left="10.0" right="100.0" top="10.0" />
+                                       </HBox.margin>
+                                    </TextFlow>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <HBox alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="250.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tel No.:">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </HBox.margin>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextFlow maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="9876543210">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets bottom="10.0" left="10.0" right="100.0" top="10.0" />
+                                       </HBox.margin>
+                                    </TextFlow>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <HBox fx:id="browseStudentRecordSectionHeaderFamilyMemberDetailsHBox" alignment="CENTER_LEFT" fillHeight="false" layoutX="10.0" layoutY="947.0" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Text fill="#757575" strokeType="OUTSIDE" strokeWidth="0.0" text="Family Member Details">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                           </HBox.margin>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <VBox fx:id="browseStudentRecordFMD0VBox" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <HBox fx:id="browseStudentRecordFMD0HBox" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <HBox fx:id="browseStudentRecordFMD00HBox" alignment="CENTER" fillHeight="false" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextFlow maxWidth="1.7976931348623157E308" prefWidth="200.0" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Family Members Names">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextFlow>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="browseStudentRecordFMD01HBox" alignment="CENTER" fillHeight="false" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextFlow maxWidth="1.7976931348623157E308" prefWidth="200.0" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Relationship">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextFlow>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="browseStudentRecordFMD02HBox" alignment="CENTER" fillHeight="false" layoutX="640.0" layoutY="10.0" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextFlow maxWidth="1.7976931348623157E308" prefWidth="200.0" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Age">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextFlow>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="browseStudentRecordFMD03HBox" alignment="CENTER" fillHeight="false" layoutX="1070.0" layoutY="10.0" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextFlow maxWidth="1.7976931348623157E308" prefWidth="200.0" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Occupation">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextFlow>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="browseStudentRecordFMD04HBox" alignment="CENTER" fillHeight="false" layoutX="955.0" layoutY="10.0" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextFlow maxWidth="1.7976931348623157E308" prefWidth="200.0" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Occupational Address">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextFlow>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="browseStudentRecordFMD05HBox" alignment="CENTER" fillHeight="false" layoutX="1018.0" layoutY="10.0" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextFlow maxWidth="1.7976931348623157E308" prefWidth="200.0" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Occupational Tel. No.">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextFlow>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </HBox>
+                        <HBox fx:id="browseStudentRecordFMD1HBox" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <HBox fx:id="browseStudentRecordFMD10HBox" alignment="CENTER" fillHeight="false" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextFlow maxWidth="1.7976931348623157E308" prefWidth="200.0" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Jagram Raj">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextFlow>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="browseStudentRecordFMD11HBox" alignment="CENTER" fillHeight="false" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextFlow maxWidth="1.7976931348623157E308" prefWidth="200.0" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Uncle">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextFlow>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="browseStudentRecordFMD12HBox" alignment="CENTER" fillHeight="false" layoutX="640.0" layoutY="10.0" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextFlow maxWidth="1.7976931348623157E308" prefWidth="200.0" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="54">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextFlow>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="browseStudentRecordFMD13HBox" alignment="CENTER" fillHeight="false" layoutX="1070.0" layoutY="10.0" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextFlow maxWidth="1.7976931348623157E308" prefWidth="200.0" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Shopkeeper">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextFlow>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="browseStudentRecordFMD14HBox" alignment="CENTER" fillHeight="false" layoutX="955.0" layoutY="10.0" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextFlow maxWidth="1.7976931348623157E308" prefWidth="200.0" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Shop No. 49, Marol, Andheri(East)">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextFlow>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="browseStudentRecordFMD15HBox" alignment="CENTER" fillHeight="false" layoutX="1018.0" layoutY="10.0" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextFlow maxWidth="1.7976931348623157E308" prefWidth="200.0" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="9876543210">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextFlow>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </HBox>
+                        <HBox fx:id="browseStudentRecordFMD2HBox" layoutX="10.0" layoutY="82.0" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <HBox fx:id="browseStudentRecordFMD20HBox" alignment="CENTER" fillHeight="false" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextFlow maxWidth="1.7976931348623157E308" prefWidth="200.0" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextFlow>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="browseStudentRecordFMD21HBox" alignment="CENTER" fillHeight="false" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextFlow maxWidth="1.7976931348623157E308" prefWidth="200.0" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextFlow>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="browseStudentRecordFMD22HBox" alignment="CENTER" fillHeight="false" layoutX="640.0" layoutY="10.0" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextFlow maxWidth="1.7976931348623157E308" prefWidth="200.0" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextFlow>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="browseStudentRecordFMD23HBox" alignment="CENTER" fillHeight="false" layoutX="1070.0" layoutY="10.0" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextFlow maxWidth="1.7976931348623157E308" prefWidth="200.0" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextFlow>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="browseStudentRecordFMD24HBox" alignment="CENTER" fillHeight="false" layoutX="955.0" layoutY="10.0" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextFlow maxWidth="1.7976931348623157E308" prefWidth="200.0" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextFlow>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="browseStudentRecordFMD25HBox" alignment="CENTER" fillHeight="false" layoutX="1018.0" layoutY="10.0" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextFlow maxWidth="1.7976931348623157E308" prefWidth="200.0" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextFlow>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </HBox>
+                        <HBox fx:id="browseStudentRecordFMD3HBox" layoutX="10.0" layoutY="154.0" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <HBox fx:id="browseStudentRecordFMD30HBox" alignment="CENTER" fillHeight="false" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextFlow maxWidth="1.7976931348623157E308" prefWidth="200.0" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextFlow>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="browseStudentRecordFMD31HBox" alignment="CENTER" fillHeight="false" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextFlow maxWidth="1.7976931348623157E308" prefWidth="200.0" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextFlow>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="browseStudentRecordFMD32HBox" alignment="CENTER" fillHeight="false" layoutX="640.0" layoutY="10.0" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextFlow maxWidth="1.7976931348623157E308" prefWidth="200.0" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextFlow>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="browseStudentRecordFMD33HBox" alignment="CENTER" fillHeight="false" layoutX="1070.0" layoutY="10.0" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextFlow maxWidth="1.7976931348623157E308" prefWidth="200.0" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextFlow>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="browseStudentRecordFMD34HBox" alignment="CENTER" fillHeight="false" layoutX="955.0" layoutY="10.0" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextFlow maxWidth="1.7976931348623157E308" prefWidth="200.0" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextFlow>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="browseStudentRecordFMD35HBox" alignment="CENTER" fillHeight="false" layoutX="1018.0" layoutY="10.0" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextFlow maxWidth="1.7976931348623157E308" prefWidth="200.0" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextFlow>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </HBox>
+                        <HBox fx:id="browseStudentRecordFMD4HBox" layoutX="10.0" layoutY="226.0" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <HBox fx:id="browseStudentRecordFMD40HBox" alignment="CENTER" fillHeight="false" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextFlow maxWidth="1.7976931348623157E308" prefWidth="200.0" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextFlow>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="browseStudentRecordFMD41HBox" alignment="CENTER" fillHeight="false" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextFlow maxWidth="1.7976931348623157E308" prefWidth="200.0" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextFlow>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="browseStudentRecordFMD42HBox" alignment="CENTER" fillHeight="false" layoutX="640.0" layoutY="10.0" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextFlow maxWidth="1.7976931348623157E308" prefWidth="200.0" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextFlow>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="browseStudentRecordFMD43HBox" alignment="CENTER" fillHeight="false" layoutX="1070.0" layoutY="10.0" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextFlow maxWidth="1.7976931348623157E308" prefWidth="200.0" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextFlow>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="browseStudentRecordFMD44HBox" alignment="CENTER" fillHeight="false" layoutX="955.0" layoutY="10.0" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextFlow maxWidth="1.7976931348623157E308" prefWidth="200.0" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextFlow>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="browseStudentRecordFMD45HBox" alignment="CENTER" fillHeight="false" layoutX="1018.0" layoutY="10.0" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextFlow maxWidth="1.7976931348623157E308" prefWidth="200.0" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextFlow>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </HBox>
+                        <HBox fx:id="browseStudentRecordFMD5HBox" layoutX="10.0" layoutY="298.0" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <HBox fx:id="browseStudentRecordFMD50HBox" alignment="CENTER" fillHeight="false" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextFlow maxWidth="1.7976931348623157E308" prefWidth="200.0" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextFlow>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="browseStudentRecordFMD51HBox" alignment="CENTER" fillHeight="false" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextFlow maxWidth="1.7976931348623157E308" prefWidth="200.0" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextFlow>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="browseStudentRecordFMD52HBox" alignment="CENTER" fillHeight="false" layoutX="640.0" layoutY="10.0" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextFlow maxWidth="1.7976931348623157E308" prefWidth="200.0" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextFlow>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="browseStudentRecordFMD53HBox" alignment="CENTER" fillHeight="false" layoutX="1070.0" layoutY="10.0" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextFlow maxWidth="1.7976931348623157E308" prefWidth="200.0" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextFlow>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="browseStudentRecordFMD54HBox" alignment="CENTER" fillHeight="false" layoutX="955.0" layoutY="10.0" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextFlow maxWidth="1.7976931348623157E308" prefWidth="200.0" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextFlow>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="browseStudentRecordFMD55HBox" alignment="CENTER" fillHeight="false" layoutX="1018.0" layoutY="10.0" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextFlow maxWidth="1.7976931348623157E308" prefWidth="200.0" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextFlow>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </HBox>
+                        <HBox fx:id="browseStudentRecordFMD6HBox" layoutX="10.0" layoutY="298.0" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <HBox fx:id="browseStudentRecordFMD60HBox" alignment="CENTER" fillHeight="false" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextFlow maxWidth="1.7976931348623157E308" prefWidth="200.0" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextFlow>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="browseStudentRecordFMD61HBox" alignment="CENTER" fillHeight="false" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextFlow maxWidth="1.7976931348623157E308" prefWidth="200.0" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextFlow>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="browseStudentRecordFMD62HBox" alignment="CENTER" fillHeight="false" layoutX="640.0" layoutY="10.0" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextFlow maxWidth="1.7976931348623157E308" prefWidth="200.0" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextFlow>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="browseStudentRecordFMD63HBox" alignment="CENTER" fillHeight="false" layoutX="1070.0" layoutY="10.0" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextFlow maxWidth="1.7976931348623157E308" prefWidth="200.0" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextFlow>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="browseStudentRecordFMD64HBox" alignment="CENTER" fillHeight="false" layoutX="955.0" layoutY="10.0" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextFlow maxWidth="1.7976931348623157E308" prefWidth="200.0" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextFlow>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="browseStudentRecordFMD65HBox" alignment="CENTER" fillHeight="false" layoutX="1018.0" layoutY="10.0" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextFlow maxWidth="1.7976931348623157E308" prefWidth="200.0" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextFlow>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
                </children>
             </VBox>
          </content>
       </ScrollPane>
+      <Button fx:id="browseStudentRecordBackButton" layoutX="506.0" layoutY="547.0" mnemonicParsing="false" onAction="#browseStudentRecordBackAction" text="NA" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="25.0">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

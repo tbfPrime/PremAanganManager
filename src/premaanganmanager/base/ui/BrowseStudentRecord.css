@@ -14,5 +14,21 @@ and open the template in the editor.
 }
 
 #RecordHeaderHBox{
+    -fx-background-color: #dddddd;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 5;
+    /*-fx*/
+}
+
+#SectionHeader{
     -fx-background-color: #cccccc;
+}
+
+#FamilyMemberCellHBox{
+    -fx-border-color: #cccccc;
+    -fx-border-width: 2;
+}
+
+#FamilyMemberHeaderHBox{
+    -fx-background-color: #dddddd;
 }

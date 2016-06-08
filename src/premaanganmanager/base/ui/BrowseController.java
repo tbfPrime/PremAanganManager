@@ -25,6 +25,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import premaanganmanager.base.controller.background.Student;
 import premaanganmanager.configurable.Labels;
@@ -61,7 +62,36 @@ public class BrowseController{
     private StackPane browseStudentRecordPhotoStackPane;
     
     @FXML
+    private VBox browseStudentRecordFMD0VBox;
+    @FXML
     private HBox browseStudentRecordStudentNameHBox;
+    @FXML
+    private HBox browseStudentRecordFMD0HBox, browseStudentRecordFMD1HBox, browseStudentRecordFMD2HBox, browseStudentRecordFMD3HBox, browseStudentRecordFMD4HBox, browseStudentRecordFMD5HBox, browseStudentRecordFMD6HBox;
+    @FXML
+    private HBox browseStudentRecordFMD00HBox, browseStudentRecordFMD01HBox, browseStudentRecordFMD02HBox, browseStudentRecordFMD03HBox, browseStudentRecordFMD04HBox, browseStudentRecordFMD05HBox;
+    @FXML
+    private HBox browseStudentRecordFMD10HBox, browseStudentRecordFMD11HBox, browseStudentRecordFMD12HBox, browseStudentRecordFMD13HBox, browseStudentRecordFMD14HBox, browseStudentRecordFMD15HBox;
+    @FXML
+    private HBox browseStudentRecordFMD20HBox, browseStudentRecordFMD21HBox, browseStudentRecordFMD22HBox, browseStudentRecordFMD23HBox, browseStudentRecordFMD24HBox, browseStudentRecordFMD25HBox;
+    @FXML
+    private HBox browseStudentRecordFMD30HBox, browseStudentRecordFMD31HBox, browseStudentRecordFMD32HBox, browseStudentRecordFMD33HBox, browseStudentRecordFMD34HBox, browseStudentRecordFMD35HBox;
+    @FXML
+    private HBox browseStudentRecordFMD40HBox, browseStudentRecordFMD41HBox, browseStudentRecordFMD42HBox, browseStudentRecordFMD43HBox, browseStudentRecordFMD44HBox, browseStudentRecordFMD45HBox;
+    @FXML
+    private HBox browseStudentRecordFMD50HBox, browseStudentRecordFMD51HBox, browseStudentRecordFMD52HBox, browseStudentRecordFMD53HBox, browseStudentRecordFMD54HBox, browseStudentRecordFMD55HBox;
+    @FXML
+    private HBox browseStudentRecordFMD60HBox, browseStudentRecordFMD61HBox, browseStudentRecordFMD62HBox, browseStudentRecordFMD63HBox, browseStudentRecordFMD64HBox, browseStudentRecordFMD65HBox;
+    @FXML
+    private HBox browseStudentRecordSectionHeaderPersonalDetailsHBox;
+    @FXML
+    private HBox browseStudentRecordSectionHeaderCourseDetailsHBox;
+    @FXML
+    private HBox browseStudentRecordSectionHeaderEmergencyContactDetailsHBox;
+    @FXML
+    private HBox browseStudentRecordSectionHeaderFamilyMemberDetailsHBox;
+    
+    @FXML
+    private Button browseStudentRecordBackButton;
     
     // Browse
     @FXML
@@ -74,6 +104,13 @@ public class BrowseController{
     private void browseStudentBackAction(){
         System.out.println("BrowseController | browseSrudentBackAction");
         appContainer.displayScreen(AppContainer.screenTag.BROWSE);
+    }
+    
+    // Browse Student Records
+    @FXML
+    private void browseStudentRecordBackAction(){
+        System.out.println("BrowseController | browseStudentRecordBackAction");
+        appContainer.displayScreen(AppContainer.screenTag.BROWSE_STUDENT_TABLE);
     }
     
     // Constructor
@@ -117,6 +154,7 @@ public class BrowseController{
             AnchorPane browseStudentRecordBase = loader.load();
             populateStudentData();
             setBrowseStudentRecordID();
+            setBrowseStudentRecordScreenLabels();
             browseStudentRecordBase.getStylesheets().add(getClass().getResource("BrowseStudentRecord.css").toExternalForm());
             return browseStudentRecordBase;
         } catch (IOException e) {
@@ -218,12 +256,79 @@ public class BrowseController{
     private void setBrowseStudentRecordID(){
         browseStudentRecordPhotoStackPane.setId("PhotoStackPane");
         browseStudentRecordStudentNameHBox.setId("RecordHeaderHBox");
+        browseStudentRecordSectionHeaderPersonalDetailsHBox.setId("SectionHeader");
+        browseStudentRecordSectionHeaderCourseDetailsHBox.setId("SectionHeader");
+        browseStudentRecordSectionHeaderEmergencyContactDetailsHBox.setId("SectionHeader");
+        browseStudentRecordSectionHeaderFamilyMemberDetailsHBox.setId("SectionHeader");
+        
+        browseStudentRecordFMD0VBox.setId("FamilyMemberCellHBox");
+        
+        browseStudentRecordFMD0HBox.setId("FamilyMemberHeaderHBox");
+//        browseStudentRecordFMD1HBox.setId("FamilyMemberCellHBox");
+//        browseStudentRecordFMD2HBox.setId("FamilyMemberCellHBox");
+//        browseStudentRecordFMD3HBox.setId("FamilyMemberCellHBox");
+//        browseStudentRecordFMD4HBox.setId("FamilyMemberCellHBox");
+//        browseStudentRecordFMD5HBox.setId("FamilyMemberCellHBox");
+//        browseStudentRecordFMD6HBox.setId("FamilyMemberCellHBox");
+
+        browseStudentRecordFMD00HBox.setId("FamilyMemberCellHBox");
+        browseStudentRecordFMD01HBox.setId("FamilyMemberCellHBox");
+        browseStudentRecordFMD02HBox.setId("FamilyMemberCellHBox");
+        browseStudentRecordFMD03HBox.setId("FamilyMemberCellHBox");
+        browseStudentRecordFMD04HBox.setId("FamilyMemberCellHBox");
+        browseStudentRecordFMD05HBox.setId("FamilyMemberCellHBox");
+        
+        browseStudentRecordFMD10HBox.setId("FamilyMemberCellHBox");
+        browseStudentRecordFMD11HBox.setId("FamilyMemberCellHBox");
+        browseStudentRecordFMD12HBox.setId("FamilyMemberCellHBox");
+        browseStudentRecordFMD13HBox.setId("FamilyMemberCellHBox");
+        browseStudentRecordFMD14HBox.setId("FamilyMemberCellHBox");
+        browseStudentRecordFMD15HBox.setId("FamilyMemberCellHBox");        
+        
+        browseStudentRecordFMD20HBox.setId("FamilyMemberCellHBox");
+        browseStudentRecordFMD21HBox.setId("FamilyMemberCellHBox");
+        browseStudentRecordFMD22HBox.setId("FamilyMemberCellHBox");
+        browseStudentRecordFMD23HBox.setId("FamilyMemberCellHBox");
+        browseStudentRecordFMD24HBox.setId("FamilyMemberCellHBox");
+        browseStudentRecordFMD25HBox.setId("FamilyMemberCellHBox");        
+
+        browseStudentRecordFMD30HBox.setId("FamilyMemberCellHBox");
+        browseStudentRecordFMD31HBox.setId("FamilyMemberCellHBox");
+        browseStudentRecordFMD32HBox.setId("FamilyMemberCellHBox");
+        browseStudentRecordFMD33HBox.setId("FamilyMemberCellHBox");
+        browseStudentRecordFMD34HBox.setId("FamilyMemberCellHBox");
+        browseStudentRecordFMD35HBox.setId("FamilyMemberCellHBox");        
+
+        browseStudentRecordFMD40HBox.setId("FamilyMemberCellHBox");
+        browseStudentRecordFMD41HBox.setId("FamilyMemberCellHBox");
+        browseStudentRecordFMD42HBox.setId("FamilyMemberCellHBox");
+        browseStudentRecordFMD43HBox.setId("FamilyMemberCellHBox");
+        browseStudentRecordFMD44HBox.setId("FamilyMemberCellHBox");
+        browseStudentRecordFMD45HBox.setId("FamilyMemberCellHBox");        
+
+        browseStudentRecordFMD50HBox.setId("FamilyMemberCellHBox");
+        browseStudentRecordFMD51HBox.setId("FamilyMemberCellHBox");
+        browseStudentRecordFMD52HBox.setId("FamilyMemberCellHBox");
+        browseStudentRecordFMD53HBox.setId("FamilyMemberCellHBox");
+        browseStudentRecordFMD54HBox.setId("FamilyMemberCellHBox");
+        browseStudentRecordFMD55HBox.setId("FamilyMemberCellHBox");        
+
+        browseStudentRecordFMD60HBox.setId("FamilyMemberCellHBox");
+        browseStudentRecordFMD61HBox.setId("FamilyMemberCellHBox");
+        browseStudentRecordFMD62HBox.setId("FamilyMemberCellHBox");
+        browseStudentRecordFMD63HBox.setId("FamilyMemberCellHBox");
+        browseStudentRecordFMD64HBox.setId("FamilyMemberCellHBox");
+        browseStudentRecordFMD65HBox.setId("FamilyMemberCellHBox");                
     }
     
     private void populateStudentData(){
         System.out.println("BrowseController | populateStudentData");
         
-        browseStudentRecordFirstName.setText(currentStudent.getFirstName() + " " + currentStudent.getMiddleName() + " " + currentStudent.getLastName());
+        String name = (!currentStudent.getFirstName().isEmpty()) ? (" " + currentStudent.getFirstName()) : "";
+        name += (currentStudent.getMiddleName() == null || currentStudent.getMiddleName().isEmpty()) ? "" : (" " + currentStudent.getMiddleName());
+        name += (currentStudent.getLastName() == null || currentStudent.getLastName().isEmpty()) ? "" : (" " + currentStudent.getLastName());
+        
+        browseStudentRecordFirstName.setText(name);
         
         try{
             Path studentPhotoPath = Paths.get(appContainer.uiControl.settings.photosDir, (appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_STUDENT_PHOTO_PREFIX) + currentStudent.getStudentId() + "." + currentStudent.getStudentPhotoId()));
@@ -255,5 +360,9 @@ public class BrowseController{
         appContainer.setHeaderText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.HEADER_BROWSE_STUDENT_TITLE));
         
         browseStudentBackButton.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.BACK));
+    }
+    
+    private void setBrowseStudentRecordScreenLabels(){
+        browseStudentRecordBackButton.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.BACK));
     }
 }
