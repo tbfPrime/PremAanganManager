@@ -28,6 +28,7 @@ public class Labels {
         ALERT_INFO, ALERT_WARNING, ALERT_ERROR, ALERT_CONFIRMATION,
         ALERT_MESSAGE_IS_EMPTY, ALERT_MESSAGE_CONFIRM_FIELD_EMPTY, 
         ALERT_MESSAGE_STUDENT_SAVE_SUCCESS, ALERT_MESSAGE_ERROR_SAVE,
+        ALERT_MESSAGE_EMAIL_FORMAT_INCORRECT,
         
         LABEL_END, LABEL_ID, LABEL_STUDENT_PHOTO_PREFIX, 
             
@@ -43,6 +44,7 @@ public class Labels {
         // Add 
         ADD_STUDENT, ADD_TEACHER, ADD_SUBJECT, ADD_ATTENDANCE,
         ADD_COURSE, ADD_BATCH, ADD_CLASS, ADD_TIMETABLE,
+        ADD_NEW_RELIGION,
         
         // Add Student
         ADD_STUDENT_FIRST_NAME, ADD_STUDENT_MIDDLE_NAME, ADD_STUDENT_LAST_NAME,
@@ -75,6 +77,7 @@ public class Labels {
     
     private String l_AlertMessageIsEmpty, l_AlertMessageConfirmFieldEmpty;
     private String l_AlertMessageStudentSaveSuccess, l_AlertMessageErrorSave;
+    private String l_AlertMessageEmailFormatIncorrect;
     
     private String l_LabelEnd, l_LabelID, l_LabelStudentPhotoPrefix;
 
@@ -87,6 +90,7 @@ public class Labels {
     
     // Add
     private String l_addStudent, l_addTeacher, l_addSubject, l_addAttendance, l_addCourse, l_addBatch, l_addClass, l_addTimetable;
+    private String l_addNewReligion;
     
     // Add Student
     private String l_addStudentFirstName, l_addStudentMiddleName, l_addStudentLastName;
@@ -142,6 +146,7 @@ public class Labels {
             case ALERT_MESSAGE_CONFIRM_FIELD_EMPTY: l_AlertMessageConfirmFieldEmpty = value; break;
             case ALERT_MESSAGE_STUDENT_SAVE_SUCCESS: l_AlertMessageStudentSaveSuccess = value; break;
             case ALERT_MESSAGE_ERROR_SAVE: l_AlertMessageErrorSave = value; break;
+            case ALERT_MESSAGE_EMAIL_FORMAT_INCORRECT: l_AlertMessageEmailFormatIncorrect = value; break;
             
             case LABEL_END: l_LabelEnd = value; break;
             case LABEL_ID: l_LabelID = value; break;
@@ -175,6 +180,8 @@ public class Labels {
             case ADD_BATCH: l_addBatch = value; break;
             case ADD_CLASS: l_addClass = value; break;
             case ADD_TIMETABLE: l_addTimetable = value; break;
+            
+            case ADD_NEW_RELIGION: l_addNewReligion = value; break;
             
             case ADD_STUDENT_FIRST_NAME: l_addStudentFirstName = value; break;
             case ADD_STUDENT_MIDDLE_NAME: l_addStudentMiddleName = value; break;
@@ -249,6 +256,7 @@ public class Labels {
             case ALERT_MESSAGE_CONFIRM_FIELD_EMPTY: return l_AlertMessageConfirmFieldEmpty;
             case ALERT_MESSAGE_STUDENT_SAVE_SUCCESS: return l_AlertMessageStudentSaveSuccess;
             case ALERT_MESSAGE_ERROR_SAVE: return l_AlertMessageErrorSave;
+            case ALERT_MESSAGE_EMAIL_FORMAT_INCORRECT: return l_AlertMessageEmailFormatIncorrect;
             
             case LABEL_END: return l_LabelEnd;
             case LABEL_ID: return l_LabelID;
@@ -282,6 +290,8 @@ public class Labels {
             case ADD_BATCH: return l_addBatch;
             case ADD_CLASS: return l_addClass;
             case ADD_TIMETABLE: return l_addTimetable;
+            
+            case ADD_NEW_RELIGION: return l_addNewReligion;
             
             case ADD_STUDENT_FIRST_NAME: return l_addStudentFirstName;
             case ADD_STUDENT_MIDDLE_NAME: return l_addStudentMiddleName;

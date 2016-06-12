@@ -25,6 +25,7 @@
     <class>premaanganmanager.base.controller.background.TeacherAttendance</class>
     <class>premaanganmanager.base.controller.background.Subject</class>
     <class>premaanganmanager.base.controller.background.Class</class>
+    <class>premaanganmanager.base.controller.background.Religion</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:sqlite:PremAanganManager.sqlite"/>
       <property name="javax.persistence.jdbc.user" value=""/>

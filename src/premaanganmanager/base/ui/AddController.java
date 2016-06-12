@@ -14,6 +14,10 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -27,6 +31,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
+import premaanganmanager.base.controller.background.Religion;
 import premaanganmanager.base.controller.background.Student;
 import premaanganmanager.base.controller.ui.UIControl;
 import premaanganmanager.configurable.Labels;
@@ -38,7 +43,10 @@ import premaanganmanager.configurable.Labels;
 public class AddController {
     
     private AppContainer appContainer;
+    
     private Student student;
+    private Religion religion;
+    
     private String photoFileExtension = "";
    
     // FXML fields
@@ -71,7 +79,7 @@ public class AddController {
     @FXML
     private TextField addStudentFirstNameField, addStudentMiddleNameField, addStudentLastNameField, addStudentAddressField, addStudentEmailField, addStudentPlaceOfBirthField;
     @FXML
-    private TextField addStudentFirstOtherReligionField, addStudentEmergencyContactPersonField, addStudentEmergencyContactTelNoField, addStudentEducationalBackgroundField, addStudentLanguagesField, addStudentHobbiesField;
+    private TextField addStudentOtherReligionField, addStudentEmergencyContactPersonField, addStudentEmergencyContactTelNoField, addStudentEducationalBackgroundField, addStudentLanguagesField, addStudentHobbiesField;
     @FXML
     private TextField addStudentFamilyMemberNameField1, addStudentFamilyMemberRelationshipField1, addStudentFamilyMemberAgeField1, addStudentFamilyMemberOccupationField1, addStudentFamilyMemberOccupationalAddressField1, addStudentFamilyMemberOccupationalTelNoField1;
     @FXML
@@ -126,6 +134,15 @@ public class AddController {
         getStudentPhoto();
     }
     
+    @FXML
+    private void addStudentReligionComboBoxAction(){
+        System.out.println("AddController | addStudentReligionComboBoxAction | value: " + addStudentReligionComboBox.getValue());
+        addStudentOtherReligionField.setDisable(true);
+        if(addStudentReligionComboBox.getValue().toString().equalsIgnoreCase(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_NEW_RELIGION))){
+            addStudentOtherReligionField.setDisable(false);
+        } else{ religion.setReligionId(getReligionID()); }
+    }
+    
     // Constructor
     public AddController(AppContainer appContainer){
         this.appContainer = appContainer;
@@ -148,7 +165,6 @@ public class AddController {
     
     public AnchorPane setAddStudentScreen(){
         try {
-            student = new Student();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/premaanganmanager/base/ui/AddStudent.fxml"));
             loader.setController(this);
             AnchorPane addBase = loader.load();
@@ -166,12 +182,6 @@ public class AddController {
     private void setAddScreenMenuData(){
         setAddScreenMenuGraphics();
         setAddScreenMenuLabels();
-    }
-    
-    private void setAddStudentScreenData(){
-        setDefaultStudentPhotoView();
-        setAddStudentPropertyID();
-        setAddStudentScreenLabels();
     }
     
     private void setAddScreenMenuGraphics(){
@@ -252,6 +262,46 @@ public class AddController {
         }
     }
     
+    private void setAddScreenMenuLabels(){
+        appContainer.setHeaderText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.HEADER_ADD_TITLE));
+        
+        addStudentButton.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT));
+        addTeacherButton.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_TEACHER));
+        addSubjectButton.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_SUBJECT));
+        addAttendanceButton.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_ATTENDANCE));
+        addCourseButton.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_COURSE));
+        addBatchButton.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_BATCH));
+        addClassButton.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_CLASS));
+        addTimetableButton.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_TIMETABLE));
+    }
+    
+    private void setAddStudentScreenData(){
+        student = new Student();
+        religion = new Religion();
+        
+        setDefaultStudentPhotoView();
+        setReligionData();
+        setAddStudentPropertyID();
+        setAddStudentScreenLabels();
+    }
+    
+    private void setReligionData(){
+        System.out.println("AddController | setReligionData");
+        
+        addStudentOtherReligionField.setDisable(true);
+        
+        ObservableList<Religion> list = FXCollections.observableArrayList(appContainer.uiControl.uiModel.fetchAllReligion());
+        
+        addStudentReligionComboBox.setItems(list);
+        addStudentReligionComboBox.getItems().add(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_NEW_RELIGION));
+    }
+    
+    private Integer getReligionID(){
+        System.out.println("AddController | getReligionID");
+        Religion selectedReligion = (Religion)addStudentReligionComboBox.getItems().get(addStudentReligionComboBox.getSelectionModel().getSelectedIndex());
+        return selectedReligion.getReligionId();
+    }
+    
     private void getStudentPhoto(){
         System.out.println("AddController | getStudentPhoto");
         FileChooser addStudentPhotoFileChooser = new FileChooser();
@@ -314,16 +364,36 @@ public class AddController {
     private void saveStudentRecord(){
         System.out.println("AddController | saveStudentRecord");
         
-        if(validateStudentForm()){ 
-            if(appContainer.uiControl.uiModel.saveStudentForm(student)){
+        if(validateStudentForm()){
+            if(saveReligionRecord() && appContainer.uiControl.uiModel.saveStudentForm(student)){
                 System.out.println("AddController | saveStudentRecord | Value of Student ID: " + student.getStudentId());
                 savePhotoFile();
                 String alertStudentName = addStudentFirstNameField.getText() + (addStudentMiddleNameField.getText().isEmpty() ? "" : " " + addStudentMiddleNameField.getText()) + (addStudentLastNameField.getText().isEmpty() ? "" : " " + addStudentLastNameField.getText());
                 if(appContainer.uiControl.alert(UIControl.alertType.INFO, appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ALERT_MESSAGE_STUDENT_SAVE_SUCCESS).replace("?", alertStudentName))){ addStudentBackAction(); }
                 else{ addStudentBackAction(); }
-            }else{ appContainer.uiControl.alert(UIControl.alertType.ERROR_SAVE, ""); }
+            } else{ appContainer.uiControl.alert(UIControl.alertType.ERROR_SAVE, ""); }
+        } else{ System.out.println("AddController | saveStudentRecord | Validation of student form failed. Exiting without saving."); }
+    }
+    
+    private boolean saveReligionRecord(){
+        if(addStudentOtherReligionField.isDisabled()){
+            if(addStudentReligionComboBox.getValue() == null || addStudentReligionComboBox.getValue().toString().isEmpty()){ System.out.println("AddController | saveReligionRecord | No religion selected. Exiting."); }
+            else{ 
+                System.out.println("AddController | saveReligionRecord | Saving religion id: " +  getReligionID() + " to student object."); 
+                student.setReligionId(getReligionID());
+            }
+        } else{
+            if(addStudentOtherReligionField.getText().isEmpty()){ System.out.println("AddController | saveReligionRecord | No value to save from Other Religion field. Exiting"); }
+            else{ 
+                System.out.println("Value of addStudentOtherReligionField: " + addStudentOtherReligionField.getText());
+                religion.setReligionName(addStudentOtherReligionField.getText()); 
+                if(appContainer.uiControl.uiModel.saveReligion(religion)){ 
+                    System.out.println("AddController | saveReligionRecord | New Religion saved successfully."); 
+                    student.setReligionId(religion.getReligionId());
+                } else{ System.out.println("AddController | saveReligionRecord | Error saving new religion record. Exiting"); return false; }
+            }
         }
-        else{ System.out.println("AddController | saveStudentRecord | Validation of student form failed. Exiting without saving."); }
+        return true;
     }
     
     private void savePhotoFile(){
@@ -352,18 +422,27 @@ public class AddController {
         
         if(addStudentLastNameField.getText().isEmpty()){ System.out.println("AddController | validateStudentForm | LastName empty."); flagFieldsEmpty = true; }
         else{ student.setLastName(addStudentLastNameField.getText()); }
+
+        if(photoFileExtension.isEmpty()){ System.out.println("AddController | validateStudentForm | DOB empty."); flagFieldsEmpty = true; } // Validate for Date format
+        else{ student.setStudentPhotoId(photoFileExtension); }
         
         if(addStudentAddressField.getText().isEmpty()){ System.out.println("AddController | validateStudentForm | Address empty."); flagFieldsEmpty = true; }
         else{ student.setAddress(addStudentAddressField.getText()); }
         
-        if(addStudentEmail.getText().isEmpty()){ System.out.println("AddController | validateStudentForm | E-Mail empty."); flagFieldsEmpty = true; } // Validate for email format
-        else{ student.setEmailId(addStudentEmail.getText()); }
+        if(addStudentEmailField.getText().isEmpty()){ System.out.println("AddController | validateStudentForm | E-Mail empty."); flagFieldsEmpty = true; } // Validate for email format
+        else{ 
+            if(validateEmail(addStudentEmailField.getText())){ student.setEmailId(addStudentEmailField.getText()); }
+            else{ appContainer.uiControl.alert(UIControl.alertType.WARNING,""); return false; }
+        }
         
         if(addStudentDOBDatePicker.getValue() == null){ System.out.println("AddController | validateStudentForm | DOB empty."); flagFieldsEmpty = true; } // Validate for Date format
         else{ student.setDob(addStudentDOBDatePicker.getValue().toString()); }
         
-        if(photoFileExtension.isEmpty()){ System.out.println("AddController | validateStudentForm | DOB empty."); flagFieldsEmpty = true; } // Validate for Date format
-        else{ student.setStudentPhotoId(photoFileExtension); }
+        if(addStudentPlaceOfBirthField.getText().isEmpty()){ System.out.println("AddController | validateStudentForm | Place of Birth empty."); flagFieldsEmpty = true; } // Validate for Date format
+        else{ student.setPlaceOfBirth(addStudentPlaceOfBirthField.getText()); }
+        
+        if(religion.getReligionId() == null){ System.out.println("AddController | validateStudentForm | No religion selected from list. Trying to save from Other religion."); flagFieldsEmpty = true; } // Validate for Religion
+        else{ student.setReligionId(religion.getReligionId()); }
         
 //        student.setPlaceOfBirth(addStudentPlaceOfBirthField.getText());
 //        student.setEducationalBackground(addStudentEducationalBackgroundField.getText());
@@ -378,17 +457,16 @@ public class AddController {
             if(appContainer.uiControl.alert(UIControl.alertType.CONFIRMATION_FIELD_IS_EMPTY,addStudentFirstName.getText())){ return true; }
             else{ System.out.println("AddController | validateStudentForm | Please fill up the remaining fields before saving."); return false; }
         } else { return true; }
-//        
-//        System.out.println(
-//                "-------" + "\n" +
-//                "Student firstName: " + student.getFirstName() + "\n" + 
-//                "Student middleName: " + student.getMiddleName() + "\n" + 
-//                "Student lastName: " + student.getLastName() + "\n" + 
-//                "Student DOB: " + student.getDob() + "\n" + 
-//                "-------"
-//        );
-//        
-//        return true;
+    }
+    
+    private boolean validateEmail(String value){
+        System.out.println("AddController | validateEmail | value: " + value);
+        String emailPattern = "(.)(.*)([@])(.)(.*)([.])(.)(.*)";
+        Pattern p = Pattern.compile(emailPattern);
+        
+        Matcher m = p.matcher(value);
+        if(m.find()){ return true; }
+        return false;
     }
     
     private void setAddStudentPropertyID(){
@@ -398,19 +476,6 @@ public class AddController {
         addStudentOfficeUseOnlyHBox.setId("BasicInfoHBox");
     }
 
-    private void setAddScreenMenuLabels(){
-        appContainer.setHeaderText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.HEADER_ADD_TITLE));
-        
-        addStudentButton.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT));
-        addTeacherButton.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_TEACHER));
-        addSubjectButton.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_SUBJECT));
-        addAttendanceButton.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_ATTENDANCE));
-        addCourseButton.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_COURSE));
-        addBatchButton.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_BATCH));
-        addClassButton.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_CLASS));
-        addTimetableButton.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_TIMETABLE));
-    }
-    
     private void setAddStudentScreenLabels(){
         appContainer.setHeaderText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.HEADER_ADD_STUDENT_TITLE));
         

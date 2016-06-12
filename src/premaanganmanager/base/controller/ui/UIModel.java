@@ -90,18 +90,35 @@ public class UIModel {
     }
     
     public boolean saveStudentForm(Student student){
-        System.out.println("UIModel | saveStudentForm");
         try{
+            System.out.println("UIModel | saveStudentForm | student name: " + student.getFirstName() + " " + student.getMiddleName() + " " + student.getLastName());
+            
             em.getTransaction().begin();
             em.persist(student);
             em.getTransaction().commit();
             
-//            System.out.println("Value of Student ID: " + student.getStudentId());
-            
             System.out.println("UIModel | saveStudentForm | Entry saved.");
             return true;
         } catch(Exception e){
-            System.out.println("UIModel | saveStudentForm | Error saving student data. Message: " + e);
+            System.err.println("UIModel | saveStudentForm | Error saving student data. Message: " + e);
+            em.flush();
+            return false;
+        }
+    }
+    
+    public boolean saveReligion(Religion religion){
+        try{
+            System.out.println("UIModel | saveReligion | religion name: " + religion.getReligionName());
+            
+            em.getTransaction().begin();
+            em.persist(religion);
+            em.getTransaction().commit();
+            
+            System.out.println("UIModel | saveReligion | Entry saved.");
+            return true;
+        } catch(Exception e){
+            System.err.println("UIModel | saveReligion | Error saving religion data. Message: " + e);
+            em.flush();
             return false;
         }
     }
@@ -112,6 +129,15 @@ public class UIModel {
         Query q = em.createNamedQuery("Student.findAll");
         List<Student> result = q.getResultList();
         System.out.println("UIModel | fetchAllStudent | result: " + result.size());
+        return result;
+    }
+    
+    public List<Religion> fetchAllReligion(){
+        System.out.println("UIModel | fetchAllReligion");
+        
+        Query q = em.createNamedQuery("Religion.findAll");
+        List<Religion> result = q.getResultList();
+        System.out.println("UIModel | fetchAllReligion");
         return result;
     }
     

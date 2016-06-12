@@ -35,8 +35,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Student.findByAddress", query = "SELECT s FROM Student s WHERE s.address = :address"),
     @NamedQuery(name = "Student.findByDob", query = "SELECT s FROM Student s WHERE s.dob = :dob"),
     @NamedQuery(name = "Student.findByPlaceOfBirth", query = "SELECT s FROM Student s WHERE s.placeOfBirth = :placeOfBirth"),
-    @NamedQuery(name = "Student.findByReligion", query = "SELECT s FROM Student s WHERE s.religion = :religion"),
-    @NamedQuery(name = "Student.findByOtherReligion", query = "SELECT s FROM Student s WHERE s.otherReligion = :otherReligion"),
+    @NamedQuery(name = "Student.findByReligionId", query = "SELECT s FROM Student s WHERE s.religionId = :religionId"),
     @NamedQuery(name = "Student.findByEmailId", query = "SELECT s FROM Student s WHERE s.emailId = :emailId"),
     @NamedQuery(name = "Student.findByEmergencyContactPerson", query = "SELECT s FROM Student s WHERE s.emergencyContactPerson = :emergencyContactPerson"),
     @NamedQuery(name = "Student.findByEmergencyContactNumber", query = "SELECT s FROM Student s WHERE s.emergencyContactNumber = :emergencyContactNumber"),
@@ -49,10 +48,10 @@ public class Student implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(generator="sqlite")
-    @TableGenerator(name="sqlite", table="sqlite_sequence",
+    @GeneratedValue(generator="studentGenerator")
+    @TableGenerator(name="studentGenerator", table="sqlite_sequence",
     pkColumnName="name", valueColumnName="seq",
-    pkColumnValue="student",allocationSize=1)
+    pkColumnValue="student", allocationSize=1)
     @Basic(optional = false)
     @Column(name = "student_id")
     private Integer studentId;
@@ -73,10 +72,8 @@ public class Student implements Serializable {
     private String dob;
     @Column(name = "place_of_birth")
     private String placeOfBirth;
-    @Column(name = "religion")
-    private String religion;
-    @Column(name = "other_religion")
-    private String otherReligion;
+    @Column(name = "religion_id")
+    private Integer religionId;
     @Column(name = "email_id")
     private String emailId;
     @Column(name = "emergency_contact_person")
@@ -178,20 +175,12 @@ public class Student implements Serializable {
         this.placeOfBirth = placeOfBirth;
     }
 
-    public String getReligion() {
-        return religion;
+    public Integer getReligionId() {
+        return religionId;
     }
 
-    public void setReligion(String religion) {
-        this.religion = religion;
-    }
-
-    public String getOtherReligion() {
-        return otherReligion;
-    }
-
-    public void setOtherReligion(String otherReligion) {
-        this.otherReligion = otherReligion;
+    public void setReligionId(Integer religionId) {
+        this.religionId = religionId;
     }
 
     public String getEmailId() {

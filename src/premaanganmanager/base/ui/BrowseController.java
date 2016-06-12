@@ -197,7 +197,6 @@ public class BrowseController{
         col_dob.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_DATE_OF_BIRTH));
         col_placeOfBirth.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_PLACE_OF_BIRTH));
         col_religion.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_RELIGION));
-        col_otherReligion.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_OTHER_RELIGION));
         col_educationalBackground.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_EDUCATIONAL_BACKGROUND));
         col_languages.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_LANGUAGES));
         col_hobbies.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_HOBBIES));
@@ -211,11 +210,10 @@ public class BrowseController{
         col_middleName.setCellValueFactory(new PropertyValueFactory<Student,String>("middleName"));
         col_lastName.setCellValueFactory(new PropertyValueFactory<Student,String>("lastName"));
         col_address.setCellValueFactory(new PropertyValueFactory<Student,String>("address"));
-        col_email.setCellValueFactory(new PropertyValueFactory<Student,String>("email_id"));
+        col_email.setCellValueFactory(new PropertyValueFactory<Student,String>("emailId"));
         col_dob.setCellValueFactory(new PropertyValueFactory<Student,String>("dob"));
         col_placeOfBirth.setCellValueFactory(new PropertyValueFactory<Student,String>("placeOfBirth"));
-        col_religion.setCellValueFactory(new PropertyValueFactory<Student,String>("religion"));
-        col_otherReligion.setCellValueFactory(new PropertyValueFactory<Student,String>("otherReligion"));
+        col_religion.setCellValueFactory(new PropertyValueFactory<Student,Integer>("religionId"));
         col_educationalBackground.setCellValueFactory(new PropertyValueFactory<Student,String>("educationalBackground"));
         col_languages.setCellValueFactory(new PropertyValueFactory<Student,String>("languages"));
         col_hobbies.setCellValueFactory(new PropertyValueFactory<Student,String>("hobbies"));
@@ -240,7 +238,7 @@ public class BrowseController{
         browseTable.getColumns().addAll(
                 col_id,col_firstName,col_middleName,col_lastName,
                 col_address,col_email,col_dob,col_placeOfBirth,
-                col_religion,col_otherReligion,col_educationalBackground,col_languages,col_hobbies,
+                col_religion,col_educationalBackground,col_languages,col_hobbies,
                 col_emergencyContactPerson,col_emergencyContactTelNo);
         
         // Code to get selected item in table.

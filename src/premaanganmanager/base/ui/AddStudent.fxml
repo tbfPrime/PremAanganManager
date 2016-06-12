@@ -168,7 +168,7 @@
                                           <Text fx:id="addStudentReligion" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
                                        </children>
                                     </HBox>
-                                    <ComboBox fx:id="addStudentReligionComboBox" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" HBox.hgrow="ALWAYS" />
+                                    <ComboBox fx:id="addStudentReligionComboBox" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" HBox.hgrow="ALWAYS" onAction="#addStudentReligionComboBoxAction"/>
                                  </children>
                                  <padding>
                                     <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
@@ -181,7 +181,7 @@
                                           <Text fx:id="addStudentOtherReligion" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
                                        </children>
                                     </HBox>
-                                    <TextField fx:id="addStudentFirstOtherReligionField" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="150.0" HBox.hgrow="ALWAYS" />
+                                    <TextField fx:id="addStudentOtherReligionField" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="150.0" HBox.hgrow="ALWAYS" />
                                  </children>
                                  <padding>
                                     <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
