@@ -28,7 +28,8 @@ public class Labels {
         ALERT_INFO, ALERT_WARNING, ALERT_ERROR, ALERT_CONFIRMATION,
         ALERT_MESSAGE_IS_EMPTY, ALERT_MESSAGE_CONFIRM_FIELD_EMPTY, 
         ALERT_MESSAGE_STUDENT_SAVE_SUCCESS, ALERT_MESSAGE_ERROR_SAVE,
-        ALERT_MESSAGE_EMAIL_FORMAT_INCORRECT,
+        ALERT_MESSAGE_EMAIL_FORMAT_INCORRECT, ALERT_MESSAGE_NUMBER_FORMAT_INCORRECT,
+        ALERT_MESSAGE_DOB_FORMAT_INCORRECT,
         
         LABEL_END, LABEL_ID, LABEL_STUDENT_PHOTO_PREFIX, 
             
@@ -54,7 +55,7 @@ public class Labels {
         ADD_STUDENT_EDUCATIONAL_BACKGROUND, ADD_STUDENT_LANGUAGES, ADD_STUDENT_HOBBIES,
         ADD_STUDENT_FAMILY_MEMBER_NAME, ADD_STUDENT_FAMILY_MEMBER_RELATIONSHIP, ADD_STUDENT_FAMILY_MEMBER_AGE,
         ADD_STUDENT_FAMILY_MEMBER_OCCUPATION, ADD_STUDENT_FAMILY_MEMBER_OCCUPATIONAL_ADDRESS, ADD_STUDENT_FAMILY_MEMBER_OCCUPATIONAL_TEL_NO,
-        ADD_STUDENT_ENROLLMENT_NUMBER, ADD_STUDENT_PLACE, ADD_STUDENT_DATE,
+        ADD_STUDENT_REFERENCE_NUMBER, ADD_STUDENT_ENROLLMENT_NUMBER, ADD_STUDENT_PLACE, ADD_STUDENT_DATE,
         ADD_STUDENT_PHOTO, ADD_STUDENT_PERSONAL_DETAILS, ADD_STUDENT_OFFICE_USE_ONLY,
         ADD_STUDENT_FAMILY_DETAILS, ADD_STUDENT_EMERGENCY_CONTACT, ADD_STUDENT_PASSPORT_PHOTO,
         
@@ -77,7 +78,8 @@ public class Labels {
     
     private String l_AlertMessageIsEmpty, l_AlertMessageConfirmFieldEmpty;
     private String l_AlertMessageStudentSaveSuccess, l_AlertMessageErrorSave;
-    private String l_AlertMessageEmailFormatIncorrect;
+    private String l_AlertMessageEmailFormatIncorrect, l_AlertMessageNumberFormatIncorrect;
+    private String l_AlertMessageDOBFormatIncorrect;
     
     private String l_LabelEnd, l_LabelID, l_LabelStudentPhotoPrefix;
 
@@ -100,7 +102,7 @@ public class Labels {
     private String l_addStudentEducationalBackground, l_addStudentLanguages, l_addStudentHobbies;
     private String l_addStudentFamilyMemberName, l_addStudentFamilyMemberRelationship, l_addStudentFamilyMemberAge;
     private String l_addStudentFamilyMemberOccupation, l_addStudentFamilyMemberOccupationalAddress, l_addStudentFamilyMemberOccupationalTelNo;
-    private String l_addStudentEnrollmentNumber, l_addStudentPlace, l_addStudentDate;
+    private String l_addStudentReferenceNumber, l_addStudentEnrollmentNumber, l_addStudentPlace, l_addStudentDate;
     private String l_addStudentPhoto, l_addStudentPersonalDetails, l_addStudentOfficeUseOnly;
     private String l_addStudentFamilyDetails, l_addStudentEmergencyContact, l_AddStudentPassportPhoto;
     
@@ -147,6 +149,8 @@ public class Labels {
             case ALERT_MESSAGE_STUDENT_SAVE_SUCCESS: l_AlertMessageStudentSaveSuccess = value; break;
             case ALERT_MESSAGE_ERROR_SAVE: l_AlertMessageErrorSave = value; break;
             case ALERT_MESSAGE_EMAIL_FORMAT_INCORRECT: l_AlertMessageEmailFormatIncorrect = value; break;
+            case ALERT_MESSAGE_NUMBER_FORMAT_INCORRECT: l_AlertMessageNumberFormatIncorrect = value; break;
+            case ALERT_MESSAGE_DOB_FORMAT_INCORRECT: l_AlertMessageDOBFormatIncorrect = value; break;
             
             case LABEL_END: l_LabelEnd = value; break;
             case LABEL_ID: l_LabelID = value; break;
@@ -204,6 +208,7 @@ public class Labels {
             case ADD_STUDENT_FAMILY_MEMBER_OCCUPATION: l_addStudentFamilyMemberOccupation = value; break;
             case ADD_STUDENT_FAMILY_MEMBER_OCCUPATIONAL_ADDRESS: l_addStudentFamilyMemberOccupationalAddress = value; break;
             case ADD_STUDENT_FAMILY_MEMBER_OCCUPATIONAL_TEL_NO: l_addStudentFamilyMemberOccupationalTelNo = value; break;
+            case ADD_STUDENT_REFERENCE_NUMBER: l_addStudentReferenceNumber = value; break;
             case ADD_STUDENT_ENROLLMENT_NUMBER: l_addStudentEnrollmentNumber = value; break;
             case ADD_STUDENT_PLACE: l_addStudentPlace = value; break;
             case ADD_STUDENT_DATE: l_addStudentDate = value; break;
@@ -257,6 +262,8 @@ public class Labels {
             case ALERT_MESSAGE_STUDENT_SAVE_SUCCESS: return l_AlertMessageStudentSaveSuccess;
             case ALERT_MESSAGE_ERROR_SAVE: return l_AlertMessageErrorSave;
             case ALERT_MESSAGE_EMAIL_FORMAT_INCORRECT: return l_AlertMessageEmailFormatIncorrect;
+            case ALERT_MESSAGE_NUMBER_FORMAT_INCORRECT: return l_AlertMessageNumberFormatIncorrect;
+            case ALERT_MESSAGE_DOB_FORMAT_INCORRECT: return l_AlertMessageDOBFormatIncorrect;
             
             case LABEL_END: return l_LabelEnd;
             case LABEL_ID: return l_LabelID;
@@ -314,6 +321,7 @@ public class Labels {
             case ADD_STUDENT_FAMILY_MEMBER_OCCUPATION: return l_addStudentFamilyMemberOccupation;
             case ADD_STUDENT_FAMILY_MEMBER_OCCUPATIONAL_ADDRESS: return l_addStudentFamilyMemberOccupationalAddress;
             case ADD_STUDENT_FAMILY_MEMBER_OCCUPATIONAL_TEL_NO: return l_addStudentFamilyMemberOccupationalTelNo;
+            case ADD_STUDENT_REFERENCE_NUMBER: return l_addStudentReferenceNumber;
             case ADD_STUDENT_ENROLLMENT_NUMBER: return l_addStudentEnrollmentNumber;
             case ADD_STUDENT_PLACE: return l_addStudentPlace;
             case ADD_STUDENT_DATE: return l_addStudentDate;

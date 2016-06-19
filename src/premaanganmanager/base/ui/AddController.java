@@ -12,10 +12,12 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -31,6 +33,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
+import premaanganmanager.base.controller.background.FamilyInfo;
 import premaanganmanager.base.controller.background.Religion;
 import premaanganmanager.base.controller.background.Student;
 import premaanganmanager.base.controller.ui.UIControl;
@@ -46,6 +49,12 @@ public class AddController {
     
     private Student student;
     private Religion religion;
+    private FamilyInfo familyInfo1;
+    private FamilyInfo familyInfo2;
+    private FamilyInfo familyInfo3;
+    private FamilyInfo familyInfo4;
+    private FamilyInfo familyInfo5;
+    private FamilyInfo familyInfo6;
     
     private String photoFileExtension = "";
    
@@ -74,7 +83,7 @@ public class AddController {
     @FXML
     private Text addStudentFamilyMemberName6, addStudentFamilyMemberRelationship6, addStudentFamilyMemberAge6, addStudentFamilyMemberOccupation6, addStudentFamilyMemberOccupationalAddress6, addStudentFamilyMemberOccupationalTelNo6;        
     @FXML
-    private Text addStudentEnrollmentNo, addStudentPlace, addStudentDate, addStudentPhoto, addStudentPersonalDetails, addStudentOfficeUseOnly, addStudentFamilyDetails, addStudentEmergencyContact;
+    private Text addStudentReferenceNo, addStudentEnrollmentNo, addStudentPlace, addStudentDate, addStudentPhoto, addStudentPersonalDetails, addStudentOfficeUseOnly, addStudentFamilyDetails, addStudentEmergencyContact;
     
     @FXML
     private TextField addStudentFirstNameField, addStudentMiddleNameField, addStudentLastNameField, addStudentAddressField, addStudentEmailField, addStudentPlaceOfBirthField;
@@ -93,7 +102,7 @@ public class AddController {
     @FXML
     private TextField addStudentFamilyMemberNameField6, addStudentFamilyMemberRelationshipField6, addStudentFamilyMemberAgeField6, addStudentFamilyMemberOccupationField6, addStudentFamilyMemberOccupationalAddressField6, addStudentFamilyMemberOccupationalTelNoField6;
     @FXML
-    private TextField addStudentEnrollmentNoField, addStudentPlaceField;
+    private TextField addStudentReferenceNoField, addStudentEnrollmentNoField, addStudentPlaceField;
     
     @FXML
     private DatePicker addStudentDOBDatePicker, addStudentDateDatePicker;
@@ -132,6 +141,21 @@ public class AddController {
     private void addStudentPhotoAction(){
         System.out.println("AddController | addStudentPhotoAction");
         getStudentPhoto();
+    }
+    
+    @FXML
+    private void addStudentDOBDatePickerAction(){
+        System.out.println("AddController | addStudentDOBDatePickerAction");
+        if(addStudentDOBDatePicker.getValue() != null){
+            Date selectedDate = new Date(addStudentDOBDatePicker.getValue().getYear(), addStudentDOBDatePicker.getValue().getMonthValue(), addStudentDOBDatePicker.getValue().getDayOfMonth());
+            Date minDate = new Date(appContainer.uiControl.settings.getDOBMinYear(), appContainer.uiControl.settings.getDOBMinMonth(), appContainer.uiControl.settings.getDOBMinDate());
+            Date maxDate = new Date(appContainer.uiControl.settings.getDOBMaxYear(), appContainer.uiControl.settings.getDOBMaxMonth(), appContainer.uiControl.settings.getDOBMaxDate());
+            
+            if(selectedDate.getTime() < minDate.getTime() || selectedDate.getTime() > maxDate.getTime()){
+                appContainer.uiControl.alert(UIControl.alertType.WARNING,appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ALERT_MESSAGE_DOB_FORMAT_INCORRECT));
+                addStudentDOBDatePicker.getEditor().clear();
+            }
+        } else{ System.err.println("AddController | addStudentDOBDatePickerAction | No Value set in DatePicker to take action."); }
     }
     
     @FXML
@@ -278,18 +302,70 @@ public class AddController {
     private void setAddStudentScreenData(){
         student = new Student();
         religion = new Religion();
+        familyInfo1 = new FamilyInfo();
+        familyInfo2 = new FamilyInfo();
+        familyInfo3 = new FamilyInfo();
+        familyInfo4 = new FamilyInfo();
+        familyInfo5 = new FamilyInfo();
+        familyInfo6 = new FamilyInfo();
         
-        setDefaultStudentPhotoView();
+        setAddStudentFormConditions();
         setReligionData();
+        setDefaultStudentPhotoView();
         setAddStudentPropertyID();
         setAddStudentScreenLabels();
     }
     
-    private void setReligionData(){
-        System.out.println("AddController | setReligionData");
-        
+    private void setAddStudentFormConditions(){
         addStudentOtherReligionField.setDisable(true);
         
+        addStudentEmergencyContactTelNoField.disableProperty().bind(addStudentEmergencyContactPersonField.textProperty().isEmpty());
+        
+        addStudentFamilyMemberAgeField1.disableProperty().bind(addStudentFamilyMemberNameField1.textProperty().isEmpty());
+        addStudentFamilyMemberRelationshipField1.disableProperty().bind(addStudentFamilyMemberNameField1.textProperty().isEmpty());
+        addStudentFamilyMemberOccupationField1.disableProperty().bind(addStudentFamilyMemberNameField1.textProperty().isEmpty());
+        addStudentFamilyMemberOccupationalAddressField1.disableProperty().bind(addStudentFamilyMemberNameField1.textProperty().isEmpty());
+        addStudentFamilyMemberOccupationalTelNoField1.disableProperty().bind(addStudentFamilyMemberNameField1.textProperty().isEmpty());
+        addStudentFamilyMemberAgeField1.disableProperty().bind(addStudentFamilyMemberNameField1.textProperty().isEmpty());
+        
+        addStudentFamilyMemberNameField2.disableProperty().bind(addStudentFamilyMemberNameField1.textProperty().isEmpty());
+        addStudentFamilyMemberAgeField2.disableProperty().bind(Bindings.or(addStudentFamilyMemberNameField2.disabledProperty(), addStudentFamilyMemberNameField2.textProperty().isEmpty()));
+        addStudentFamilyMemberRelationshipField2.disableProperty().bind(Bindings.or(addStudentFamilyMemberNameField2.disabledProperty(), addStudentFamilyMemberNameField2.textProperty().isEmpty()));
+        addStudentFamilyMemberOccupationField2.disableProperty().bind(Bindings.or(addStudentFamilyMemberNameField2.disabledProperty(), addStudentFamilyMemberNameField2.textProperty().isEmpty()));
+        addStudentFamilyMemberOccupationalAddressField2.disableProperty().bind(Bindings.or(addStudentFamilyMemberNameField2.disabledProperty(), addStudentFamilyMemberNameField2.textProperty().isEmpty()));
+        addStudentFamilyMemberOccupationalTelNoField2.disableProperty().bind(Bindings.or(addStudentFamilyMemberNameField2.disabledProperty(), addStudentFamilyMemberNameField2.textProperty().isEmpty()));
+
+        addStudentFamilyMemberNameField3.disableProperty().bind(Bindings.or(addStudentFamilyMemberNameField2.disabledProperty(), addStudentFamilyMemberNameField2.textProperty().isEmpty()));
+        addStudentFamilyMemberAgeField3.disableProperty().bind(Bindings.or(addStudentFamilyMemberNameField3.disabledProperty(), addStudentFamilyMemberNameField3.textProperty().isEmpty()));
+        addStudentFamilyMemberRelationshipField3.disableProperty().bind(Bindings.or(addStudentFamilyMemberNameField3.disabledProperty(), addStudentFamilyMemberNameField3.textProperty().isEmpty()));
+        addStudentFamilyMemberOccupationField3.disableProperty().bind(Bindings.or(addStudentFamilyMemberNameField3.disabledProperty(), addStudentFamilyMemberNameField3.textProperty().isEmpty()));
+        addStudentFamilyMemberOccupationalAddressField3.disableProperty().bind(Bindings.or(addStudentFamilyMemberNameField3.disabledProperty(), addStudentFamilyMemberNameField3.textProperty().isEmpty()));
+        addStudentFamilyMemberOccupationalTelNoField3.disableProperty().bind(Bindings.or(addStudentFamilyMemberNameField3.disabledProperty(), addStudentFamilyMemberNameField3.textProperty().isEmpty()));        
+
+        addStudentFamilyMemberNameField4.disableProperty().bind(Bindings.or(addStudentFamilyMemberNameField3.disabledProperty(), addStudentFamilyMemberNameField3.textProperty().isEmpty()));
+        addStudentFamilyMemberAgeField4.disableProperty().bind(Bindings.or(addStudentFamilyMemberNameField4.disabledProperty(), addStudentFamilyMemberNameField4.textProperty().isEmpty()));
+        addStudentFamilyMemberRelationshipField4.disableProperty().bind(Bindings.or(addStudentFamilyMemberNameField4.disabledProperty(), addStudentFamilyMemberNameField4.textProperty().isEmpty()));
+        addStudentFamilyMemberOccupationField4.disableProperty().bind(Bindings.or(addStudentFamilyMemberNameField4.disabledProperty(), addStudentFamilyMemberNameField4.textProperty().isEmpty()));
+        addStudentFamilyMemberOccupationalAddressField4.disableProperty().bind(Bindings.or(addStudentFamilyMemberNameField4.disabledProperty(), addStudentFamilyMemberNameField4.textProperty().isEmpty()));
+        addStudentFamilyMemberOccupationalTelNoField4.disableProperty().bind(Bindings.or(addStudentFamilyMemberNameField4.disabledProperty(), addStudentFamilyMemberNameField4.textProperty().isEmpty()));        
+
+        addStudentFamilyMemberNameField5.disableProperty().bind(Bindings.or(addStudentFamilyMemberNameField4.disabledProperty(), addStudentFamilyMemberNameField4.textProperty().isEmpty()));
+        addStudentFamilyMemberAgeField5.disableProperty().bind(Bindings.or(addStudentFamilyMemberNameField5.disabledProperty(), addStudentFamilyMemberNameField5.textProperty().isEmpty()));
+        addStudentFamilyMemberRelationshipField5.disableProperty().bind(Bindings.or(addStudentFamilyMemberNameField5.disabledProperty(), addStudentFamilyMemberNameField5.textProperty().isEmpty()));
+        addStudentFamilyMemberOccupationField5.disableProperty().bind(Bindings.or(addStudentFamilyMemberNameField5.disabledProperty(), addStudentFamilyMemberNameField5.textProperty().isEmpty()));
+        addStudentFamilyMemberOccupationalAddressField5.disableProperty().bind(Bindings.or(addStudentFamilyMemberNameField5.disabledProperty(), addStudentFamilyMemberNameField5.textProperty().isEmpty()));
+        addStudentFamilyMemberOccupationalTelNoField5.disableProperty().bind(Bindings.or(addStudentFamilyMemberNameField5.disabledProperty(), addStudentFamilyMemberNameField5.textProperty().isEmpty()));        
+
+        addStudentFamilyMemberNameField6.disableProperty().bind(Bindings.or(addStudentFamilyMemberNameField5.disabledProperty(), addStudentFamilyMemberNameField5.textProperty().isEmpty()));
+        addStudentFamilyMemberAgeField6.disableProperty().bind(Bindings.or(addStudentFamilyMemberNameField6.disabledProperty(), addStudentFamilyMemberNameField6.textProperty().isEmpty()));
+        addStudentFamilyMemberRelationshipField6.disableProperty().bind(Bindings.or(addStudentFamilyMemberNameField6.disabledProperty(), addStudentFamilyMemberNameField6.textProperty().isEmpty()));
+        addStudentFamilyMemberOccupationField6.disableProperty().bind(Bindings.or(addStudentFamilyMemberNameField6.disabledProperty(), addStudentFamilyMemberNameField6.textProperty().isEmpty()));
+        addStudentFamilyMemberOccupationalAddressField6.disableProperty().bind(Bindings.or(addStudentFamilyMemberNameField6.disabledProperty(), addStudentFamilyMemberNameField6.textProperty().isEmpty()));
+        addStudentFamilyMemberOccupationalTelNoField6.disableProperty().bind(Bindings.or(addStudentFamilyMemberNameField6.disabledProperty(), addStudentFamilyMemberNameField6.textProperty().isEmpty()));                
+    }
+    
+    private void setReligionData(){
+        System.out.println("AddController | setReligionData");
         ObservableList<Religion> list = FXCollections.observableArrayList(appContainer.uiControl.uiModel.fetchAllReligion());
         
         addStudentReligionComboBox.setItems(list);
@@ -365,7 +441,7 @@ public class AddController {
         System.out.println("AddController | saveStudentRecord");
         
         if(validateStudentForm()){
-            if(saveReligionRecord() && appContainer.uiControl.uiModel.saveStudentForm(student)){
+            if(saveReligionRecord() && appContainer.uiControl.uiModel.saveStudentForm(student) && saveFamilyInfo()){
                 System.out.println("AddController | saveStudentRecord | Value of Student ID: " + student.getStudentId());
                 savePhotoFile();
                 String alertStudentName = addStudentFirstNameField.getText() + (addStudentMiddleNameField.getText().isEmpty() ? "" : " " + addStudentMiddleNameField.getText()) + (addStudentLastNameField.getText().isEmpty() ? "" : " " + addStudentLastNameField.getText());
@@ -409,6 +485,33 @@ public class AddController {
         }
     }
 
+    private boolean saveFamilyInfo(){
+        if(familyInfo1.getName() != null){
+            if(!appContainer.uiControl.uiModel.saveAllFamilyInfo(familyInfo1)){ System.err.println("AddController | saveFamilyInfo | Error saving family info 1. Exiting."); return false; }
+            
+            if(familyInfo2.getName() != null){
+                if(!appContainer.uiControl.uiModel.saveAllFamilyInfo(familyInfo2)){ System.err.println("AddController | saveFamilyInfo | Error saving family info 2. Exiting."); return false; }
+                    
+                if(familyInfo3.getName() != null){
+                    if(!appContainer.uiControl.uiModel.saveAllFamilyInfo(familyInfo3)){ System.err.println("AddController | saveFamilyInfo | Error saving family info 3. Exiting."); return false; }
+                    
+                    if(familyInfo4.getName() != null){
+                        if(!appContainer.uiControl.uiModel.saveAllFamilyInfo(familyInfo4)){ System.err.println("AddController | saveFamilyInfo | Error saving family info 4. Exiting."); return false; }
+                        
+                        if(familyInfo5.getName() != null){
+                            if(!appContainer.uiControl.uiModel.saveAllFamilyInfo(familyInfo5)){ System.err.println("AddController | saveFamilyInfo | Error saving family info 5. Exiting."); return false; }
+                            
+                            if(familyInfo6.getName() != null){
+                                if(!appContainer.uiControl.uiModel.saveAllFamilyInfo(familyInfo6)){ System.err.println("AddController | saveFamilyInfo | Error saving family info 6. Exiting."); return false; }
+                            }
+                        }
+                    }
+                }
+            }
+        } else { System.err.println("AddController | saveFamilyInfo | No family info to save."); }
+        return true;
+    }
+    
     private boolean validateStudentForm(){
         System.out.println("AddController | validateStudentForm");
         
@@ -423,35 +526,220 @@ public class AddController {
         if(addStudentLastNameField.getText().isEmpty()){ System.out.println("AddController | validateStudentForm | LastName empty."); flagFieldsEmpty = true; }
         else{ student.setLastName(addStudentLastNameField.getText()); }
 
-        if(photoFileExtension.isEmpty()){ System.out.println("AddController | validateStudentForm | DOB empty."); flagFieldsEmpty = true; } // Validate for Date format
+        // Validate for Date format
+        if(photoFileExtension.isEmpty()){ System.out.println("AddController | validateStudentForm | DOB empty."); flagFieldsEmpty = true; }
         else{ student.setStudentPhotoId(photoFileExtension); }
         
         if(addStudentAddressField.getText().isEmpty()){ System.out.println("AddController | validateStudentForm | Address empty."); flagFieldsEmpty = true; }
         else{ student.setAddress(addStudentAddressField.getText()); }
         
-        if(addStudentEmailField.getText().isEmpty()){ System.out.println("AddController | validateStudentForm | E-Mail empty."); flagFieldsEmpty = true; } // Validate for email format
+        // Validate for email format
+        if(addStudentEmailField.getText().isEmpty()){ System.out.println("AddController | validateStudentForm | E-Mail empty."); flagFieldsEmpty = true; } 
         else{ 
             if(validateEmail(addStudentEmailField.getText())){ student.setEmailId(addStudentEmailField.getText()); }
-            else{ appContainer.uiControl.alert(UIControl.alertType.WARNING,""); return false; }
+            else{ appContainer.uiControl.alert(UIControl.alertType.WARNING,appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ALERT_MESSAGE_EMAIL_FORMAT_INCORRECT)); return false; }
         }
         
-        if(addStudentDOBDatePicker.getValue() == null){ System.out.println("AddController | validateStudentForm | DOB empty."); flagFieldsEmpty = true; } // Validate for Date format
+        // Validate for Date format
+        if(addStudentDOBDatePicker.getValue() == null){ System.out.println("AddController | validateStudentForm | DOB empty."); flagFieldsEmpty = true; } 
         else{ student.setDob(addStudentDOBDatePicker.getValue().toString()); }
         
-        if(addStudentPlaceOfBirthField.getText().isEmpty()){ System.out.println("AddController | validateStudentForm | Place of Birth empty."); flagFieldsEmpty = true; } // Validate for Date format
+        if(addStudentPlaceOfBirthField.getText().isEmpty()){ System.out.println("AddController | validateStudentForm | Place of Birth empty."); flagFieldsEmpty = true; }
         else{ student.setPlaceOfBirth(addStudentPlaceOfBirthField.getText()); }
         
-        if(religion.getReligionId() == null){ System.out.println("AddController | validateStudentForm | No religion selected from list. Trying to save from Other religion."); flagFieldsEmpty = true; } // Validate for Religion
+        // Validate for Religion
+        if(religion.getReligionId() == null){ System.out.println("AddController | validateStudentForm | No religion selected from list. Trying to save from Other religion."); flagFieldsEmpty = true; }
         else{ student.setReligionId(religion.getReligionId()); }
         
-//        student.setPlaceOfBirth(addStudentPlaceOfBirthField.getText());
-//        student.setEducationalBackground(addStudentEducationalBackgroundField.getText());
-//        student.setLanguages(addStudentLanguagesField.getText());
-//        student.setHobbies(addStudentHobbiesField.getText());
-//        
-//        student.setEmergencyContactPerson(addStudentEmergencyContactPersonField.getText());
-//        student.setEmergencyContactNumber(Integer.parseInt(addStudentEmergencyContactTelNoField.getText()));
-//        
+        if(addStudentEducationalBackgroundField.getText().isEmpty()){ System.out.println("AddController | validateStudentForm | Educational Background empty."); flagFieldsEmpty = true; }
+        else{ student.setEducationalBackground(addStudentEducationalBackgroundField.getText()); }
+
+        if(addStudentLanguagesField.getText().isEmpty()){ System.out.println("AddController | validateStudentForm | Languages empty."); flagFieldsEmpty = true; }
+        else{ student.setLanguages(addStudentLanguagesField.getText()); }
+        
+        if(addStudentHobbiesField.getText().isEmpty()){ System.out.println("AddController | validateStudentForm | Hobbies empty."); flagFieldsEmpty = true; }
+        else{ student.setHobbies(addStudentHobbiesField.getText()); }
+        
+        // Validate for Emergency Contacts
+        if(addStudentEmergencyContactPersonField.getText().isEmpty()){ System.out.println("AddController | validateStudentForm | Emergency Contact Person empty."); flagFieldsEmpty = true; }
+        else{ 
+            student.setEmergencyContactPerson(addStudentEmergencyContactPersonField.getText());
+            
+            if(addStudentEmergencyContactTelNoField.getText().isEmpty()){ System.out.println("AddController | validateStudentForm | Place of Birth empty."); flagFieldsEmpty = true; }
+            else{ 
+                if(appContainer.uiControl.isNumeric(addStudentEmergencyContactTelNoField.getText())){ student.setEmergencyContactNumber(addStudentEmergencyContactTelNoField.getText()); }
+                else{ appContainer.uiControl.alert(UIControl.alertType.WARNING,(addStudentEmergencyContactTelNo.getText() + " " + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ALERT_MESSAGE_NUMBER_FORMAT_INCORRECT))); return false; }
+            }
+        }
+        
+        // Validate for 6 Family Members
+        if(addStudentFamilyMemberNameField1.getText() != null && !addStudentFamilyMemberNameField1.getText().isEmpty()){
+            familyInfo1.setName(addStudentFamilyMemberNameField1.getText());
+            
+            if(addStudentFamilyMemberRelationshipField1.getText().isEmpty()){ System.out.println("AddController | validateStudentForm | Relationship 1 empty."); flagFieldsEmpty = true; }
+            else{ familyInfo1.setRelationship(addStudentFamilyMemberRelationshipField1.getText()); }
+            
+            if(addStudentFamilyMemberAgeField1.getText().isEmpty()){ System.out.println("AddController | validateStudentForm | Age 1 empty."); flagFieldsEmpty = true; }
+            else{ 
+                if(appContainer.uiControl.isNumeric(addStudentFamilyMemberAgeField1.getText())){ familyInfo1.setAge(appContainer.uiControl.convertStringToInteger(addStudentFamilyMemberAgeField1.getText())); }
+                else{ appContainer.uiControl.alert(UIControl.alertType.WARNING,(addStudentFamilyMemberAge1.getText() + " " + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ALERT_MESSAGE_NUMBER_FORMAT_INCORRECT))); return false; }
+            }
+            
+            if(addStudentFamilyMemberOccupationField1.getText().isEmpty()){ System.out.println("AddController | validateStudentForm | Occupation 1 empty."); flagFieldsEmpty = true; }
+            else{ familyInfo1.setOccupation(addStudentFamilyMemberOccupationField1.getText()); }
+            
+            if(addStudentFamilyMemberOccupationalAddressField1.getText().isEmpty()){ System.out.println("AddController | validateStudentForm | Occupational Address 1 empty."); flagFieldsEmpty = true; }
+            else{ familyInfo1.setOccupationalAddress(addStudentFamilyMemberOccupationalAddressField1.getText()); }
+            
+            if(addStudentFamilyMemberOccupationalTelNoField1.getText().isEmpty()){ System.out.println("AddController | validateStudentForm | Occupational Tel. No. 1 empty."); flagFieldsEmpty = true; }
+            else{
+                if(appContainer.uiControl.isNumeric(addStudentFamilyMemberOccupationalTelNoField1.getText())){ familyInfo1.setContactNumber(addStudentFamilyMemberOccupationalTelNoField1.getText()); }
+                else{ appContainer.uiControl.alert(UIControl.alertType.WARNING,(addStudentFamilyMemberOccupationalTelNo1.getText() + " " + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ALERT_MESSAGE_NUMBER_FORMAT_INCORRECT))); return false; }
+            }
+            
+            if(addStudentFamilyMemberNameField2.getText() != null && !addStudentFamilyMemberNameField2.getText().isEmpty()){
+                familyInfo2.setName(addStudentFamilyMemberNameField2.getText());
+                
+                if(addStudentFamilyMemberRelationshipField2.getText().isEmpty()){ System.out.println("AddController | validateStudentForm | Relationship 2 empty."); flagFieldsEmpty = true; }
+                else{ familyInfo2.setRelationship(addStudentFamilyMemberRelationshipField2.getText()); }
+                
+                if(addStudentFamilyMemberAgeField2.getText().isEmpty()){ System.out.println("AddController | validateStudentForm | Age 2 empty."); flagFieldsEmpty = true; }
+                else{
+                    if(appContainer.uiControl.isNumeric(addStudentFamilyMemberAgeField2.getText())){ familyInfo2.setAge(appContainer.uiControl.convertStringToInteger(addStudentFamilyMemberAgeField2.getText())); }
+                    else{ appContainer.uiControl.alert(UIControl.alertType.WARNING,(addStudentFamilyMemberAge2.getText() + " " + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ALERT_MESSAGE_NUMBER_FORMAT_INCORRECT))); return false; }
+                }
+                
+                if(addStudentFamilyMemberOccupationField2.getText().isEmpty()){ System.out.println("AddController | validateStudentForm | Occupation 2 empty."); flagFieldsEmpty = true; }
+                else{ familyInfo2.setOccupation(addStudentFamilyMemberOccupationField2.getText()); }
+                
+                if(addStudentFamilyMemberOccupationalAddressField2.getText().isEmpty()){ System.out.println("AddController | validateStudentForm | Occupational Address 2 empty."); flagFieldsEmpty = true; }
+                else{ familyInfo2.setOccupationalAddress(addStudentFamilyMemberOccupationalAddressField2.getText()); }
+                
+                if(addStudentFamilyMemberOccupationalTelNoField2.getText().isEmpty()){ System.out.println("AddController | validateStudentForm | Occupational Tel. No. 2 empty."); flagFieldsEmpty = true; }
+                else{
+                    if(appContainer.uiControl.isNumeric(addStudentFamilyMemberOccupationalTelNoField2.getText())){ familyInfo2.setContactNumber(addStudentFamilyMemberOccupationalTelNoField2.getText()); }
+                    else{ appContainer.uiControl.alert(UIControl.alertType.WARNING,(addStudentFamilyMemberOccupationalTelNo2.getText() + " " + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ALERT_MESSAGE_NUMBER_FORMAT_INCORRECT))); return false; }
+                }
+                
+                if(addStudentFamilyMemberNameField3.getText() != null && !addStudentFamilyMemberNameField3.getText().isEmpty()){
+                    familyInfo3.setName(addStudentFamilyMemberNameField3.getText());
+                    
+                    if(addStudentFamilyMemberRelationshipField3.getText().isEmpty()){ System.out.println("AddController | validateStudentForm | Relationship 3 empty."); flagFieldsEmpty = true; }
+                    else{ familyInfo3.setRelationship(addStudentFamilyMemberRelationshipField3.getText()); }
+                    
+                    if(addStudentFamilyMemberAgeField3.getText().isEmpty()){ System.out.println("AddController | validateStudentForm | Age 3 empty."); flagFieldsEmpty = true; }
+                    else{
+                        if(appContainer.uiControl.isNumeric(addStudentFamilyMemberAgeField3.getText())){ familyInfo3.setAge(appContainer.uiControl.convertStringToInteger(addStudentFamilyMemberAgeField3.getText())); }
+                        else{ appContainer.uiControl.alert(UIControl.alertType.WARNING,(addStudentFamilyMemberAge3.getText() + " " + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ALERT_MESSAGE_NUMBER_FORMAT_INCORRECT))); return false; }
+                    }
+                    
+                    if(addStudentFamilyMemberOccupationField3.getText().isEmpty()){ System.out.println("AddController | validateStudentForm | Occupation 3 empty."); flagFieldsEmpty = true; }
+                    else{ familyInfo3.setOccupation(addStudentFamilyMemberOccupationField3.getText()); }
+                    
+                    if(addStudentFamilyMemberOccupationalAddressField3.getText().isEmpty()){ System.out.println("AddController | validateStudentForm | Occupational Address 3 empty."); flagFieldsEmpty = true; }
+                    else{ familyInfo3.setOccupationalAddress(addStudentFamilyMemberOccupationalAddressField3.getText()); }
+                    
+                    if(addStudentFamilyMemberOccupationalTelNoField3.getText().isEmpty()){ System.out.println("AddController | validateStudentForm | Occupational Tel. No. 3 empty."); flagFieldsEmpty = true; }
+                    else{
+                        if(appContainer.uiControl.isNumeric(addStudentFamilyMemberOccupationalTelNoField3.getText())){ familyInfo3.setContactNumber(addStudentFamilyMemberOccupationalTelNoField3.getText()); }
+                        else{ appContainer.uiControl.alert(UIControl.alertType.WARNING,(addStudentFamilyMemberOccupationalTelNo3.getText() + " " + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ALERT_MESSAGE_NUMBER_FORMAT_INCORRECT))); return false; }
+                    }
+                    
+                    if(addStudentFamilyMemberNameField4.getText() != null && !addStudentFamilyMemberNameField4.getText().isEmpty()){
+                        familyInfo4.setName(addStudentFamilyMemberNameField4.getText());
+                        
+                        if(addStudentFamilyMemberRelationshipField4.getText().isEmpty()){ System.out.println("AddController | validateStudentForm | Relationship 4 empty."); flagFieldsEmpty = true; }
+                        else{ familyInfo4.setRelationship(addStudentFamilyMemberRelationshipField4.getText()); }
+                        
+                        if(addStudentFamilyMemberAgeField4.getText().isEmpty()){ System.out.println("AddController | validateStudentForm | Age 4 empty."); flagFieldsEmpty = true; }
+                        else{
+                            if(appContainer.uiControl.isNumeric(addStudentFamilyMemberAgeField4.getText())){ familyInfo4.setAge(appContainer.uiControl.convertStringToInteger(addStudentFamilyMemberAgeField4.getText())); }
+                            else{ appContainer.uiControl.alert(UIControl.alertType.WARNING,(addStudentFamilyMemberAge4.getText() + " " + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ALERT_MESSAGE_NUMBER_FORMAT_INCORRECT))); return false; }
+                        }
+                        
+                        if(addStudentFamilyMemberOccupationField4.getText().isEmpty()){ System.out.println("AddController | validateStudentForm | Occupation 4 empty."); flagFieldsEmpty = true; }
+                        else{ familyInfo4.setOccupation(addStudentFamilyMemberOccupationField4.getText()); }
+                        
+                        if(addStudentFamilyMemberOccupationalAddressField4.getText().isEmpty()){ System.out.println("AddController | validateStudentForm | Occupational Address 4 empty."); flagFieldsEmpty = true; }
+                        else{ familyInfo4.setOccupationalAddress(addStudentFamilyMemberOccupationalAddressField4.getText()); }
+                        
+                        if(addStudentFamilyMemberOccupationalTelNoField4.getText().isEmpty()){ System.out.println("AddController | validateStudentForm | Occupational Tel. No. 4 empty."); flagFieldsEmpty = true; }
+                        else{
+                            if(appContainer.uiControl.isNumeric(addStudentFamilyMemberOccupationalTelNoField4.getText())){ familyInfo4.setContactNumber(addStudentFamilyMemberOccupationalTelNoField4.getText()); }
+                            else{ appContainer.uiControl.alert(UIControl.alertType.WARNING,(addStudentFamilyMemberOccupationalTelNo4.getText() + " " + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ALERT_MESSAGE_NUMBER_FORMAT_INCORRECT))); return false; }
+                        }
+                        
+                        if(addStudentFamilyMemberNameField5.getText() != null && !addStudentFamilyMemberNameField5.getText().isEmpty()){
+                            familyInfo5.setName(addStudentFamilyMemberNameField5.getText());
+                            
+                            if(addStudentFamilyMemberRelationshipField5.getText().isEmpty()){ System.out.println("AddController | validateStudentForm | Relationship 5 empty."); flagFieldsEmpty = true; }
+                            else{ familyInfo5.setRelationship(addStudentFamilyMemberRelationshipField5.getText()); }
+                            
+                            if(addStudentFamilyMemberAgeField5.getText().isEmpty()){ System.out.println("AddController | validateStudentForm | Age 5 empty."); flagFieldsEmpty = true; }
+                            else{
+                                if(appContainer.uiControl.isNumeric(addStudentFamilyMemberAgeField5.getText())){ familyInfo5.setAge(appContainer.uiControl.convertStringToInteger(addStudentFamilyMemberAgeField5.getText())); }
+                                else{ appContainer.uiControl.alert(UIControl.alertType.WARNING,(addStudentFamilyMemberAge5.getText() + " " + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ALERT_MESSAGE_NUMBER_FORMAT_INCORRECT))); return false; }
+                            }
+                            
+                            if(addStudentFamilyMemberOccupationField5.getText().isEmpty()){ System.out.println("AddController | validateStudentForm | Occupation 5 empty."); flagFieldsEmpty = true; }
+                            else{ familyInfo5.setOccupation(addStudentFamilyMemberOccupationField5.getText()); }
+                            
+                            if(addStudentFamilyMemberOccupationalAddressField5.getText().isEmpty()){ System.out.println("AddController | validateStudentForm | Occupational Address 5 empty."); flagFieldsEmpty = true; }
+                            else{ familyInfo5.setOccupationalAddress(addStudentFamilyMemberOccupationalAddressField5.getText()); }
+                            
+                            if(addStudentFamilyMemberOccupationalTelNoField5.getText().isEmpty()){ System.out.println("AddController | validateStudentForm | Occupational Tel. No. 5 empty."); flagFieldsEmpty = true; }
+                            else{
+                                if(appContainer.uiControl.isNumeric(addStudentFamilyMemberOccupationalTelNoField5.getText())){ familyInfo5.setContactNumber(addStudentFamilyMemberOccupationalTelNoField5.getText()); }
+                                else{ appContainer.uiControl.alert(UIControl.alertType.WARNING,(addStudentFamilyMemberOccupationalTelNo5.getText() + " " + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ALERT_MESSAGE_NUMBER_FORMAT_INCORRECT))); return false; }
+                            }
+                            
+                            if(addStudentFamilyMemberNameField6.getText() != null && !addStudentFamilyMemberNameField6.getText().isEmpty()){
+                                familyInfo6.setName(addStudentFamilyMemberNameField6.getText());
+                                
+                                if(addStudentFamilyMemberRelationshipField6.getText().isEmpty()){ System.out.println("AddController | validateStudentForm | Relationship 6 empty."); flagFieldsEmpty = true; }
+                                else{ familyInfo6.setRelationship(addStudentFamilyMemberRelationshipField6.getText()); }
+                                
+                                if(addStudentFamilyMemberAgeField6.getText().isEmpty()){ System.out.println("AddController | validateStudentForm | Age 6 empty."); flagFieldsEmpty = true; }
+                                else{
+                                    if(appContainer.uiControl.isNumeric(addStudentFamilyMemberAgeField6.getText())){ familyInfo6.setAge(appContainer.uiControl.convertStringToInteger(addStudentFamilyMemberAgeField6.getText())); }
+                                    else{ appContainer.uiControl.alert(UIControl.alertType.WARNING,(addStudentFamilyMemberAge6.getText() + " " + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ALERT_MESSAGE_NUMBER_FORMAT_INCORRECT))); return false; }
+                                }
+                                
+                                if(addStudentFamilyMemberOccupationField6.getText().isEmpty()){ System.out.println("AddController | validateStudentForm | Occupation 6 empty."); flagFieldsEmpty = true; }
+                                else{ familyInfo6.setOccupation(addStudentFamilyMemberOccupationField6.getText()); }
+                                
+                                if(addStudentFamilyMemberOccupationalAddressField6.getText().isEmpty()){ System.out.println("AddController | validateStudentForm | Occupational Address 6 empty."); flagFieldsEmpty = true; }
+                                else{ familyInfo6.setOccupationalAddress(addStudentFamilyMemberOccupationalAddressField6.getText()); }
+                                
+                                if(addStudentFamilyMemberOccupationalTelNoField6.getText().isEmpty()){ System.out.println("AddController | validateStudentForm | Occupational Tel. No. 6 empty."); flagFieldsEmpty = true; }
+                                else{
+                                    if(appContainer.uiControl.isNumeric(addStudentFamilyMemberOccupationalTelNoField6.getText())){ familyInfo6.setContactNumber(addStudentFamilyMemberOccupationalTelNoField6.getText()); }
+                                    else{ appContainer.uiControl.alert(UIControl.alertType.WARNING,(addStudentFamilyMemberOccupationalTelNo6.getText() + " " + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ALERT_MESSAGE_NUMBER_FORMAT_INCORRECT))); return false; }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } else { flagFieldsEmpty = true; }
+        
+        if(addStudentReferenceNoField.getText().isEmpty()){ System.out.println("AddController | validateStudentForm | Reference No. field empty."); flagFieldsEmpty = true; }
+        else{
+            if(validateReferenceNo(addStudentReferenceNoField.getText())){ student.setReferenceNumber(addStudentReferenceNoField.getText()); }
+            else{ appContainer.uiControl.alert(UIControl.alertType.WARNING,(addStudentReferenceNo.getText() + " " + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ALERT_MESSAGE_NUMBER_FORMAT_INCORRECT))); return false; }
+        }
+        
+        if(addStudentEnrollmentNoField.getText().isEmpty()){ System.out.println("AddController | validateStudentForm | Enrollment No. field empty."); flagFieldsEmpty = true; }
+        else{
+            if(validateEnrollmentNo(addStudentEnrollmentNoField.getText())){ student.setEnrollmentNumber(addStudentEnrollmentNoField.getText()); }
+            else{ appContainer.uiControl.alert(UIControl.alertType.WARNING,(addStudentEnrollmentNo.getText() + " " + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ALERT_MESSAGE_NUMBER_FORMAT_INCORRECT))); return false; }
+        }
+        
+        if(addStudentPlaceField.getText().isEmpty()){ System.out.println("AddController | validateStudentForm | Place empty."); appContainer.uiControl.alert(UIControl.alertType.WARNING_FIELD_IS_EMPTY,appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_PLACE)); return false; }
+        else{ student.setPlace(addStudentPlaceField.getText()); }
+        
+        if(addStudentDateDatePicker.getValue() == null){ System.err.println("AddController | validateStudentForm | Student form date is empty."); appContainer.uiControl.alert(UIControl.alertType.WARNING_FIELD_IS_EMPTY, (appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_DATE))); return false; }
+        else{ student.setDate(addStudentDateDatePicker.getValue().toString()); }
 
         if(flagFieldsEmpty){ 
             if(appContainer.uiControl.alert(UIControl.alertType.CONFIRMATION_FIELD_IS_EMPTY,addStudentFirstName.getText())){ return true; }
@@ -465,6 +753,26 @@ public class AddController {
         Pattern p = Pattern.compile(emailPattern);
         
         Matcher m = p.matcher(value);
+        if(m.find()){ return true; }
+        return false;
+    }
+    
+    private boolean validateReferenceNo(String value){
+        System.out.println("AddController | validateReferenceNo");
+        String referenceNoPattern = "(^\\D\\d{10}$)";
+        Pattern p = Pattern.compile(referenceNoPattern);
+        Matcher m = p.matcher(value);
+        
+        if(m.find()){ return true; }
+        return false;
+    }
+    
+    private boolean validateEnrollmentNo(String value){
+        System.out.println("AddController | validateEnrollmentNo | value: " + value);
+        String enrollmentNoPattern = "(^\\d{12}$)";
+        Pattern p = Pattern.compile(enrollmentNoPattern);
+        Matcher m = p.matcher(value);
+        
         if(m.find()){ return true; }
         return false;
     }
@@ -545,6 +853,7 @@ public class AddController {
         addStudentFamilyMemberOccupationalTelNo6.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_OCCUPATIONAL_TEL_NO) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END));
         
         addStudentOfficeUseOnly.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_OFFICE_USE_ONLY));
+        addStudentReferenceNo.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_REFERENCE_NUMBER) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END));
         addStudentEnrollmentNo.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_ENROLLMENT_NUMBER) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END));
         addStudentPlace.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_PLACE) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END));
         addStudentDate.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_DATE) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END));

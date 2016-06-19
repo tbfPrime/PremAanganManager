@@ -24,7 +24,7 @@ public class UIControl {
     public StageContainer stageContainer;
     public Settings settings;
     
-    public enum alertType{ INFO, WARNING, WARNING_FIELD_IS_EMPTY, ERROR, ERROR_SAVE, CONFIRMATION, CONFIRMATION_FIELD_IS_EMPTY }
+    public enum alertType{ INFO, WARNING, WARNING_CUSTOM_MSG, WARNING_FIELD_IS_EMPTY, ERROR, ERROR_SAVE, CONFIRMATION, CONFIRMATION_FIELD_IS_EMPTY }
     
     // Constructor
     public UIControl(PremAanganManager o_MainController){
@@ -138,5 +138,35 @@ public class UIControl {
                 new FileChooser.ExtensionFilter("JPG","*.jpg"),
                 new FileChooser.ExtensionFilter("PNG","*.png")
         );
+    }
+    
+    public boolean isNumeric(String value){
+        try{
+            System.out.println("UIControl | isNumeric | String is a proper Number: " + Double.parseDouble(value));
+            return true;
+        } catch(NumberFormatException e){
+            System.err.println("UIControl | isNumeric | Error: " + e);
+            return false;
+        }
+    }
+    
+    public Integer convertStringToInteger(String value){
+        try{
+            System.out.println("UIControl | convertStringToInteger | value: " + Integer.parseInt(value));
+            return Integer.parseInt(value);
+        } catch(NumberFormatException e){
+            System.err.println("UIControl | convertStringToInteger | Error: " + e);
+            return null;
+        }        
+    }
+    
+    public long convertStringToLong(String value){
+        try{
+            System.out.println("UIControl | convertStringToLong | value: " + Long.parseLong(value));
+            return Long.parseLong(value);
+        } catch(NumberFormatException e){
+            System.err.println("UIControl | convertStringToLong | Error: " + e);
+            return -1;
+        }        
     }
 }

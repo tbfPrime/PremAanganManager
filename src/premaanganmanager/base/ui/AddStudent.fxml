@@ -138,7 +138,7 @@
                                           <Text fx:id="addStudentDOB" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
                                        </children>
                                     </HBox>
-                                    <DatePicker fx:id="addStudentDOBDatePicker" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" />
+                                    <DatePicker fx:id="addStudentDOBDatePicker" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" onAction="#addStudentDOBDatePickerAction"/>
                                  </children>
                                  <padding>
                                     <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
@@ -790,6 +790,19 @@
                   </HBox>
                   <VBox layoutX="10.0" layoutY="50.0" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0">
                      <children>
+                        <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+                           <children>
+                              <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Text fx:id="addStudentReferenceNo" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                 </children>
+                              </HBox>
+                              <TextField fx:id="addStudentReferenceNoField" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                           </children>
+                           <padding>
+                              <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                           </padding>
+                        </HBox>
                         <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
                            <children>
                               <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">

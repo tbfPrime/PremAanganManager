@@ -9,10 +9,12 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -35,6 +37,10 @@ public class FamilyInfo implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(generator="familyInfoGenerator")
+    @TableGenerator(name="familyInfoGenerator", table="sqlite_sequence",
+    pkColumnName="name", valueColumnName="seq",
+    pkColumnValue="family_info", allocationSize=1)
     @Basic(optional = false)
     @Column(name = "family_info_id")
     private Integer familyInfoId;
@@ -50,7 +56,7 @@ public class FamilyInfo implements Serializable {
     @Column(name = "occupational_address")
     private String occupationalAddress;
     @Column(name = "contact_number")
-    private Integer contactNumber;
+    private String contactNumber;
 
     public FamilyInfo() {
     }
@@ -112,11 +118,11 @@ public class FamilyInfo implements Serializable {
         this.occupationalAddress = occupationalAddress;
     }
 
-    public Integer getContactNumber() {
+    public String getContactNumber() {
         return contactNumber;
     }
 
-    public void setContactNumber(Integer contactNumber) {
+    public void setContactNumber(String contactNumber) {
         this.contactNumber = contactNumber;
     }
 

@@ -78,7 +78,6 @@ public class UIModel {
             em.persist(student);
             em.flush();
             em.refresh(student);
-//            em.
             
             System.out.println("Value of Student ID: " + student.getStudentId());
             
@@ -101,7 +100,8 @@ public class UIModel {
             return true;
         } catch(Exception e){
             System.err.println("UIModel | saveStudentForm | Error saving student data. Message: " + e);
-            em.flush();
+            closeDBObjects();
+            createDBObjects();
             return false;
         }
     }
@@ -118,7 +118,24 @@ public class UIModel {
             return true;
         } catch(Exception e){
             System.err.println("UIModel | saveReligion | Error saving religion data. Message: " + e);
-            em.flush();
+            closeDBObjects();
+            createDBObjects();
+            return false;
+        }
+    }
+    
+    public boolean saveAllFamilyInfo(FamilyInfo familyInfo){
+        try{
+            em.getTransaction().begin();
+            em.persist(familyInfo);
+            em.getTransaction().commit();
+            
+            System.out.println("UIModel | saveAllFamilyInfo | Entry for " + familyInfo.getName() + " saved.");
+            return true;
+        } catch (Exception e){
+            System.err.println("UIModel | saveAllFamilyInfo | Error creating Family info. Message" + e);
+            closeDBObjects();
+            createDBObjects();
             return false;
         }
     }

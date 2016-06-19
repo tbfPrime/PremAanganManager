@@ -17,6 +17,8 @@ import premaanganmanager.base.controller.ui.UIControl;
 public class Settings {
     public Labels labels;
     
+    public int dobMinYear, dobMinMonth, dobMinDate, dobMaxYear, dobMaxMonth, dobMaxDate;
+    
     public double appWidth;
     public double appHeight;
     
@@ -60,6 +62,15 @@ public class Settings {
         labels = new Labels();
         setDefaultValuesToAllLabels();
         
+        dobMinYear = 2012;
+        dobMaxYear = 2014;
+        
+        dobMinMonth = 01;
+        dobMaxMonth = 12;
+        
+        dobMinDate = 01;
+        dobMaxDate = 31;
+        
         appWidth = Screen.getPrimary().getVisualBounds().getWidth() * 0.6;
         appHeight = Screen.getPrimary().getVisualBounds().getHeight() * 0.7;
         
@@ -89,6 +100,14 @@ public class Settings {
                 
         uiControl.closeDBObjects();
     }
+    
+    public int getDOBMinYear(){ return dobMinYear; }
+    public int getDOBMinMonth(){ return dobMinMonth; }
+    public int getDOBMinDate(){ return dobMinDate; }
+
+    public int getDOBMaxYear(){ return dobMaxYear; }
+    public int getDOBMaxMonth(){ return dobMaxMonth; }
+    public int getDOBMaxDate(){ return dobMaxDate; }
     
     public double getAppWidth(){ return appWidth; }
     
