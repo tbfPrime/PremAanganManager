@@ -14,9 +14,9 @@ import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ContentDisplay;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
@@ -41,7 +41,7 @@ public class AppContainer {
     
     // Menu
     @FXML
-    private Button menuHomeButton, menuBrowseButton, menuAddButton, menuSearchButton, menuSettingsButton;
+    private ToggleButton menuHomeButton, menuBrowseButton, menuAddButton, menuSearchButton, menuSettingsButton;
     
     // Header
     @FXML
@@ -158,6 +158,7 @@ public class AppContainer {
         setLogOutComboBox();
         setAppContainerGraphics();
         setAppContainerLabels();
+        setAppContainerStyling();
     }
     
     private void setAppContainerGraphics(){
@@ -209,6 +210,14 @@ public class AppContainer {
             menuSettingsButton.setContentDisplay(ContentDisplay.TOP);
             menuSettingsButton.setGraphicTextGap(graphicTextGap);
         }
+    }
+    
+    private void setAppContainerStyling(){
+        uiControl.setToggleButtonStyle(menuHomeButton);
+        uiControl.setToggleButtonStyle(menuAddButton);
+        uiControl.setToggleButtonStyle(menuBrowseButton);
+        uiControl.setToggleButtonStyle(menuSearchButton);
+        uiControl.setToggleButtonStyle(menuSettingsButton);
     }
     
     private void setLogOutComboBox(){

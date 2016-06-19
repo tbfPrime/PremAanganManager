@@ -8,8 +8,10 @@ package premaanganmanager.base.controller.ui;
 import java.util.Optional;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DialogPane;
+import javafx.scene.control.ToggleButton;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import premaanganmanager.base.ui.*;
@@ -168,5 +170,35 @@ public class UIControl {
             System.err.println("UIControl | convertStringToLong | Error: " + e);
             return -1;
         }        
+    }
+    
+    public void setButtonStyle(Button button){
+        button.getStylesheets().add(SceneContainer.class.getResource("Common.css").toExternalForm());
+        
+        button.setId("ButtonNormal");
+        
+        button.setOnMousePressed((event) -> { button.setId("ButtonPressed"); });
+        button.setOnMouseEntered((event) -> { button.setId("ButtonHover"); });
+        button.setOnMouseExited((event) -> { button.setId("ButtonNormal"); });
+        button.setOnMouseReleased((event) -> { button.setId("ButtonNormal"); });
+        button.setOnMouseClicked((event) -> { button.setId("ButtonNormal"); });
+    }
+    
+    public void setToggleButtonStyle(ToggleButton button){
+        button.getStylesheets().add(SceneContainer.class.getResource("Common.css").toExternalForm());
+        
+        button.setId("ButtonNormal");
+        
+        button.setOnMousePressed((event) -> { button.setId("ButtonPressed"); });
+        button.setOnMouseReleased((event) -> { button.setId("ButtonSelected"); });
+        button.setOnMouseClicked((event) -> { button.setId("ButtonSelected"); });
+        button.setOnMouseEntered((event) -> { 
+            if(button.isSelected()){ button.setId("ButtonSelectedHover"); }
+            else{ button.setId("ButtonHover"); }
+        });
+        button.setOnMouseExited((event) -> { 
+            if(button.isSelected()){ button.setId("ButtonSelected"); }
+            else{ button.setId("ButtonNormal"); }
+        });
     }
 }

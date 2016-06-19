@@ -1,0 +1,54 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 19 Jun, 2016, 3:38:25 PM
+    Author     : Trevor Fernandes
+*/
+
+#ButtonNormal{
+    -fx-background-color: #2aa27f;
+    /*-fx-background-radius: 2;*/
+    -fx-text-fill: #ffffff;
+    -fx-border-color: #993300;
+    -fx-border-width: 2;
+    -fx-border-radius: 2;
+}
+
+#ButtonPressed{
+    -fx-background-color: #b7fcf6;
+    /*-fx-background-radius: 2;*/
+    -fx-text-fill: #ffffff;
+    -fx-border-color: #993300;
+    -fx-border-width: 2;
+    -fx-border-radius: 2;
+}
+
+#ButtonSelected{
+    -fx-background-color: #ff6666;
+    /*-fx-background-radius: 2;*/
+    -fx-text-fill: #ffffff;
+    -fx-border-color: #993300;
+    -fx-border-width: 2;
+    -fx-border-radius: 2;
+}
+
+#ButtonHover{
+    -fx-background-color: #62d4b3;
+    /*-fx-background-radius: 2;*/
+    -fx-text-fill: #ffffff;
+    -fx-border-color: #993300;
+    -fx-border-width: 2;
+    -fx-border-radius: 2;
+}
+
+#ButtonSelectedHover{
+    -fx-background-color: #ff9896;
+    /*-fx-background-radius: 2;*/
+    -fx-text-fill: #ffffff;
+    -fx-border-color: #993300;
+    -fx-border-width: 2;
+    -fx-border-radius: 2;
+}

@@ -19,6 +19,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
 import premaanganmanager.base.controller.ui.UIControl;
@@ -45,7 +46,10 @@ public class Login{
     private Text loginTitleText, loginSubtitle1Text, loginSubtitle2Text; //, passwordLabelText;
     
     @FXML
-    private Button guestButton, adminButton, admin1Button, admin2Button, admin3Button, backButton, loginButton;
+    private Button guestButton, adminButton, backButton, loginButton;
+    
+    @FXML
+    private ToggleButton admin1Button, admin2Button, admin3Button;
     
     @FXML
     private PasswordField passwordField;
@@ -115,9 +119,8 @@ public class Login{
             loader.setController(this);
             Parent root = loader.load();
             loginScene = new Scene(root, uiControl.settings.getAppWidth(), uiControl.settings.getAppHeight());
-            setLoginGuestAdminLabels();
+            setLoginGuestAdminData();
             return loginScene;
-//            loginScene.getStylesheets().add(Login.class.getResource("Login.css").toExternalForm());
         } catch (IOException e) {
             System.out.println("Error | Login | createLoginScene | " + e);
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, e);
@@ -134,7 +137,6 @@ public class Login{
             loginScene = new Scene(root, uiControl.settings.getAppWidth(), uiControl.settings.getAppHeight());
             setLoginAdminOnlyData();
             return loginScene;
-//            loginScene.getStylesheets().add(Login.class.getResource("Login.css").toExternalForm());
         } catch (IOException e) {
             System.out.println("Error | Login | createLoginScene | " + e);
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, e);
@@ -142,18 +144,30 @@ public class Login{
         }
     }
     
-    // Private functions    
+    // Private functions  
+    private void setLoginGuestAdminData(){
+        setLoginGuestAdminLabels();
+        setLoginGuestAdminStyling();
+    }
+    
     private void setLoginAdminOnlyData(){
-        admin1Button.getStylesheets().add(getClass().getResource("Login.css").toExternalForm());
-        admin2Button.getStylesheets().add(getClass().getResource("Login.css").toExternalForm());
-        admin3Button.getStylesheets().add(getClass().getResource("Login.css").toExternalForm());
-        
-        admin1Button.setId("AdminNormal");
-        admin2Button.setId("AdminNormal");
-        admin3Button.setId("AdminNormal");
-        
         setLoginAdminOnlyLabels();
-//        admin1Button.getStyleClass().add("adminSelected");
+        setLoginAdminOnlyStyling();
+    }
+    
+    private void setLoginGuestAdminStyling(){
+        System.out.println("Login | setLoginGuestAdminStyling");
+        
+        uiControl.setButtonStyle(guestButton);
+        uiControl.setButtonStyle(adminButton);
+
+//        admin1Button.getStylesheets().add(getClass().getResource("Login.css").toExternalForm());
+//        admin2Button.getStylesheets().add(getClass().getResource("Login.css").toExternalForm());
+//        admin3Button.getStylesheets().add(getClass().getResource("Login.css").toExternalForm());
+//        
+//        admin1Button.setId("AdminNormal");
+//        admin2Button.setId("AdminNormal");
+//        admin3Button.setId("AdminNormal");
     }
     
     private void setLoginGuestAdminLabels(){
@@ -161,6 +175,17 @@ public class Login{
         loginSubtitle1Text.setText(uiControl.settings.labels.getLabel(Labels.labelTag.LOGIN_SUBTITLE1));
         guestButton.setText(uiControl.settings.labels.getLabel(Labels.labelTag.GUEST));
         adminButton.setText(uiControl.settings.labels.getLabel(Labels.labelTag.ADMIN));
+    }
+    
+    
+    private void setLoginAdminOnlyStyling(){
+        System.out.println("Login | setLoginAdminOnlyStyling");
+        
+        uiControl.setToggleButtonStyle(admin1Button);
+        uiControl.setToggleButtonStyle(admin2Button);
+        uiControl.setToggleButtonStyle(admin3Button);
+        uiControl.setButtonStyle(backButton);
+        uiControl.setButtonStyle(loginButton);
     }
     
     private void setLoginAdminOnlyLabels(){
@@ -183,23 +208,30 @@ public class Login{
     }
     
     private void selectAdminButton(adminTag tag){
-        admin1Button.setId("AdminNormal");
-        admin2Button.setId("AdminNormal");
-        admin3Button.setId("AdminNormal");
+        admin1Button.setSelected(false);
+        admin2Button.setSelected(false);
+        admin3Button.setSelected(false);
+        
+        admin1Button.setId("ButtonNormal");
+        admin2Button.setId("ButtonNormal");
+        admin3Button.setId("ButtonNormal");
         
         switch(tag){
             case ADMIN1: 
-                admin1Button.setId("AdminSelected"); 
+                admin1Button.setSelected(true);
+                admin1Button.setId("ButtonSelected");
                 username = admin1Username; 
                 passwordField.setPromptText(uiControl.settings.labels.getLabel(Labels.labelTag.PASSWORD_PROMPT_FOR) + uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END) + " " + admin1Button.getText());
                 break;
             case ADMIN2: 
-                admin2Button.setId("AdminSelected"); 
+                admin2Button.setSelected(true);
+                admin2Button.setId("ButtonSelected");
                 username = admin2Username; 
                 passwordField.setPromptText(uiControl.settings.labels.getLabel(Labels.labelTag.PASSWORD_PROMPT_FOR) + uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END) + " " + admin2Button.getText());
                 break;
             case ADMIN3: 
-                admin3Button.setId("AdminSelected"); 
+                admin3Button.setSelected(true);
+                admin3Button.setId("ButtonSelected");
                 username = admin3Username; 
                 passwordField.setPromptText(uiControl.settings.labels.getLabel(Labels.labelTag.PASSWORD_PROMPT_FOR) + uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END) + " " + admin3Button.getText());
                 break;

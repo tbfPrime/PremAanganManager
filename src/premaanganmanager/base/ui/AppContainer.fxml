@@ -12,26 +12,26 @@
    <left>
       <VBox alignment="BOTTOM_LEFT" prefWidth="128.0" spacing="5.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="menuHomeButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#homeButtonAction" text="NA" VBox.vgrow="ALWAYS">
+            <ToggleButton fx:id="menuHomeButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#homeButtonAction" text="NA" VBox.vgrow="ALWAYS">
                <font>
                   <Font size="18.0" />
-               </font></Button>
-            <Button fx:id="menuAddButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addButtonAction" text="NA" VBox.vgrow="ALWAYS">
+               </font></ToggleButton>
+            <ToggleButton fx:id="menuAddButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addButtonAction" text="NA" VBox.vgrow="ALWAYS">
                <font>
                   <Font size="18.0" />
-               </font></Button>
-            <Button fx:id="menuBrowseButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#browseButtonAction" text="NA" VBox.vgrow="ALWAYS">
+               </font></ToggleButton>
+            <ToggleButton fx:id="menuBrowseButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#browseButtonAction" text="NA" VBox.vgrow="ALWAYS">
                <font>
                   <Font size="18.0" />
-               </font></Button>
-            <Button fx:id="menuSearchButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#searchButtonAction" text="NA" textAlignment="CENTER" VBox.vgrow="ALWAYS">
+               </font></ToggleButton>
+            <ToggleButton fx:id="menuSearchButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#searchButtonAction" text="NA" textAlignment="CENTER" VBox.vgrow="ALWAYS">
                <font>
                   <Font size="18.0" />
-               </font></Button>
-            <Button fx:id="menuSettingsButton" layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#settingsButtonAction" text="NA" VBox.vgrow="ALWAYS">
+               </font></ToggleButton>
+            <ToggleButton fx:id="menuSettingsButton" layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#settingsButtonAction" text="NA" VBox.vgrow="ALWAYS">
                <font>
                   <Font size="18.0" />
-               </font></Button>
+               </font></ToggleButton>
          </children>
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

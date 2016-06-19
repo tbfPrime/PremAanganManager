@@ -40,29 +40,29 @@
                      <children>
                         <HBox alignment="CENTER" layoutX="310.0" layoutY="10.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Button fx:id="admin1Button" mnemonicParsing="false" onAction="#admin1ButtonAction" text="NA">
+                              <ToggleButton fx:id="admin1Button" mnemonicParsing="false" onAction="#admin1ButtonAction" text="NA">
                                  <font>
                                     <Font size="35.0" />
                                  </font>
-                              </Button>
+                              </ToggleButton>
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Button fx:id="admin2Button" mnemonicParsing="false" onAction="#admin2ButtonAction" text="NA">
+                              <ToggleButton fx:id="admin2Button" mnemonicParsing="false" onAction="#admin2ButtonAction" text="NA">
                                  <font>
                                     <Font size="35.0" />
                                  </font>
-                              </Button>
+                              </ToggleButton>
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Button fx:id="admin3Button" mnemonicParsing="false" onAction="#admin3ButtonAction" text="NA">
+                              <ToggleButton fx:id="admin3Button" mnemonicParsing="false" onAction="#admin3ButtonAction" text="NA">
                                  <font>
                                     <Font size="35.0" />
                                  </font>
-                              </Button>
+                              </ToggleButton>
                            </children>
                         </HBox>
                      </children>
