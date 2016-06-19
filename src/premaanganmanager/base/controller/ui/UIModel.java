@@ -124,16 +124,28 @@ public class UIModel {
         }
     }
     
-    public boolean saveAllFamilyInfo(FamilyInfo familyInfo){
+    public boolean saveStudentFamilyInfo(FamilyInfo familyInfo, Student student){
         try{
             em.getTransaction().begin();
             em.persist(familyInfo);
             em.getTransaction().commit();
             
-            System.out.println("UIModel | saveAllFamilyInfo | Entry for " + familyInfo.getName() + " saved.");
+            System.out.println("UIModel | saveStudentFamilyInfo | Entry for Family Member Name: " + familyInfo.getName() + " saved.");
+            
+            StudentFamilyInfo studentFamilyInfo = new StudentFamilyInfo();
+            
+            studentFamilyInfo.setFamilyInfoId(familyInfo.getFamilyInfoId());
+            studentFamilyInfo.setStudentId(student.getStudentId());
+            
+            em.getTransaction().begin();
+            em.persist(studentFamilyInfo);
+            em.getTransaction().commit();
+            
+            System.out.println("UIModel | saveStudentFamilyInfo | Entry for Student: " + student.getFirstName() + ", with Family Member Name: " + familyInfo.getName() + " saved.");
+            
             return true;
         } catch (Exception e){
-            System.err.println("UIModel | saveAllFamilyInfo | Error creating Family info. Message" + e);
+            System.err.println("UIModel | saveStudentFamilyInfo | Error creating Family info. Message" + e);
             closeDBObjects();
             createDBObjects();
             return false;

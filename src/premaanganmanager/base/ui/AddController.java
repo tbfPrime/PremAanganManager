@@ -487,22 +487,22 @@ public class AddController {
 
     private boolean saveFamilyInfo(){
         if(familyInfo1.getName() != null){
-            if(!appContainer.uiControl.uiModel.saveAllFamilyInfo(familyInfo1)){ System.err.println("AddController | saveFamilyInfo | Error saving family info 1. Exiting."); return false; }
+            if(!appContainer.uiControl.uiModel.saveStudentFamilyInfo(familyInfo1, student)){ System.err.println("AddController | saveFamilyInfo | Error saving family info 1. Exiting."); return false; }
             
             if(familyInfo2.getName() != null){
-                if(!appContainer.uiControl.uiModel.saveAllFamilyInfo(familyInfo2)){ System.err.println("AddController | saveFamilyInfo | Error saving family info 2. Exiting."); return false; }
+                if(!appContainer.uiControl.uiModel.saveStudentFamilyInfo(familyInfo2, student)){ System.err.println("AddController | saveFamilyInfo | Error saving family info 2. Exiting."); return false; }
                     
                 if(familyInfo3.getName() != null){
-                    if(!appContainer.uiControl.uiModel.saveAllFamilyInfo(familyInfo3)){ System.err.println("AddController | saveFamilyInfo | Error saving family info 3. Exiting."); return false; }
+                    if(!appContainer.uiControl.uiModel.saveStudentFamilyInfo(familyInfo3, student)){ System.err.println("AddController | saveFamilyInfo | Error saving family info 3. Exiting."); return false; }
                     
                     if(familyInfo4.getName() != null){
-                        if(!appContainer.uiControl.uiModel.saveAllFamilyInfo(familyInfo4)){ System.err.println("AddController | saveFamilyInfo | Error saving family info 4. Exiting."); return false; }
+                        if(!appContainer.uiControl.uiModel.saveStudentFamilyInfo(familyInfo4, student)){ System.err.println("AddController | saveFamilyInfo | Error saving family info 4. Exiting."); return false; }
                         
                         if(familyInfo5.getName() != null){
-                            if(!appContainer.uiControl.uiModel.saveAllFamilyInfo(familyInfo5)){ System.err.println("AddController | saveFamilyInfo | Error saving family info 5. Exiting."); return false; }
+                            if(!appContainer.uiControl.uiModel.saveStudentFamilyInfo(familyInfo5, student)){ System.err.println("AddController | saveFamilyInfo | Error saving family info 5. Exiting."); return false; }
                             
                             if(familyInfo6.getName() != null){
-                                if(!appContainer.uiControl.uiModel.saveAllFamilyInfo(familyInfo6)){ System.err.println("AddController | saveFamilyInfo | Error saving family info 6. Exiting."); return false; }
+                                if(!appContainer.uiControl.uiModel.saveStudentFamilyInfo(familyInfo6, student)){ System.err.println("AddController | saveFamilyInfo | Error saving family info 6. Exiting."); return false; }
                             }
                         }
                     }
