@@ -27,6 +27,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -205,6 +206,7 @@ public class AddController {
     // Private Functions
     private void setAddScreenMenuData(){
         setAddScreenMenuGraphics();
+        setAddSCreenMenuStyling();
         setAddScreenMenuLabels();
     }
     
@@ -284,6 +286,17 @@ public class AddController {
             addTimetableButton.setContentDisplay(ContentDisplay.TOP);
             addTimetableButton.setGraphicTextGap(graphicTextGap);
         }
+    }
+    
+    private void setAddSCreenMenuStyling(){
+        appContainer.uiControl.setButtonStyle(addStudentButton);
+        appContainer.uiControl.setButtonStyle(addTeacherButton);
+        appContainer.uiControl.setButtonStyle(addSubjectButton);
+        appContainer.uiControl.setButtonStyle(addAttendanceButton);
+        appContainer.uiControl.setButtonStyle(addCourseButton);
+        appContainer.uiControl.setButtonStyle(addBatchButton);
+        appContainer.uiControl.setButtonStyle(addClassButton);
+        appContainer.uiControl.setButtonStyle(addTimetableButton);
     }
     
     private void setAddScreenMenuLabels(){

@@ -227,22 +227,32 @@ public class AppContainer {
     }
     
     private void setHomeScreen(){
+        setSelection(menuHomeButton);
+        menuHomeButton.setSelected(true);
         root.setCenter(homeController.setHome());
     }
     
     private void setBrowseScreen(){
+        setSelection(menuBrowseButton);
+        menuBrowseButton.setSelected(true);
         root.setCenter(browseController.setBrowseScreenMenu());
     }
     
     private void setAddScreen(){
+        setSelection(menuAddButton);
+        menuAddButton.setSelected(true);
         root.setCenter(addController.setAddScreenMenu());
     }
     
     private void setSearchScreen(){
+        setSelection(menuSearchButton);
+        menuSearchButton.setSelected(true);
         root.setCenter(searchController.setSearch());
     }
     
     private void setSettingsScreen(){
+        setSelection(menuSettingsButton);
+        menuSettingsButton.setSelected(true);
         root.setCenter(settingsController.setSettings());
     }
     
@@ -256,6 +266,23 @@ public class AppContainer {
 
     private void setBrowseStudentRecordScreen(){
         root.setCenter(browseController.setBrowseStudentRecord());
+    }
+    
+    private void setSelection(ToggleButton button){
+        menuHomeButton.setSelected(false);
+        menuAddButton.setSelected(false);
+        menuBrowseButton.setSelected(false);
+        menuSearchButton.setSelected(false);
+        menuSettingsButton.setSelected(false);
+        
+        menuHomeButton.setId("ButtonNormal");
+        menuAddButton.setId("ButtonNormal");
+        menuBrowseButton.setId("ButtonNormal");
+        menuSearchButton.setId("ButtonNormal");
+        menuSettingsButton.setId("ButtonNormal");
+        
+        button.setSelected(true);
+        button.setId("ButtonSelected");
     }
     
     private void setAppContainerLabels(){

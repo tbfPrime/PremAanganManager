@@ -13,9 +13,6 @@ public class Labels {
     // public enum to tag lables from this file.
     public enum labelTag{
         // Common
-// Common
-// Common
-// Common
         APPLICATION_TITLE, BACK, SAVE,
         MENU_HOME, MENU_BROWSE, MENU_ADD, MENU_SEARCH, MENU_SETTINGS,
         HEADER_LOGOUT, HEADER_SWITCH_ADMIN,
@@ -60,7 +57,11 @@ public class Labels {
         ADD_STUDENT_FAMILY_DETAILS, ADD_STUDENT_EMERGENCY_CONTACT, ADD_STUDENT_PASSPORT_PHOTO,
         
         // Browse
-        BROWSE_STUDENT, BROWSE_TEACHER
+        BROWSE_STUDENT, BROWSE_TEACHER,
+        BROWSE_PERSONAL_DETAILS, BROWSE_COURSE_DETAILS, BROWSE_EMERGENCY_CONTACT_DETAILS, BROWSE_FAMILY_MEMBER_DETAILS,
+        
+        // Browse Student
+        BROWSE_STUDENT_COURSE_NAME, BROWSE_STUDENT_CLASS_NAME
     }
     
     // List of all  labels used in PAM
@@ -108,6 +109,10 @@ public class Labels {
     
     // Browse
     private String l_browseStudent, l_browseTeacher;
+    private String l_browsePersonalDetails, l_BrowseCourseDetails, l_BrowseEmergencyContactDetails, l_BrowseFamilyMemberDetails;
+    
+    // Browse Student
+    private String l_BrowseStudentCourseName, l_BrowseStudentClassName;
     
     
     // public functions.
@@ -221,6 +226,14 @@ public class Labels {
             
             case BROWSE_STUDENT: l_browseStudent = value; break;
             case BROWSE_TEACHER: l_browseTeacher = value; break;
+            
+            case BROWSE_PERSONAL_DETAILS: l_browsePersonalDetails = value; break;
+            case BROWSE_COURSE_DETAILS: l_BrowseCourseDetails = value; break;
+            case BROWSE_EMERGENCY_CONTACT_DETAILS: l_BrowseEmergencyContactDetails = value; break;
+            case BROWSE_FAMILY_MEMBER_DETAILS: l_BrowseFamilyMemberDetails = value; break;
+            
+            case BROWSE_STUDENT_COURSE_NAME: l_BrowseStudentCourseName = value; break;
+            case BROWSE_STUDENT_CLASS_NAME: l_BrowseStudentClassName = value; break;
         }
     }
     
@@ -334,6 +347,14 @@ public class Labels {
             
             case BROWSE_STUDENT: return l_browseStudent;
             case BROWSE_TEACHER: return l_browseTeacher;
+            
+            case BROWSE_PERSONAL_DETAILS: return l_browsePersonalDetails;
+            case BROWSE_COURSE_DETAILS: return l_BrowseCourseDetails;
+            case BROWSE_EMERGENCY_CONTACT_DETAILS: return l_BrowseEmergencyContactDetails;
+            case BROWSE_FAMILY_MEMBER_DETAILS: return l_BrowseFamilyMemberDetails;
+            
+            case BROWSE_STUDENT_COURSE_NAME: return  l_BrowseStudentCourseName;
+            case BROWSE_STUDENT_CLASS_NAME: return  l_BrowseStudentClassName;
         }
         return "NA";
     }

@@ -22,7 +22,7 @@
                            <children>
                               <TextFlow textAlignment="RIGHT" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <Text fx:id="browseStudentRecordFirstName" fill="#393939" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="Browse Student Record" wrappingWidth="163.25">
+                                    <Text fx:id="browseStudentRecordName" fill="#393939" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="Browse Student Record" wrappingWidth="163.25">
                                        <font>
                                           <Font name="System Bold" size="30.0" />
                                        </font>
@@ -53,7 +53,7 @@
                   </HBox>
                   <HBox fx:id="browseStudentRecordSectionHeaderPersonalDetailsHBox" alignment="CENTER_LEFT" fillHeight="false" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Text fill="#757575" strokeType="OUTSIDE" strokeWidth="0.0" text="Personal Details">
+                        <Text fx:id="browsePersonalDetails" fill="#757575" strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -72,7 +72,7 @@
                            <children>
                               <HBox alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="250.0">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Address:">
+                                    <Text fx:id="browseStudentRecordAddress" strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
                                        <HBox.margin>
                                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                        </HBox.margin>
@@ -104,7 +104,7 @@
                            <children>
                               <HBox alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="250.0">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="E-Mail ID:">
+                                    <Text fx:id="browseStudentRecordEmail" strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -136,7 +136,7 @@
                            <children>
                               <HBox alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="250.0">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date Of Birth:">
+                                    <Text fx:id="browseStudentRecordDOB" strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -168,7 +168,7 @@
                            <children>
                               <HBox alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="250.0">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Place Of Birth:">
+                                    <Text fx:id="browseStudentRecordPlaceOfBirth" strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -200,7 +200,7 @@
                            <children>
                               <HBox alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="250.0">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Religion:">
+                                    <Text fx:id="browseStudentRecordReligion" strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -232,7 +232,7 @@
                            <children>
                               <HBox alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="250.0">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Eudcationl Background:">
+                                    <Text fx:id="browseStudentRecordEducationalBackground" strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -264,7 +264,7 @@
                            <children>
                               <HBox alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="250.0">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Languages:">
+                                    <Text fx:id="browseStudentRecordLanguages" strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -296,7 +296,7 @@
                            <children>
                               <HBox alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="250.0">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hobbies:">
+                                    <Text fx:id="browseStudentRecordHobbies" strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -328,7 +328,7 @@
                   </VBox>
                   <HBox fx:id="browseStudentRecordSectionHeaderCourseDetailsHBox" alignment="CENTER_LEFT" fillHeight="false" layoutX="10.0" layoutY="250.0" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Text fill="#757575" strokeType="OUTSIDE" strokeWidth="0.0" text="Course Details">
+                        <Text fx:id="browseCourseDetails" fill="#757575" strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -344,7 +344,7 @@
                            <children>
                               <HBox alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="250.0">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Course Name:">
+                                    <Text fx:id="browseStudentRecordCourseName" strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -376,7 +376,7 @@
                            <children>
                               <HBox alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="250.0">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Class Name:">
+                                    <Text fx:id="browseStudentRecordClassName" strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -408,7 +408,39 @@
                            <children>
                               <HBox alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="250.0">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Enrollment No.:">
+                                    <Text  fx:id="browseStudentRecordReferenceNo" strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </HBox.margin>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextFlow maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="A0987654321">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets bottom="10.0" left="10.0" right="100.0" top="10.0" />
+                                       </HBox.margin>
+                                    </TextFlow>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <HBox alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="250.0">
+                                 <children>
+                                    <Text  fx:id="browseStudentRecordEnrollmentNo" strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -440,7 +472,7 @@
                   </VBox>
                   <HBox fx:id="browseStudentRecordSectionHeaderEmergencyContactDetailsHBox" alignment="CENTER_LEFT" fillHeight="false" layoutX="10.0" layoutY="947.0" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Text fill="#757575" strokeType="OUTSIDE" strokeWidth="0.0" text="Emergency Contact Details">
+                        <Text fx:id="browseEmergencyContactDetails" fill="#757575" strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -456,7 +488,7 @@
                            <children>
                               <HBox alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="250.0">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name:">
+                                    <Text fx:id="browseStudentRecordEmergencyContactName" strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -488,7 +520,7 @@
                            <children>
                               <HBox alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="250.0">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tel No.:">
+                                    <Text fx:id="browseStudentRecordEmergencyContactTelNo" strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -520,7 +552,7 @@
                   </VBox>
                   <HBox fx:id="browseStudentRecordSectionHeaderFamilyMemberDetailsHBox" alignment="CENTER_LEFT" fillHeight="false" layoutX="10.0" layoutY="947.0" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Text fill="#757575" strokeType="OUTSIDE" strokeWidth="0.0" text="Family Member Details">
+                        <Text fx:id="browseFamilyMemberDetails" fill="#757575" strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -543,7 +575,7 @@
                                  <children>
                                     <TextFlow maxWidth="1.7976931348623157E308" prefWidth="200.0" textAlignment="CENTER" HBox.hgrow="ALWAYS">
                                        <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Family Members Names">
+                                          <Text fx:id="browseStudentRecordFamilyMemberName" strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
                                              <font>
                                                 <Font size="18.0" />
                                              </font>
@@ -559,7 +591,7 @@
                                  <children>
                                     <TextFlow maxWidth="1.7976931348623157E308" prefWidth="200.0" textAlignment="CENTER" HBox.hgrow="ALWAYS">
                                        <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Relationship">
+                                          <Text fx:id="browseStudentRecordFamilyMemberRelationship" strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
                                              <font>
                                                 <Font size="18.0" />
                                              </font>
@@ -575,7 +607,7 @@
                                  <children>
                                     <TextFlow maxWidth="1.7976931348623157E308" prefWidth="200.0" textAlignment="CENTER" HBox.hgrow="ALWAYS">
                                        <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Age">
+                                          <Text fx:id="browseStudentRecordFamilyMemberAge" strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
                                              <font>
                                                 <Font size="18.0" />
                                              </font>
@@ -591,7 +623,7 @@
                                  <children>
                                     <TextFlow maxWidth="1.7976931348623157E308" prefWidth="200.0" textAlignment="CENTER" HBox.hgrow="ALWAYS">
                                        <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Occupation">
+                                          <Text fx:id="browseStudentRecordFamilyMemberOccupation" strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
                                              <font>
                                                 <Font size="18.0" />
                                              </font>
@@ -607,7 +639,7 @@
                                  <children>
                                     <TextFlow maxWidth="1.7976931348623157E308" prefWidth="200.0" textAlignment="CENTER" HBox.hgrow="ALWAYS">
                                        <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Occupational Address">
+                                          <Text fx:id="browseStudentRecordFamilyMemberOccupationalAddress" strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
                                              <font>
                                                 <Font size="18.0" />
                                              </font>
@@ -623,7 +655,7 @@
                                  <children>
                                     <TextFlow maxWidth="1.7976931348623157E308" prefWidth="200.0" textAlignment="CENTER" HBox.hgrow="ALWAYS">
                                        <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Occupational Tel. No.">
+                                          <Text fx:id="browseStudentRecordFamilyMemberOccupationalTelNo" strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
                                              <font>
                                                 <Font size="18.0" />
                                              </font>
