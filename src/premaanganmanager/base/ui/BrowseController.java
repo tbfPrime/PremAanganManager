@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
@@ -27,7 +28,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import premaanganmanager.base.controller.background.FamilyInfo;
 import premaanganmanager.base.controller.background.Student;
+import premaanganmanager.base.controller.background.StudentFamilyInfo;
 import premaanganmanager.configurable.Labels;
 
 /**
@@ -49,26 +52,56 @@ public class BrowseController{
     
     // Browse Student
     @FXML
-    private Button browseStudentBackButton;
+    private Button browseStudentBackButton, browseStudentRecordPrintButton;
     
     // Browse Student Record
     @FXML
     private ImageView browseStudentRecordPhoto;
     
     @FXML
-    private Text browseStudentRecordName, browsePersonalDetails, browseCourseDetails, browseEmergencyContactDetails, browseFamilyMemberDetails;
+    private Text browsePersonalDetails, browseCourseDetails, browseEmergencyContactDetails, browseFamilyMemberDetails;
     @FXML
-    private Text browseStudentRecordAddress, browseStudentRecordEmail, browseStudentRecordDOB, browseStudentRecordPlaceOfBirth;
+    private Text browseStudentRecordNameData;
     @FXML
-    private Text browseStudentRecordReligion, browseStudentRecordEducationalBackground, browseStudentRecordLanguages, browseStudentRecordHobbies;
+    private Text browseStudentRecordAddress, browseStudentRecordAddressData;
     @FXML
-    private Text browseStudentRecordCourseName, browseStudentRecordClassName, browseStudentRecordEnrollmentNo, browseStudentRecordReferenceNo;
+    private Text browseStudentRecordEmail, browseStudentRecordEmailData;
     @FXML
-    private Text browseStudentRecordEmergencyContactName, browseStudentRecordEmergencyContactTelNo;
+    private Text browseStudentRecordDOB, browseStudentRecordDOBData;
     @FXML
-    private Text browseStudentRecordFamilyMemberName, browseStudentRecordFamilyMemberRelationship, browseStudentRecordFamilyMemberAge;
+    private Text browseStudentRecordPlaceOfBirth, browseStudentRecordPlaceOfBirthData;
     @FXML
-    private Text browseStudentRecordFamilyMemberOccupation, browseStudentRecordFamilyMemberOccupationalAddress, browseStudentRecordFamilyMemberOccupationalTelNo;
+    private Text browseStudentRecordReligion, browseStudentRecordReligionData;
+    @FXML
+    private Text browseStudentRecordEducationalBackground, browseStudentRecordEducationalBackgroundData;
+    @FXML
+    private Text browseStudentRecordLanguages, browseStudentRecordLanguagesData;
+    @FXML
+    private Text browseStudentRecordHobbies, browseStudentRecordHobbiesData;
+    @FXML
+    private Text browseStudentRecordCourseName, browseStudentRecordCourseNameData;
+    @FXML
+    private Text browseStudentRecordClassName, browseStudentRecordClassNameData;
+    @FXML
+    private Text browseStudentRecordReferenceNo, browseStudentRecordReferenceNoData;
+    @FXML
+    private Text browseStudentRecordEnrollmentNo, browseStudentRecordEnrollmentNoData;
+    @FXML
+    private Text browseStudentRecordEmergencyContactName, browseStudentRecordEmergencyContactNameData;
+    @FXML
+    private Text browseStudentRecordEmergencyContactTelNo, browseStudentRecordEmergencyContactTelNoData;
+    @FXML
+    private Text browseStudentRecordFamilyMemberName, browseStudentRecordFamilyMemberNameData1, browseStudentRecordFamilyMemberNameData2, browseStudentRecordFamilyMemberNameData3, browseStudentRecordFamilyMemberNameData4, browseStudentRecordFamilyMemberNameData5, browseStudentRecordFamilyMemberNameData6;
+    @FXML
+    private Text browseStudentRecordFamilyMemberRelationship, browseStudentRecordFamilyMemberRelationshipData1, browseStudentRecordFamilyMemberRelationshipData2, browseStudentRecordFamilyMemberRelationshipData3, browseStudentRecordFamilyMemberRelationshipData4, browseStudentRecordFamilyMemberRelationshipData5, browseStudentRecordFamilyMemberRelationshipData6;
+    @FXML
+    private Text browseStudentRecordFamilyMemberAge, browseStudentRecordFamilyMemberAgeData1, browseStudentRecordFamilyMemberAgeData2, browseStudentRecordFamilyMemberAgeData3, browseStudentRecordFamilyMemberAgeData4, browseStudentRecordFamilyMemberAgeData5, browseStudentRecordFamilyMemberAgeData6;
+    @FXML
+    private Text browseStudentRecordFamilyMemberOccupation, browseStudentRecordFamilyMemberOccupationData1, browseStudentRecordFamilyMemberOccupationData2, browseStudentRecordFamilyMemberOccupationData3, browseStudentRecordFamilyMemberOccupationData4, browseStudentRecordFamilyMemberOccupationData5, browseStudentRecordFamilyMemberOccupationData6;
+    @FXML
+    private Text browseStudentRecordFamilyMemberOccupationalAddress, browseStudentRecordFamilyMemberOccupationalAddressData1, browseStudentRecordFamilyMemberOccupationalAddressData2, browseStudentRecordFamilyMemberOccupationalAddressData3, browseStudentRecordFamilyMemberOccupationalAddressData4, browseStudentRecordFamilyMemberOccupationalAddressData5, browseStudentRecordFamilyMemberOccupationalAddressData6; 
+    @FXML
+    private Text browseStudentRecordFamilyMemberOccupationalTelNo, browseStudentRecordFamilyMemberOccupationalTelNoData1, browseStudentRecordFamilyMemberOccupationalTelNoData2, browseStudentRecordFamilyMemberOccupationalTelNoData3, browseStudentRecordFamilyMemberOccupationalTelNoData4, browseStudentRecordFamilyMemberOccupationalTelNoData5, browseStudentRecordFamilyMemberOccupationalTelNoData6;
     
     @FXML
     private StackPane browseStudentRecordPhotoStackPane;
@@ -118,11 +151,18 @@ public class BrowseController{
         appContainer.displayScreen(AppContainer.screenTag.BROWSE);
     }
     
-    // Browse Student Records
+    // Browse Student Record
+    // Back to list of student records
     @FXML
     private void browseStudentRecordBackAction(){
         System.out.println("BrowseController | browseStudentRecordBackAction");
         appContainer.displayScreen(AppContainer.screenTag.BROWSE_STUDENT_TABLE);
+    }
+    
+    // Print Student Record
+    @FXML
+    private void browseStudentRecordPrintAction(){
+        System.out.println("BrowseController | browseStudentRecordPrintAction");
     }
     
     // Constructor
@@ -320,7 +360,7 @@ public class BrowseController{
         name += (currentStudent.getMiddleName() == null || currentStudent.getMiddleName().isEmpty()) ? "" : (" " + currentStudent.getMiddleName());
         name += (currentStudent.getLastName() == null || currentStudent.getLastName().isEmpty()) ? "" : (" " + currentStudent.getLastName());
         
-        browseStudentRecordName.setText(name);
+        browseStudentRecordNameData.setText(name);
         
         try{
             Path studentPhotoPath = Paths.get(appContainer.uiControl.settings.photosDir, (appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_STUDENT_PHOTO_PREFIX) + currentStudent.getStudentId() + "." + currentStudent.getStudentPhotoId()));
@@ -333,6 +373,94 @@ public class BrowseController{
             }
         } catch(Exception e){
             System.err.println("BrowseController | populateStudentData | Error: " + e);
+        }
+        
+        currentStudent = appContainer.uiControl.uiModel.fetchStudentByID(currentStudent.getStudentId());
+        
+        if(currentStudent.getAddress() != null && !currentStudent.getAddress().isEmpty()){ browseStudentRecordAddressData.setText(currentStudent.getAddress()); }
+        if(currentStudent.getEmailId() != null && !currentStudent.getEmailId().isEmpty()){ browseStudentRecordEmailData.setText(currentStudent.getEmailId()); }
+        if(currentStudent.getDob() != null && !currentStudent.getDob().isEmpty()){ browseStudentRecordDOBData.setText(currentStudent.getDob()); }
+        if(currentStudent.getPlaceOfBirth() != null && !currentStudent.getPlaceOfBirth().isEmpty()){ browseStudentRecordPlaceOfBirthData.setText(currentStudent.getPlaceOfBirth()); }
+        if(currentStudent.getEducationalBackground() != null && !currentStudent.getEducationalBackground().isEmpty()){ browseStudentRecordEducationalBackgroundData.setText(currentStudent.getEducationalBackground()); }
+        if(currentStudent.getLanguages() != null && !currentStudent.getLanguages().isEmpty()){ browseStudentRecordLanguagesData.setText(currentStudent.getLanguages()); }
+        if(currentStudent.getHobbies() != null && !currentStudent.getHobbies().isEmpty()){ browseStudentRecordHobbiesData.setText(currentStudent.getHobbies()); }
+        if(currentStudent.getReferenceNumber() != null && !currentStudent.getReferenceNumber().isEmpty()){ browseStudentRecordReferenceNoData.setText(currentStudent.getReferenceNumber()); }
+        if(currentStudent.getEnrollmentNumber() != null && !currentStudent.getEnrollmentNumber().isEmpty()){ browseStudentRecordEnrollmentNoData.setText(currentStudent.getEnrollmentNumber()); }
+        if(currentStudent.getEmergencyContactPerson() != null && !currentStudent.getEmergencyContactPerson().isEmpty()){ browseStudentRecordEmergencyContactNameData.setText(currentStudent.getEmergencyContactPerson()); }
+        if(currentStudent.getEmergencyContactNumber() != null && !currentStudent.getEmergencyContactNumber().isEmpty()){ browseStudentRecordEmergencyContactTelNoData.setText(currentStudent.getEmergencyContactNumber()); }
+
+        if(currentStudent.getReligionId() != null && !currentStudent.getReligionId().toString().isEmpty()){ browseStudentRecordReligionData.setText(appContainer.uiControl.uiModel.fetchReligionNameByID(currentStudent.getReligionId())); }        
+        
+        List studentFamilyInfoList = appContainer.uiControl.uiModel.fetchFamilyInfo(currentStudent.getStudentId());
+        
+        int familyMemberCount = studentFamilyInfoList.size();
+        
+        System.out.println("-------------familyMemberCount: " + familyMemberCount);
+        
+        if(familyMemberCount-- >= 1){
+            StudentFamilyInfo studentFamilyInfo = (StudentFamilyInfo)studentFamilyInfoList.get(0);
+            FamilyInfo familyInfo = appContainer.uiControl.uiModel.fetchFamilyInfoByID(studentFamilyInfo.getFamilyInfoId());
+            if(familyInfo != null && familyInfo.getName() != null && !familyInfo.getName().isEmpty()){ browseStudentRecordFamilyMemberNameData1.setText(familyInfo.getName()); }
+            if(familyInfo != null && familyInfo.getAge() != null && !familyInfo.getAge().toString().isEmpty()){ browseStudentRecordFamilyMemberAgeData1.setText(familyInfo.getAge().toString()); }
+            if(familyInfo != null && familyInfo.getRelationship() != null && !familyInfo.getRelationship().isEmpty()){ browseStudentRecordFamilyMemberRelationshipData1.setText(familyInfo.getRelationship()); }
+            if(familyInfo != null && familyInfo.getOccupation() != null && !familyInfo.getOccupation().isEmpty()){ browseStudentRecordFamilyMemberOccupationData1.setText(familyInfo.getOccupation()); }
+            if(familyInfo != null && familyInfo.getOccupationalAddress() != null && !familyInfo.getOccupationalAddress().isEmpty()){ browseStudentRecordFamilyMemberOccupationalAddressData1.setText(familyInfo.getOccupationalAddress()); }
+            if(familyInfo != null && familyInfo.getContactNumber() != null && !familyInfo.getContactNumber().isEmpty()){ browseStudentRecordFamilyMemberOccupationalTelNoData1.setText(familyInfo.getContactNumber()); }
+        }
+        
+        if(familyMemberCount-- >= 1){
+            StudentFamilyInfo studentFamilyInfo = (StudentFamilyInfo)studentFamilyInfoList.get(1);
+            FamilyInfo familyInfo = appContainer.uiControl.uiModel.fetchFamilyInfoByID(studentFamilyInfo.getFamilyInfoId());
+            if(familyInfo != null && familyInfo.getName() != null && !familyInfo.getName().isEmpty()){ browseStudentRecordFamilyMemberNameData2.setText(familyInfo.getName()); }
+            if(familyInfo != null && familyInfo.getAge() != null && !familyInfo.getAge().toString().isEmpty()){ browseStudentRecordFamilyMemberAgeData2.setText(familyInfo.getAge().toString()); }
+            if(familyInfo != null && familyInfo.getRelationship() != null && !familyInfo.getRelationship().isEmpty()){ browseStudentRecordFamilyMemberRelationshipData2.setText(familyInfo.getRelationship()); }
+            if(familyInfo != null && familyInfo.getOccupation() != null && !familyInfo.getOccupation().isEmpty()){ browseStudentRecordFamilyMemberOccupationData2.setText(familyInfo.getOccupation()); }
+            if(familyInfo != null && familyInfo.getOccupationalAddress() != null && !familyInfo.getOccupationalAddress().isEmpty()){ browseStudentRecordFamilyMemberOccupationalAddressData2.setText(familyInfo.getOccupationalAddress()); }
+            if(familyInfo != null && familyInfo.getContactNumber() != null && !familyInfo.getContactNumber().isEmpty()){ browseStudentRecordFamilyMemberOccupationalTelNoData2.setText(familyInfo.getContactNumber()); }
+        }
+        
+        if(familyMemberCount-- >= 1){
+            StudentFamilyInfo studentFamilyInfo = (StudentFamilyInfo)studentFamilyInfoList.get(2);
+            FamilyInfo familyInfo = appContainer.uiControl.uiModel.fetchFamilyInfoByID(studentFamilyInfo.getFamilyInfoId());
+            if(familyInfo != null && familyInfo.getName() != null && !familyInfo.getName().isEmpty()){ browseStudentRecordFamilyMemberNameData3.setText(familyInfo.getName()); }
+            if(familyInfo != null && familyInfo.getAge() != null && !familyInfo.getAge().toString().isEmpty()){ browseStudentRecordFamilyMemberAgeData3.setText(familyInfo.getAge().toString()); }
+            if(familyInfo != null && familyInfo.getRelationship() != null && !familyInfo.getRelationship().isEmpty()){ browseStudentRecordFamilyMemberRelationshipData3.setText(familyInfo.getRelationship()); }
+            if(familyInfo != null && familyInfo.getOccupation() != null && !familyInfo.getOccupation().isEmpty()){ browseStudentRecordFamilyMemberOccupationData3.setText(familyInfo.getOccupation()); }
+            if(familyInfo != null && familyInfo.getOccupationalAddress() != null && !familyInfo.getOccupationalAddress().isEmpty()){ browseStudentRecordFamilyMemberOccupationalAddressData3.setText(familyInfo.getOccupationalAddress()); }
+            if(familyInfo != null && familyInfo.getContactNumber() != null && !familyInfo.getContactNumber().isEmpty()){ browseStudentRecordFamilyMemberOccupationalTelNoData3.setText(familyInfo.getContactNumber()); }
+        }
+        
+        if(familyMemberCount-- >= 1){
+            StudentFamilyInfo studentFamilyInfo = (StudentFamilyInfo)studentFamilyInfoList.get(3);
+            FamilyInfo familyInfo = appContainer.uiControl.uiModel.fetchFamilyInfoByID(studentFamilyInfo.getFamilyInfoId());
+            if(familyInfo != null && familyInfo.getName() != null && !familyInfo.getName().isEmpty()){ browseStudentRecordFamilyMemberNameData4.setText(familyInfo.getName()); }
+            if(familyInfo != null && familyInfo.getAge() != null && !familyInfo.getAge().toString().isEmpty()){ browseStudentRecordFamilyMemberAgeData4.setText(familyInfo.getAge().toString()); }
+            if(familyInfo != null && familyInfo.getRelationship() != null && !familyInfo.getRelationship().isEmpty()){ browseStudentRecordFamilyMemberRelationshipData4.setText(familyInfo.getRelationship()); }
+            if(familyInfo != null && familyInfo.getOccupation() != null && !familyInfo.getOccupation().isEmpty()){ browseStudentRecordFamilyMemberOccupationData4.setText(familyInfo.getOccupation()); }
+            if(familyInfo != null && familyInfo.getOccupationalAddress() != null && !familyInfo.getOccupationalAddress().isEmpty()){ browseStudentRecordFamilyMemberOccupationalAddressData4.setText(familyInfo.getOccupationalAddress()); }
+            if(familyInfo != null && familyInfo.getContactNumber() != null && !familyInfo.getContactNumber().isEmpty()){ browseStudentRecordFamilyMemberOccupationalTelNoData4.setText(familyInfo.getContactNumber()); }
+        }
+        
+        if(familyMemberCount-- >= 1){
+            StudentFamilyInfo studentFamilyInfo = (StudentFamilyInfo)studentFamilyInfoList.get(4);
+            FamilyInfo familyInfo = appContainer.uiControl.uiModel.fetchFamilyInfoByID(studentFamilyInfo.getFamilyInfoId());
+            if(familyInfo != null && familyInfo.getName() != null && !familyInfo.getName().isEmpty()){ browseStudentRecordFamilyMemberNameData5.setText(familyInfo.getName()); }
+            if(familyInfo != null && familyInfo.getAge() != null && !familyInfo.getAge().toString().isEmpty()){ browseStudentRecordFamilyMemberAgeData5.setText(familyInfo.getAge().toString()); }
+            if(familyInfo != null && familyInfo.getRelationship() != null && !familyInfo.getRelationship().isEmpty()){ browseStudentRecordFamilyMemberRelationshipData5.setText(familyInfo.getRelationship()); }
+            if(familyInfo != null && familyInfo.getOccupation() != null && !familyInfo.getOccupation().isEmpty()){ browseStudentRecordFamilyMemberOccupationData5.setText(familyInfo.getOccupation()); }
+            if(familyInfo != null && familyInfo.getOccupationalAddress() != null && !familyInfo.getOccupationalAddress().isEmpty()){ browseStudentRecordFamilyMemberOccupationalAddressData5.setText(familyInfo.getOccupationalAddress()); }
+            if(familyInfo != null && familyInfo.getContactNumber() != null && !familyInfo.getContactNumber().isEmpty()){ browseStudentRecordFamilyMemberOccupationalTelNoData5.setText(familyInfo.getContactNumber()); }
+        }
+        
+        if(familyMemberCount-- >= 1){
+            StudentFamilyInfo studentFamilyInfo = (StudentFamilyInfo)studentFamilyInfoList.get(5);
+            FamilyInfo familyInfo = appContainer.uiControl.uiModel.fetchFamilyInfoByID(studentFamilyInfo.getFamilyInfoId());
+            if(familyInfo != null && familyInfo.getName() != null && !familyInfo.getName().isEmpty()){ browseStudentRecordFamilyMemberNameData6.setText(familyInfo.getName()); }
+            if(familyInfo != null && familyInfo.getAge() != null && !familyInfo.getAge().toString().isEmpty()){ browseStudentRecordFamilyMemberAgeData6.setText(familyInfo.getAge().toString()); }
+            if(familyInfo != null && familyInfo.getRelationship() != null && !familyInfo.getRelationship().isEmpty()){ browseStudentRecordFamilyMemberRelationshipData6.setText(familyInfo.getRelationship()); }
+            if(familyInfo != null && familyInfo.getOccupation() != null && !familyInfo.getOccupation().isEmpty()){ browseStudentRecordFamilyMemberOccupationData6.setText(familyInfo.getOccupation()); }
+            if(familyInfo != null && familyInfo.getOccupationalAddress() != null && !familyInfo.getOccupationalAddress().isEmpty()){ browseStudentRecordFamilyMemberOccupationalAddressData6.setText(familyInfo.getOccupationalAddress()); }
+            if(familyInfo != null && familyInfo.getContactNumber() != null && !familyInfo.getContactNumber().isEmpty()){ browseStudentRecordFamilyMemberOccupationalTelNoData6.setText(familyInfo.getContactNumber()); }
         }
         
         setStudentRecordProperties();
@@ -356,6 +484,7 @@ public class BrowseController{
     
     private void setBrowseStudentRecordScreenLabels(){
         browseStudentRecordBackButton.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.BACK));
+        browseStudentRecordPrintButton.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.PRINT));
         
         browsePersonalDetails.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.BROWSE_PERSONAL_DETAILS));
         browseCourseDetails.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.BROWSE_COURSE_DETAILS));

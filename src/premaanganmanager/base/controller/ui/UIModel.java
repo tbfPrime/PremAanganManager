@@ -8,8 +8,6 @@ package premaanganmanager.base.controller.ui;
 import premaanganmanager.base.controller.background.*;
 import java.sql.*;
 import java.util.List;
-import java.util.Observable;
-import javafx.collections.ObservableList;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -179,6 +177,47 @@ public class UIModel {
         Query rq = em.createNamedQuery("ApplicationLabels.findAll");
         List<ApplicationLabels> result = rq.getResultList();
         return result;
+    }
+    
+    public Student fetchStudentByID(Integer studentID){
+        try{
+            System.out.println("UIModel | fetchStudentByID | studentID: " + studentID);
+            return (Student)em.createNamedQuery("Student.findByStudentId").setParameter("studentId", studentID).getSingleResult();
+        } catch(Exception e){
+            System.err.println("UIModel | fetchStudentByID | Error: " + e);
+            return null;
+        }
+    }
+    
+    public String fetchReligionNameByID(Integer religionID){
+        try{
+            System.out.println("UIModel | fetchReligionNameByID | religionID: " + religionID);
+            Religion r = (Religion)em.createNamedQuery("Religion.findByReligionId").setParameter("religionId", religionID).getSingleResult();
+            return r.getReligionName();
+        } catch(Exception e){
+            System.err.println("UIModel | fetchReligionNameByID | Error: " + e);
+            return null;
+        }
+    }
+    
+    public FamilyInfo fetchFamilyInfoByID(Integer familyInfoID){
+        try{
+            System.out.println("UIModel | fetchFamilyInfoByID | familyInfoID: " + familyInfoID);
+            return (FamilyInfo)em.createNamedQuery("FamilyInfo.findByFamilyInfoId").setParameter("familyInfoId", familyInfoID).getSingleResult();
+        } catch(Exception e){
+            System.err.println("UIModel | fetchFamilyInfoByID | Error: " + e);
+            return null;
+        }
+    }
+    
+    public List<StudentFamilyInfo> fetchFamilyInfo(Integer studentID){
+        try{
+            System.out.println("UIModel | fetchFamilyInfo | studentID: " + studentID);
+            return em.createNamedQuery("StudentFamilyInfo.findByStudentId").setParameter("studentId", studentID).getResultList();
+        } catch(Exception e){
+            System.err.println("UIModel | fetchFamilyInfo | Error: " + e);
+            return null;
+        }
     }
 
     /**

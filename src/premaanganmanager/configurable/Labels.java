@@ -13,7 +13,7 @@ public class Labels {
     // public enum to tag lables from this file.
     public enum labelTag{
         // Common
-        APPLICATION_TITLE, BACK, SAVE,
+        APPLICATION_TITLE, BACK, SAVE, PRINT,
         MENU_HOME, MENU_BROWSE, MENU_ADD, MENU_SEARCH, MENU_SETTINGS,
         HEADER_LOGOUT, HEADER_SWITCH_ADMIN,
         
@@ -66,7 +66,7 @@ public class Labels {
     
     // List of all  labels used in PAM
     // Common labels.
-    private String l_ApplicationTitle, l_Back, l_Save;
+    private String l_ApplicationTitle, l_Back, l_Save, l_Print;
     private String l_MenuHome, l_MenuBrowse, l_MenuAdd, l_MenuSearch, l_MenuSettings;
     private String l_HeaderLogout, l_HeaderSwitchAdmin;
     
@@ -121,6 +121,7 @@ public class Labels {
             case APPLICATION_TITLE: l_ApplicationTitle = value; break;
             case BACK: l_Back = value; break;
             case SAVE: l_Save = value; break;
+            case PRINT: l_Print = value; break;
             
             case MENU_HOME: l_MenuHome = value; break;
             case MENU_BROWSE: l_MenuBrowse = value; break;
@@ -242,6 +243,7 @@ public class Labels {
             case APPLICATION_TITLE: return l_ApplicationTitle; 
             case BACK: return l_Back;
             case SAVE: return l_Save;
+            case PRINT: return l_Print;
 
             case MENU_HOME: return l_MenuHome;
             case MENU_BROWSE: return l_MenuBrowse;
