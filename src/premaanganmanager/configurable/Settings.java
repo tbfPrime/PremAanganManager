@@ -19,6 +19,8 @@ public class Settings {
     
     public int dobMinYear, dobMinMonth, dobMinDate, dobMaxYear, dobMaxMonth, dobMaxDate;
     
+    public int tableMaxItems;
+    
     public double appWidth;
     public double appHeight;
     
@@ -62,8 +64,10 @@ public class Settings {
         labels = new Labels();
         setDefaultValuesToAllLabels();
         
-        dobMinYear = 2012;
-        dobMaxYear = 2014;
+        tableMaxItems = 5;
+        
+        dobMinYear = 1950;
+        dobMaxYear = 2012;
         
         dobMinMonth = 01;
         dobMaxMonth = 12;

@@ -221,19 +221,19 @@ public class Login{
                 admin1Button.setSelected(true);
                 admin1Button.setId("ButtonSelected");
                 username = admin1Username; 
-                passwordField.setPromptText(uiControl.settings.labels.getLabel(Labels.labelTag.PASSWORD_PROMPT_FOR) + uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END) + " " + admin1Button.getText());
+                passwordField.setPromptText(uiControl.settings.labels.getLabel(Labels.labelTag.PASSWORD_PROMPT_FOR) + uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_SEPERATOR) + " " + admin1Button.getText());
                 break;
             case ADMIN2: 
                 admin2Button.setSelected(true);
                 admin2Button.setId("ButtonSelected");
                 username = admin2Username; 
-                passwordField.setPromptText(uiControl.settings.labels.getLabel(Labels.labelTag.PASSWORD_PROMPT_FOR) + uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END) + " " + admin2Button.getText());
+                passwordField.setPromptText(uiControl.settings.labels.getLabel(Labels.labelTag.PASSWORD_PROMPT_FOR) + uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_SEPERATOR) + " " + admin2Button.getText());
                 break;
             case ADMIN3: 
                 admin3Button.setSelected(true);
                 admin3Button.setId("ButtonSelected");
                 username = admin3Username; 
-                passwordField.setPromptText(uiControl.settings.labels.getLabel(Labels.labelTag.PASSWORD_PROMPT_FOR) + uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_END) + " " + admin3Button.getText());
+                passwordField.setPromptText(uiControl.settings.labels.getLabel(Labels.labelTag.PASSWORD_PROMPT_FOR) + uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_SEPERATOR) + " " + admin3Button.getText());
                 break;
         }
     }

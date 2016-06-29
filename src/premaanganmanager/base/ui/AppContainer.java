@@ -38,11 +38,13 @@ public class AppContainer {
     
     private Scene appContainerScene;
     private BorderPane root;
+    private String currentActiveScreen;
     
     // Menu
     @FXML
     private ToggleButton menuHomeButton, menuBrowseButton, menuAddButton, menuSearchButton, menuSettingsButton;
-    
+    @FXML
+    private ToggleButton helpButton;
     // Header
     @FXML
     private Text headerText;    
@@ -86,6 +88,13 @@ public class AppContainer {
             uiControl.logoutToGuestAdminScreen();
         }
     }
+    @FXML
+    private void helpAction(){
+        System.out.println("AppContainer | helpAction | currentActiveScreen: " + currentActiveScreen + " | help select state: " + helpButton.isSelected());
+        switch(screenTag.valueOf(currentActiveScreen)){
+            case ADD_STUDENT: toggleAddStudentHelp(); break;
+        }
+    }
     
     // Contructor with params
     public AppContainer(UIControl uiControl){
@@ -115,6 +124,7 @@ public class AppContainer {
     
     // Main Screen Display wrapper
     public void displayScreen(screenTag tag){
+        currentActiveScreen = tag.toString();
         switch(tag){
             case HOME: setHomeScreen(); break;
             case BROWSE: setBrowseScreen(); break;
@@ -132,6 +142,7 @@ public class AppContainer {
             case BROWSE_TIMETABLE_TABLE: setBrowseTableScreen(tag); break;
             case BROWSE_STUDENT_RECORD: setBrowseStudentRecordScreen(); break;
         }
+        closeHelp();
     }
     
     public Scene setAppContainer(){
@@ -218,6 +229,7 @@ public class AppContainer {
         uiControl.setToggleButtonStyle(menuBrowseButton);
         uiControl.setToggleButtonStyle(menuSearchButton);
         uiControl.setToggleButtonStyle(menuSettingsButton);
+        uiControl.setToggleButtonStyle(helpButton);
     }
     
     private void setLogOutComboBox(){
@@ -268,12 +280,17 @@ public class AppContainer {
         root.setCenter(browseController.setBrowseStudentRecord());
     }
     
+    private void toggleAddStudentHelp(){
+        addController.showHelp(helpButton.isSelected());
+    }
+    
     private void setSelection(ToggleButton button){
         menuHomeButton.setSelected(false);
         menuAddButton.setSelected(false);
         menuBrowseButton.setSelected(false);
         menuSearchButton.setSelected(false);
         menuSettingsButton.setSelected(false);
+        
         
         menuHomeButton.setId("ButtonNormal");
         menuAddButton.setId("ButtonNormal");
@@ -285,13 +302,18 @@ public class AppContainer {
         button.setId("ButtonSelected");
     }
     
+    private void closeHelp(){
+        helpButton.setSelected(false);
+        helpButton.setId("ButtonNormal");    
+    }
+    
     private void setAppContainerLabels(){
         menuHomeButton.setText(uiControl.settings.labels.getLabel(Labels.labelTag.MENU_HOME));
         menuBrowseButton.setText(uiControl.settings.labels.getLabel(Labels.labelTag.MENU_BROWSE));
         menuAddButton.setText(uiControl.settings.labels.getLabel(Labels.labelTag.MENU_ADD));
         menuSearchButton.setText(uiControl.settings.labels.getLabel(Labels.labelTag.MENU_SEARCH));
         menuSettingsButton.setText(uiControl.settings.labels.getLabel(Labels.labelTag.MENU_SETTINGS));
-//        headerText.setText(uiControl.settings.labels.getLabel(Labels.labelTag.HEADER_WELCOME_TITLE));
+        helpButton.setText(uiControl.settings.labels.getLabel(Labels.labelTag.HEADER_HELP));
         logoutComboBox.setPromptText(uiControl.settings.labels.getLabel(Labels.labelTag.HEADER_LOGOUT));
     }
 }

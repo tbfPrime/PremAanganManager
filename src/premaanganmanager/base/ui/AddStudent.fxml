@@ -52,7 +52,11 @@
                                                 <Text fx:id="addStudentFirstName" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
                                              </children>
                                           </HBox>
-                                          <TextField fx:id="addStudentFirstNameField" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                                          <StackPane alignment="CENTER_RIGHT" prefHeight="150.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <TextField fx:id="addStudentFirstNameField" maxWidth="1.7976931348623157E308" />
+                                             </children>
+                                          </StackPane>
                                        </children>
                                        <padding>
                                           <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
@@ -91,7 +95,8 @@
                                     <ImageView fx:id="addStudentPhotoView" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
                                        <viewport>
                                           <Rectangle2D />
-                                       </viewport></ImageView>
+                                       </viewport>
+                                    </ImageView>
                                     <Button fx:id="addStudentPhotoButton" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addStudentPhotoAction" prefHeight="50.0" prefWidth="200.0" text="Button" VBox.vgrow="ALWAYS" />
                                  </children>
                                  <HBox.margin>
@@ -138,7 +143,7 @@
                                           <Text fx:id="addStudentDOB" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
                                        </children>
                                     </HBox>
-                                    <DatePicker fx:id="addStudentDOBDatePicker" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" onAction="#addStudentDOBDatePickerAction"/>
+                                    <DatePicker fx:id="addStudentDOBDatePicker" maxWidth="-Infinity" minWidth="-Infinity" onAction="#addStudentDOBDatePickerAction" prefWidth="150.0" />
                                  </children>
                                  <padding>
                                     <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
@@ -168,7 +173,7 @@
                                           <Text fx:id="addStudentReligion" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
                                        </children>
                                     </HBox>
-                                    <ComboBox fx:id="addStudentReligionComboBox" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" HBox.hgrow="ALWAYS" onAction="#addStudentReligionComboBoxAction"/>
+                                    <ComboBox fx:id="addStudentReligionComboBox" maxWidth="-Infinity" minWidth="-Infinity" onAction="#addStudentReligionComboBoxAction" prefWidth="150.0" HBox.hgrow="ALWAYS" />
                                  </children>
                                  <padding>
                                     <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
@@ -852,5 +857,40 @@
             </VBox>
          </content>
       </ScrollPane>
+      <StackPane fx:id="addStudentHelpStackPane" visible="false" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+          <children>
+              <Pane fx:id="addStudentHelpPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" />
+              <VBox fx:id="addStudentHelpVBox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
+                  <children>
+                  <StackPane prefHeight="50.0">
+                     <children>
+                        <HBox fx:id="addStudentHelpHeaderHBox" alignment="CENTER_LEFT" prefHeight="50.0" />
+                        <HBox alignment="CENTER" prefHeight="50.0">
+                            <children>
+                                <Text fx:id="addStudentHelpHeader" strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
+                                    <font>
+                                        <Font name="System Bold" size="20.0" />
+                                    </font>
+                                </Text>
+                            </children>
+                        </HBox>
+                     </children>
+                  </StackPane>
+                      <TextFlow maxWidth="-Infinity" minWidth="200.0" prefHeight="400.0" prefWidth="600.0">
+                          <children>
+                              <Text fx:id="addStudentHelpBody" layoutX="35.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
+                                  <font>
+                                      <Font size="16.0" />
+                                  </font>
+                              </Text>
+                          </children>
+                          <padding>
+                              <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+                          </padding>
+                      </TextFlow>
+                  </children>
+              </VBox>
+          </children>
+      </StackPane>
    </children>
 </AnchorPane>

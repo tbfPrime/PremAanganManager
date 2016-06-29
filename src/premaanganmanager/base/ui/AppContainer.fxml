@@ -54,7 +54,16 @@
             </Text>
          </left>
          <right>
-            <ComboBox fx:id="logoutComboBox" onAction="#logoutComboBoxButtonAction" promptText="NA" BorderPane.alignment="CENTER" />
+            <HBox alignment="CENTER_RIGHT" spacing="25.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ToggleButton fx:id="helpButton" mnemonicParsing="false" text="NA" onAction="#helpAction" />
+                  <ComboBox fx:id="logoutComboBox" onAction="#logoutComboBoxButtonAction" promptText="NA">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </ComboBox>
+               </children>
+            </HBox>
          </right>
       </BorderPane>
    </top>

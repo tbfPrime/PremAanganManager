@@ -13,9 +13,10 @@ public class Labels {
     // public enum to tag lables from this file.
     public enum labelTag{
         // Common
-        APPLICATION_TITLE, BACK, SAVE, PRINT,
+// Common
+        APPLICATION_TITLE, BACK, SAVE, PRINT, HELP,
         MENU_HOME, MENU_BROWSE, MENU_ADD, MENU_SEARCH, MENU_SETTINGS,
-        HEADER_LOGOUT, HEADER_SWITCH_ADMIN,
+        HEADER_LOGOUT, HEADER_SWITCH_ADMIN, HEADER_HELP,
         
         HEADER_WELCOME_TITLE, HEADER_ADD_TITLE, HEADER_ADD_STUDENT_TITLE,
         HEADER_ADD_TEACHER_TITLE, HEADER_ADD_SUBJECT_TITLE, HEADER_ADD_ATTENDANCE_TITLE,
@@ -28,7 +29,9 @@ public class Labels {
         ALERT_MESSAGE_EMAIL_FORMAT_INCORRECT, ALERT_MESSAGE_NUMBER_FORMAT_INCORRECT,
         ALERT_MESSAGE_DOB_FORMAT_INCORRECT,
         
-        LABEL_END, LABEL_ID, LABEL_STUDENT_PHOTO_PREFIX, 
+        HELP_ADD_STUDENT,
+        
+        LABEL_SEPERATOR, LABEL_ID, LABEL_STUDENT_PHOTO_PREFIX, LABEL_OF, 
             
         // Login
         LOGIN_TITLE, LOGIN_SUBTITLE1, LOGIN_SUBTITLE2, LOGIN_HELP1, LOGIN_HELP2, LOGIN_ERROR1,
@@ -59,6 +62,7 @@ public class Labels {
         // Browse
         BROWSE_STUDENT, BROWSE_TEACHER,
         BROWSE_PERSONAL_DETAILS, BROWSE_COURSE_DETAILS, BROWSE_EMERGENCY_CONTACT_DETAILS, BROWSE_FAMILY_MEMBER_DETAILS,
+        BROWSE_PREVIOUS, BROWSE_NEXT,
         
         // Browse Student
         BROWSE_STUDENT_COURSE_NAME, BROWSE_STUDENT_CLASS_NAME
@@ -66,9 +70,9 @@ public class Labels {
     
     // List of all  labels used in PAM
     // Common labels.
-    private String l_ApplicationTitle, l_Back, l_Save, l_Print;
+    private String l_ApplicationTitle, l_Back, l_Save, l_Print, l_Help;
     private String l_MenuHome, l_MenuBrowse, l_MenuAdd, l_MenuSearch, l_MenuSettings;
-    private String l_HeaderLogout, l_HeaderSwitchAdmin;
+    private String l_HeaderLogout, l_HeaderSwitchAdmin, l_HeaderHelp;
     
     private String l_HeaderWelcomeTitle, l_HeaderAddTitle, l_HeaderAddStudentTitle;
     private String l_HeaderAddTeacherTitle, l_HeaderAddSubjectTitle, l_HeaderAddAttendanceTitle;
@@ -82,7 +86,9 @@ public class Labels {
     private String l_AlertMessageEmailFormatIncorrect, l_AlertMessageNumberFormatIncorrect;
     private String l_AlertMessageDOBFormatIncorrect;
     
-    private String l_LabelEnd, l_LabelID, l_LabelStudentPhotoPrefix;
+    private String l_HelpAddStudent;
+    
+    private String l_LabelSeperator, l_LabelID, l_LabelStudentPhotoPrefix, l_LabelOf;
 
     // Login
     private String l_LoginTitle, l_LoginSubtitle1, l_LoginSubtitle2, l_LoginHelp;
@@ -110,6 +116,7 @@ public class Labels {
     // Browse
     private String l_browseStudent, l_browseTeacher;
     private String l_browsePersonalDetails, l_BrowseCourseDetails, l_BrowseEmergencyContactDetails, l_BrowseFamilyMemberDetails;
+    private String l_browsePrevious, l_browseNext;
     
     // Browse Student
     private String l_BrowseStudentCourseName, l_BrowseStudentClassName;
@@ -122,6 +129,7 @@ public class Labels {
             case BACK: l_Back = value; break;
             case SAVE: l_Save = value; break;
             case PRINT: l_Print = value; break;
+            case HELP: l_Help = value; break;
             
             case MENU_HOME: l_MenuHome = value; break;
             case MENU_BROWSE: l_MenuBrowse = value; break;
@@ -131,6 +139,7 @@ public class Labels {
             
             case HEADER_LOGOUT: l_HeaderLogout = value; break;
             case HEADER_SWITCH_ADMIN: l_HeaderSwitchAdmin = value; break;
+            case HEADER_HELP: l_HeaderHelp = value; break;
             
             case HEADER_WELCOME_TITLE: l_HeaderWelcomeTitle = value; break;
             case HEADER_ADD_TITLE: l_HeaderAddTitle = value; break;
@@ -158,9 +167,12 @@ public class Labels {
             case ALERT_MESSAGE_NUMBER_FORMAT_INCORRECT: l_AlertMessageNumberFormatIncorrect = value; break;
             case ALERT_MESSAGE_DOB_FORMAT_INCORRECT: l_AlertMessageDOBFormatIncorrect = value; break;
             
-            case LABEL_END: l_LabelEnd = value; break;
+            case HELP_ADD_STUDENT: l_HelpAddStudent = value; break;
+            
+            case LABEL_SEPERATOR: l_LabelSeperator = value; break;
             case LABEL_ID: l_LabelID = value; break;
             case LABEL_STUDENT_PHOTO_PREFIX: l_LabelStudentPhotoPrefix = value; break;
+            case LABEL_OF: l_LabelOf = value; break;
 
             case LOGIN_TITLE: l_LoginTitle = value; break;
             case LOGIN_SUBTITLE1: l_LoginSubtitle1 = value; break;
@@ -228,6 +240,9 @@ public class Labels {
             case BROWSE_STUDENT: l_browseStudent = value; break;
             case BROWSE_TEACHER: l_browseTeacher = value; break;
             
+            case BROWSE_PREVIOUS: l_browsePrevious = value; break;
+            case BROWSE_NEXT: l_browseNext = value; break;
+            
             case BROWSE_PERSONAL_DETAILS: l_browsePersonalDetails = value; break;
             case BROWSE_COURSE_DETAILS: l_BrowseCourseDetails = value; break;
             case BROWSE_EMERGENCY_CONTACT_DETAILS: l_BrowseEmergencyContactDetails = value; break;
@@ -244,6 +259,7 @@ public class Labels {
             case BACK: return l_Back;
             case SAVE: return l_Save;
             case PRINT: return l_Print;
+            case HELP: return l_Help;
 
             case MENU_HOME: return l_MenuHome;
             case MENU_BROWSE: return l_MenuBrowse;
@@ -253,6 +269,7 @@ public class Labels {
             
             case HEADER_LOGOUT: return l_HeaderLogout;
             case HEADER_SWITCH_ADMIN: return l_HeaderSwitchAdmin;
+            case HEADER_HELP: return l_HeaderHelp;
             
             case HEADER_WELCOME_TITLE: return l_HeaderWelcomeTitle;
             case HEADER_ADD_TITLE: return l_HeaderAddTitle;
@@ -280,9 +297,12 @@ public class Labels {
             case ALERT_MESSAGE_NUMBER_FORMAT_INCORRECT: return l_AlertMessageNumberFormatIncorrect;
             case ALERT_MESSAGE_DOB_FORMAT_INCORRECT: return l_AlertMessageDOBFormatIncorrect;
             
-            case LABEL_END: return l_LabelEnd;
+            case HELP_ADD_STUDENT: return l_HelpAddStudent;
+            
+            case LABEL_SEPERATOR: return l_LabelSeperator;
             case LABEL_ID: return l_LabelID;
             case LABEL_STUDENT_PHOTO_PREFIX: return l_LabelStudentPhotoPrefix;
+            case LABEL_OF: return l_LabelOf;
             
             case LOGIN_TITLE: return l_LoginTitle;
             case LOGIN_SUBTITLE1: return l_LoginSubtitle1;
@@ -349,6 +369,9 @@ public class Labels {
             
             case BROWSE_STUDENT: return l_browseStudent;
             case BROWSE_TEACHER: return l_browseTeacher;
+            
+            case BROWSE_PREVIOUS: return l_browsePrevious; 
+            case BROWSE_NEXT: return l_browseNext;
             
             case BROWSE_PERSONAL_DETAILS: return l_browsePersonalDetails;
             case BROWSE_COURSE_DETAILS: return l_BrowseCourseDetails;

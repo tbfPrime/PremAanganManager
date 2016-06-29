@@ -159,6 +159,27 @@ public class UIModel {
         return result;
     }
     
+    public List<Student> fetchNextStudentInLimit(int studentIdValue, int limit){
+        System.out.println("UIModel | fetchNextStudentInLimit | studentIdValue: " + studentIdValue + " | limit: " + limit);
+        Query q = em.createNamedQuery("Student.fetchNextStudentInLimit").setParameter("studentIdValue", studentIdValue).setMaxResults(limit);
+        List<Student> result = q.getResultList();
+        System.out.println("UIModel | fetchNextStudentInLimit | result count: " + result.size());
+        return result;
+    }
+    
+    public List<Student> fetchPreviousStudentInLimit(int studentIdValue, int limit){
+        System.out.println("UIModel | fetchNextStudentInLimit | studentIdValue: " + studentIdValue + " | limit: " + limit);
+        Query q = em.createNamedQuery("Student.fetchPreviousStudentInLimit").setParameter("studentIdValue", studentIdValue).setMaxResults(limit);
+        List<Student> result = q.getResultList();
+        System.out.println("UIModel | fetchNextStudentInLimit | result count: " + result.size());
+        return result;
+    }
+    
+    public long fetchStudentCount(){
+        System.out.println("UIModel | fetchStudentCount | ");
+        return (long)em.createNamedQuery("Student.count").getSingleResult();
+    }
+    
     public List<Religion> fetchAllReligion(){
         System.out.println("UIModel | fetchAllReligion");
         
@@ -219,7 +240,7 @@ public class UIModel {
             return null;
         }
     }
-
+    
     /**
      * Creates all  DB Objects.
      */    

@@ -53,7 +53,55 @@ and open the template in the editor.
     -fx-border-radius: 2;
 }
 
+#Help{
+    -fx-background-color: #000000;
+    -fx-opacity: 0.6;
+}
 
+#HelpHeader{
+    -fx-background-color: #000000;
+    -fx-opacity: 0.1;
+}
+
+#HelpBg1{
+    -fx-background-color: #ff9896;
+}
+
+#HelpBg2{
+    -fx-background-color: #2aa27f;
+}
+
+#HelpBg3{
+    -fx-background-color: #ffff99;
+}
+
+#HelpBg4{
+    -fx-background-color: #9999ff;
+}
+
+#HelpBg5{
+    -fx-background-color: #66ccff;
+}
+
+#HelpBg6{
+    -fx-background-color: #cccccc;
+}
+
+#HelpBg7{
+    -fx-background-color: #cccc00;
+}
+
+#HelpBg8{
+    -fx-background-color: #ff99ff;
+}
+
+#HelpBg9{
+    -fx-background-color: #66ffcc;
+}
+
+#HelpBg10{
+    -fx-background-color: #ccffcc;
+}
 /*#ButtonNormal{
     -fx-background-color: white;
     -fx-background-radius: 2;

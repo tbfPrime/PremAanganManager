@@ -12,6 +12,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DialogPane;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import premaanganmanager.base.ui.*;
@@ -172,6 +175,11 @@ public class UIControl {
         }        
     }
     
+    public int getRandomNumber(int min, int max){
+        int random = min + (int)(Math.random() * (max - min));
+        return random;
+    }
+    
     public void setButtonStyle(Button button){
         button.getStylesheets().add(SceneContainer.class.getResource("Common.css").toExternalForm());
         
@@ -182,6 +190,28 @@ public class UIControl {
         button.setOnMouseExited((event) -> { button.setId("ButtonNormal"); });
         button.setOnMouseReleased((event) -> { button.setId("ButtonNormal"); });
         button.setOnMouseClicked((event) -> { button.setId("ButtonNormal"); });
+    }
+    
+    public void setHelpStyle(Pane pane, VBox bg, HBox header){
+        pane.getStylesheets().add(SceneContainer.class.getResource("Common.css").toExternalForm());
+        bg.getStylesheets().add(SceneContainer.class.getResource("Common.css").toExternalForm());
+        header.getStylesheets().add(SceneContainer.class.getResource("Common.css").toExternalForm());
+        
+        pane.setId("Help");
+        header.setId("HelpHeader");
+        
+        switch(getRandomNumber(1, 10)){
+            case 1: bg.setId("HelpBg1"); break;
+            case 2: bg.setId("HelpBg2"); break;
+            case 3: bg.setId("HelpBg3"); break;
+            case 4: bg.setId("HelpBg4"); break;
+            case 5: bg.setId("HelpBg5"); break;
+            case 6: bg.setId("HelpBg6"); break;
+            case 7: bg.setId("HelpBg7"); break;
+            case 8: bg.setId("HelpBg8"); break;
+            case 9: bg.setId("HelpBg9"); break;
+            case 10: bg.setId("HelpBg10"); break;
+        }
     }
     
     public void setToggleButtonStyle(ToggleButton button){
