@@ -55,7 +55,7 @@ public class BrowseController{
     
     // Browse Table
     @FXML
-    private Button browseStudentBackButton, browseTablePreviousPageButton, browseTableNextPageButton;
+    private Button browseTableBackButton, browseTablePreviousPageButton, browseTableNextPageButton;
     @FXML
     private Text browseTablePageIndicator;
     
@@ -233,6 +233,7 @@ public class BrowseController{
     // private functions
     private void setBrowseTableData(AppContainer.screenTag tag){
         dispayTable(tag);
+        setBrowseTableStyling();
         setBrowseTableLabels();
     }
     
@@ -247,6 +248,12 @@ public class BrowseController{
         switch(tag){
             case BROWSE_STUDENT_TABLE: setBrowseStudentScreenLabels(); displayStudentTable(); break;
         }
+    }
+    
+    private void setBrowseTableStyling(){
+        appContainer.uiControl.setButtonStyle(browseTableNextPageButton);
+        appContainer.uiControl.setButtonStyle(browseTablePreviousPageButton);
+        appContainer.uiControl.setButtonStyle(browseTableBackButton);
     }
     
     private void setPagingConditions(){
@@ -267,9 +274,9 @@ public class BrowseController{
         System.out.println("BrowseController | nextPage | currentTableMinId: " + currentTableMinId + " | currentTableMaxId: " + currentTableMaxId);
         switch(AppContainer.screenTag.valueOf(currentTableTag)){
             case BROWSE_STUDENT_TABLE:
-                if(totalPageCount == 0){ totalPageCount = (int)Math.ceil(((double)appContainer.uiControl.uiModel.fetchStudentCount() / appContainer.uiControl.settings.tableMaxItems)); }
+                if(totalPageCount == 0){ totalPageCount = (int)Math.ceil(((double)appContainer.uiControl.uiModel.fetchStudentCount() / appContainer.uiControl.settings.getTableMaxItems())); }
                 if(totalPageCount > 0 && currentPage <= totalPageCount){
-                    final ObservableList data = FXCollections.observableArrayList(appContainer.uiControl.uiModel.fetchNextStudentInLimit(currentTableMaxId,appContainer.uiControl.settings.tableMaxItems));
+                    final ObservableList data = FXCollections.observableArrayList(appContainer.uiControl.uiModel.fetchNextStudentInLimit(currentTableMaxId,appContainer.uiControl.settings.getTableMaxItems()));
                     if(data.size() > 0){
                         currentPage++;
                         Student student = (Student)data.get(0);
@@ -293,7 +300,7 @@ public class BrowseController{
         switch(AppContainer.screenTag.valueOf(currentTableTag)){
             case BROWSE_STUDENT_TABLE:
                 if(totalPageCount > 0 && currentPage >= 0){
-                    final ObservableList data = FXCollections.observableArrayList(appContainer.uiControl.uiModel.fetchPreviousStudentInLimit(currentTableMinId,appContainer.uiControl.settings.tableMaxItems));
+                    final ObservableList data = FXCollections.observableArrayList(appContainer.uiControl.uiModel.fetchPreviousStudentInLimit(currentTableMinId,appContainer.uiControl.settings.getTableMaxItems()));
                     if(data.size() > 0){
                         currentPage--;
                         Student student = (Student)data.get(0);
@@ -558,7 +565,7 @@ public class BrowseController{
     private void setBrowseStudentScreenLabels(){
         appContainer.setHeaderText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.HEADER_BROWSE_STUDENT_TITLE));
         
-        browseStudentBackButton.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.BACK));
+        browseTableBackButton.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.BACK));
     }
     
     private void setBrowseTableLabels(){

@@ -169,9 +169,14 @@ public class UIModel {
     
     public List<Student> fetchPreviousStudentInLimit(int studentIdValue, int limit){
         System.out.println("UIModel | fetchNextStudentInLimit | studentIdValue: " + studentIdValue + " | limit: " + limit);
-        Query q = em.createNamedQuery("Student.fetchPreviousStudentInLimit").setParameter("studentIdValue", studentIdValue).setMaxResults(limit);
+        
+        Query q = em.createNativeQuery("SELECT * FROM (SELECT * FROM STUDENT WHERE student_id < ?1 ORDER BY student_id DESC LIMIT ?2) ORDER BY student_id", Student.class);
+        
+        q.setParameter(1, studentIdValue);
+        q.setParameter(2, limit);
+        
         List<Student> result = q.getResultList();
-        System.out.println("UIModel | fetchNextStudentInLimit | result count: " + result.size());
+        System.out.println("UIModel | fetchNextStudentInLimit | result count: " + q.getResultList().size());
         return result;
     }
     

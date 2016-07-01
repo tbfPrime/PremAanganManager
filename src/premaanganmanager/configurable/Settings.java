@@ -17,12 +17,12 @@ import premaanganmanager.base.controller.ui.UIControl;
 public class Settings {
     public Labels labels;
     
-    public int dobMinYear, dobMinMonth, dobMinDate, dobMaxYear, dobMaxMonth, dobMaxDate;
+    private int dobMinYear, dobMinMonth, dobMinDate, dobMaxYear, dobMaxMonth, dobMaxDate;
     
-    public int tableMaxItems;
+    private int tableMaxItems;
     
-    public double appWidth;
-    public double appHeight;
+    private double appWidth;
+    private double appHeight;
     
     public String photosDir;
     public String placeHoldersDir;
@@ -64,7 +64,7 @@ public class Settings {
         labels = new Labels();
         setDefaultValuesToAllLabels();
         
-        tableMaxItems = 5;
+        tableMaxItems = 10;
         
         dobMinYear = 1950;
         dobMaxYear = 2012;
@@ -105,6 +105,8 @@ public class Settings {
         uiControl.closeDBObjects();
     }
     
+    public int getTableMaxItems(){ return tableMaxItems; }
+    
     public int getDOBMinYear(){ return dobMinYear; }
     public int getDOBMinMonth(){ return dobMinMonth; }
     public int getDOBMinDate(){ return dobMinDate; }
@@ -113,8 +115,7 @@ public class Settings {
     public int getDOBMaxMonth(){ return dobMaxMonth; }
     public int getDOBMaxDate(){ return dobMaxDate; }
     
-    public double getAppWidth(){ return appWidth; }
-    
+    public double getAppWidth(){ return appWidth; }    
     public double getAppHeight(){ return appHeight; }
     
     public final void setDefaultValuesToAllLabels(){

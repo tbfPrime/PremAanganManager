@@ -46,7 +46,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Student.findByPlace", query = "SELECT s FROM Student s WHERE s.place = :place"),
     @NamedQuery(name = "Student.findByDate", query = "SELECT s FROM Student s WHERE s.date = :date"),
     @NamedQuery(name = "Student.count", query = "SELECT COUNT(s.studentId) FROM Student s"),
-    @NamedQuery(name = "Student.fetchPreviousStudentInLimit", query = "SELECT s FROM Student s WHERE s.studentId < :studentIdValue ORDER BY s.studentId"),
+//    @NamedQuery(name = "Student.fetchPreviousStudentInLimit", query = "SELECT s FROM Student s WHERE s.studentId < :studentIdValue ORDER BY s.studentId"),
+//    @NamedQuery(name = "Student.fetchPreviousStudentInLimit", query = "SELECT s FROM (SELECT st FROM Student st WHERE st.studentId < :studentIdValue ORDER BY st.studentId) s ORDER BY s.studentId"),
     @NamedQuery(name = "Student.fetchNextStudentInLimit", query = "SELECT s FROM Student s WHERE s.studentId > :studentIdValue ORDER BY s.studentId")})
 public class Student implements Serializable {
     
