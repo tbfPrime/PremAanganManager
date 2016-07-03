@@ -48,6 +48,7 @@ public class Settings {
     
     private UIControl uiControl;
     
+    
     /**
      *
      * Initializes Application wide variables.

@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox alignment="CENTER_RIGHT" layoutX="575.0" layoutY="475.0" spacing="40.0" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="25.0">
+         <children>
+            <Button fx:id="addSaveButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#addStudentSaveAction" text="NA">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Button>
+            <Button fx:id="addBackButton" mnemonicParsing="false" onAction="#addStudentBackAction" text="NA">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+      <ScrollPane fitToWidth="true" layoutX="25.0" layoutY="23.0" AnchorPane.bottomAnchor="110.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="25.0">
+         <content>
+            <VBox minHeight="-Infinity" minWidth="-Infinity">
+               <children>
+                  <HBox fx:id="addTeacherPersonalDetailsHBox" alignment="CENTER_LEFT">
+                     <children>
+                        <Text fx:id="addTeacherPersonalDetails" strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <VBox maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <VBox maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" spacing="25.0">
+                                       <children>
+                                          <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <Text fx:id="addTeacherFirstName" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                             </children>
+                                          </HBox>
+                                          <StackPane alignment="CENTER_RIGHT" prefHeight="150.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <TextField fx:id="addTeacherFirstNameField" maxWidth="1.7976931348623157E308" />
+                                             </children>
+                                          </StackPane>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                                       </padding>
+                                    </HBox>
+                                    <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" spacing="25.0">
+                                       <children>
+                                          <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <Text fx:id="addTeacherMiddleName" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                             </children>
+                                          </HBox>
+                                          <TextField fx:id="addTeacherMiddleNameField" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                                       </padding>
+                                    </HBox>
+                                    <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" spacing="25.0">
+                                       <children>
+                                          <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <Text fx:id="addTeacherLastName" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                             </children>
+                                          </HBox>
+                                          <TextField fx:id="addTeacherLastNameField" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                                       </padding>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                                 <children>
+                                    <ImageView fx:id="addTeacherPhotoView" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
+                                       <viewport>
+                                          <Rectangle2D />
+                                       </viewport>
+                                    </ImageView>
+                                    <Button fx:id="addTeacherPhotoButton" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addStudentPhotoAction" prefHeight="50.0" prefWidth="200.0" text="Button" VBox.vgrow="ALWAYS" />
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </VBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets right="25.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+                           <children>
+                              <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Text fx:id="addTeacherAddress" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                 </children>
+                              </HBox>
+                              <TextField fx:id="addTeacherAddressField" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                           </children>
+                           <padding>
+                              <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                           </padding>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                            <children>
+                                <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" spacing="25.0" HBox.hgrow="ALWAYS">
+                                    <children>
+                                        <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                            <children>
+                                                <Text fx:id="addTeacherEmail" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                            </children>
+                                        </HBox>
+                                        <TextField fx:id="addTeacherEmailField" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="150.0" HBox.hgrow="ALWAYS" />
+                                    </children>
+                                    <padding>
+                                        <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                                    </padding>
+                                </HBox>
+                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+                                    <children>
+                                        <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0">
+                                            <children>
+                                                <Text fx:id="addTeacherDOB" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                            </children>
+                                        </HBox>
+                                        <DatePicker fx:id="addTeacherDateOfBirthPicker" maxWidth="-Infinity" minWidth="-Infinity" onAction="#addStudentDOBDatePickerAction" prefWidth="150.0" />
+                                    </children>
+                                    <padding>
+                                        <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                                    </padding>
+                                </HBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <HBox fx:id="addTeacherEmergencyContactHBox" alignment="CENTER_LEFT" layoutX="10.0" layoutY="620.0">
+                     <children>
+                        <Text fx:id="addTeacherEmergencyContact" strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="25.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0">
+                                 <children>
+                                    <Text fx:id="addTeacherEmergencyContactPerson" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                 </children>
+                              </HBox>
+                              <TextField fx:id="addTeacherEmergencyContactPersonField" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="150.0" HBox.hgrow="ALWAYS" />
+                           </children>
+                           <padding>
+                              <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                           </padding>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" spacing="25.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0">
+                                 <children>
+                                    <Text fx:id="addTeacherEmergencyContactTelNo" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                 </children>
+                              </HBox>
+                              <TextField fx:id="addTeacherEmergencyContactTelNoField" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="150.0" HBox.hgrow="ALWAYS" />
+                           </children>
+                           <padding>
+                              <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <HBox fx:id="addTeacherOfficeUseOnlyHBox" alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0">
+                     <children>
+                        <Text fx:id="addTeacherOfficeUseOnly" strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <VBox layoutX="10.0" layoutY="50.0" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="25.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0">
+                                       <children>
+                                          <Text fx:id="addTeacherSalary" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                       </children>
+                                    </HBox>
+                                    <TextField fx:id="addTeacherSalaryField" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="150.0" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+                                 <children>
+                                    <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0">
+                                       <children>
+                                          <Text fx:id="addTeacherDateOfResignation" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                       </children>
+                                    </HBox>
+                                    <DatePicker fx:id="addTeacherDateOfResignationPicker" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                                 </padding>
+                              </HBox>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="25.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0">
+                                       <children>
+                                          <Text fx:id="addTeacherPlace" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                       </children>
+                                    </HBox>
+                                    <TextField fx:id="addTeacherPlaceField" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="150.0" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+                                 <children>
+                                    <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0">
+                                       <children>
+                                          <Text fx:id="addTeacherDate" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                       </children>
+                                    </HBox>
+                                    <DatePicker fx:id="addTeacherDatePicker" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                                 </padding>
+                              </HBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
+      <StackPane fx:id="addHelpStackPane" visible="false" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+          <children>
+              <Pane fx:id="addHelpPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" />
+              <VBox fx:id="addHelpVBox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
+                  <children>
+                  <StackPane prefHeight="50.0">
+                     <children>
+                        <HBox fx:id="addHelpHeaderHBox" alignment="CENTER_LEFT" prefHeight="50.0" />
+                        <HBox alignment="CENTER" prefHeight="50.0">
+                            <children>
+                                <Text fx:id="addHelpHeader" strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
+                                    <font>
+                                        <Font name="System Bold" size="20.0" />
+                                    </font>
+                                </Text>
+                            </children>
+                        </HBox>
+                     </children>
+                  </StackPane>
+                      <TextFlow maxWidth="-Infinity" minWidth="200.0" prefHeight="400.0" prefWidth="600.0">
+                          <children>
+                              <Text fx:id="addTeacherHelpBody" layoutX="35.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
+                                  <font>
+                                      <Font size="16.0" />
+                                  </font>
+                              </Text>
+                          </children>
+                          <padding>
+                              <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+                          </padding>
+                      </TextFlow>
+                  </children>
+              </VBox>
+          </children>
+      </StackPane>
+   </children>
+</AnchorPane>

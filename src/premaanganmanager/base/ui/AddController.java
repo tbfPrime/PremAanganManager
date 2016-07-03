@@ -63,6 +63,20 @@ public class AddController {
     // Add
     @FXML
     private Button addStudentButton, addTeacherButton, addBatchButton, addClassButton, addCourseButton, addSubjectButton, addTimetableButton, addAttendanceButton;
+    @FXML
+    private Button addBackButton, addSaveButton;
+    
+    // Help
+    @FXML
+    private HBox addHelpHeaderHBox;
+    @FXML 
+    private VBox addHelpVBox;
+    @FXML
+    private StackPane addHelpStackPane;
+    @FXML
+    private Pane addHelpPane;
+    @FXML
+    private Text addHelpHeader;
     
     // Add Student
     @FXML
@@ -104,6 +118,9 @@ public class AddController {
     private TextField addStudentFamilyMemberNameField6, addStudentFamilyMemberRelationshipField6, addStudentFamilyMemberAgeField6, addStudentFamilyMemberOccupationField6, addStudentFamilyMemberOccupationalAddressField6, addStudentFamilyMemberOccupationalTelNoField6;
     @FXML
     private TextField addStudentReferenceNoField, addStudentEnrollmentNoField, addStudentPlaceField;
+
+    @FXML
+    private Button addStudentPhotoButton;
     
     @FXML
     private DatePicker addStudentDOBDatePicker, addStudentDateDatePicker;
@@ -113,29 +130,60 @@ public class AddController {
     
     @FXML 
     private ImageView addStudentPhotoView;
-
-    @FXML
-    private Button addStudentBackButton, addStudentSaveButton, addStudentPhotoButton;
     
     @FXML
     private HBox addStudentPersonalDetailsHBox, addStudentOfficeUseOnlyHBox, addStudentFamilyDetailsHBox, addStudentEmergencyContactHBox;
     
+    // Help Student
     @FXML
-    private HBox addStudentHelpHeaderHBox;
+    private Text addStudentHelpBody;
+    
+    // Add Teacher
+    @FXML
+    private Text addTeacherPersonalDetails, addTeacherEmergencyContact, addTeacherOfficeUseOnly;
+    @FXML
+    private Text addTeacherFirstName, addTeacherMiddleName, addTeacherLastName;
+    @FXML
+    private Text addTeacherAddress, addTeacherEmail, addTeacherDOB;
+    @FXML
+    private Text addTeacherEmergencyContactPerson, addTeacherEmergencyContactTelNo;
+    @FXML
+    private Text addTeacherSalary, addTeacherDateOfResignation, addTeacherPlace, addTeacherDate;
+    
+    @FXML
+    private TextField addTeacherFirstNameField, addTeacherMiddleNameField, addTeacherLastNameField;
+    @FXML
+    private TextField addTeacherAddressField, addTeacherEmailField;
+    @FXML
+    private TextField addTeacherEmergencyContactPersonField, addTeacherEmergencyContactTelNoField;
+    @FXML
+    private TextField addTeacherSalaryField, addTeacherPlaceField;
+    
+    @FXML
+    private Button addTeacherPhotoButton;
+    
+    @FXML
+    private DatePicker addTeacherDateOfBirthPicker, addTeacherDateOfResignationPicker, addTeacherDatePicker;
+
     @FXML 
-    private VBox addStudentHelpVBox;
+    private ImageView addTeacherPhotoView;
+    
     @FXML
-    private StackPane addStudentHelpStackPane;
+    private HBox addTeacherPersonalDetailsHBox, addTeacherEmergencyContactHBox, addTeacherOfficeUseOnlyHBox;
+    
+    // Help Student
     @FXML
-    private Pane addStudentHelpPane;
-    @FXML
-    private Text addStudentHelpHeader, addStudentHelpBody;
+    private Text addTeacherHelpBody;
     
     // FXML methods
     // Add
     @FXML
     private void addStudentButtonAction(){
         appContainer.displayScreen(AppContainer.screenTag.ADD_STUDENT);
+    }
+    @FXML
+    private void addTeacherButtonAction(){
+        appContainer.displayScreen(AppContainer.screenTag.ADD_TEACHER);
     }
     
     // Add Student
@@ -214,12 +262,27 @@ public class AddController {
         }
     }
     
+    public AnchorPane setAddTeacherScreen(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/premaanganmanager/base/ui/AddTeacher.fxml"));
+            loader.setController(this);
+            AnchorPane addBase = loader.load();
+//            setAddStudentScreenData();
+            addBase.getStylesheets().add(AddController.class.getResource("AddStudent.css").toExternalForm());
+            return addBase;
+        } catch (IOException e) {
+            System.out.println("Error | AppContainer | setAddTeacherScreen | " + e);
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, e);
+            return null;
+        }
+    }
+    
     public void showHelp(boolean show){
         System.out.println("AddController | showHelp | " + show);
         if(show){
-            appContainer.uiControl.setHelpStyle(addStudentHelpPane, addStudentHelpVBox, addStudentHelpHeaderHBox);
+            appContainer.uiControl.setHelpStyle(addHelpPane, addHelpVBox, addHelpHeaderHBox);
         }
-        addStudentHelpStackPane.setVisible(show);
+        addHelpStackPane.setVisible(show);
     }
     
     // Private Functions
@@ -426,7 +489,7 @@ public class AddController {
     }
 
     private void setAddStudentStyling(){
-        appContainer.uiControl.setHelpStyle(addStudentHelpPane, addStudentHelpVBox, addStudentHelpHeaderHBox);
+        appContainer.uiControl.setHelpStyle(addHelpPane, addHelpVBox, addHelpHeaderHBox);
     }
     
     private Integer getReligionID(){
@@ -824,8 +887,8 @@ public class AddController {
     private void setAddStudentScreenLabels(){
         appContainer.setHeaderText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.HEADER_ADD_STUDENT_TITLE));
         
-        addStudentBackButton.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.BACK));
-        addStudentSaveButton.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.SAVE));
+        addBackButton.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.BACK));
+        addSaveButton.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.SAVE));
         addStudentPhotoButton.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_PASSPORT_PHOTO));
         
         addStudentPersonalDetails.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_PERSONAL_DETAILS));
@@ -895,7 +958,7 @@ public class AddController {
         addStudentPlace.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_PLACE) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_SEPERATOR));
         addStudentDate.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_DATE) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_SEPERATOR));
         
-        addStudentHelpHeader.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.HELP));
+        addHelpHeader.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.HELP));
         addStudentHelpBody.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.HELP_ADD_STUDENT));
     }
 }

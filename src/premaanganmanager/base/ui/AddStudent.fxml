@@ -14,12 +14,12 @@
    <children>
       <HBox alignment="CENTER_RIGHT" layoutX="575.0" layoutY="475.0" spacing="40.0" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="25.0">
          <children>
-            <Button fx:id="addStudentBackButton" mnemonicParsing="false" onAction="#addStudentBackAction" text="NA">
+            <Button fx:id="addSaveButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#addStudentSaveAction" text="NA">
                <font>
                   <Font size="30.0" />
                </font>
             </Button>
-            <Button fx:id="addStudentSaveButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#addStudentSaveAction" text="NA">
+            <Button fx:id="addBackButton" mnemonicParsing="false" onAction="#addStudentBackAction" text="NA">
                <font>
                   <Font size="30.0" />
                </font>
@@ -857,25 +857,25 @@
             </VBox>
          </content>
       </ScrollPane>
-      <StackPane fx:id="addStudentHelpStackPane" visible="false" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+      <StackPane fx:id="addHelpStackPane" visible="false" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
           <children>
-              <Pane fx:id="addStudentHelpPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" />
-              <VBox fx:id="addStudentHelpVBox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
+              <Pane fx:id="addHelpPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" />
+              <VBox fx:id="addHelpVBox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
                   <children>
-                  <StackPane prefHeight="50.0">
-                     <children>
-                        <HBox fx:id="addStudentHelpHeaderHBox" alignment="CENTER_LEFT" prefHeight="50.0" />
-                        <HBox alignment="CENTER" prefHeight="50.0">
-                            <children>
-                                <Text fx:id="addStudentHelpHeader" strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
-                                    <font>
-                                        <Font name="System Bold" size="20.0" />
-                                    </font>
-                                </Text>
-                            </children>
-                        </HBox>
-                     </children>
-                  </StackPane>
+                      <StackPane prefHeight="50.0">
+                          <children>
+                              <HBox fx:id="addHelpHeaderHBox" alignment="CENTER_LEFT" prefHeight="50.0" />
+                              <HBox alignment="CENTER" prefHeight="50.0">
+                                  <children>
+                                      <Text fx:id="addHelpHeader" strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
+                                          <font>
+                                              <Font name="System Bold" size="20.0" />
+                                          </font>
+                                      </Text>
+                                  </children>
+                              </HBox>
+                          </children>
+                      </StackPane>
                       <TextFlow maxWidth="-Infinity" minWidth="200.0" prefHeight="400.0" prefWidth="600.0">
                           <children>
                               <Text fx:id="addStudentHelpBody" layoutX="35.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NA">

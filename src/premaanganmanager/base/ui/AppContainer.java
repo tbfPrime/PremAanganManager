@@ -38,7 +38,7 @@ public class AppContainer {
     
     private Scene appContainerScene;
     private BorderPane root;
-    private String currentActiveScreen;
+    private screenTag activeScreenTag;
     
     // Menu
     @FXML
@@ -90,8 +90,8 @@ public class AppContainer {
     }
     @FXML
     private void helpAction(){
-        System.out.println("AppContainer | helpAction | currentActiveScreen: " + currentActiveScreen + " | help select state: " + helpButton.isSelected());
-        switch(screenTag.valueOf(currentActiveScreen)){
+        System.out.println("AppContainer | helpAction | currentActiveScreen: " + activeScreenTag + " | help select state: " + helpButton.isSelected());
+        switch(activeScreenTag){
             case ADD_STUDENT: toggleAddStudentHelp(); break;
         }
     }
@@ -112,7 +112,7 @@ public class AppContainer {
         HOME, BROWSE, ADD, SEARCH, SETTINGS,
         
         // Add
-        ADD_STUDENT, 
+        ADD_STUDENT, ADD_TEACHER,
         
         // Browse
         BROWSE_STUDENT_TABLE, BROWSE_TEACHER_TABLE, BROWSE_SUBJECT_TABLE, BROWSE_ATTENDANCE_TABLE,
@@ -124,7 +124,7 @@ public class AppContainer {
     
     // Main Screen Display wrapper
     public void displayScreen(screenTag tag){
-        currentActiveScreen = tag.toString();
+        activeScreenTag = tag;
         switch(tag){
             case HOME: setHomeScreen(); break;
             case BROWSE: setBrowseScreen(); break;
@@ -132,6 +132,7 @@ public class AppContainer {
             case SEARCH: setSearchScreen(); break;
             case SETTINGS: setSettingsScreen(); break;
             case ADD_STUDENT: setAddStudentScreen(); break;
+            case ADD_TEACHER: setAddTeacherScreen(); break;
             case BROWSE_STUDENT_TABLE:
             case BROWSE_TEACHER_TABLE:
             case BROWSE_SUBJECT_TABLE:
@@ -144,6 +145,8 @@ public class AppContainer {
         }
         closeHelp();
     }
+    
+    public screenTag getActiveScreenTag(){ return activeScreenTag; }
     
     public Scene setAppContainer(){
         try {
@@ -270,6 +273,10 @@ public class AppContainer {
     
     private void setAddStudentScreen(){
         root.setCenter(addController.setAddStudentScreen());
+    }
+    
+    private void setAddTeacherScreen(){
+        root.setCenter(addController.setAddTeacherScreen());
     }
     
     private void setBrowseTableScreen(screenTag tag){

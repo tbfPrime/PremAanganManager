@@ -43,7 +43,6 @@ public class BrowseController{
     private final AppContainer appContainer;
     private Student currentStudent;
     
-    private String currentTableTag;
     private int currentTableMinId, currentTableMaxId, currentPage, totalPageCount;
     
     @FXML
@@ -244,7 +243,6 @@ public class BrowseController{
     }
     
     private void dispayTable(AppContainer.screenTag tag){
-        currentTableTag = tag.toString();
         switch(tag){
             case BROWSE_STUDENT_TABLE: setBrowseStudentScreenLabels(); displayStudentTable(); break;
         }
@@ -272,7 +270,7 @@ public class BrowseController{
     
     private void nextPage(){
         System.out.println("BrowseController | nextPage | currentTableMinId: " + currentTableMinId + " | currentTableMaxId: " + currentTableMaxId);
-        switch(AppContainer.screenTag.valueOf(currentTableTag)){
+        switch(appContainer.getActiveScreenTag()){
             case BROWSE_STUDENT_TABLE:
                 if(totalPageCount == 0){ totalPageCount = (int)Math.ceil(((double)appContainer.uiControl.uiModel.fetchStudentCount() / appContainer.uiControl.settings.getTableMaxItems())); }
                 if(totalPageCount > 0 && currentPage <= totalPageCount){
@@ -297,7 +295,7 @@ public class BrowseController{
     
     private void previousPage(){
         System.out.println("BrowseController | previousPage | currentTableMinId: " + currentTableMinId + " | currentTableMaxId: " + currentTableMaxId);
-        switch(AppContainer.screenTag.valueOf(currentTableTag)){
+        switch(appContainer.getActiveScreenTag()){
             case BROWSE_STUDENT_TABLE:
                 if(totalPageCount > 0 && currentPage >= 0){
                     final ObservableList data = FXCollections.observableArrayList(appContainer.uiControl.uiModel.fetchPreviousStudentInLimit(currentTableMinId,appContainer.uiControl.settings.getTableMaxItems()));
