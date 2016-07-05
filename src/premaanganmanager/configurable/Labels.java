@@ -13,7 +13,6 @@ public class Labels {
     // public enum to tag lables from this file.
     public enum labelTag{
         // Common
-// Common
         APPLICATION_TITLE, BACK, SAVE, PRINT, HELP,
         MENU_HOME, MENU_BROWSE, MENU_ADD, MENU_SEARCH, MENU_SETTINGS,
         HEADER_LOGOUT, HEADER_SWITCH_ADMIN, HEADER_HELP,
@@ -45,7 +44,7 @@ public class Labels {
         // Add 
         ADD_STUDENT, ADD_TEACHER, ADD_SUBJECT, ADD_ATTENDANCE,
         ADD_COURSE, ADD_BATCH, ADD_CLASS, ADD_TIMETABLE,
-        ADD_NEW_RELIGION,
+        ADD_NEW_RELIGION, ADD_PHOTO, 
         
         // Add Student
         ADD_STUDENT_FIRST_NAME, ADD_STUDENT_MIDDLE_NAME, ADD_STUDENT_LAST_NAME,
@@ -56,8 +55,16 @@ public class Labels {
         ADD_STUDENT_FAMILY_MEMBER_NAME, ADD_STUDENT_FAMILY_MEMBER_RELATIONSHIP, ADD_STUDENT_FAMILY_MEMBER_AGE,
         ADD_STUDENT_FAMILY_MEMBER_OCCUPATION, ADD_STUDENT_FAMILY_MEMBER_OCCUPATIONAL_ADDRESS, ADD_STUDENT_FAMILY_MEMBER_OCCUPATIONAL_TEL_NO,
         ADD_STUDENT_REFERENCE_NUMBER, ADD_STUDENT_ENROLLMENT_NUMBER, ADD_STUDENT_PLACE, ADD_STUDENT_DATE,
-        ADD_STUDENT_PHOTO, ADD_STUDENT_PERSONAL_DETAILS, ADD_STUDENT_OFFICE_USE_ONLY,
-        ADD_STUDENT_FAMILY_DETAILS, ADD_STUDENT_EMERGENCY_CONTACT, ADD_STUDENT_PASSPORT_PHOTO,
+        ADD_STUDENT_PERSONAL_DETAILS, ADD_STUDENT_OFFICE_USE_ONLY,
+        ADD_STUDENT_FAMILY_DETAILS, ADD_STUDENT_EMERGENCY_CONTACT,
+        
+        // Add Teacher
+        ADD_TEACHER_PERSONAL_DETAILS, ADD_TEACHER_EMERGENCY_CONTACT, ADD_TEACHER_OFFICE_USE_ONLY,
+        ADD_TEACHER_FIRST_NAME, ADD_TEACHER_MIDDLE_NAME, ADD_TEACHER_LAST_NAME,
+        ADD_TEACHER_ADDRESS, ADD_TEACHER_EMAIL, ADD_TEACHER_DATE_OF_BIRTH,
+        ADD_TEACHER_EMERGENCY_CONTACT_PERSON, ADD_TEACHER_EMERGENCY_CONTACT_TEL_NO,
+        ADD_TEACHER_SALARY, ADD_TEACHER_DATE_OF_RESIGNATION,
+        ADD_TEACHER_PLACE, ADD_TEACHER_DATE,
         
         // Browse
         BROWSE_STUDENT, BROWSE_TEACHER,
@@ -68,7 +75,7 @@ public class Labels {
         BROWSE_STUDENT_COURSE_NAME, BROWSE_STUDENT_CLASS_NAME
     }
     
-    // List of all  labels used in PAM
+    // List of all labels used in PAM
     // Common labels.
     private String l_ApplicationTitle, l_Back, l_Save, l_Print, l_Help;
     private String l_MenuHome, l_MenuBrowse, l_MenuAdd, l_MenuSearch, l_MenuSettings;
@@ -111,7 +118,15 @@ public class Labels {
     private String l_addStudentFamilyMemberOccupation, l_addStudentFamilyMemberOccupationalAddress, l_addStudentFamilyMemberOccupationalTelNo;
     private String l_addStudentReferenceNumber, l_addStudentEnrollmentNumber, l_addStudentPlace, l_addStudentDate;
     private String l_addStudentPhoto, l_addStudentPersonalDetails, l_addStudentOfficeUseOnly;
-    private String l_addStudentFamilyDetails, l_addStudentEmergencyContact, l_AddStudentPassportPhoto;
+    private String l_addStudentFamilyDetails, l_addStudentEmergencyContact;
+    
+    // Add Teacher
+    private String l_AddTeacherPersonalDetails, l_AddTeacherEmergencyContact, l_AddTeacherOfficeUseOnly;
+    private String l_AddTeacherFirstName, l_AddTeacherMiddleName, l_AddTeacherLastName;
+    private String l_AddTeacherAddress, l_AddTeacherEmail, l_AddTeacherDOB;
+    private String l_AddTeacherEmergencyContactPerson, l_AddTeacherEmergencyContactTelNo;
+    private String l_AddTeacherSalary, l_AddTeacherDateOfResignation;
+    private String l_AddTeacherPlace, l_AddTeacherDate;
     
     // Browse
     private String l_browseStudent, l_browseTeacher;
@@ -230,12 +245,27 @@ public class Labels {
             case ADD_STUDENT_ENROLLMENT_NUMBER: l_addStudentEnrollmentNumber = value; break;
             case ADD_STUDENT_PLACE: l_addStudentPlace = value; break;
             case ADD_STUDENT_DATE: l_addStudentDate = value; break;
-            case ADD_STUDENT_PHOTO: l_addStudentPhoto = value; break;
+            case ADD_PHOTO: l_addStudentPhoto = value; break;
             case ADD_STUDENT_PERSONAL_DETAILS: l_addStudentPersonalDetails = value; break;
             case ADD_STUDENT_OFFICE_USE_ONLY: l_addStudentOfficeUseOnly = value; break;
             case ADD_STUDENT_FAMILY_DETAILS: l_addStudentFamilyDetails = value; break;
             case ADD_STUDENT_EMERGENCY_CONTACT: l_addStudentEmergencyContact = value; break;
-            case ADD_STUDENT_PASSPORT_PHOTO: l_AddStudentPassportPhoto = value; break;
+            
+            case ADD_TEACHER_PERSONAL_DETAILS: l_AddTeacherPersonalDetails = value; break;
+            case ADD_TEACHER_EMERGENCY_CONTACT: l_AddTeacherEmergencyContact = value; break;
+            case ADD_TEACHER_OFFICE_USE_ONLY: l_AddTeacherOfficeUseOnly = value; break;
+            case ADD_TEACHER_FIRST_NAME: l_AddTeacherFirstName = value; break;
+            case ADD_TEACHER_MIDDLE_NAME: l_AddTeacherMiddleName = value; break;
+            case ADD_TEACHER_LAST_NAME: l_AddTeacherLastName = value; break;
+            case ADD_TEACHER_ADDRESS: l_AddTeacherAddress = value; break;
+            case ADD_TEACHER_EMAIL: l_AddTeacherEmail = value; break;
+            case ADD_TEACHER_DATE_OF_BIRTH: l_AddTeacherDOB = value; break;
+            case ADD_TEACHER_EMERGENCY_CONTACT_PERSON: l_AddTeacherEmergencyContactPerson = value; break;
+            case ADD_TEACHER_EMERGENCY_CONTACT_TEL_NO: l_AddTeacherEmergencyContactTelNo = value; break;
+            case ADD_TEACHER_SALARY: l_AddTeacherSalary = value; break;
+            case ADD_TEACHER_DATE_OF_RESIGNATION: l_AddTeacherDateOfResignation = value; break;
+            case ADD_TEACHER_PLACE: l_AddTeacherPlace = value; break;
+            case ADD_TEACHER_DATE: l_AddTeacherDate = value; break;
             
             case BROWSE_STUDENT: l_browseStudent = value; break;
             case BROWSE_TEACHER: l_browseTeacher = value; break;
@@ -360,12 +390,27 @@ public class Labels {
             case ADD_STUDENT_ENROLLMENT_NUMBER: return l_addStudentEnrollmentNumber;
             case ADD_STUDENT_PLACE: return l_addStudentPlace;
             case ADD_STUDENT_DATE: return l_addStudentDate;
-            case ADD_STUDENT_PHOTO: return l_addStudentPhoto;
+            case ADD_PHOTO: return l_addStudentPhoto;
             case ADD_STUDENT_PERSONAL_DETAILS: return l_addStudentPersonalDetails;
             case ADD_STUDENT_OFFICE_USE_ONLY: return l_addStudentOfficeUseOnly;
             case ADD_STUDENT_FAMILY_DETAILS: return l_addStudentFamilyDetails;
             case ADD_STUDENT_EMERGENCY_CONTACT: return l_addStudentEmergencyContact;
-            case ADD_STUDENT_PASSPORT_PHOTO: return l_AddStudentPassportPhoto;
+            
+            case ADD_TEACHER_PERSONAL_DETAILS: return l_AddTeacherPersonalDetails;
+            case ADD_TEACHER_EMERGENCY_CONTACT: return l_AddTeacherEmergencyContact;
+            case ADD_TEACHER_OFFICE_USE_ONLY: return l_AddTeacherOfficeUseOnly;
+            case ADD_TEACHER_FIRST_NAME: return l_AddTeacherFirstName;
+            case ADD_TEACHER_MIDDLE_NAME: return l_AddTeacherMiddleName;
+            case ADD_TEACHER_LAST_NAME: return l_AddTeacherLastName;
+            case ADD_TEACHER_ADDRESS: return l_AddTeacherAddress;
+            case ADD_TEACHER_EMAIL: return l_AddTeacherEmail;
+            case ADD_TEACHER_DATE_OF_BIRTH: return l_AddTeacherDOB;
+            case ADD_TEACHER_EMERGENCY_CONTACT_PERSON: return l_AddTeacherEmergencyContactPerson;
+            case ADD_TEACHER_EMERGENCY_CONTACT_TEL_NO: return l_AddTeacherEmergencyContactTelNo;
+            case ADD_TEACHER_SALARY: return l_AddTeacherSalary;
+            case ADD_TEACHER_DATE_OF_RESIGNATION: return l_AddTeacherDateOfResignation;
+            case ADD_TEACHER_PLACE: return l_AddTeacherPlace;
+            case ADD_TEACHER_DATE: return l_AddTeacherDate;
             
             case BROWSE_STUDENT: return l_browseStudent;
             case BROWSE_TEACHER: return l_browseTeacher;

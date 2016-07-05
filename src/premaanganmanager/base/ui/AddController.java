@@ -267,7 +267,7 @@ public class AddController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/premaanganmanager/base/ui/AddTeacher.fxml"));
             loader.setController(this);
             AnchorPane addBase = loader.load();
-//            setAddStudentScreenData();
+            setAddTeacherScreenData();
             addBase.getStylesheets().add(AddController.class.getResource("AddStudent.css").toExternalForm());
             return addBase;
         } catch (IOException e) {
@@ -290,6 +290,28 @@ public class AddController {
         setAddScreenMenuGraphics();
         setAddSCreenMenuStyling();
         setAddScreenMenuLabels();
+    }
+    
+    private void setAddStudentScreenData(){
+        student = new Student();
+        religion = new Religion();
+        familyInfo1 = new FamilyInfo();
+        familyInfo2 = new FamilyInfo();
+        familyInfo3 = new FamilyInfo();
+        familyInfo4 = new FamilyInfo();
+        familyInfo5 = new FamilyInfo();
+        familyInfo6 = new FamilyInfo();
+        
+        setAddStudentFormConditions();
+        setReligionData();
+        setDefaultStudentPhotoView();
+        setAddStudentPropertyID();
+        setAddStudentStyling();
+        setAddStudentScreenLabels();
+    }
+    
+    private void setAddTeacherScreenData(){
+        setAddTeacherScreenLabels();
     }
     
     private void setAddScreenMenuGraphics(){
@@ -380,38 +402,7 @@ public class AddController {
         appContainer.uiControl.setButtonStyle(addClassButton);
         appContainer.uiControl.setButtonStyle(addTimetableButton);
     }
-    
-    private void setAddScreenMenuLabels(){
-        appContainer.setHeaderText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.HEADER_ADD_TITLE));
-        
-        addStudentButton.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT));
-        addTeacherButton.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_TEACHER));
-        addSubjectButton.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_SUBJECT));
-        addAttendanceButton.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_ATTENDANCE));
-        addCourseButton.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_COURSE));
-        addBatchButton.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_BATCH));
-        addClassButton.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_CLASS));
-        addTimetableButton.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_TIMETABLE));
-    }
-    
-    private void setAddStudentScreenData(){
-        student = new Student();
-        religion = new Religion();
-        familyInfo1 = new FamilyInfo();
-        familyInfo2 = new FamilyInfo();
-        familyInfo3 = new FamilyInfo();
-        familyInfo4 = new FamilyInfo();
-        familyInfo5 = new FamilyInfo();
-        familyInfo6 = new FamilyInfo();
-        
-        setAddStudentFormConditions();
-        setReligionData();
-        setDefaultStudentPhotoView();
-        setAddStudentPropertyID();
-        setAddStudentStyling();
-        setAddStudentScreenLabels();
-    }
-    
+
     private void setAddStudentFormConditions(){
         addStudentOtherReligionField.setDisable(true);
         
@@ -883,13 +874,26 @@ public class AddController {
         if(m.find()){ return true; }
         return false;
     }
-
+    
+    private void setAddScreenMenuLabels(){
+        appContainer.setHeaderText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.HEADER_ADD_TITLE));
+        
+        addStudentButton.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT));
+        addTeacherButton.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_TEACHER));
+        addSubjectButton.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_SUBJECT));
+        addAttendanceButton.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_ATTENDANCE));
+        addCourseButton.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_COURSE));
+        addBatchButton.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_BATCH));
+        addClassButton.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_CLASS));
+        addTimetableButton.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_TIMETABLE));
+    }
+    
     private void setAddStudentScreenLabels(){
         appContainer.setHeaderText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.HEADER_ADD_STUDENT_TITLE));
         
         addBackButton.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.BACK));
         addSaveButton.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.SAVE));
-        addStudentPhotoButton.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_PASSPORT_PHOTO));
+        addStudentPhotoButton.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_PHOTO));
         
         addStudentPersonalDetails.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_PERSONAL_DETAILS));
         addStudentFirstName.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FIRST_NAME) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_SEPERATOR));
@@ -960,5 +964,18 @@ public class AddController {
         
         addHelpHeader.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.HELP));
         addStudentHelpBody.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.HELP_ADD_STUDENT));
+    }
+    
+    private void setAddTeacherScreenLabels(){
+        addTeacherPersonalDetails.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_TEACHER_PERSONAL_DETAILS));
+        addTeacherEmergencyContact.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_TEACHER_EMERGENCY_CONTACT));
+        addTeacherOfficeUseOnly.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_TEACHER_OFFICE_USE_ONLY));
+        
+        addTeacherFirstName.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_TEACHER_FIRST_NAME));
+        addTeacherMiddleName.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_TEACHER_MIDDLE_NAME));
+        addTeacherLastName.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_TEACHER_LAST_NAME));
+        addTeacherAddress.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_TEACHER_ADDRESS));
+        addTeacherEmail.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_TEACHER_EMAIL));
+        addTeacherDOB.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_TEACHER_DATE_OF_BIRTH));
     }
 }

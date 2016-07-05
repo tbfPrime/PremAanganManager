@@ -123,7 +123,11 @@ public class Settings {
         List<ApplicationLabels> labels = uiControl.uiModel.fetchAllLabels();
         
         for(ApplicationLabels tempLabels : labels){
-            this.labels.setLabel(Labels.labelTag.valueOf(tempLabels.getTag()),tempLabels.getValue());
+            try{
+                this.labels.setLabel(Labels.labelTag.valueOf(tempLabels.getTag()),tempLabels.getValue());
+            } catch(Exception e){
+                System.err.println("Settings | setDefaultValuesToAllLabels | Error: " + e);
+            }
         }
     }
 }
