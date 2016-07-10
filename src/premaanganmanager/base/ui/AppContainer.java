@@ -93,6 +93,7 @@ public class AppContainer {
         System.out.println("AppContainer | helpAction | currentActiveScreen: " + activeScreenTag + " | help select state: " + helpButton.isSelected());
         switch(activeScreenTag){
             case ADD_STUDENT: toggleAddStudentHelp(); break;
+            default: closeHelp();
         }
     }
     
@@ -103,7 +104,7 @@ public class AppContainer {
         homeController = new HomeController(this);
         browseController = new BrowseController(this);
         addController = new AddController(this);
-        searchController = new SearchController();
+        searchController = new SearchController(this);
         settingsController = new SettingsController();
     }
     
@@ -119,7 +120,10 @@ public class AppContainer {
         BROWSE_COURSE_TABLE, BROWSE_BATCH_TABLE, BROWSE_CLASS_TABLE, BROWSE_TIMETABLE_TABLE,
         
         // Browse Records
-        BROWSE_STUDENT_RECORD
+        BROWSE_STUDENT_RECORD,
+        
+        // Search Results
+        SEARCH_RESULT
     }
     
     // Main Screen Display wrapper
@@ -142,6 +146,7 @@ public class AppContainer {
             case BROWSE_CLASS_TABLE:
             case BROWSE_TIMETABLE_TABLE: setBrowseTableScreen(tag); break;
             case BROWSE_STUDENT_RECORD: setBrowseStudentRecordScreen(); break;
+            case SEARCH_RESULT: setSearchResultScreen(); break;
         }
         closeHelp();
     }
@@ -285,6 +290,10 @@ public class AppContainer {
 
     private void setBrowseStudentRecordScreen(){
         root.setCenter(browseController.setBrowseStudentRecord());
+    }
+    
+    private void setSearchResultScreen(){
+        root.setCenter(searchController.setSearchResults());
     }
     
     private void toggleAddStudentHelp(){
