@@ -5,11 +5,7 @@
  */
 package premaanganmanager.configurable.sceneComponents;
 
-import java.io.File;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import javafx.beans.binding.Bindings;
@@ -21,14 +17,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import javafx.stage.FileChooser;
 import premaanganmanager.base.controller.UIModel;
 import premaanganmanager.base.controller.Utility;
 import premaanganmanager.configurable.Labels;
@@ -52,8 +46,6 @@ public class AddStudentScreen extends AddScreen {
     private FamilyInfo familyInfo4;
     private FamilyInfo familyInfo5;
     private FamilyInfo familyInfo6;
-
-    private String photoFileExtension = "";
     
     // FXML fields
     // Add
@@ -159,13 +151,14 @@ public class AddStudentScreen extends AddScreen {
         
         setAddStudentFormConditions();
         setReligionData();
-        setStudentPhotoView(Paths.get(Settings.getPlaceHolderDir(),Settings.getPlaceHolderStudentPhoto()));
+        setPhotoView(addStudentPhotoView,Paths.get(Settings.getPlaceHolderDir(),Settings.getPlaceHolderStudentPhoto()));
         setLabels();
         setID();
     }
     @Override
     public void back(){
         Utility.log("AddStudentScreen | back");
+        flushData();
         managerScene.getSceneContainer().displayScreen(Settings.screenTag.ADD);
     }
     @Override
@@ -178,7 +171,7 @@ public class AddStudentScreen extends AddScreen {
     @FXML
     private void addStudentPhotoAction(){
         Utility.log("AddStudentScreen | addStudentPhotoAction");
-        getStudentPhoto();
+        setPhotoView(addStudentPhotoView,getPhotoPath());
     }
     @FXML
     private void addStudentDOBAction(){
@@ -204,7 +197,7 @@ public class AddStudentScreen extends AddScreen {
         if(validateStudentForm()){
             if(saveReligionRecord() && new UIModel().saveStudentForm(student) && saveFamilyInfo()){
                 Utility.log("AddStudentScreen | saveStudentRecord | Value of Student ID: " + student.getStudentId());
-                savePhotoFile();
+                savePhotoFile(Labels.labelTag.LABEL_STUDENT_PHOTO_PREFIX.getLabel() + student.getStudentId());
                 String alertStudentName = addStudentFirstNameField.getText() + (addStudentMiddleNameField.getText().isEmpty() ? "" : " " + addStudentMiddleNameField.getText()) + (addStudentLastNameField.getText().isEmpty() ? "" : " " + addStudentLastNameField.getText());
                 if(LocalUtility.alertInfo(Labels.labelTag.ALERT_MESSAGE_STUDENT_SAVE_SUCCESS.getLabel().replace("?", alertStudentName))){ back(); }
                 else{ back(); }
@@ -257,18 +250,6 @@ public class AddStudentScreen extends AddScreen {
             }
         } else { Utility.errorLog("AddStudentScreen | saveFamilyInfo | No family info to save."); }
         return true;
-    }
-    private void savePhotoFile(){
-        if(photoFileExtension.isEmpty()){ Utility.log("AddStudentScreen | savePhotoFile | No Photo File to save."); }
-        else{
-            Path fromPhotoFilePath = Paths.get(Settings.getPhotoDir(), (Settings.getTempPhotoFilename() + "." + photoFileExtension));
-            Path toPhotoFilePath = Paths.get(Settings.getPhotoDir(), (Labels.labelTag.LABEL_STUDENT_PHOTO_PREFIX.getLabel() + student.getStudentId() + "." + photoFileExtension));
-            File fromPhotoFile = new File(fromPhotoFilePath.toAbsolutePath().toString());
-            File toPhotoFile = new File(toPhotoFilePath.toAbsolutePath().toString());
-            if(fromPhotoFile.exists()){ 
-                if(fromPhotoFile.renameTo(toPhotoFile)){ Utility.log("AddStudentScreen | savePhotoFile | Rename successful."); } 
-            }
-        }
     }
     private boolean validateStudentForm(){
         Utility.log("AddStudentScreen | validateStudentForm");
@@ -509,23 +490,6 @@ public class AddStudentScreen extends AddScreen {
         Religion selectedReligion = (Religion)addStudentReligionComboBox.getItems().get(addStudentReligionComboBox.getSelectionModel().getSelectedIndex());
         return selectedReligion.getReligionId();
     }
-    private void getStudentPhoto(){
-        Utility.log("AddStudentScreen | getStudentPhoto");
-        FileChooser addStudentPhotoFileChooser = new FileChooser();
-        Utility.configureFileChooserForImages(addStudentPhotoFileChooser);
-        File addStudentPhotoFile = addStudentPhotoFileChooser.showOpenDialog(managerScene.getSceneContainer().getActiveStage());
-        Utility.log("addStudentPhotoFile: " + addStudentPhotoFile.getPath());
-        
-        photoFileExtension = Utility.getFileExtensionFromString(addStudentPhotoFile.getPath());
-        Path copyTo = Paths.get(Settings.getPhotoDir(),(Settings.getTempPhotoFilename() + "." + photoFileExtension));
-        try{
-            Files.copy(addStudentPhotoFile.toPath(),copyTo,StandardCopyOption.REPLACE_EXISTING);
-            setStudentPhotoView(copyTo);
-            Utility.log("AddStudentScreen | getStudentPhoto | copy successful");
-        } catch(Exception e){
-            Utility.errorLog("AddStudentScreen | getStudentPhoto | Error: " + e);
-        }
-    }
     private void setAddStudentFormConditions(){
         addStudentOtherReligionField.setDisable(true);
         
@@ -579,18 +543,6 @@ public class AddStudentScreen extends AddScreen {
         
         addStudentReligionComboBox.setItems(list);
         addStudentReligionComboBox.getItems().add(Labels.labelTag.ADD_NEW_RELIGION.getLabel());
-    }
-    private void setStudentPhotoView(Path photoPath){
-        Utility.log("AddStudentScreen | setDefaultStudentPhotoView");
-        try{
-//            Path defaultStudentPhotoPath = Paths.get(managerScene.getSceneContainer().getSettings().getPlaceHolderDir(), managerScene.getSceneContainer().getSettings().getPlaceHolderStudentPhoto());
-            addStudentPhotoView.setImage(new Image(photoPath.toUri().toURL().toString()));
-            addStudentPhotoView.setPreserveRatio(true);
-            addStudentPhotoView.setSmooth(true);
-            addStudentPhotoView.setCache(true);
-        } catch(Exception e){
-            Utility.errorLog("AddController | setStudentPhotoView | Error: " + e);
-        }
     }
     private void setID(){
         addStudentPersonalDetailsHBox.setId("BasicInfoHBox");

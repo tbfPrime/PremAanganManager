@@ -6,16 +6,19 @@
 package premaanganmanager.configurable.sceneComponents;
 
 import java.io.File;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ContentDisplay;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 import premaanganmanager.base.components.CustomButton;
 import premaanganmanager.base.controller.Utility;
 import premaanganmanager.configurable.Labels;
-import premaanganmanager.configurable.LocalUtility;
 import premaanganmanager.configurable.Settings;
 import premaanganmanager.configurable.scenes.ManagerScene;
 
@@ -24,6 +27,7 @@ import premaanganmanager.configurable.scenes.ManagerScene;
  * @author Trevor Fernandes
  */
 public class AddScreen extends SimpleScreen implements FootControlInterface{
+    protected String photoFileExtension = "";
     protected ManagerScene managerScene;
     
     public AddScreen(ManagerScene managerScene){
@@ -42,6 +46,56 @@ public class AddScreen extends SimpleScreen implements FootControlInterface{
         setGraphics();
         setLabels();
     }
+    
+    // protected methods
+    protected Path getPhotoPath(){
+        Utility.log("AddScreen | getPhotoPath");
+        FileChooser photoFileChooser = new FileChooser();
+        Utility.configureFileChooserForImages(photoFileChooser);
+        File photoFile = photoFileChooser.showOpenDialog(managerScene.getSceneContainer().getActiveStage());
+        Utility.log("AddScreen | getPhotoPath | photoFile: " + photoFile.getPath());
+        photoFileExtension = Utility.getFileExtensionFromString(photoFile.getPath());
+        Path copyTo = Paths.get(Settings.getPhotoDir(),(Settings.getTempPhotoFilename() + "." + photoFileExtension));
+        try{
+            Files.copy(photoFile.toPath(),copyTo,StandardCopyOption.REPLACE_EXISTING);
+            Utility.log("AddScreen | getPhotoPath | copy successful");
+            return copyTo;
+        } catch(Exception e){
+            Utility.errorLog("AddScreen | getPhotoPath | Error: " + e);
+            return null;
+        }
+    }
+    protected void setPhotoView(ImageView photoView, Path photoPath){
+        Utility.log("AddScreen | setPhotoView");
+        try{
+            photoView.setImage(new Image(photoPath.toUri().toURL().toString()));
+            photoView.setPreserveRatio(true);
+            photoView.setSmooth(true);
+            photoView.setCache(true);
+        } catch(Exception e){
+            Utility.errorLog("AddScreen | setPhotoView | Error: " + e);
+        }
+    }
+    protected void savePhotoFile(String filename){
+        if(photoFileExtension.isEmpty()){ Utility.log("AddScreen | savePhotoFile | No Photo File to save."); }
+        else{
+            Path fromPhotoFilePath = Paths.get(Settings.getPhotoDir(),(Settings.getTempPhotoFilename() + "." + photoFileExtension));
+            Path toPhotoFilePath = Paths.get(Settings.getPhotoDir(),(filename + "." + photoFileExtension));
+            File fromPhotoFile = new File(fromPhotoFilePath.toAbsolutePath().toString());
+            File toPhotoFile = new File(toPhotoFilePath.toAbsolutePath().toString());
+            if(fromPhotoFile.exists()){ 
+                if(fromPhotoFile.renameTo(toPhotoFile)){ Utility.log("AddScreen | savePhotoFile | Rename successful."); } 
+            }
+        }
+    }
+    protected void flushData(){
+        if(photoFileExtension.isEmpty()){ Utility.log("AddScreen | flushData | No Photo File to flush."); }
+        else{
+            Path tempPhotoFilePath = Paths.get(Settings.getPhotoDir(),(Settings.getTempPhotoFilename() + "." + photoFileExtension));
+            File tempPhotoFile = new File(tempPhotoFilePath.toAbsolutePath().toString());
+            if(tempPhotoFile.exists()){ tempPhotoFile.delete(); }
+        }
+    }    
     
     // private members
     @FXML
@@ -78,7 +132,6 @@ public class AddScreen extends SimpleScreen implements FootControlInterface{
     private void addAttendanceAction(){
         managerScene.getSceneContainer().displayScreen(Settings.screenTag.ADD_ATTENDANCE);
     }
-        
     private void setGraphics(){
         Path graphicPath;
         double graphicTextGap = 30;
