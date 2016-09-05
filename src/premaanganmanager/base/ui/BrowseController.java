@@ -28,9 +28,10 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import premaanganmanager.base.controller.background.FamilyInfo;
-import premaanganmanager.base.controller.background.Student;
-import premaanganmanager.base.controller.background.StudentFamilyInfo;
+import premaanganmanager.configurable.entity.FamilyInfo;
+import premaanganmanager.configurable.entity.Student;
+import premaanganmanager.configurable.entity.StudentFamilyInfo;
+import premaanganmanager.base.controller.Utility;
 import premaanganmanager.configurable.Labels;
 
 /**
@@ -152,17 +153,17 @@ public class BrowseController{
     // Student
     @FXML
     private void browseTablePreviousAction(){
-        System.out.println("BrowseController | browseTablePreviousAction");
+        Utility.log("BrowseController | browseTablePreviousAction");
         previousPage();
     }
     @FXML
     private void browseTableNextAction(){
-        System.out.println("BrowseController | browseTableNextAction");
+        Utility.log("BrowseController | browseTableNextAction");
         nextPage();
     }
     @FXML
     private void browseStudentBackAction(){
-        System.out.println("BrowseController | browseSrudentBackAction");
+        Utility.log("BrowseController | browseSrudentBackAction");
         appContainer.displayScreen(AppContainer.screenTag.BROWSE);
     }
     
@@ -170,14 +171,14 @@ public class BrowseController{
     // Back to list of student records
     @FXML
     private void browseStudentRecordBackAction(){
-        System.out.println("BrowseController | browseStudentRecordBackAction");
+        Utility.log("BrowseController | browseStudentRecordBackAction");
         appContainer.displayScreen(AppContainer.screenTag.BROWSE_STUDENT_TABLE);
     }
     
     // Print Student Record
     @FXML
     private void browseStudentRecordPrintAction(){
-        System.out.println("BrowseController | browseStudentRecordPrintAction");
+        Utility.log("BrowseController | browseStudentRecordPrintAction");
     }
     
     // Constructor
@@ -194,8 +195,8 @@ public class BrowseController{
             setBrowseScreenMenuLabels();
             return homeBase;
         } catch (IOException e) {
-            System.out.println("Error | AppContainer | setBrowseHome | " + e);
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, e);
+            Utility.log("Error | AppContainer | setBrowseHome | " + e);
+            Logger.getLogger(P_Login.class.getName()).log(Level.SEVERE, null, e);
             return null;
         }
     }
@@ -208,8 +209,8 @@ public class BrowseController{
             setBrowseTableData(tag);
             return browseTableBase;
         } catch (IOException e) {
-            System.out.println("Error | AppContainer | setBrowseTable | " + e);
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, e);
+            Utility.log("Error | AppContainer | setBrowseTable | " + e);
+            Logger.getLogger(P_Login.class.getName()).log(Level.SEVERE, null, e);
             return null;
         }
     }
@@ -223,8 +224,8 @@ public class BrowseController{
             setBrowseStudentRecordData();
             return browseStudentRecordBase;
         } catch (IOException e) {
-            System.out.println("Error | AppContainer | setBrowseStudentRecord | " + e);
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, e);
+            Utility.log("Error | AppContainer | setBrowseStudentRecord | " + e);
+            Logger.getLogger(P_Login.class.getName()).log(Level.SEVERE, null, e);
             return null;
         }
     }
@@ -255,26 +256,26 @@ public class BrowseController{
     }
     
     private void setPagingConditions(){
-        System.out.println("BrowseController | setPagingConditions");
+        Utility.log("BrowseController | setPagingConditions");
         
-        browseTablePageIndicator.setText(currentPage + " " + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_OF) + " " + totalPageCount);
+        browseTablePageIndicator.setText(currentPage + " " + appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.LABEL_OF) + " " + totalPageCount);
         browseTablePreviousPageButton.setDisable(currentPage <= 1);
         browseTableNextPageButton.setDisable(currentPage == totalPageCount);
     }
     
     private void firstPage(){
-        System.out.println("BrowseController | firstPage");
+        Utility.log("BrowseController | firstPage");
         currentTableMaxId = currentTableMinId = totalPageCount = currentPage = 0;
         nextPage();
     }
     
     private void nextPage(){
-        System.out.println("BrowseController | nextPage | currentTableMinId: " + currentTableMinId + " | currentTableMaxId: " + currentTableMaxId);
+        Utility.log("BrowseController | nextPage | currentTableMinId: " + currentTableMinId + " | currentTableMaxId: " + currentTableMaxId);
         switch(appContainer.getActiveScreenTag()){
             case BROWSE_STUDENT_TABLE:
-                if(totalPageCount == 0){ totalPageCount = (int)Math.ceil(((double)appContainer.uiControl.uiModel.fetchStudentCount() / appContainer.uiControl.settings.getTableMaxItems())); }
+                if(totalPageCount == 0){ totalPageCount = (int)Math.ceil(((double)appContainer.uiControl.uiModel.fetchStudentCount() / appContainer.uiControl.p_settings.getTABLE_MAX_ITEMS())); }
                 if(totalPageCount > 0 && currentPage <= totalPageCount){
-                    final ObservableList data = FXCollections.observableArrayList(appContainer.uiControl.uiModel.fetchNextStudentInLimit(currentTableMaxId,appContainer.uiControl.settings.getTableMaxItems()));
+                    final ObservableList data = FXCollections.observableArrayList(appContainer.uiControl.uiModel.fetchNextStudentInLimit(currentTableMaxId,appContainer.uiControl.p_settings.getTABLE_MAX_ITEMS()));
                     if(data.size() > 0){
                         currentPage++;
                         Student student = (Student)data.get(0);
@@ -284,21 +285,21 @@ public class BrowseController{
                         currentTableMaxId = student.getStudentId();
                         
                         browseTable.setItems(data);
-                    } else{ System.out.println("BrowseController | nextPage | Data size is 0. No Data to display."); }
-                } else{ System.out.println("BrowseController | nextPage | totalPageCount is 0. No data to fetch."); }
+                    } else{ Utility.log("BrowseController | nextPage | Data size is 0. No Data to display."); }
+                } else{ Utility.log("BrowseController | nextPage | totalPageCount is 0. No data to fetch."); }
                 break;
         }
         
         setPagingConditions();
-        System.out.println("BrowseController | nextPage | currentTableMinId: " + currentTableMinId + " | currentTableMaxId: " + currentTableMaxId);
+        Utility.log("BrowseController | nextPage | currentTableMinId: " + currentTableMinId + " | currentTableMaxId: " + currentTableMaxId);
     }
     
     private void previousPage(){
-        System.out.println("BrowseController | previousPage | currentTableMinId: " + currentTableMinId + " | currentTableMaxId: " + currentTableMaxId);
+        Utility.log("BrowseController | previousPage | currentTableMinId: " + currentTableMinId + " | currentTableMaxId: " + currentTableMaxId);
         switch(appContainer.getActiveScreenTag()){
             case BROWSE_STUDENT_TABLE:
                 if(totalPageCount > 0 && currentPage >= 0){
-                    final ObservableList data = FXCollections.observableArrayList(appContainer.uiControl.uiModel.fetchPreviousStudentInLimit(currentTableMinId,appContainer.uiControl.settings.getTableMaxItems()));
+                    final ObservableList data = FXCollections.observableArrayList(appContainer.uiControl.uiModel.fetchPreviousStudentInLimit(currentTableMinId,appContainer.uiControl.p_settings.getTABLE_MAX_ITEMS()));
                     if(data.size() > 0){
                         currentPage--;
                         Student student = (Student)data.get(0);
@@ -308,13 +309,13 @@ public class BrowseController{
                         currentTableMaxId = student.getStudentId();
                         
                         browseTable.setItems(data);
-                    } else{ System.out.println("BrowseController | nextPage | No Data to display."); }
+                    } else{ Utility.log("BrowseController | nextPage | No Data to display."); }
                 }
                 break;
         }
         
         setPagingConditions();
-        System.out.println("BrowseController | nextPage | currentTableMinId: " + currentTableMinId + " | currentTableMaxId: " + currentTableMaxId);
+        Utility.log("BrowseController | nextPage | currentTableMinId: " + currentTableMinId + " | currentTableMaxId: " + currentTableMaxId);
     }
     
     private void displayStudentTable(){
@@ -327,14 +328,14 @@ public class BrowseController{
         TableColumn col_enrollmentNo = new TableColumn();
         TableColumn col_date = new TableColumn();
         
-        col_id.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_ID));
-        col_firstName.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FIRST_NAME));
-        col_middleName.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_MIDDLE_NAME));
-        col_lastName.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_LAST_NAME));
-        col_dob.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_DATE_OF_BIRTH));
-        col_referenceNo.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_REFERENCE_NUMBER));
-        col_enrollmentNo.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_ENROLLMENT_NUMBER));
-        col_date.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_DATE));
+        col_id.setText(appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.LABEL_ID));
+        col_firstName.setText(appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FIRST_NAME));
+        col_middleName.setText(appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_MIDDLE_NAME));
+        col_lastName.setText(appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_LAST_NAME));
+        col_dob.setText(appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_DATE_OF_BIRTH));
+        col_referenceNo.setText(appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_REFERENCE_NUMBER));
+        col_enrollmentNo.setText(appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_ENROLLMENT_NUMBER));
+        col_date.setText(appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_DATE));
         
         col_id.setCellValueFactory(new PropertyValueFactory<Student,Integer>("studentId"));
         col_firstName.setCellValueFactory(new PropertyValueFactory<Student,String>("firstName"));
@@ -351,7 +352,7 @@ public class BrowseController{
             row.setOnMouseClicked(event -> {
                 if(event.getClickCount() == 2 && (!row.isEmpty())){
                     Student rowData = row.getItem();
-                    System.out.println("onMouseClicked >> " + rowData);
+                    Utility.log("onMouseClicked >> " + rowData);
                     currentStudent = rowData;
                     appContainer.displayScreen(AppContainer.screenTag.BROWSE_STUDENT_RECORD);
                 }
@@ -371,7 +372,7 @@ public class BrowseController{
 //        browseTable.getSelectionModel().selectedItemProperty().addListener((oldValue) -> {
 //            //Check whether item is selected and set value of selected item to Label
 //            if (browseTable.getSelectionModel().getSelectedItem() != null) {
-//                System.out.println("BrowseController | #################  | old: " + oldValue);
+//                Utility.log("BrowseController | #################  | old: " + oldValue);
 ////                lblTool.setText(newValue.getTool());
 //            }
 //        });
@@ -440,7 +441,7 @@ public class BrowseController{
     }
     
     private void populateStudentData(){
-        System.out.println("BrowseController | populateStudentData");
+        Utility.log("BrowseController | populateStudentData");
         
         String name = (!currentStudent.getFirstName().isEmpty()) ? (" " + currentStudent.getFirstName()) : "";
         name += (currentStudent.getMiddleName() == null || currentStudent.getMiddleName().isEmpty()) ? "" : (" " + currentStudent.getMiddleName());
@@ -449,16 +450,16 @@ public class BrowseController{
         browseStudentRecordNameData.setText(name);
         
         try{
-            Path studentPhotoPath = Paths.get(appContainer.uiControl.settings.photosDir, (appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_STUDENT_PHOTO_PREFIX) + currentStudent.getStudentId() + "." + currentStudent.getStudentPhotoId()));
+            Path studentPhotoPath = Paths.get(appContainer.uiControl.p_settings.getPhotoDir(), (appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.LABEL_STUDENT_PHOTO_PREFIX) + currentStudent.getStudentId() + "." + currentStudent.getStudentPhotoId()));
             File studentPhoto = new File(studentPhotoPath.toUri());
-            System.out.println("Value of student photo: " + studentPhotoPath.toUri().toURL().toString());
+            Utility.log("Value of student photo: " + studentPhotoPath.toUri().toURL().toString());
             if(studentPhoto.exists()){ browseStudentRecordPhoto.setImage(new Image(studentPhotoPath.toUri().toURL().toString())); }
             else{ 
-                Path studentPlaceHolderPhotoPath = Paths.get(appContainer.uiControl.settings.placeHoldersDir, appContainer.uiControl.settings.placeHolderStudentPhoto);
+                Path studentPlaceHolderPhotoPath = Paths.get(appContainer.uiControl.p_settings.getPlaceHolderDir(), appContainer.uiControl.p_settings.getPlaceHolderStudentPhoto());
                 browseStudentRecordPhoto.setImage(new Image(studentPlaceHolderPhotoPath.toUri().toURL().toString()));
             }
         } catch(Exception e){
-            System.err.println("BrowseController | populateStudentData | Error: " + e);
+            Utility.errorLog("BrowseController | populateStudentData | Error: " + e);
         }
         
         currentStudent = appContainer.uiControl.uiModel.fetchStudentByID(currentStudent.getStudentId());
@@ -555,50 +556,50 @@ public class BrowseController{
     }
 
     private void setBrowseScreenMenuLabels(){
-        appContainer.setHeaderText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.HEADER_BROWSE_TITLE));
+        appContainer.setHeaderText(appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.HEADER_BROWSE_TITLE));
         
-        browseStudentButton.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.BROWSE_STUDENT));
+        browseStudentButton.setText(appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.BROWSE_STUDENT));
     }
     
     private void setBrowseStudentScreenLabels(){
-        appContainer.setHeaderText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.HEADER_BROWSE_STUDENT_TITLE));
+        appContainer.setHeaderText(appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.HEADER_BROWSE_STUDENT_TITLE));
         
-        browseTableBackButton.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.BACK));
+        browseTableBackButton.setText(appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.BACK));
     }
     
     private void setBrowseTableLabels(){
-        browseTablePreviousPageButton.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.BROWSE_PREVIOUS));
-        browseTableNextPageButton.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.BROWSE_NEXT));
+        browseTablePreviousPageButton.setText(appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.BROWSE_PREVIOUS));
+        browseTableNextPageButton.setText(appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.BROWSE_NEXT));
     }
     
     private void setBrowseStudentRecordScreenLabels(){
-        browseStudentRecordBackButton.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.BACK));
-        browseStudentRecordPrintButton.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.PRINT));
+        browseStudentRecordBackButton.setText(appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.BACK));
+        browseStudentRecordPrintButton.setText(appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.PRINT));
         
-        browsePersonalDetails.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.BROWSE_PERSONAL_DETAILS));
-        browseCourseDetails.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.BROWSE_COURSE_DETAILS));
-        browseEmergencyContactDetails.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.BROWSE_EMERGENCY_CONTACT_DETAILS));
-        browseFamilyMemberDetails.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.BROWSE_FAMILY_MEMBER_DETAILS));
+        browsePersonalDetails.setText(appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.BROWSE_PERSONAL_DETAILS));
+        browseCourseDetails.setText(appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.BROWSE_COURSE_DETAILS));
+        browseEmergencyContactDetails.setText(appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.BROWSE_EMERGENCY_CONTACT_DETAILS));
+        browseFamilyMemberDetails.setText(appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.BROWSE_FAMILY_MEMBER_DETAILS));
         
-        browseStudentRecordAddress.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_ADDRESS) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_SEPERATOR));
-        browseStudentRecordEmail.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_EMAIL) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_SEPERATOR));
-        browseStudentRecordDOB.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_DATE_OF_BIRTH) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_SEPERATOR));
-        browseStudentRecordPlaceOfBirth.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_PLACE_OF_BIRTH) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_SEPERATOR));
-        browseStudentRecordReligion.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_RELIGION) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_SEPERATOR));
-        browseStudentRecordEducationalBackground.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_EDUCATIONAL_BACKGROUND) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_SEPERATOR));
-        browseStudentRecordLanguages.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_LANGUAGES) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_SEPERATOR));
-        browseStudentRecordHobbies.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_HOBBIES) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_SEPERATOR));
-        browseStudentRecordCourseName.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.BROWSE_STUDENT_COURSE_NAME) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_SEPERATOR));
-        browseStudentRecordClassName.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.BROWSE_STUDENT_CLASS_NAME) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_SEPERATOR));
-        browseStudentRecordReferenceNo.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_REFERENCE_NUMBER) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_SEPERATOR));
-        browseStudentRecordEnrollmentNo.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_ENROLLMENT_NUMBER) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_SEPERATOR));
-        browseStudentRecordEmergencyContactName.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_EMERGENCY_CONTACT_PERSON) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_SEPERATOR));
-        browseStudentRecordEmergencyContactTelNo.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_EMERGENCY_CONTACT_TEL_NO) + appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.LABEL_SEPERATOR));
-        browseStudentRecordFamilyMemberName.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_NAME));
-        browseStudentRecordFamilyMemberRelationship.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_RELATIONSHIP));
-        browseStudentRecordFamilyMemberAge.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_AGE));
-        browseStudentRecordFamilyMemberOccupation.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_OCCUPATION));
-        browseStudentRecordFamilyMemberOccupationalAddress.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_OCCUPATIONAL_ADDRESS));
-        browseStudentRecordFamilyMemberOccupationalTelNo.setText(appContainer.uiControl.settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_OCCUPATIONAL_TEL_NO));
+        browseStudentRecordAddress.setText(appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_ADDRESS) + appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.LABEL_SEPERATOR));
+        browseStudentRecordEmail.setText(appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_EMAIL) + appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.LABEL_SEPERATOR));
+        browseStudentRecordDOB.setText(appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_DATE_OF_BIRTH) + appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.LABEL_SEPERATOR));
+        browseStudentRecordPlaceOfBirth.setText(appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_PLACE_OF_BIRTH) + appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.LABEL_SEPERATOR));
+        browseStudentRecordReligion.setText(appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_RELIGION) + appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.LABEL_SEPERATOR));
+        browseStudentRecordEducationalBackground.setText(appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_EDUCATIONAL_BACKGROUND) + appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.LABEL_SEPERATOR));
+        browseStudentRecordLanguages.setText(appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_LANGUAGES) + appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.LABEL_SEPERATOR));
+        browseStudentRecordHobbies.setText(appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_HOBBIES) + appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.LABEL_SEPERATOR));
+        browseStudentRecordCourseName.setText(appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.BROWSE_STUDENT_COURSE_NAME) + appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.LABEL_SEPERATOR));
+        browseStudentRecordClassName.setText(appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.BROWSE_STUDENT_CLASS_NAME) + appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.LABEL_SEPERATOR));
+        browseStudentRecordReferenceNo.setText(appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_REFERENCE_NUMBER) + appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.LABEL_SEPERATOR));
+        browseStudentRecordEnrollmentNo.setText(appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_ENROLLMENT_NUMBER) + appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.LABEL_SEPERATOR));
+        browseStudentRecordEmergencyContactName.setText(appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_EMERGENCY_CONTACT_PERSON) + appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.LABEL_SEPERATOR));
+        browseStudentRecordEmergencyContactTelNo.setText(appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_EMERGENCY_CONTACT_TEL_NO) + appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.LABEL_SEPERATOR));
+        browseStudentRecordFamilyMemberName.setText(appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_NAME));
+        browseStudentRecordFamilyMemberRelationship.setText(appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_RELATIONSHIP));
+        browseStudentRecordFamilyMemberAge.setText(appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_AGE));
+        browseStudentRecordFamilyMemberOccupation.setText(appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_OCCUPATION));
+        browseStudentRecordFamilyMemberOccupationalAddress.setText(appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_OCCUPATIONAL_ADDRESS));
+        browseStudentRecordFamilyMemberOccupationalTelNo.setText(appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.ADD_STUDENT_FAMILY_MEMBER_OCCUPATIONAL_TEL_NO));
     }
 }

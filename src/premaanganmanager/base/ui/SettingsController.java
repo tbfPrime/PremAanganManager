@@ -10,6 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
+import premaanganmanager.base.controller.Utility;
 
 /**
  *
@@ -22,10 +23,10 @@ public class SettingsController {
             loader.setController(this);
             AnchorPane settingsBase = loader.load();
             return settingsBase;
-//            loginScene.getStylesheets().add(Login.class.getResource("Login.css").toExternalForm());
+//            loginScene.getStylesheets().add(P_Login.class.getResource("P_Login.css").toExternalForm());
         } catch (IOException e) {
-            System.out.println("Error | AppContainer | setSettings | " + e);
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, e);
+            Utility.log("Error | AppContainer | setSettings | " + e);
+            Logger.getLogger(P_Login.class.getName()).log(Level.SEVERE, null, e);
             return null;
         }
     }   

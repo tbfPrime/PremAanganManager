@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import premaanganmanager.base.components.*?>
+
+<AnchorPane fx:id="headerPane" xmlns:fx="http://javafx.com/fxml/1">
+    <HBox AnchorPane.topAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.bottomAnchor="0.0" >
+        <children>
+            <HBox alignment="CENTER_LEFT" spacing="25.0" HBox.hgrow="ALWAYS" >
+                <children>
+                    <CustomText fx:id="headerText" >
+                        <font>
+                            <Font size="27.0" />
+                        </font>
+                    </CustomText>
+                </children>
+                <padding>
+                    <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                </padding>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" spacing="25.0" >
+                <children>
+                    <CustomToggleButton1 fx:id="helpButton" onAction="#helpAction" >
+                        <font><Font size="18" /></font>
+                    </CustomToggleButton1>
+                    <ComboBox fx:id="logoutComboBox" onAction="#logoutAction" promptText="NA" />
+                </children>
+                <padding>
+                    <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                </padding>
+            </HBox>
+        </children>
+    </HBox>
+</AnchorPane>

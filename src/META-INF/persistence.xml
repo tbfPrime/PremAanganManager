@@ -2,30 +2,30 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="PremAanganManagerPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <class>premaanganmanager.base.controller.background.ApplicationLabels</class>
-    <class>premaanganmanager.base.controller.background.Student</class>
-    <class>premaanganmanager.base.controller.background.Users</class>
-    <class>premaanganmanager.base.controller.background.Dummy</class>
-    <class>premaanganmanager.base.controller.background.Course</class>
-    <class>premaanganmanager.base.controller.background.TeacherFamilyInfo</class>
-    <class>premaanganmanager.base.controller.background.FamilyInfo</class>
-    <class>premaanganmanager.base.controller.background.CourseDuration</class>
-    <class>premaanganmanager.base.controller.background.Timetable</class>
-    <class>premaanganmanager.base.controller.background.StudentFamilyInfo</class>
-    <class>premaanganmanager.base.controller.background.TeacherSubject</class>
-    <class>premaanganmanager.base.controller.background.StudentAttendance</class>
-    <class>premaanganmanager.base.controller.background.TeacherPhoto</class>
-    <class>premaanganmanager.base.controller.background.Batch</class>
-    <class>premaanganmanager.base.controller.background.StudentPhoto</class>
-    <class>premaanganmanager.base.controller.background.BatchClassCourse</class>
-    <class>premaanganmanager.base.controller.background.Teacher</class>
-    <class>premaanganmanager.base.controller.background.TimetableClass</class>
-    <class>premaanganmanager.base.controller.background.Timebreak</class>
-    <class>premaanganmanager.base.controller.background.ClassStudent</class>
-    <class>premaanganmanager.base.controller.background.TeacherAttendance</class>
-    <class>premaanganmanager.base.controller.background.Subject</class>
-    <class>premaanganmanager.base.controller.background.Class</class>
-    <class>premaanganmanager.base.controller.background.Religion</class>
+    <class>premaanganmanager.configurable.entity.ApplicationLabels</class>
+    <class>premaanganmanager.configurable.entity.StudentFamilyInfo</class>
+    <class>premaanganmanager.configurable.entity.Timetable</class>
+    <class>premaanganmanager.configurable.entity.ClassStudent</class>
+    <class>premaanganmanager.configurable.entity.Religion</class>
+    <class>premaanganmanager.configurable.entity.Student</class>
+    <class>premaanganmanager.configurable.entity.TimetableClass</class>
+    <class>premaanganmanager.configurable.entity.Teacher</class>
+    <class>premaanganmanager.configurable.entity.TeacherSubject</class>
+    <class>premaanganmanager.configurable.entity.BatchClassCourse</class>
+    <class>premaanganmanager.configurable.entity.TeacherFamilyInfo</class>
+    <class>premaanganmanager.configurable.entity.StudentPhoto</class>
+    <class>premaanganmanager.configurable.entity.Class</class>
+    <class>premaanganmanager.configurable.entity.Course</class>
+    <class>premaanganmanager.configurable.entity.Dummy</class>
+    <class>premaanganmanager.configurable.entity.CourseDuration</class>
+    <class>premaanganmanager.configurable.entity.FamilyInfo</class>
+    <class>premaanganmanager.configurable.entity.Timebreak</class>
+    <class>premaanganmanager.configurable.entity.Subject</class>
+    <class>premaanganmanager.configurable.entity.StudentAttendance</class>
+    <class>premaanganmanager.configurable.entity.TeacherPhoto</class>
+    <class>premaanganmanager.configurable.entity.TeacherAttendance</class>
+    <class>premaanganmanager.configurable.entity.Batch</class>
+    <class>premaanganmanager.configurable.entity.Users</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:sqlite:PremAanganManager.sqlite"/>
       <property name="javax.persistence.jdbc.user" value=""/>

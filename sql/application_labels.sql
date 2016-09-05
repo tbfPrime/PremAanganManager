@@ -10,9 +10,10 @@ INSERT INTO "application_labels" VALUES(7,'MENU_SETTINGS','Settings','Settings')
 INSERT INTO "application_labels" VALUES(8,'HEADER_TITLE','Welcome to Prem Aangan Manager','Welcome to Prem Aangan Manager');
 INSERT INTO "application_labels" VALUES(9,'HEADER_LOGOUT','Logout','Logout');
 INSERT INTO "application_labels" VALUES(10,'HEADER_SWITCH_ADMIN','Switch Admin','Switch Admin');
-INSERT INTO "application_labels" VALUES(11,'LOGIN_TITLE','Prem Aangan Manager','Prem Aangan Manager');
-INSERT INTO "application_labels" VALUES(12,'LOGIN_SUBTITLE1','Login to start','Login to start');
-INSERT INTO "application_labels" VALUES(13,'LOGIN_SUBTITLE2','Select one Admin to start','Select one Admin to start');
+INSERT INTO "application_labels" VALUES(11,'LOGIN_GUEST_ADMIN_TITLE','Prem Aangan Manager','Prem Aangan Manager');
+INSERT INTO "application_labels" VALUES(12,'LOGIN_GUEST_ADMIN_SUBTITLE','Login to start','Login to start');
+INSERT INTO "application_labels" VALUES(11,'LOGIN_ADMIN_TITLE','Prem Aangan Manager','Prem Aangan Manager');
+INSERT INTO "application_labels" VALUES(13,'LOGIN_ADMIN_SUBTITLE','Select one Admin to start','Select one Admin to start');
 INSERT INTO "application_labels" VALUES(14,'LOGIN_HELP1','Please click on one of the options to begin','Please click on one of the options to begin');
 INSERT INTO "application_labels" VALUES(15,'LOGIN_HELP2','Please select one admin and enter password to login','Please select one admin and enter password to login');
 INSERT INTO "application_labels" VALUES(16,'LOGIN_ERROR1','Password Incorrect','Password Incorrect');

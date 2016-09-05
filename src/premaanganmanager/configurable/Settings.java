@@ -5,129 +5,192 @@
  */
 package premaanganmanager.configurable;
 
-import java.util.List;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import javafx.stage.Screen;
-import premaanganmanager.base.controller.background.*;
-import premaanganmanager.base.controller.ui.UIControl;
+import premaanganmanager.base.controller.UIModel;
+import premaanganmanager.base.controller.Utility;
 
 /**
- *
+ * Settings class contains application global variables and get/set API to access them.
  * @author Trevor Fernandes
  */
 public class Settings {
+    // private member variables
+    private final static String DIR_CSS = "/premaanganmanager/configurable/design/css/";       // Relative directory path for CSS files in string
+    private final static String DIR_FXML = "/premaanganmanager/configurable/design/fxml/";     // Relative directory path for FXML files in string
+    private final static String COMPONENT_CSS_FILENAME = "Common.css";                         // CSS filename from where common components css values will be read
+    private final static String PLACEHOLDER_STUDENT_PHOTO = "addStudentPhotoPlaceHolder.jpg";
+    private final static String TEMP_PHOTO_FILENAME = "tempPhoto";
+    private final static String PLACEHOLDER_DIR = "resources\\placeholders";
+    private final static String PHOTO_DIR = "photos";
+    private final static String PNG_DIR = "resources\\png";
+    private final static String ALERT_CSS = "Alerts.css";
+    private final static String ADD_STUDENT_CSS = "AddStudent.css";
+    private final static String COMMON_CSS = "Common.css";
+    private final static String GUEST_USERNAME = "guest";
+    private final static String GUEST_PASSWORD = "guest";
+    private final static String ADMIN1_USERNAME = "admin1";
+    private final static String ADMIN2_USERNAME = "admin2";
+    private final static String ADMIN3_USERNAME = "admin3";
+    private final static String PNG_ADD_STUDENT = "AddStudent.png";
+    private final static String PNG_ADD_TEACHER = "AddTeacher.png";
+    private final static String PNG_ADD_SUBJECT = "AddSubject.png";
+    private final static String PNG_ADD_ATTENDANCE = "AddAttendance.png";
+    private final static String PNG_ADD_COURSE = "AddCourse.png";
+    private final static String PNG_ADD_BATCH = "AddBatch.png";
+    private final static String PNG_ADD_CLASS = "AddClass.png";
+    private final static String PNG_ADD_TIMETABLE = "AddTimetable.png";
+    private final static String PNG_MENU_HOME = "MenuHome.png";
+    private final static String PNG_MENU_ADD = "MenuAdd.png";
+    private final static String PNG_MENU_BROWSE = "MenuBrowse.png";
+    private final static String PNG_MENU_SEARCH = "MenuSearch.png";
+    private final static String PNG_MENU_SETTINGS = "MenuSettings.png";
+    private final static int BUTTON_FONT_SIZE = 35;
+    private final static Date DOB_MIN = new GregorianCalendar(1950, Calendar.JANUARY, 01).getTime();
+    private final static Date DOB_MAX = new GregorianCalendar(2012, Calendar.DECEMBER, 31).getTime();
+    private final static int TABLE_MAX_ITEMS = 10;
+    private final static int REFERENCE_NO_LENGTH = 10;
+    private final static int ENROLLMENT_NO_LENGTH = 12;
+
+    private static boolean guestMode;
+    private static double appWidth;
+    private static double appHeight;
+    private static final screenTag [] menuTag = {                                              // This variable maintains the order and availability of Menu Items.
+        screenTag.HOME,
+        screenTag.ADD,
+        screenTag.BROWSE,
+        screenTag.SEARCH,
+        screenTag.SETTINGS
+    };
     public Labels labels;
+    private static Labels.labelTag activeUserTag;
+        
     
-    private int dobMinYear, dobMinMonth, dobMinDate, dobMaxYear, dobMaxMonth, dobMaxDate;
-    
-    private int tableMaxItems;
-    
-    private double appWidth;
-    private double appHeight;
-    
-    public String photosDir;
-    public String placeHoldersDir;
-    public String pngDir;
-    
-    public String tempPhotoFileName;
-    public String placeHolderStudentPhoto;
-    
-    public String png_addStudent;
-    public String png_addTeacher;
-    public String png_addSubject;
-    public String png_addAttendance;
-    public String png_addCourse;
-    public String png_addBatch;
-    public String png_addClass;
-    public String png_addTimetable;
-    
-    public String png_menuHome;
-    public String png_menuAdd;
-    public String png_menuBrowse;
-    public String png_menuSearch;
-    public String png_menuSettings;
-    
-    private UIControl uiControl;
-    
+    public enum screenTag {
+        LOGIN_GUEST_ADMIN(COMMON_CSS), 
+        LOGIN_ADMIN(COMMON_CSS),
+        
+        HOME(COMMON_CSS),
+        
+        ADD(COMMON_CSS), 
+        ADD_STUDENT(ADD_STUDENT_CSS), 
+        ADD_TEACHER(COMMON_CSS), 
+        ADD_BATCH(COMMON_CSS), 
+        ADD_CLASS(COMMON_CSS), 
+        ADD_COURSE(COMMON_CSS), 
+        ADD_SUBJECT(COMMON_CSS), 
+        ADD_TIMETABLE(COMMON_CSS), 
+        ADD_ATTENDANCE(COMMON_CSS),
+        
+        BROWSE(COMMON_CSS),
+        SEARCH(COMMON_CSS),
+        SETTINGS(COMMON_CSS);
+        
+        screenTag(String css){ this.CSS = css; }
+        
+        private String title;
+        private String subtitle;
+        private final String CSS;
+        
+        public void setTitle(String title){ this.title = title; }
+        public void setSubtitle(String subtitle){ this.subtitle = subtitle; }
+        
+        public String getTitle(){ return title; }
+        public String getSubtitle(){ return subtitle; }
+        public String getCSS(){ return CSS; }
+    }
     
     /**
      *
      * Initializes Application wide variables.
      */   
-    public Settings(UIControl uiControl){
-        this.uiControl = uiControl;
-        initializeApplicationVariables();
+    public Settings(){
+        labels = new Labels();
     }
     
-    public void initializeApplicationVariables(){
-        System.out.println("Settings | initializeApplicationVariables");
-        uiControl.createDBObjects();
-        
-        labels = new Labels();
+    // initialize non-configurable variables here
+    static {
+        initializeSettings();
         setDefaultValuesToAllLabels();
-        
-        tableMaxItems = 10;
-        
-        dobMinYear = 1950;
-        dobMaxYear = 2012;
-        
-        dobMinMonth = 01;
-        dobMaxMonth = 12;
-        
-        dobMinDate = 01;
-        dobMaxDate = 31;
+    }
+    
+    public static final void initializeSettings(){
+        Utility.log("Settings | initializeSettings");
         
         appWidth = Screen.getPrimary().getVisualBounds().getWidth() * 0.6;
         appHeight = Screen.getPrimary().getVisualBounds().getHeight() * 0.7;
         
-        photosDir = "photos";
-        placeHoldersDir = "resources\\placeholders";
-        pngDir = "resources\\png";
-        
-        placeHolderStudentPhoto = "addStudentPhotoPlaceHolder.jpg";
-        tempPhotoFileName = "tempPhoto";
-        
-        png_addStudent = "AddStudent.png";
-        png_addTeacher = "AddTeacher.png";
-        png_addSubject = "AddSubject.png";
-        png_addAttendance = "AddAttendance.png";
-        png_addCourse = "AddCourse.png";
-        png_addBatch = "AddBatch.png";
-        png_addClass = "AddClass.png";
-        png_addTimetable = "AddTimetable.png";
-        
-        png_menuHome = "MenuHome.png";
-        png_menuAdd = "MenuAdd.png";
-        png_menuBrowse = "MenuBrowse.png";
-        png_menuSearch = "MenuSearch.png";
-        png_menuSettings = "MenuSettings.png";
-        
-        System.out.println("Settings | initializeApplicationVariables | appWidth: " + appWidth + " | appHeight: " + appHeight);
-                
-        uiControl.closeDBObjects();
+        Utility.log("Settings | initializeSettings | appWidth: " + appWidth + " | appHeight: " + appHeight);
     }
     
-    public int getTableMaxItems(){ return tableMaxItems; }
+    public static double getAppWidth(){ return appWidth; }    
+    public static double getAppHeight(){ return appHeight; }
+    public static Date getDOBMinimum(){ return DOB_MIN; }
+    public static Date getDOBMaximum(){ return DOB_MAX; }
+    public static int getTABLE_MAX_ITEMS(){ return TABLE_MAX_ITEMS; }
+    public static int getDefaultButtonFontSize(){ return BUTTON_FONT_SIZE; }
+    public static int getReferenceNoLength(){ return REFERENCE_NO_LENGTH; }
+    public static int getEnrollmentNoLength(){ return ENROLLMENT_NO_LENGTH; }
     
-    public int getDOBMinYear(){ return dobMinYear; }
-    public int getDOBMinMonth(){ return dobMinMonth; }
-    public int getDOBMinDate(){ return dobMinDate; }
+    public static String getAlertCSS(){ return ALERT_CSS; }
+    public static String getCommonCSS(){ return COMMON_CSS; }
+    public static String getCSSDir(){ return DIR_CSS; }
+    public static String getFXMLDir(){ return DIR_FXML; }
+    public static String getComponentCSSFilename(){ return COMPONENT_CSS_FILENAME; }
+    public static String getPlaceHolderStudentPhoto(){ return PLACEHOLDER_STUDENT_PHOTO; }
+    public static String getTempPhotoFilename(){ return TEMP_PHOTO_FILENAME; }
+    public static String getPhotoDir(){ return PHOTO_DIR; }
+    public static String getPNGDir(){ return PNG_DIR; }
+    public static String getPlaceHolderDir(){ return PLACEHOLDER_DIR; }
+    public static String getGuestUsername(){ return GUEST_USERNAME; }
+    public static String getGuestPassword(){ return GUEST_PASSWORD; }
+    public static String getAdmin1Username(){ return ADMIN1_USERNAME; }
+    public static String getAdmin2Username(){ return ADMIN2_USERNAME; }
+    public static String getAdmin3Username(){ return ADMIN3_USERNAME; }
+    
+    public static String getPNGAddStudent(){ return PNG_ADD_STUDENT; }
+    public static String getPNGAddTeacher(){ return PNG_ADD_TEACHER; }
+    public static String getPNGAddSubject(){ return PNG_ADD_SUBJECT; }
+    public static String getPNGAddAttendance(){ return PNG_ADD_ATTENDANCE; }
+    public static String getPNGAddCourse(){ return PNG_ADD_COURSE; }
+    public static String getPNGAddBatch(){ return PNG_ADD_BATCH; }
+    public static String getPNGAddClass(){ return PNG_ADD_CLASS; }
+    public static String getPNGAddTimetable(){ return PNG_ADD_TIMETABLE; }
+    public static String getPNGMenuHome(){ return PNG_MENU_HOME; }
+    public static String getPNGMenuAdd(){ return PNG_MENU_ADD; }
+    public static String getPNGMenuBrowse(){ return PNG_MENU_BROWSE; }
+    public static String getPNGMenuSearch(){ return PNG_MENU_SEARCH; }
+    public static String getPNGMenuSettings(){ return PNG_MENU_SETTINGS; }
+    
+    public static screenTag[] getMenuTags(){ return menuTag; }
+    
+    /**
+     * API to set guest mode
+     * @param value 
+     */
+    public static void setGuestMode(boolean value){ guestMode = value; }
+    public static boolean isGuestMode(){ return guestMode; }
 
-    public int getDOBMaxYear(){ return dobMaxYear; }
-    public int getDOBMaxMonth(){ return dobMaxMonth; }
-    public int getDOBMaxDate(){ return dobMaxDate; }
-    
-    public double getAppWidth(){ return appWidth; }    
-    public double getAppHeight(){ return appHeight; }
-    
-    public final void setDefaultValuesToAllLabels(){
-        List<ApplicationLabels> labels = uiControl.uiModel.fetchAllLabels();
+    /**
+     * API to set active user for the app
+     * @param tag 
+     */
+    public static void setActiveUserTag(Labels.labelTag tag){ activeUserTag = tag; }
+    public static Labels.labelTag getActiveUserTag(){ return activeUserTag; }
         
-        for(ApplicationLabels tempLabels : labels){
-            try{
-                this.labels.setLabel(Labels.labelTag.valueOf(tempLabels.getTag()),tempLabels.getValue());
-            } catch(Exception e){
-                System.err.println("Settings | setDefaultValuesToAllLabels | Error: " + e);
-            }
-        }
+    // private methods
+    private static void setDefaultValuesToAllLabels(){
+        new UIModel().fetchAllLabels().stream().forEach((tempLabels)->{
+            try{Labels.labelTag.valueOf(tempLabels.getTag()).setLabel(tempLabels.getValue()); return; }
+            catch(IllegalArgumentException e){ Utility.errorLog("Settings | setDefaultValuesToAllLabels | Label Error: " + e); }
+            
+            try{screenTag.valueOf(tempLabels.getTag().replace("_TITLE", "")).setTitle(tempLabels.getValue()); return; }
+            catch(IllegalArgumentException e){ Utility.errorLog("Settings | setScreenLabels | UIControl | TITLE | IllegalArgumentException: " + e); }
+            
+            try{screenTag.valueOf(tempLabels.getTag().replace("_SUBTITLE", "")).setSubtitle(tempLabels.getValue()); }
+            catch(IllegalArgumentException e){ Utility.errorLog("Settings | setScreenLabels | UIControl | SUBTITLE | IllegalArgumentException: " + e); }
+        });
     }
 }

@@ -20,14 +20,15 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
-import premaanganmanager.base.controller.ui.UIControl;
+import premaanganmanager.base.controller.UIControl;
+import premaanganmanager.base.controller.Utility;
 import premaanganmanager.configurable.Labels;
 
 /**
  *
  * @author Trevor Fernandes & Eugenia Bernate Thomas
  */
-public class AppContainer {
+public class AppContainer{
     public UIControl uiControl;
     public HomeController homeController;
     public BrowseController browseController;
@@ -54,43 +55,43 @@ public class AppContainer {
     // Menu
     @FXML
     public void homeButtonAction(){
-        System.out.println("AppContainer | homeButtonAction");
+        Utility.log("AppContainer | homeButtonAction");
         displayScreen(screenTag.HOME);
     }
     @FXML
     public void browseButtonAction(){
-        System.out.println("AppContainer | browseButtonAction");
+        Utility.log("AppContainer | browseButtonAction");
         displayScreen(screenTag.BROWSE);
     }
     @FXML
     public void addButtonAction(){
-        System.out.println("AppContainer | addButtonAction");
+        Utility.log("AppContainer | addButtonAction");
         displayScreen(screenTag.ADD);
     }
     @FXML
     public void searchButtonAction(){
-        System.out.println("AppContainer | searchButtonAction");
+        Utility.log("AppContainer | searchButtonAction");
         displayScreen(screenTag.SEARCH);
     }
     @FXML
     public void settingsButtonAction(){
-        System.out.println("AppContainer | settingsButtonAction");
+        Utility.log("AppContainer | settingsButtonAction");
         displayScreen(screenTag.SETTINGS);
     }
     
     // Header
     @FXML
     public void logoutComboBoxButtonAction(){
-        System.out.println("AppContainer | logoutComboBoxButtonAction | Value: " + logoutComboBox.getValue().toString());
-        if(logoutComboBox.getValue().toString().equalsIgnoreCase(uiControl.settings.labels.getLabel(Labels.labelTag.HEADER_SWITCH_ADMIN))){
+        Utility.log("AppContainer | logoutComboBoxButtonAction | Value: " + logoutComboBox.getValue().toString());
+        if(logoutComboBox.getValue().toString().equalsIgnoreCase(uiControl.p_settings.labels.getLabel(Labels.labelTag.HEADER_SWITCH_ADMIN))){
             uiControl.logoutToAdminScreen();
-        } else if(logoutComboBox.getValue().toString().equalsIgnoreCase(uiControl.settings.labels.getLabel(Labels.labelTag.HEADER_LOGOUT))){
+        } else if(logoutComboBox.getValue().toString().equalsIgnoreCase(uiControl.p_settings.labels.getLabel(Labels.labelTag.HEADER_LOGOUT))){
             uiControl.logoutToGuestAdminScreen();
         }
     }
     @FXML
     private void helpAction(){
-        System.out.println("AppContainer | helpAction | currentActiveScreen: " + activeScreenTag + " | help select state: " + helpButton.isSelected());
+        Utility.log("AppContainer | helpAction | currentActiveScreen: " + activeScreenTag + " | help select state: " + helpButton.isSelected());
         switch(activeScreenTag){
             case ADD_STUDENT: toggleAddStudentHelp(); break;
             default: closeHelp();
@@ -158,12 +159,12 @@ public class AppContainer {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/premaanganmanager/base/ui/AppContainer.fxml"));
             loader.setController(this);
             root = loader.load();
-            appContainerScene = new Scene(root, uiControl.settings.getAppWidth(), uiControl.settings.getAppHeight());
+            appContainerScene = new Scene(root, uiControl.p_settings.getAppWidth(), uiControl.p_settings.getAppHeight());
             setAppContainerData();
             return appContainerScene;
         } catch (IOException e) {
-            System.out.println("Error | AppContainer | setLoginGuestAdminScene | " + e);
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, e);
+            Utility.log("Error | AppContainer | setLoginGuestAdminScene | " + e);
+            Logger.getLogger(P_Login.class.getName()).log(Level.SEVERE, null, e);
             return null;
         }
     }
@@ -181,54 +182,54 @@ public class AppContainer {
     }
     
     private void setAppContainerGraphics(){
-        Path graphicPath;
-        double graphicTextGap = 0;
-        double graphicOpacity = 0.7;
-        
-        graphicPath = Paths.get(uiControl.settings.pngDir,uiControl.settings.png_menuHome);
-        if(new File(graphicPath.toUri()).exists()){
-            ImageView graphic = new ImageView(graphicPath.toUri().toString());
-            graphic.setOpacity(graphicOpacity);
-            menuHomeButton.setGraphic(graphic);
-            menuHomeButton.setContentDisplay(ContentDisplay.TOP);
-            menuHomeButton.setGraphicTextGap(graphicTextGap);
-        }
-        
-        graphicPath = Paths.get(uiControl.settings.pngDir,uiControl.settings.png_menuAdd);
-        if(new File(graphicPath.toUri()).exists()){
-            ImageView graphic = new ImageView(graphicPath.toUri().toString());
-            graphic.setOpacity(graphicOpacity);
-            menuAddButton.setGraphic(graphic);
-            menuAddButton.setContentDisplay(ContentDisplay.TOP);
-            menuAddButton.setGraphicTextGap(graphicTextGap);
-        }
-        
-        graphicPath = Paths.get(uiControl.settings.pngDir,uiControl.settings.png_menuBrowse);
-        if(new File(graphicPath.toUri()).exists()){
-            ImageView graphic = new ImageView(graphicPath.toUri().toString());
-            graphic.setOpacity(graphicOpacity);
-            menuBrowseButton.setGraphic(graphic);
-            menuBrowseButton.setContentDisplay(ContentDisplay.TOP);
-            menuBrowseButton.setGraphicTextGap(graphicTextGap);
-        }
-        
-        graphicPath = Paths.get(uiControl.settings.pngDir,uiControl.settings.png_menuSearch);
-        if(new File(graphicPath.toUri()).exists()){
-            ImageView graphic = new ImageView(graphicPath.toUri().toString());
-            graphic.setOpacity(graphicOpacity);
-            menuSearchButton.setGraphic(graphic);
-            menuSearchButton.setContentDisplay(ContentDisplay.TOP);
-            menuSearchButton.setGraphicTextGap(graphicTextGap);
-        }
-        
-        graphicPath = Paths.get(uiControl.settings.pngDir,uiControl.settings.png_menuSettings);
-        if(new File(graphicPath.toUri()).exists()){
-            ImageView graphic = new ImageView(graphicPath.toUri().toString());
-            graphic.setOpacity(graphicOpacity);
-            menuSettingsButton.setGraphic(graphic);
-            menuSettingsButton.setContentDisplay(ContentDisplay.TOP);
-            menuSettingsButton.setGraphicTextGap(graphicTextGap);
-        }
+//        Path graphicPath;
+//        double graphicTextGap = 0;
+//        double graphicOpacity = 0.7;
+//        
+//        graphicPath = Paths.get(uiControl.p_settings.getPNGDir(),uiControl.p_settings.png_menuHome);
+//        if(new File(graphicPath.toUri()).exists()){
+//            ImageView graphic = new ImageView(graphicPath.toUri().toString());
+//            graphic.setOpacity(graphicOpacity);
+//            menuHomeButton.setGraphic(graphic);
+//            menuHomeButton.setContentDisplay(ContentDisplay.TOP);
+//            menuHomeButton.setGraphicTextGap(graphicTextGap);
+//        }
+//        
+//        graphicPath = Paths.get(uiControl.p_settings.getPNGDir(),uiControl.p_settings.png_menuAdd);
+//        if(new File(graphicPath.toUri()).exists()){
+//            ImageView graphic = new ImageView(graphicPath.toUri().toString());
+//            graphic.setOpacity(graphicOpacity);
+//            menuAddButton.setGraphic(graphic);
+//            menuAddButton.setContentDisplay(ContentDisplay.TOP);
+//            menuAddButton.setGraphicTextGap(graphicTextGap);
+//        }
+//        
+//        graphicPath = Paths.get(uiControl.p_settings.getPNGDir(),uiControl.p_settings.png_menuBrowse);
+//        if(new File(graphicPath.toUri()).exists()){
+//            ImageView graphic = new ImageView(graphicPath.toUri().toString());
+//            graphic.setOpacity(graphicOpacity);
+//            menuBrowseButton.setGraphic(graphic);
+//            menuBrowseButton.setContentDisplay(ContentDisplay.TOP);
+//            menuBrowseButton.setGraphicTextGap(graphicTextGap);
+//        }
+//        
+//        graphicPath = Paths.get(uiControl.p_settings.getPNGDir(),uiControl.p_settings.png_menuSearch);
+//        if(new File(graphicPath.toUri()).exists()){
+//            ImageView graphic = new ImageView(graphicPath.toUri().toString());
+//            graphic.setOpacity(graphicOpacity);
+//            menuSearchButton.setGraphic(graphic);
+//            menuSearchButton.setContentDisplay(ContentDisplay.TOP);
+//            menuSearchButton.setGraphicTextGap(graphicTextGap);
+//        }
+//        
+//        graphicPath = Paths.get(uiControl.p_settings.getPNGDir(),uiControl.p_settings.png_menuSettings);
+//        if(new File(graphicPath.toUri()).exists()){
+//            ImageView graphic = new ImageView(graphicPath.toUri().toString());
+//            graphic.setOpacity(graphicOpacity);
+//            menuSettingsButton.setGraphic(graphic);
+//            menuSettingsButton.setContentDisplay(ContentDisplay.TOP);
+//            menuSettingsButton.setGraphicTextGap(graphicTextGap);
+//        }
     }
     
     private void setAppContainerStyling(){
@@ -242,8 +243,8 @@ public class AppContainer {
     
     private void setLogOutComboBox(){
         logoutComboBox.getItems().addAll(
-                uiControl.settings.labels.getLabel(Labels.labelTag.HEADER_SWITCH_ADMIN),
-                uiControl.settings.labels.getLabel(Labels.labelTag.HEADER_LOGOUT));
+                uiControl.p_settings.labels.getLabel(Labels.labelTag.HEADER_SWITCH_ADMIN),
+                uiControl.p_settings.labels.getLabel(Labels.labelTag.HEADER_LOGOUT));
     }
     
     private void setHomeScreen(){
@@ -324,12 +325,12 @@ public class AppContainer {
     }
     
     private void setAppContainerLabels(){
-        menuHomeButton.setText(uiControl.settings.labels.getLabel(Labels.labelTag.MENU_HOME));
-        menuBrowseButton.setText(uiControl.settings.labels.getLabel(Labels.labelTag.MENU_BROWSE));
-        menuAddButton.setText(uiControl.settings.labels.getLabel(Labels.labelTag.MENU_ADD));
-        menuSearchButton.setText(uiControl.settings.labels.getLabel(Labels.labelTag.MENU_SEARCH));
-        menuSettingsButton.setText(uiControl.settings.labels.getLabel(Labels.labelTag.MENU_SETTINGS));
-        helpButton.setText(uiControl.settings.labels.getLabel(Labels.labelTag.HEADER_HELP));
-        logoutComboBox.setPromptText(uiControl.settings.labels.getLabel(Labels.labelTag.HEADER_LOGOUT));
+//        menuHomeButton.setText(uiControl.p_settings.labels.getLabel(Labels.labelTag.MENU_HOME));
+//        menuBrowseButton.setText(uiControl.p_settings.labels.getLabel(Labels.labelTag.MENU_BROWSE));
+//        menuAddButton.setText(uiControl.p_settings.labels.getLabel(Labels.labelTag.MENU_ADD));
+//        menuSearchButton.setText(uiControl.p_settings.labels.getLabel(Labels.labelTag.MENU_SEARCH));
+//        menuSettingsButton.setText(uiControl.p_settings.labels.getLabel(Labels.labelTag.MENU_SETTINGS));
+        helpButton.setText(uiControl.p_settings.labels.getLabel(Labels.labelTag.HEADER_HELP));
+        logoutComboBox.setPromptText(uiControl.p_settings.labels.getLabel(Labels.labelTag.HEADER_LOGOUT));
     }
 }

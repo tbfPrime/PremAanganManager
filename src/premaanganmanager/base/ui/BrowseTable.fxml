@@ -11,29 +11,29 @@
     <children>
         <Text layoutX="81.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="THIS IS BROWSE" />
         <TableView fx:id="browseTable" layoutX="251.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="110.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="25.0" />
-          <Button fx:id="browseTableBackButton" layoutX="496.0" layoutY="537.0" mnemonicParsing="false" onAction="#browseStudentBackAction" text="NA" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="25.0">
-              <font>
-                  <Font size="30.0" />
-              </font>
-          </Button>
-      <HBox alignment="CENTER_LEFT" layoutX="61.0" layoutY="475.0" spacing="25.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="25.0">
-         <children>
-            <Button fx:id="browseTablePreviousPageButton" mnemonicParsing="false" text="NA" onAction="#browseTablePreviousAction" >
-               <font>
-                  <Font size="30.0" />
-               </font>
-            </Button>
-            <Button fx:id="browseTableNextPageButton" mnemonicParsing="false" text="NA" onAction="#browseTableNextAction" >
-               <font>
-                  <Font size="30.0" />
-               </font>
-            </Button>
-            <Text fx:id="browseTablePageIndicator" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
-               <font>
-                  <Font size="30.0" />
-               </font>
-            </Text>
-         </children>
-      </HBox>
+        <Button fx:id="browseTableBackButton" layoutX="496.0" layoutY="537.0" mnemonicParsing="false" onAction="#browseStudentBackAction" text="NA" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="25.0">
+            <font>
+                <Font size="30.0" />
+            </font>
+        </Button>
+        <HBox alignment="CENTER_LEFT" layoutX="61.0" layoutY="475.0" spacing="25.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="25.0">
+            <children>
+                <Button fx:id="browseTablePreviousPageButton" mnemonicParsing="false" text="NA" onAction="#browseTablePreviousAction" >
+                    <font>
+                        <Font size="30.0" />
+                    </font>
+                </Button>
+                <Button fx:id="browseTableNextPageButton" mnemonicParsing="false" text="NA" onAction="#browseTableNextAction" >
+                    <font>
+                        <Font size="30.0" />
+                    </font>
+                </Button>
+                <Text fx:id="browseTablePageIndicator" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                    <font>
+                        <Font size="30.0" />
+                    </font>
+                </Text>
+            </children>
+        </HBox>
     </children>
 </AnchorPane>

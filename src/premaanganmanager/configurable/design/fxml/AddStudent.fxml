@@ -1,0 +1,882 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ScrollPane fitToWidth="true" layoutX="25.0" layoutY="23.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <content>
+            <VBox minHeight="-Infinity" minWidth="-Infinity">
+               <children>
+                  <HBox fx:id="addStudentPersonalDetailsHBox" alignment="CENTER_LEFT">
+                     <children>
+                        <Text fx:id="addStudentPersonalDetails" strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <VBox maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <VBox maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" spacing="25.0">
+                                       <children>
+                                          <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <Text fx:id="addStudentFirstName" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                             </children>
+                                          </HBox>
+                                          <StackPane alignment="CENTER_RIGHT" prefHeight="150.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <TextField fx:id="addStudentFirstNameField" maxWidth="1.7976931348623157E308" />
+                                             </children>
+                                          </StackPane>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                                       </padding>
+                                    </HBox>
+                                    <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" spacing="25.0">
+                                       <children>
+                                          <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <Text fx:id="addStudentMiddleName" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                             </children>
+                                          </HBox>
+                                          <TextField fx:id="addStudentMiddleNameField" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                                       </padding>
+                                    </HBox>
+                                    <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" spacing="25.0">
+                                       <children>
+                                          <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <Text fx:id="addStudentLastName" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                             </children>
+                                          </HBox>
+                                          <TextField fx:id="addStudentLastNameField" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                                       </padding>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                                 <children>
+                                    <ImageView fx:id="addStudentPhotoView" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
+                                       <viewport>
+                                          <Rectangle2D />
+                                       </viewport>
+                                    </ImageView>
+                                    <Button fx:id="addStudentPhotoButton" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addStudentPhotoAction" prefHeight="50.0" prefWidth="200.0" text="Button" VBox.vgrow="ALWAYS" />
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </VBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets right="25.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+                           <children>
+                              <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Text fx:id="addStudentAddress" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                 </children>
+                              </HBox>
+                              <TextField fx:id="addStudentAddressField" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                           </children>
+                           <padding>
+                              <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                           </padding>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+                           <children>
+                              <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Text fx:id="addStudentEmail" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                 </children>
+                              </HBox>
+                              <TextField fx:id="addStudentEmailField" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                           </children>
+                           <padding>
+                              <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                           </padding>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+                                 <children>
+                                    <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0">
+                                       <children>
+                                          <Text fx:id="addStudentDOB" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                       </children>
+                                    </HBox>
+                                    <DatePicker fx:id="addStudentDOBDatePicker" maxWidth="-Infinity" minWidth="-Infinity" onAction="#addStudentDOBAction" prefWidth="150.0" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="25.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0">
+                                       <children>
+                                          <Text fx:id="addStudentPlaceOfBirth" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                       </children>
+                                    </HBox>
+                                    <TextField fx:id="addStudentPlaceOfBirthField" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="150.0" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                                 </padding>
+                              </HBox>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="172.0" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+                                 <children>
+                                    <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0">
+                                       <children>
+                                          <Text fx:id="addStudentReligion" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                       </children>
+                                    </HBox>
+                                    <ComboBox fx:id="addStudentReligionComboBox" maxWidth="-Infinity" minWidth="-Infinity" onAction="#addStudentReligionAction" prefWidth="150.0" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="25.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0">
+                                       <children>
+                                          <Text fx:id="addStudentOtherReligion" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                       </children>
+                                    </HBox>
+                                    <TextField fx:id="addStudentOtherReligionField" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="150.0" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                                 </padding>
+                              </HBox>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+                           <children>
+                              <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Text fx:id="addStudentEducationalBackground" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                 </children>
+                              </HBox>
+                              <TextField fx:id="addStudentEducationalBackgroundField" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                           </children>
+                           <padding>
+                              <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                           </padding>
+                        </HBox>
+                        <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+                           <children>
+                              <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Text fx:id="addStudentLanguages" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                 </children>
+                              </HBox>
+                              <TextField fx:id="addStudentLanguagesField" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                           </children>
+                           <padding>
+                              <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                           </padding>
+                        </HBox>
+                        <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+                           <children>
+                              <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Text fx:id="addStudentHobbies" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                 </children>
+                              </HBox>
+                              <TextField fx:id="addStudentHobbiesField" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                           </children>
+                           <padding>
+                              <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <HBox fx:id="addStudentEmergencyContactHBox" alignment="CENTER_LEFT" layoutX="10.0" layoutY="620.0">
+                     <children>
+                        <Text fx:id="addStudentEmergencyContact" strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="25.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0">
+                                 <children>
+                                    <Text fx:id="addStudentEmergencyContactPerson" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                 </children>
+                              </HBox>
+                              <TextField fx:id="addStudentEmergencyContactPersonField" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="150.0" HBox.hgrow="ALWAYS" />
+                           </children>
+                           <padding>
+                              <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                           </padding>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" spacing="25.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0">
+                                 <children>
+                                    <Text fx:id="addStudentEmergencyContactTelNo" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                 </children>
+                              </HBox>
+                              <TextField fx:id="addStudentEmergencyContactTelNoField" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="150.0" HBox.hgrow="ALWAYS" />
+                           </children>
+                           <padding>
+                              <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <HBox fx:id="addStudentFamilyDetailsHBox" alignment="CENTER_LEFT" layoutX="10.0" layoutY="763.0">
+                     <children>
+                        <Text fx:id="addStudentFamilyDetails" strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <VBox layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+                           <children>
+                              <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Text fx:id="addStudentFamilyMemberName1" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                 </children>
+                              </HBox>
+                              <TextField fx:id="addStudentFamilyMemberNameField1" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                           </children>
+                           <padding>
+                              <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                           </padding>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="25.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0">
+                                       <children>
+                                          <Text fx:id="addStudentFamilyMemberRelationship1" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                       </children>
+                                    </HBox>
+                                    <TextField fx:id="addStudentFamilyMemberRelationshipField1" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="50.0" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" spacing="25.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0">
+                                       <children>
+                                          <Text fx:id="addStudentFamilyMemberAge1" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                       </children>
+                                    </HBox>
+                                    <TextField fx:id="addStudentFamilyMemberAgeField1" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="50.0" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" layoutX="375.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" spacing="25.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0">
+                                       <children>
+                                          <Text fx:id="addStudentFamilyMemberOccupation1" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                       </children>
+                                    </HBox>
+                                    <TextField fx:id="addStudentFamilyMemberOccupationField1" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="50.0" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                                 </padding>
+                              </HBox>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+                           <children>
+                              <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Text fx:id="addStudentFamilyMemberOccupationalAddress1" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                 </children>
+                              </HBox>
+                              <TextField fx:id="addStudentFamilyMemberOccupationalAddressField1" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                           </children>
+                           <padding>
+                              <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                           </padding>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="172.0" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+                           <children>
+                              <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Text fx:id="addStudentFamilyMemberOccupationalTelNo1" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                 </children>
+                              </HBox>
+                              <TextField fx:id="addStudentFamilyMemberOccupationalTelNoField1" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                           </children>
+                           <padding>
+                              <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                           </padding>
+                        </HBox>
+                        <Separator prefWidth="200.0" />
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="172.0" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+                           <children>
+                              <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Text fx:id="addStudentFamilyMemberName2" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                 </children>
+                              </HBox>
+                              <TextField fx:id="addStudentFamilyMemberNameField2" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                           </children>
+                           <padding>
+                              <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                           </padding>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="91.0" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="25.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0">
+                                       <children>
+                                          <Text fx:id="addStudentFamilyMemberRelationship2" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                       </children>
+                                    </HBox>
+                                    <TextField fx:id="addStudentFamilyMemberRelationshipField2" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="50.0" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" spacing="25.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0">
+                                       <children>
+                                          <Text fx:id="addStudentFamilyMemberAge2" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                       </children>
+                                    </HBox>
+                                    <TextField fx:id="addStudentFamilyMemberAgeField2" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="50.0" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" layoutX="375.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" spacing="25.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0">
+                                       <children>
+                                          <Text fx:id="addStudentFamilyMemberOccupation2" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                       </children>
+                                    </HBox>
+                                    <TextField fx:id="addStudentFamilyMemberOccupationField2" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="50.0" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                                 </padding>
+                              </HBox>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="253.0" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+                           <children>
+                              <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Text fx:id="addStudentFamilyMemberOccupationalAddress2" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                 </children>
+                              </HBox>
+                              <TextField fx:id="addStudentFamilyMemberOccupationalAddressField2" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                           </children>
+                           <padding>
+                              <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                           </padding>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+                           <children>
+                              <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Text fx:id="addStudentFamilyMemberOccupationalTelNo2" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                 </children>
+                              </HBox>
+                              <TextField fx:id="addStudentFamilyMemberOccupationalTelNoField2" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                           </children>
+                           <padding>
+                              <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                           </padding>
+                        </HBox>
+                        <Separator layoutX="10.0" layoutY="334.0" prefWidth="200.0" />
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="418.0" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+                           <children>
+                              <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Text fx:id="addStudentFamilyMemberName3" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                 </children>
+                              </HBox>
+                              <TextField fx:id="addStudentFamilyMemberNameField3" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                           </children>
+                           <padding>
+                              <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                           </padding>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="337.0" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="25.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0">
+                                       <children>
+                                          <Text fx:id="addStudentFamilyMemberRelationship3" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                       </children>
+                                    </HBox>
+                                    <TextField fx:id="addStudentFamilyMemberRelationshipField3" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="50.0" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" spacing="25.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0">
+                                       <children>
+                                          <Text fx:id="addStudentFamilyMemberAge3" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                       </children>
+                                    </HBox>
+                                    <TextField fx:id="addStudentFamilyMemberAgeField3" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="50.0" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" layoutX="375.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" spacing="25.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0">
+                                       <children>
+                                          <Text fx:id="addStudentFamilyMemberOccupation3" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                       </children>
+                                    </HBox>
+                                    <TextField fx:id="addStudentFamilyMemberOccupationField3" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="50.0" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                                 </padding>
+                              </HBox>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="499.0" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+                           <children>
+                              <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Text fx:id="addStudentFamilyMemberOccupationalAddress3" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                 </children>
+                              </HBox>
+                              <TextField fx:id="addStudentFamilyMemberOccupationalAddressField3" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                           </children>
+                           <padding>
+                              <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                           </padding>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="580.0" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+                           <children>
+                              <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Text fx:id="addStudentFamilyMemberOccupationalTelNo3" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                 </children>
+                              </HBox>
+                              <TextField fx:id="addStudentFamilyMemberOccupationalTelNoField3" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                           </children>
+                           <padding>
+                              <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                           </padding>
+                        </HBox>
+                        <Separator layoutX="10.0" layoutY="661.0" prefWidth="200.0" />
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="907.0" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+                           <children>
+                              <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Text fx:id="addStudentFamilyMemberName4" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                 </children>
+                              </HBox>
+                              <TextField fx:id="addStudentFamilyMemberNameField4" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                           </children>
+                           <padding>
+                              <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                           </padding>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="745.0" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="25.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0">
+                                       <children>
+                                          <Text fx:id="addStudentFamilyMemberRelationship4" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                       </children>
+                                    </HBox>
+                                    <TextField fx:id="addStudentFamilyMemberRelationshipField4" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="50.0" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" spacing="25.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0">
+                                       <children>
+                                          <Text fx:id="addStudentFamilyMemberAge4" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                       </children>
+                                    </HBox>
+                                    <TextField fx:id="addStudentFamilyMemberAgeField4" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="50.0" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" layoutX="375.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" spacing="25.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0">
+                                       <children>
+                                          <Text fx:id="addStudentFamilyMemberOccupation4" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                       </children>
+                                    </HBox>
+                                    <TextField fx:id="addStudentFamilyMemberOccupationField4" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="50.0" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                                 </padding>
+                              </HBox>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="826.0" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+                           <children>
+                              <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Text fx:id="addStudentFamilyMemberOccupationalAddress4" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                 </children>
+                              </HBox>
+                              <TextField fx:id="addStudentFamilyMemberOccupationalAddressField4" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                           </children>
+                           <padding>
+                              <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                           </padding>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="664.0" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+                           <children>
+                              <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Text fx:id="addStudentFamilyMemberOccupationalTelNo4" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                 </children>
+                              </HBox>
+                              <TextField fx:id="addStudentFamilyMemberOccupationalTelNoField4" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                           </children>
+                           <padding>
+                              <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                           </padding>
+                        </HBox>
+                        <Separator layoutX="10.0" layoutY="988.0" prefWidth="200.0" />
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="991.0" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+                           <children>
+                              <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Text fx:id="addStudentFamilyMemberName5" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                 </children>
+                              </HBox>
+                              <TextField fx:id="addStudentFamilyMemberNameField5" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                           </children>
+                           <padding>
+                              <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                           </padding>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="1234.0" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="25.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0">
+                                       <children>
+                                          <Text fx:id="addStudentFamilyMemberRelationship5" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                       </children>
+                                    </HBox>
+                                    <TextField fx:id="addStudentFamilyMemberRelationshipField5" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="50.0" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" spacing="25.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0">
+                                       <children>
+                                          <Text fx:id="addStudentFamilyMemberAge5" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                       </children>
+                                    </HBox>
+                                    <TextField fx:id="addStudentFamilyMemberAgeField5" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="50.0" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" layoutX="375.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" spacing="25.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0">
+                                       <children>
+                                          <Text fx:id="addStudentFamilyMemberOccupation5" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                       </children>
+                                    </HBox>
+                                    <TextField fx:id="addStudentFamilyMemberOccupationField5" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="50.0" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                                 </padding>
+                              </HBox>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="1072.0" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+                           <children>
+                              <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Text fx:id="addStudentFamilyMemberOccupationalAddress5" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                 </children>
+                              </HBox>
+                              <TextField fx:id="addStudentFamilyMemberOccupationalAddressField5" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                           </children>
+                           <padding>
+                              <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                           </padding>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="1153.0" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+                           <children>
+                              <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Text fx:id="addStudentFamilyMemberOccupationalTelNo5" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                 </children>
+                              </HBox>
+                              <TextField fx:id="addStudentFamilyMemberOccupationalTelNoField5" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                           </children>
+                           <padding>
+                              <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                           </padding>
+                        </HBox>
+                        <Separator layoutX="10.0" layoutY="1315.0" prefWidth="200.0" />
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="1561.0" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+                           <children>
+                              <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Text fx:id="addStudentFamilyMemberName6" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                 </children>
+                              </HBox>
+                              <TextField fx:id="addStudentFamilyMemberNameField6" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                           </children>
+                           <padding>
+                              <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                           </padding>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="1318.0" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="25.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0">
+                                       <children>
+                                          <Text fx:id="addStudentFamilyMemberRelationship6" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                       </children>
+                                    </HBox>
+                                    <TextField fx:id="addStudentFamilyMemberRelationshipField6" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="50.0" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" spacing="25.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0">
+                                       <children>
+                                          <Text fx:id="addStudentFamilyMemberAge6" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                       </children>
+                                    </HBox>
+                                    <TextField fx:id="addStudentFamilyMemberAgeField6" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="50.0" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" layoutX="375.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" spacing="25.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0">
+                                       <children>
+                                          <Text fx:id="addStudentFamilyMemberOccupation6" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                       </children>
+                                    </HBox>
+                                    <TextField fx:id="addStudentFamilyMemberOccupationField6" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="50.0" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                                 </padding>
+                              </HBox>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="1480.0" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+                           <children>
+                              <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Text fx:id="addStudentFamilyMemberOccupationalAddress6" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                 </children>
+                              </HBox>
+                              <TextField fx:id="addStudentFamilyMemberOccupationalAddressField6" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                           </children>
+                           <padding>
+                              <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                           </padding>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="1399.0" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+                           <children>
+                              <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Text fx:id="addStudentFamilyMemberOccupationalTelNo6" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                 </children>
+                              </HBox>
+                              <TextField fx:id="addStudentFamilyMemberOccupationalTelNoField6" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                           </children>
+                           <padding>
+                              <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <HBox fx:id="addStudentOfficeUseOnlyHBox" alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0">
+                     <children>
+                        <Text fx:id="addStudentOfficeUseOnly" strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <VBox layoutX="10.0" layoutY="50.0" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+                           <children>
+                              <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Text fx:id="addStudentReferenceNo" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                 </children>
+                              </HBox>
+                              <TextField fx:id="addStudentReferenceNoField" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                           </children>
+                           <padding>
+                              <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                           </padding>
+                        </HBox>
+                        <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+                           <children>
+                              <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Text fx:id="addStudentEnrollmentNo" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                 </children>
+                              </HBox>
+                              <TextField fx:id="addStudentEnrollmentNoField" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                           </children>
+                           <padding>
+                              <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                           </padding>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="25.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0">
+                                       <children>
+                                          <Text fx:id="addStudentPlace" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                       </children>
+                                    </HBox>
+                                    <TextField fx:id="addStudentPlaceField" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="150.0" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+                                 <children>
+                                    <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0">
+                                       <children>
+                                          <Text fx:id="addStudentDate" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" />
+                                       </children>
+                                    </HBox>
+                                    <DatePicker fx:id="addStudentDateDatePicker" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="25.0" left="10.0" right="25.0" top="25.0" />
+                                 </padding>
+                              </HBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
+      <StackPane fx:id="addHelpStackPane" visible="false" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+          <children>
+              <Pane fx:id="addHelpPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" />
+              <VBox fx:id="addHelpVBox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
+                  <children>
+                      <StackPane prefHeight="50.0">
+                          <children>
+                              <HBox fx:id="addHelpHeaderHBox" alignment="CENTER_LEFT" prefHeight="50.0" />
+                              <HBox alignment="CENTER" prefHeight="50.0">
+                                  <children>
+                                      <Text fx:id="addHelpHeader" strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
+                                          <font>
+                                              <Font name="System Bold" size="20.0" />
+                                          </font>
+                                      </Text>
+                                  </children>
+                              </HBox>
+                          </children>
+                      </StackPane>
+                      <TextFlow maxWidth="-Infinity" minWidth="200.0" prefHeight="400.0" prefWidth="600.0">
+                          <children>
+                              <Text fx:id="addStudentHelpBody" layoutX="35.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NA">
+                                  <font>
+                                      <Font size="16.0" />
+                                  </font>
+                              </Text>
+                          </children>
+                          <padding>
+                              <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+                          </padding>
+                      </TextFlow>
+                  </children>
+              </VBox>
+          </children>
+      </StackPane>
+   </children>
+</AnchorPane>

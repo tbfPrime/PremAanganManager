@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import premaanganmanager.base.components.*?>
+
+
+<AnchorPane fx:id="footControlAnchorPane" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+    <children>
+        <HBox alignment="CENTER_RIGHT" spacing="40.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" >
+            <children>
+                <CustomButton fx:id="print" onAction="#printAction" text="PRINT" />
+                <CustomButton fx:id="save" onAction="#saveAction" text="SAVE" />
+                <CustomButton fx:id="back" onAction="#backAction" text="BACK" />
+            </children>
+        </HBox>
+    </children>
+</AnchorPane>
