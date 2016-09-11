@@ -88,49 +88,41 @@ public class AddScreen extends SimpleScreen implements FootControlInterface{
             }
         }
     }
-    protected void flushData(){
-        if(photoFileExtension.isEmpty()){ Utility.log("AddScreen | flushData | No Photo File to flush."); }
-        else{
-            Path tempPhotoFilePath = Paths.get(Settings.getPhotoDir(),(Settings.getTempPhotoFilename() + "." + photoFileExtension));
-            File tempPhotoFile = new File(tempPhotoFilePath.toAbsolutePath().toString());
-            if(tempPhotoFile.exists()){ tempPhotoFile.delete(); }
-        }
-    }    
     
     // private members
     @FXML
     private CustomButton addStudentButton, addTeacherButton, addBatchButton, addClassButton, addCourseButton, addSubjectButton, addTimetableButton, addAttendanceButton;
     @FXML
     private void addStudentAction(){
-        managerScene.getSceneContainer().displayScreen(Settings.screenTag.ADD_STUDENT);
+        if(!managerScene.getSceneContainer().displayScreen(Settings.screenTag.ADD_STUDENT)){ Utility.errorLog("AddScreen | addStudentAction | Error."); };
     }
     @FXML
     private void addTeacherAction(){
-        managerScene.getSceneContainer().displayScreen(Settings.screenTag.ADD_TEACHER);
+        if(!managerScene.getSceneContainer().displayScreen(Settings.screenTag.ADD_TEACHER)){ Utility.errorLog("AddScreen | addTeacherAction | Error."); };
     }
     @FXML
     private void addBatchAction(){
-        managerScene.getSceneContainer().displayScreen(Settings.screenTag.ADD_BATCH);
+        if(!managerScene.getSceneContainer().displayScreen(Settings.screenTag.ADD_BATCH)){ Utility.errorLog("AddScreen | addBatchAction | Error."); };
     }
     @FXML
     private void addClassAction(){
-        managerScene.getSceneContainer().displayScreen(Settings.screenTag.ADD_CLASS);
+        if(!managerScene.getSceneContainer().displayScreen(Settings.screenTag.ADD_CLASS)){ Utility.errorLog("AddScreen | addClassAction | Error."); };
     }
     @FXML
     private void addCourseAction(){
-        managerScene.getSceneContainer().displayScreen(Settings.screenTag.ADD_COURSE);
+        if(!managerScene.getSceneContainer().displayScreen(Settings.screenTag.ADD_COURSE)){ Utility.errorLog("AddScreen | addCourseAction | Error."); };
     }
     @FXML
     private void addSubjectAction(){
-        managerScene.getSceneContainer().displayScreen(Settings.screenTag.ADD_SUBJECT);
+        if(!managerScene.getSceneContainer().displayScreen(Settings.screenTag.ADD_SUBJECT)){ Utility.errorLog("AddScreen | addSubjectAction | Error."); };
     }
     @FXML
     private void addTimetableAction(){
-        managerScene.getSceneContainer().displayScreen(Settings.screenTag.ADD_TIMETABLE);
+        if(!managerScene.getSceneContainer().displayScreen(Settings.screenTag.ADD_TIMETABLE)){ Utility.errorLog("AddScreen | addTimetableAction | Error."); };
     }
     @FXML
     private void addAttendanceAction(){
-        managerScene.getSceneContainer().displayScreen(Settings.screenTag.ADD_ATTENDANCE);
+        if(!managerScene.getSceneContainer().displayScreen(Settings.screenTag.ADD_ATTENDANCE)){ Utility.errorLog("AddScreen | addAttendanceAction | Error."); };
     }
     private void setGraphics(){
         Path graphicPath;

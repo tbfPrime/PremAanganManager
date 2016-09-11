@@ -34,8 +34,9 @@ public class SceneContainer extends UIControl{
         managerScene = new ManagerScene(this);
         managerScene.launchDefaultScreen();
     }
-    public void displayScreen(Settings.screenTag tag){
-        if(tag.equals(activeScreenTag)){ Utility.log("SceneContainer | displayScreen | No Change in tag. Exiting."); return; }
+    public boolean displayScreen(Settings.screenTag tag){
+        if(tag.equals(activeScreenTag)){ Utility.log("SceneContainer | displayScreen | No Change in tag. Exiting."); return false; }
+        if(!isUserDataSaved()){ return false; }
         getPropertyChangeSupport().firePropertyChange("screenTag", activeScreenTag, tag);
         activeScreenTag = tag;
         
@@ -66,9 +67,9 @@ public class SceneContainer extends UIControl{
             case ADD_STUDENT:
                 managerScene.setAddStudentScreen();
                 break;
-//            case ADD_TEACHER:
-////                sceneContainer.screenContainer.manager.activeScreenContainer.setAddScreen();
-//                break;
+            case ADD_TEACHER:
+                managerScene.setAddTeacherScreen();
+                break;
 //            case ADD_BATCH:
 ////                sceneContainer.screenContainer.manager.activeScreenContainer.setAddScreen();
 //                break;
@@ -88,5 +89,15 @@ public class SceneContainer extends UIControl{
 ////                sceneContainer.screenContainer.manager.activeScreenContainer.setAddScreen();
 //                break;
         }
+        return true;
+    }
+    public boolean isUserDataSaved(){
+        if(Settings.getFlagDataUnsaved()){
+            if(LocalUtility.alertConfirmation(Labels.labelTag.ALERT_UNSAVED_DATA.getLabel())){ 
+                if(getActiveScene().equals(managerScene)){ managerScene.flushScreenData(); }
+                return true;
+            } else{ Utility.log("SceneContainer | displayScreen | No action taken. Exiting."); return false; }
+        }
+        return true;
     }
 }

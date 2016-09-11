@@ -8,6 +8,7 @@ package premaanganmanager.configurable.sceneComponents;
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ContentDisplay;
@@ -24,8 +25,9 @@ import premaanganmanager.configurable.scenes.ManagerScene;
 public class CommonMenu {
     private final ManagerScene managerScene;
     private Settings.screenTag [] menuTag;
+    private CustomToggleButton1 previousActiveMenuButton;
     @FXML
-    private CustomToggleButton1 menuButton1, menuButton3, menuButton2, menuButton4, menuButton5;
+    private List<CustomToggleButton1> menuButton;
     
     public CommonMenu(ManagerScene managerScene){
         this.managerScene = managerScene;
@@ -39,103 +41,62 @@ public class CommonMenu {
     
     // public methods
     public void launchDefault(){
-        Utility.log("CommomMenu | launchDefault");
-        displayScreen(menuTag[0]);
+        Utility.log("CommomMenu | launchDefault | index: " + Settings.getDefaultMenuIndex());
+        displayScreen(Settings.getDefaultMenuIndex());
     }
     
     // private methods
     @FXML
     private void menuButton1Action(){
-        displayScreen(menuTag[0]);
+        displayScreen(1);
     }
     @FXML
     private void menuButton2Action(){
-        displayScreen(menuTag[1]);
+        displayScreen(2);
     }
     @FXML
     private void menuButton3Action(){
-        displayScreen(menuTag[2]);
+        displayScreen(3);
     }
     @FXML
     private void menuButton4Action(){
-        displayScreen(menuTag[3]);
+        displayScreen(4);
     }
     @FXML
     private void menuButton5Action(){
-        displayScreen(menuTag[4]);
+        displayScreen(5);
     }
-    
     private void setGraphics(){
-        Path graphicPath;
+        Path [] graphicPath = {
+            Paths.get(Settings.getPNGDir(),Settings.getPNGMenuHome()),
+            Paths.get(Settings.getPNGDir(),Settings.getPNGMenuAdd()),
+            Paths.get(Settings.getPNGDir(),Settings.getPNGMenuBrowse()),
+            Paths.get(Settings.getPNGDir(),Settings.getPNGMenuSearch()),
+            Paths.get(Settings.getPNGDir(),Settings.getPNGMenuSettings())
+        };
         double graphicTextGap = 0;
         double graphicOpacity = 0.7;
-        
-        graphicPath = Paths.get(Settings.getPNGDir(),Settings.getPNGMenuHome());
-        if(new File(graphicPath.toUri()).exists()){
-            ImageView graphic = new ImageView(graphicPath.toUri().toString());
-            graphic.setOpacity(graphicOpacity);
-            menuButton1.setGraphic(graphic);
-            menuButton1.setContentDisplay(ContentDisplay.TOP);
-            menuButton1.setGraphicTextGap(graphicTextGap);
-        }
-        
-        graphicPath = Paths.get(Settings.getPNGDir(),Settings.getPNGMenuAdd());
-        if(new File(graphicPath.toUri()).exists()){
-            ImageView graphic = new ImageView(graphicPath.toUri().toString());
-            graphic.setOpacity(graphicOpacity);
-            menuButton2.setGraphic(graphic);
-            menuButton2.setContentDisplay(ContentDisplay.TOP);
-            menuButton2.setGraphicTextGap(graphicTextGap);
-        }
-        
-        graphicPath = Paths.get(Settings.getPNGDir(),Settings.getPNGMenuBrowse());
-        if(new File(graphicPath.toUri()).exists()){
-            ImageView graphic = new ImageView(graphicPath.toUri().toString());
-            graphic.setOpacity(graphicOpacity);
-            menuButton3.setGraphic(graphic);
-            menuButton3.setContentDisplay(ContentDisplay.TOP);
-            menuButton3.setGraphicTextGap(graphicTextGap);
-        }
-        
-        graphicPath = Paths.get(Settings.getPNGDir(),Settings.getPNGMenuSearch());
-        if(new File(graphicPath.toUri()).exists()){
-            ImageView graphic = new ImageView(graphicPath.toUri().toString());
-            graphic.setOpacity(graphicOpacity);
-            menuButton4.setGraphic(graphic);
-            menuButton4.setContentDisplay(ContentDisplay.TOP);
-            menuButton4.setGraphicTextGap(graphicTextGap);
-        }
-        
-        graphicPath = Paths.get(Settings.getPNGDir(),Settings.getPNGMenuSettings());
-        if(new File(graphicPath.toUri()).exists()){
-            ImageView graphic = new ImageView(graphicPath.toUri().toString());
-            graphic.setOpacity(graphicOpacity);
-            menuButton5.setGraphic(graphic);
-            menuButton5.setContentDisplay(ContentDisplay.TOP);
-            menuButton5.setGraphicTextGap(graphicTextGap);
+
+        int index = 0;
+        for(CustomToggleButton1 button : menuButton){
+            if(new File(graphicPath[index].toUri()).exists()){
+                ImageView graphic = new ImageView(graphicPath[index++].toUri().toString());
+                graphic.setOpacity(graphicOpacity);
+                button.setGraphic(graphic);
+                button.setContentDisplay(ContentDisplay.TOP);
+                button.setGraphicTextGap(graphicTextGap);
+            }            
         }
     }
-    
-    private void displayScreen(Settings.screenTag tag){
-        menuButton1.setSelected(false);
-        menuButton3.setSelected(false);
-        menuButton2.setSelected(false);
-        menuButton4.setSelected(false);
-        menuButton5.setSelected(false);
-        
-        managerScene.getSceneContainer().displayScreen(tag);
-        
-        if(tag.equals(menuTag[0])){ menuButton1.setSelected(true); }
-        else if(tag.equals(menuTag[1])){ menuButton2.setSelected(true); }
-        else if(tag.equals(menuTag[2])){ menuButton3.setSelected(true); }
-        else if(tag.equals(menuTag[3])){ menuButton4.setSelected(true); }
-        else if(tag.equals(menuTag[4])){ menuButton5.setSelected(true); }
+    private void displayScreen(int index){
+        for(CustomToggleButton1 button : menuButton){ button.setSelected(false); }
+        index--;
+        Settings.screenTag tag = menuTag[index];
+        if(managerScene.getSceneContainer().displayScreen(tag)){ previousActiveMenuButton = menuButton.get(index); }
+        previousActiveMenuButton.setSelected(true);
     }
     private void setLabels(){
-        menuButton1.setText(menuTag[0].getTitle());
-        menuButton2.setText(menuTag[1].getTitle());
-        menuButton3.setText(menuTag[2].getTitle());
-        menuButton4.setText(menuTag[3].getTitle());
-        menuButton5.setText(menuTag[4].getTitle());
+        int index = 0;
+        for(CustomToggleButton1 button : menuButton){ button.setText(menuTag[index++].getTitle()); }
     }
 }

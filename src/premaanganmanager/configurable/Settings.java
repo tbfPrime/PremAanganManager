@@ -8,6 +8,8 @@ package premaanganmanager.configurable;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.stage.Screen;
 import premaanganmanager.base.controller.UIModel;
 import premaanganmanager.base.controller.Utility;
@@ -22,12 +24,14 @@ public class Settings {
     private final static String DIR_FXML = "/premaanganmanager/configurable/design/fxml/";     // Relative directory path for FXML files in string
     private final static String COMPONENT_CSS_FILENAME = "Common.css";                         // CSS filename from where common components css values will be read
     private final static String PLACEHOLDER_STUDENT_PHOTO = "addStudentPhotoPlaceHolder.jpg";
+    private final static String PLACEHOLDER_TEACHER_PHOTO = "addTeacherPhotoPlaceHolder.jpg";
     private final static String TEMP_PHOTO_FILENAME = "tempPhoto";
     private final static String PLACEHOLDER_DIR = "resources\\placeholders";
     private final static String PHOTO_DIR = "photos";
     private final static String PNG_DIR = "resources\\png";
     private final static String ALERT_CSS = "Alerts.css";
     private final static String ADD_STUDENT_CSS = "AddStudent.css";
+    private final static String ADD_TEACHER_CSS = "AddTeacher.css";
     private final static String COMMON_CSS = "Common.css";
     private final static String GUEST_USERNAME = "guest";
     private final static String GUEST_PASSWORD = "guest";
@@ -47,14 +51,16 @@ public class Settings {
     private final static String PNG_MENU_BROWSE = "MenuBrowse.png";
     private final static String PNG_MENU_SEARCH = "MenuSearch.png";
     private final static String PNG_MENU_SETTINGS = "MenuSettings.png";
-    private final static int BUTTON_FONT_SIZE = 35;
     private final static Date DOB_MIN = new GregorianCalendar(1950, Calendar.JANUARY, 01).getTime();
     private final static Date DOB_MAX = new GregorianCalendar(2012, Calendar.DECEMBER, 31).getTime();
+    private final static int BUTTON_FONT_SIZE = 35;
     private final static int TABLE_MAX_ITEMS = 10;
     private final static int REFERENCE_NO_LENGTH = 10;
     private final static int ENROLLMENT_NO_LENGTH = 12;
+    private final static int DEFAULT_MENU_ITEM = 1;
 
-    private static boolean guestMode;
+    private static BooleanProperty guestMode = new SimpleBooleanProperty(false);
+    private static BooleanProperty flagDataUnsaved = new SimpleBooleanProperty(false);
     private static double appWidth;
     private static double appHeight;
     private static final screenTag [] menuTag = {                                              // This variable maintains the order and availability of Menu Items.
@@ -76,7 +82,7 @@ public class Settings {
         
         ADD(COMMON_CSS), 
         ADD_STUDENT(ADD_STUDENT_CSS), 
-        ADD_TEACHER(COMMON_CSS), 
+        ADD_TEACHER(ADD_TEACHER_CSS), 
         ADD_BATCH(COMMON_CSS), 
         ADD_CLASS(COMMON_CSS), 
         ADD_COURSE(COMMON_CSS), 
@@ -133,6 +139,7 @@ public class Settings {
     public static int getDefaultButtonFontSize(){ return BUTTON_FONT_SIZE; }
     public static int getReferenceNoLength(){ return REFERENCE_NO_LENGTH; }
     public static int getEnrollmentNoLength(){ return ENROLLMENT_NO_LENGTH; }
+    public static int getDefaultMenuIndex(){ return DEFAULT_MENU_ITEM; }
     
     public static String getAlertCSS(){ return ALERT_CSS; }
     public static String getCommonCSS(){ return COMMON_CSS; }
@@ -140,6 +147,7 @@ public class Settings {
     public static String getFXMLDir(){ return DIR_FXML; }
     public static String getComponentCSSFilename(){ return COMPONENT_CSS_FILENAME; }
     public static String getPlaceHolderStudentPhoto(){ return PLACEHOLDER_STUDENT_PHOTO; }
+    public static String getPlaceHolderTeacherPhoto(){ return PLACEHOLDER_TEACHER_PHOTO; }
     public static String getTempPhotoFilename(){ return TEMP_PHOTO_FILENAME; }
     public static String getPhotoDir(){ return PHOTO_DIR; }
     public static String getPNGDir(){ return PNG_DIR; }
@@ -167,11 +175,20 @@ public class Settings {
     public static screenTag[] getMenuTags(){ return menuTag; }
     
     /**
-     * API to set guest mode
+     * API for guest mode
      * @param value 
      */
-    public static void setGuestMode(boolean value){ guestMode = value; }
-    public static boolean isGuestMode(){ return guestMode; }
+    public static void setGuestMode(boolean value){ guestMode.set(value); }
+    public static boolean getGuestMode(){ return guestMode.get(); }
+    public static BooleanProperty getGuestModeProperty(){ return guestMode; }
+    
+    /**
+     * API for unsaved data
+     * @param value 
+     */
+    public static void setFlagDataUnsaved(boolean value){ flagDataUnsaved.set(value); }
+    public static boolean getFlagDataUnsaved(){ return flagDataUnsaved.get(); }
+    public static BooleanProperty getFlagDataUnsavedProperty(){ return flagDataUnsaved; }
 
     /**
      * API to set active user for the app

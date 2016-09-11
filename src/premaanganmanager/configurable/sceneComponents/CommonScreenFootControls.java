@@ -52,6 +52,9 @@ public class CommonScreenFootControls {
             case ADD_STUDENT:
                 tagList = new controlsTag[]{controlsTag.BACK,controlsTag.SAVE};
                 break;
+            case ADD_TEACHER:
+                tagList = new controlsTag[]{controlsTag.BACK,controlsTag.SAVE};
+                break;
         }
         updateControlList();
     }
@@ -93,6 +96,7 @@ public class CommonScreenFootControls {
                 case BACK: back.setVisible(true); back.setManaged(true); break;
             }
         });
+        save.disableProperty().bind(Settings.getFlagDataUnsavedProperty().not());
     }
     
     private void hideAllControls(){

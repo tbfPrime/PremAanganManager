@@ -41,6 +41,10 @@ public class LocalUtility {
         Utility.log("LocalUtility | alertErrorSave");
         return Utility.alert(Alert.AlertType.ERROR, Labels.labelTag.ALERT_ERROR.getLabel(), Labels.labelTag.ALERT_MESSAGE_ERROR_SAVE.getLabel(), Utility.getPathCSS(Settings.getAlertCSS()));
     }
+    public static boolean alertConfirmation(String message){
+        Utility.log("LocalUtility | alertConfirmation");
+        return Utility.alert(Alert.AlertType.CONFIRMATION, Labels.labelTag.ALERT_CONFIRMATION.getLabel(), message, Utility.getPathCSS(Settings.getAlertCSS()));
+    }
     public static boolean alertConfirmationFieldIsEmpty(String message){
         Utility.log("LocalUtility | alertConfirmationFieldIsEmpty");
         return Utility.alert(Alert.AlertType.CONFIRMATION, Labels.labelTag.ALERT_CONFIRMATION.getLabel(), Labels.labelTag.ALERT_MESSAGE_CONFIRM_FIELD_EMPTY.getLabel(), Utility.getPathCSS(Settings.getAlertCSS()));

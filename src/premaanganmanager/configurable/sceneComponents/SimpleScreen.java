@@ -24,7 +24,9 @@ public class SimpleScreen {
     public void initializeScreen(){
         Utility.log("SimpleScreen | initializeScreen");
     }
-    
+    public void flushScreenData(){
+        Utility.log("SimpleScreen | flushScreenData");
+    }
     /**
      * API to assign css filename for the screen
      * @param cssFilename 

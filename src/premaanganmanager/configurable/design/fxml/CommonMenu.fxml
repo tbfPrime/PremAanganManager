@@ -37,5 +37,15 @@
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
+         
+         <fx:define>
+             <ArrayList fx:id="menuButton" >
+                 <fx:reference source="menuButton1"/>
+                 <fx:reference source="menuButton2"/>
+                 <fx:reference source="menuButton3"/>
+                 <fx:reference source="menuButton4"/>
+                 <fx:reference source="menuButton5"/>
+             </ArrayList>
+         </fx:define>
       </VBox>
 </AnchorPane>

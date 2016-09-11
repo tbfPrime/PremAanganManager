@@ -32,6 +32,7 @@ public class ManagerScene extends BorderPaneScene{
     
     private AddScreen addScreen;
     private AddStudentScreen addStudentScreen;
+    private AddTeacherScreen addTeacherScreen;
     
     private BrowseScreen browseScreen;
     private SearchScreen searchScreen;
@@ -78,7 +79,15 @@ public class ManagerScene extends BorderPaneScene{
         addStudentScreen = new AddStudentScreen(this);
         setScreen(addStudentScreen);
     }
-    
+    public void setAddTeacherScreen(){
+        Utility.log("ManagerScene | setAddTeacherScreen");
+        addTeacherScreen = new AddTeacherScreen(this);
+        setScreen(addTeacherScreen);
+    }
+    public void flushScreenData(){
+        Utility.log("ManagerScene | flushScreenData");
+        simpleScreen.flushScreenData();
+    }
     @Override
     public final void createDefaultScene(){
         Utility.log("ManagerScene | createDefaultScreen");

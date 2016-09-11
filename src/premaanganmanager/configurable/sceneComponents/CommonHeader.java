@@ -54,14 +54,15 @@ public class CommonHeader {
     @FXML
     private void logoutAction(){
         if(logoutComboBox.getValue().toString().equalsIgnoreCase(Labels.labelTag.HEADER_SWITCH_ADMIN.getLabel())){
-            managerScene.getSceneContainer().displayScreen(Settings.screenTag.LOGIN_ADMIN);
+            if(!managerScene.getSceneContainer().displayScreen(Settings.screenTag.LOGIN_ADMIN)){ setLabels(); }
         } else if(logoutComboBox.getValue().toString().equalsIgnoreCase(Labels.labelTag.HEADER_LOGOUT.getLabel())){
-            managerScene.getSceneContainer().displayScreen(Settings.screenTag.LOGIN_GUEST_ADMIN);
+            if(!managerScene.getSceneContainer().displayScreen(Settings.screenTag.LOGIN_GUEST_ADMIN)){ setLabels(); }
         }
     }
     
     private void setLabels(){
         helpButton.setText(Labels.labelTag.HEADER_HELP.getLabel());
+        logoutComboBox.getItems().clear();
         logoutComboBox.getItems().addAll(
                 Labels.labelTag.HEADER_SWITCH_ADMIN.getLabel(),
                 Labels.labelTag.HEADER_LOGOUT.getLabel());

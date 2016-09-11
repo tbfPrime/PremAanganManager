@@ -5,6 +5,8 @@
  */
 package premaanganmanager.configurable.sceneComponents;
 
+import java.io.File;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -46,13 +48,6 @@ public class AddStudentScreen extends AddScreen {
     private FamilyInfo familyInfo4;
     private FamilyInfo familyInfo5;
     private FamilyInfo familyInfo6;
-    
-    // FXML fields
-    // Add
-    @FXML
-    private Button addStudentButton, addTeacherButton, addBatchButton, addClassButton, addCourseButton, addSubjectButton, addTimetableButton, addAttendanceButton;
-    @FXML
-    private Button addBackButton, addSaveButton;
     
     // Help
     @FXML
@@ -158,7 +153,8 @@ public class AddStudentScreen extends AddScreen {
     @Override
     public void back(){
         Utility.log("AddStudentScreen | back");
-        flushData();
+        if(!managerScene.getSceneContainer().isUserDataSaved()){ return; }
+        flushScreenData();
         managerScene.getSceneContainer().displayScreen(Settings.screenTag.ADD);
     }
     @Override
@@ -166,6 +162,19 @@ public class AddStudentScreen extends AddScreen {
         Utility.log("AddStudentScreen | save");
         saveStudentRecord();
     }
+    @Override
+    public void flushScreenData(){
+        if(photoFileExtension.isEmpty()){ Utility.log("AddStudentScreen | flushScreenData | No Photo File to flush."); }
+        else{
+            Path tempPhotoFilePath = Paths.get(Settings.getPhotoDir(),(Settings.getTempPhotoFilename() + "." + photoFileExtension));
+            File tempPhotoFile = new File(tempPhotoFilePath.toAbsolutePath().toString());
+            if(tempPhotoFile.exists()){ tempPhotoFile.delete(); }
+        }
+        addStudentFirstNameField.clear();
+        addStudentMiddleNameField.clear();
+        addStudentLastNameField.clear();
+        addStudentDateDatePicker.getEditor().clear();
+    } 
     
     // private methods
     @FXML
@@ -536,6 +545,13 @@ public class AddStudentScreen extends AddScreen {
         addStudentFamilyMemberOccupationField6.disableProperty().bind(Bindings.or(addStudentFamilyMemberNameField6.disabledProperty(), addStudentFamilyMemberNameField6.textProperty().isEmpty()));
         addStudentFamilyMemberOccupationalAddressField6.disableProperty().bind(Bindings.or(addStudentFamilyMemberNameField6.disabledProperty(), addStudentFamilyMemberNameField6.textProperty().isEmpty()));
         addStudentFamilyMemberOccupationalTelNoField6.disableProperty().bind(Bindings.or(addStudentFamilyMemberNameField6.disabledProperty(), addStudentFamilyMemberNameField6.textProperty().isEmpty()));                
+        
+        Settings.getFlagDataUnsavedProperty().bind(
+                addStudentFirstNameField.textProperty().isNotEmpty().or(
+                addStudentMiddleNameField.textProperty().isNotEmpty().or(
+                addStudentLastNameField.textProperty().isNotEmpty().or(
+                addStudentDateDatePicker.valueProperty().isNotNull()
+                ))));
     }
     private void setReligionData(){
         Utility.log("AddStudentScreen | setReligionData");
@@ -545,10 +561,10 @@ public class AddStudentScreen extends AddScreen {
         addStudentReligionComboBox.getItems().add(Labels.labelTag.ADD_NEW_RELIGION.getLabel());
     }
     private void setID(){
-        addStudentPersonalDetailsHBox.setId("BasicInfoHBox");
-        addStudentEmergencyContactHBox.setId("BasicInfoHBox");
-        addStudentFamilyDetailsHBox.setId("BasicInfoHBox");
-        addStudentOfficeUseOnlyHBox.setId("BasicInfoHBox");
+        addStudentPersonalDetailsHBox.setId("sectionBG");
+        addStudentEmergencyContactHBox.setId("sectionBG");
+        addStudentFamilyDetailsHBox.setId("sectionBG");
+        addStudentOfficeUseOnlyHBox.setId("sectionBG");
     }
     private void setLabels(){
         addStudentPhotoButton.setText(Labels.labelTag.ADD_PHOTO.getLabel());

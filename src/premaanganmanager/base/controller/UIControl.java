@@ -11,6 +11,8 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -95,6 +97,7 @@ public abstract class UIControl implements PropertyChangeListener{
             scene.updateScene();
         } catch(Exception e){
             Utility.errorLog("UIControl | loadSceneComponent | Error: " + e);
+            Logger.getLogger(UIControl.class.getName()).log(Level.SEVERE, null, e);
         }
     }
     
@@ -111,6 +114,7 @@ public abstract class UIControl implements PropertyChangeListener{
             scene.updateScene();
         } catch(Exception e){
             Utility.errorLog("UIControl | loadSceneComponent | Error: " + e);
+            Logger.getLogger(UIControl.class.getName()).log(Level.SEVERE, null, e);
         }
     }
     
