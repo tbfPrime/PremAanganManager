@@ -22,7 +22,6 @@ public class SceneContainer extends UIControl{
     public void initializeStage(){
         displayScreen(Settings.screenTag.LOGIN_GUEST_ADMIN);
     }
-
     public Settings.screenTag getActiveScreenTag(){ return activeScreenTag; }
     public void createLoginScene(){
         Utility.log("SceneContainer | createLoginScene");
@@ -33,6 +32,15 @@ public class SceneContainer extends UIControl{
         Utility.log("SceneContainer | createAppScene");
         managerScene = new ManagerScene(this);
         managerScene.launchDefaultScreen();
+    }
+    public boolean isUserDataSaved(){
+        if(Settings.getFlagDataUnsaved()){
+            if(LocalUtility.alertConfirmation(Labels.labelTag.ALERT_UNSAVED_DATA.getLabel())){ 
+                if(getActiveScene().equals(managerScene)){ managerScene.flushScreenData(); }
+                return true;
+            } else{ Utility.log("SceneContainer | displayScreen | No action taken. Exiting."); return false; }
+        }
+        return true;
     }
     public boolean displayScreen(Settings.screenTag tag){
         if(tag.equals(activeScreenTag)){ Utility.log("SceneContainer | displayScreen | No Change in tag. Exiting."); return false; }
@@ -88,15 +96,6 @@ public class SceneContainer extends UIControl{
 //            case ADD_ATTENDANCE:
 ////                sceneContainer.screenContainer.manager.activeScreenContainer.setAddScreen();
 //                break;
-        }
-        return true;
-    }
-    public boolean isUserDataSaved(){
-        if(Settings.getFlagDataUnsaved()){
-            if(LocalUtility.alertConfirmation(Labels.labelTag.ALERT_UNSAVED_DATA.getLabel())){ 
-                if(getActiveScene().equals(managerScene)){ managerScene.flushScreenData(); }
-                return true;
-            } else{ Utility.log("SceneContainer | displayScreen | No action taken. Exiting."); return false; }
         }
         return true;
     }

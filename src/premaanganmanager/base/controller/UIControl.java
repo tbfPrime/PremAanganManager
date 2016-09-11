@@ -87,6 +87,7 @@ public abstract class UIControl implements PropertyChangeListener{
      * @param content 
      */
     public void loadSceneComponent(BorderPaneScene.positionTag position, FXMLLoader content){
+        Utility.log("UIControl | loadSceneComponent | position: " + position + " | FXMLLoader content: " + content);
         try{
             BorderPaneScene scene = (BorderPaneScene)activeScene;
             switch(position){
@@ -96,7 +97,7 @@ public abstract class UIControl implements PropertyChangeListener{
             }
             scene.updateScene();
         } catch(Exception e){
-            Utility.errorLog("UIControl | loadSceneComponent | Error: " + e);
+            Utility.errorLog("UIControl | loadSceneComponent | position: " + position + " | FXMLLoader content: " + content + " | Error: " + e);
             Logger.getLogger(UIControl.class.getName()).log(Level.SEVERE, null, e);
         }
     }
@@ -108,12 +109,13 @@ public abstract class UIControl implements PropertyChangeListener{
      * @param content 
      */
     public void loadSceneComponent(BorderPaneScene.positionTag position, BorderPane content){
+        Utility.log("UIControl | loadSceneComponent | position: " + position + " | BorderPane content: " + content);
         try{
             BorderPaneScene scene = (BorderPaneScene)activeScene;
             scene.setContent(BorderPaneScene.positionTag.CENTER, content);
             scene.updateScene();
         } catch(Exception e){
-            Utility.errorLog("UIControl | loadSceneComponent | Error: " + e);
+            Utility.errorLog("UIControl | loadSceneComponent | position: " + position + " | BorderPane content: " + content + " | Error: " + e);
             Logger.getLogger(UIControl.class.getName()).log(Level.SEVERE, null, e);
         }
     }

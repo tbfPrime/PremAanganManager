@@ -64,7 +64,6 @@ public class LoginScene extends BorderPaneScene implements SceneInterface{
     @Override
     public final void sceneReady(){
         loginCommons = new LoginCommons(this);
-        updateScene();
     }
     @Override
     public final void updateScene(){

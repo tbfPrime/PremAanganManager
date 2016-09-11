@@ -63,6 +63,7 @@ public class Settings {
     private static BooleanProperty flagDataUnsaved = new SimpleBooleanProperty(false);
     private static double appWidth;
     private static double appHeight;
+    private static boolean showLabelLogs = false;
     private static final screenTag [] menuTag = {                                              // This variable maintains the order and availability of Menu Items.
         screenTag.HOME,
         screenTag.ADD,
@@ -201,13 +202,13 @@ public class Settings {
     private static void setDefaultValuesToAllLabels(){
         new UIModel().fetchAllLabels().stream().forEach((tempLabels)->{
             try{Labels.labelTag.valueOf(tempLabels.getTag()).setLabel(tempLabels.getValue()); return; }
-            catch(IllegalArgumentException e){ Utility.errorLog("Settings | setDefaultValuesToAllLabels | Label Error: " + e); }
+            catch(IllegalArgumentException e){ if(showLabelLogs){ Utility.errorLog("Settings | setDefaultValuesToAllLabels | Label Error: " + e); }}
             
             try{screenTag.valueOf(tempLabels.getTag().replace("_TITLE", "")).setTitle(tempLabels.getValue()); return; }
-            catch(IllegalArgumentException e){ Utility.errorLog("Settings | setScreenLabels | UIControl | TITLE | IllegalArgumentException: " + e); }
+            catch(IllegalArgumentException e){ if(showLabelLogs){ Utility.errorLog("Settings | setScreenLabels | UIControl | TITLE | IllegalArgumentException: " + e); }}
             
             try{screenTag.valueOf(tempLabels.getTag().replace("_SUBTITLE", "")).setSubtitle(tempLabels.getValue()); }
-            catch(IllegalArgumentException e){ Utility.errorLog("Settings | setScreenLabels | UIControl | SUBTITLE | IllegalArgumentException: " + e); }
+            catch(IllegalArgumentException e){ if(showLabelLogs){ Utility.errorLog("Settings | setScreenLabels | UIControl | SUBTITLE | IllegalArgumentException: " + e); }}
         });
     }
 }
