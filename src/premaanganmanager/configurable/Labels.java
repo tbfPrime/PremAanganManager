@@ -39,8 +39,6 @@ public class Labels {
         // Home and 'About this software'
         
         // Add 
-        ADD_STUDENT, ADD_TEACHER, ADD_SUBJECT, ADD_ATTENDANCE,
-        ADD_COURSE, ADD_BATCH, ADD_CLASS, ADD_TIMETABLE,
         ADD_NEW_RELIGION, ADD_PHOTO, 
         
         // Add Student

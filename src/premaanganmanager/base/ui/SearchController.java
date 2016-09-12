@@ -145,9 +145,9 @@ public class SearchController {
     private void setSearchControls(){
         Utility.log("SearchController | setSearchControls");
         
-        searchCategory.SEARCH_STUDENT.label = appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.ADD_STUDENT);
-        searchCategory.SEARCH_TEACHER.label = appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.ADD_TEACHER);
-        searchCategory.SEARCH_SUBJECT.label = appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.ADD_SUBJECT);
+//        searchCategory.SEARCH_STUDENT.label = appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.ADD_STUDENT);
+//        searchCategory.SEARCH_TEACHER.label = appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.ADD_TEACHER);
+//        searchCategory.SEARCH_SUBJECT.label = appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.ADD_SUBJECT);
         
         ObservableList<searchCategory> list = FXCollections.observableArrayList(searchCategory.values());
 

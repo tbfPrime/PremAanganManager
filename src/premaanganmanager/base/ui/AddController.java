@@ -879,14 +879,14 @@ public class AddController {
     private void setAddScreenMenuLabels(){
         appContainer.setHeaderText(appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.HEADER_ADD_TITLE));
         
-        addStudentButton.setText(appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.ADD_STUDENT));
-        addTeacherButton.setText(appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.ADD_TEACHER));
-        addSubjectButton.setText(appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.ADD_SUBJECT));
-        addAttendanceButton.setText(appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.ADD_ATTENDANCE));
-        addCourseButton.setText(appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.ADD_COURSE));
-        addBatchButton.setText(appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.ADD_BATCH));
-        addClassButton.setText(appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.ADD_CLASS));
-        addTimetableButton.setText(appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.ADD_TIMETABLE));
+//        addStudentButton.setText(appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.ADD_STUDENT));
+//        addTeacherButton.setText(appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.ADD_TEACHER));
+//        addSubjectButton.setText(appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.ADD_SUBJECT));
+//        addAttendanceButton.setText(appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.ADD_ATTENDANCE));
+//        addCourseButton.setText(appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.ADD_COURSE));
+//        addBatchButton.setText(appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.ADD_BATCH));
+//        addClassButton.setText(appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.ADD_CLASS));
+//        addTimetableButton.setText(appContainer.uiControl.p_settings.labels.getLabel(Labels.labelTag.ADD_TIMETABLE));
     }
     
     private void setAddStudentScreenLabels(){
