@@ -13,16 +13,13 @@
     <class>premaanganmanager.configurable.entity.TeacherSubject</class>
     <class>premaanganmanager.configurable.entity.BatchClassCourse</class>
     <class>premaanganmanager.configurable.entity.TeacherFamilyInfo</class>
-    <class>premaanganmanager.configurable.entity.StudentPhoto</class>
     <class>premaanganmanager.configurable.entity.Class</class>
     <class>premaanganmanager.configurable.entity.Course</class>
-    <class>premaanganmanager.configurable.entity.Dummy</class>
     <class>premaanganmanager.configurable.entity.CourseDuration</class>
     <class>premaanganmanager.configurable.entity.FamilyInfo</class>
     <class>premaanganmanager.configurable.entity.Timebreak</class>
     <class>premaanganmanager.configurable.entity.Subject</class>
     <class>premaanganmanager.configurable.entity.StudentAttendance</class>
-    <class>premaanganmanager.configurable.entity.TeacherPhoto</class>
     <class>premaanganmanager.configurable.entity.TeacherAttendance</class>
     <class>premaanganmanager.configurable.entity.Batch</class>
     <class>premaanganmanager.configurable.entity.Users</class>

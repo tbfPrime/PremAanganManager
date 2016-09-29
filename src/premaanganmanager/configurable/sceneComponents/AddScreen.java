@@ -18,7 +18,6 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import premaanganmanager.base.components.CustomButton;
 import premaanganmanager.base.controller.Utility;
-import premaanganmanager.configurable.Labels;
 import premaanganmanager.configurable.Settings;
 import premaanganmanager.configurable.scenes.ManagerScene;
 

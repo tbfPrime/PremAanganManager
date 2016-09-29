@@ -154,8 +154,7 @@ public class AddStudentScreen extends AddScreen {
     public void back(){
         Utility.log("AddStudentScreen | back");
         if(!managerScene.getSceneContainer().isUserDataSaved()){ return; }
-        flushScreenData();
-        managerScene.getSceneContainer().displayScreen(Settings.screenTag.ADD);
+        managerScene.getSceneContainer().displayScreen(Settings.screenTag.ADD);;
     }
     @Override
     public void save(){
@@ -173,7 +172,9 @@ public class AddStudentScreen extends AddScreen {
         addStudentFirstNameField.clear();
         addStudentMiddleNameField.clear();
         addStudentLastNameField.clear();
-        addStudentDateDatePicker.getEditor().clear();
+        addStudentPlaceField.clear();
+        addStudentDateDatePicker.setValue(null);
+//        addStudentDateDatePicker.getEditor().clear();
     } 
     
     // private methods
@@ -208,8 +209,10 @@ public class AddStudentScreen extends AddScreen {
                 Utility.log("AddStudentScreen | saveStudentRecord | Value of Student ID: " + student.getStudentId());
                 savePhotoFile(Labels.labelTag.LABEL_STUDENT_PHOTO_PREFIX.getLabel() + student.getStudentId());
                 String alertStudentName = addStudentFirstNameField.getText() + (addStudentMiddleNameField.getText().isEmpty() ? "" : " " + addStudentMiddleNameField.getText()) + (addStudentLastNameField.getText().isEmpty() ? "" : " " + addStudentLastNameField.getText());
-                if(LocalUtility.alertInfo(Labels.labelTag.ALERT_MESSAGE_STUDENT_SAVE_SUCCESS.getLabel().replace("?", alertStudentName))){ back(); }
-                else{ back(); }
+                if(LocalUtility.alertInfo(Labels.labelTag.ALERT_MESSAGE_STUDENT_SAVE_SUCCESS.getLabel().replace("?", alertStudentName))){ Utility.log("AddStudentScreen | exiting after data saved. Ok selected."); }
+                else{ Utility.log("AddStudentScreen | exiting after data saved. Cancel selected."); }
+                flushScreenData();
+                back();
             } else{ LocalUtility.alertErrorSave(); }
         } else{ Utility.log("AddStudentScreen | saveStudentRecord | Validation of student form failed. Exiting without saving."); }
     }
@@ -551,7 +554,8 @@ public class AddStudentScreen extends AddScreen {
                 addStudentMiddleNameField.textProperty().isNotEmpty().or(
                 addStudentLastNameField.textProperty().isNotEmpty().or(
                 addStudentDateDatePicker.valueProperty().isNotNull()
-                ))));
+                )))
+        );
     }
     private void setReligionData(){
         Utility.log("AddStudentScreen | setReligionData");

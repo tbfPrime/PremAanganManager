@@ -16,6 +16,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import premaanganmanager.configurable.entity.Teacher;
 
 /**
  * @author Trevor Fernandes
@@ -285,6 +286,27 @@ public class UIModel {
         } catch(Exception e){
             Utility.errorLog("UIModel | fetchFamilyInfo | Error: " + e);
             return null;
+        } finally{
+            closeDBObjects();
+        }
+    }
+    
+    public boolean saveTeacherForm(Teacher teacher){
+        Utility.log("UIModel | saveTeacherForm | teacher name: " + teacher.getFirstName() + " " + teacher.getMiddleName() + " " + teacher.getLastName());
+        
+        createDBObjects();
+        try{
+            em.getTransaction().begin();
+            em.persist(teacher);
+            em.getTransaction().commit();
+            
+            Utility.log("UIModel | saveTeacherForm | Entry saved.");
+            return true;
+        } catch(Exception e){
+            Utility.errorLog("UIModel | saveTeacherForm | Error saving teacher data. Message: " + e);
+            closeDBObjects();
+            createDBObjects();
+            return false;
         } finally{
             closeDBObjects();
         }
