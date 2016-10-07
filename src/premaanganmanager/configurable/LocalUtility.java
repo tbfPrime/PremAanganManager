@@ -45,7 +45,7 @@ public class LocalUtility {
         Utility.log("LocalUtility | alertConfirmation");
         return Utility.alert(Alert.AlertType.CONFIRMATION, Labels.labelTag.ALERT_CONFIRMATION.getLabel(), message, Utility.getPathCSS(Settings.getAlertCSS()));
     }
-    public static boolean alertConfirmationFieldIsEmpty(String message){
+    public static boolean alertConfirmationFieldIsEmpty(){
         Utility.log("LocalUtility | alertConfirmationFieldIsEmpty");
         return Utility.alert(Alert.AlertType.CONFIRMATION, Labels.labelTag.ALERT_CONFIRMATION.getLabel(), Labels.labelTag.ALERT_MESSAGE_CONFIRM_FIELD_EMPTY.getLabel(), Utility.getPathCSS(Settings.getAlertCSS()));
     }
@@ -70,13 +70,13 @@ public class LocalUtility {
         Matcher m = p.matcher(value);
         return m.find();
     }
-    public static boolean isNumeric(String value){
-        Utility.log("LocalUtility | isNumeric | value: " + value);
+    public static boolean validateNumeric(String value){
+        Utility.log("LocalUtility | validateNumeric | value: " + value);
         try{
-            Utility.log("LocalUtility | isNumeric | String is a proper Number: " + Double.parseDouble(value));
+            Utility.log("LocalUtility | validateNumeric | String is a proper Number: " + Double.parseDouble(value));
             return true;
         } catch(NumberFormatException e){
-            Utility.errorLog("UIControl | isNumeric | Error: " + e);
+            Utility.errorLog("UIControl | validateNumeric | Error: " + e);
             return false;
         }
     }

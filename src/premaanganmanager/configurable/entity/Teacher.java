@@ -44,6 +44,12 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Teacher.findByDate", query = "SELECT t FROM Teacher t WHERE t.date = :date")})
 public class Teacher implements Serializable {
 
+    @Column(name = "date_of_resignation")
+    private String dateOfResignation;
+
+    @Column(name = "salary")
+    private Integer salary;
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -264,6 +270,22 @@ public class Teacher implements Serializable {
     @Override
     public String toString() {
         return "premaanganmanager.base.controller.background.Teacher[ teacherId=" + teacherId + " ]";
+    }
+
+    public Integer getSalary() {
+        return salary;
+    }
+
+    public void setSalary(Integer salary) {
+        this.salary = salary;
+    }
+
+    public String getDateOfResignation() {
+        return dateOfResignation;
+    }
+
+    public void setDateOfResignation(String dateOfResignation) {
+        this.dateOfResignation = dateOfResignation;
     }
     
 }

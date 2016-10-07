@@ -174,7 +174,6 @@ public class AddStudentScreen extends AddScreen {
         addStudentLastNameField.clear();
         addStudentPlaceField.clear();
         addStudentDateDatePicker.setValue(null);
-//        addStudentDateDatePicker.getEditor().clear();
     } 
     
     // private methods
@@ -277,28 +276,24 @@ public class AddStudentScreen extends AddScreen {
         if(addStudentLastNameField.getText().isEmpty()){ Utility.log("AddStudentScreen | validateStudentForm | LastName empty."); flagFieldsEmpty = true; }
         else{ student.setLastName(addStudentLastNameField.getText()); }
 
-        // Validate for Date format
         if(photoFileExtension.isEmpty()){ Utility.log("AddStudentScreen | validateStudentForm | DOB empty."); flagFieldsEmpty = true; }
         else{ student.setStudentPhotoId(photoFileExtension); }
         
         if(addStudentAddressField.getText().isEmpty()){ Utility.log("AddStudentScreen | validateStudentForm | Address empty."); flagFieldsEmpty = true; }
         else{ student.setAddress(addStudentAddressField.getText()); }
         
-        // Validate for email format
         if(addStudentEmailField.getText().isEmpty()){ Utility.log("AddStudentScreen | validateStudentForm | E-Mail empty."); flagFieldsEmpty = true; } 
         else{ 
             if(LocalUtility.validateEmail(addStudentEmailField.getText())){ student.setEmailId(addStudentEmailField.getText()); }
             else{ LocalUtility.alertWarning(Labels.labelTag.ALERT_MESSAGE_EMAIL_FORMAT_INCORRECT.getLabel()); return false; }
         }
         
-        // Validate for Date format
         if(addStudentDOBDatePicker.getValue() == null){ Utility.log("AddStudentScreen | validateStudentForm | DOB empty."); flagFieldsEmpty = true; } 
         else{ student.setDob(addStudentDOBDatePicker.getValue().toString()); }
         
         if(addStudentPlaceOfBirthField.getText().isEmpty()){ Utility.log("AddStudentScreen | validateStudentForm | Place of Birth empty."); flagFieldsEmpty = true; }
         else{ student.setPlaceOfBirth(addStudentPlaceOfBirthField.getText()); }
         
-        // Validate for Religion
         if(religion.getReligionId() == null){ Utility.log("AddStudentScreen | validateStudentForm | No religion selected from list. Trying to save from Other religion."); flagFieldsEmpty = true; }
         else{ student.setReligionId(religion.getReligionId()); }
         
@@ -311,19 +306,17 @@ public class AddStudentScreen extends AddScreen {
         if(addStudentHobbiesField.getText().isEmpty()){ Utility.log("AddStudentScreen | validateStudentForm | Hobbies empty."); flagFieldsEmpty = true; }
         else{ student.setHobbies(addStudentHobbiesField.getText()); }
         
-        // Validate for Emergency Contacts
         if(addStudentEmergencyContactPersonField.getText().isEmpty()){ Utility.log("AddStudentScreen | validateStudentForm | Emergency Contact Person empty."); flagFieldsEmpty = true; }
         else{ 
             student.setEmergencyContactPerson(addStudentEmergencyContactPersonField.getText());
             
             if(addStudentEmergencyContactTelNoField.getText().isEmpty()){ Utility.log("AddStudentScreen | validateStudentForm | Place of Birth empty."); flagFieldsEmpty = true; }
             else{ 
-                if(LocalUtility.isNumeric(addStudentEmergencyContactTelNoField.getText())){ student.setEmergencyContactNumber(addStudentEmergencyContactTelNoField.getText()); }
+                if(LocalUtility.validateNumeric(addStudentEmergencyContactTelNoField.getText())){ student.setEmergencyContactNumber(addStudentEmergencyContactTelNoField.getText()); }
                 else{ LocalUtility.alertWarning((addStudentEmergencyContactTelNo.getText() + " " + Labels.labelTag.ALERT_MESSAGE_NUMBER_FORMAT_INCORRECT.getLabel())); return false; }
             }
         }
         
-        // Validate for 6 Family Members
         if(addStudentFamilyMemberNameField1.getText() != null && !addStudentFamilyMemberNameField1.getText().isEmpty()){
             familyInfo1.setName(addStudentFamilyMemberNameField1.getText());
             
@@ -332,7 +325,7 @@ public class AddStudentScreen extends AddScreen {
             
             if(addStudentFamilyMemberAgeField1.getText().isEmpty()){ Utility.log("AddStudentScreen | validateStudentForm | Age 1 empty."); flagFieldsEmpty = true; }
             else{ 
-                if(LocalUtility.isNumeric(addStudentFamilyMemberAgeField1.getText())){ familyInfo1.setAge(LocalUtility.convertStringToInteger(addStudentFamilyMemberAgeField1.getText())); }
+                if(LocalUtility.validateNumeric(addStudentFamilyMemberAgeField1.getText())){ familyInfo1.setAge(LocalUtility.convertStringToInteger(addStudentFamilyMemberAgeField1.getText())); }
                 else{ LocalUtility.alertWarning(addStudentFamilyMemberAge1.getText() + " " + Labels.labelTag.ALERT_MESSAGE_NUMBER_FORMAT_INCORRECT.getLabel()); return false; }
             }
             
@@ -344,7 +337,7 @@ public class AddStudentScreen extends AddScreen {
             
             if(addStudentFamilyMemberOccupationalTelNoField1.getText().isEmpty()){ Utility.log("AddStudentScreen | validateStudentForm | Occupational Tel. No. 1 empty."); flagFieldsEmpty = true; }
             else{
-                if(LocalUtility.isNumeric(addStudentFamilyMemberOccupationalTelNoField1.getText())){ familyInfo1.setContactNumber(addStudentFamilyMemberOccupationalTelNoField1.getText()); }
+                if(LocalUtility.validateNumeric(addStudentFamilyMemberOccupationalTelNoField1.getText())){ familyInfo1.setContactNumber(addStudentFamilyMemberOccupationalTelNoField1.getText()); }
                 else{ LocalUtility.alertWarning(addStudentFamilyMemberOccupationalTelNo1.getText() + " " + Labels.labelTag.ALERT_MESSAGE_NUMBER_FORMAT_INCORRECT.getLabel()); return false; }
             }
             
@@ -356,7 +349,7 @@ public class AddStudentScreen extends AddScreen {
                 
                 if(addStudentFamilyMemberAgeField2.getText().isEmpty()){ Utility.log("AddStudentScreen | validateStudentForm | Age 2 empty."); flagFieldsEmpty = true; }
                 else{
-                    if(LocalUtility.isNumeric(addStudentFamilyMemberAgeField2.getText())){ familyInfo2.setAge(LocalUtility.convertStringToInteger(addStudentFamilyMemberAgeField2.getText())); }
+                    if(LocalUtility.validateNumeric(addStudentFamilyMemberAgeField2.getText())){ familyInfo2.setAge(LocalUtility.convertStringToInteger(addStudentFamilyMemberAgeField2.getText())); }
                     else{ LocalUtility.alertWarning(addStudentFamilyMemberAge2.getText() + " " + Labels.labelTag.ALERT_MESSAGE_NUMBER_FORMAT_INCORRECT.getLabel()); return false; }
                 }
                 
@@ -368,7 +361,7 @@ public class AddStudentScreen extends AddScreen {
                 
                 if(addStudentFamilyMemberOccupationalTelNoField2.getText().isEmpty()){ Utility.log("AddStudentScreen | validateStudentForm | Occupational Tel. No. 2 empty."); flagFieldsEmpty = true; }
                 else{
-                    if(LocalUtility.isNumeric(addStudentFamilyMemberOccupationalTelNoField2.getText())){ familyInfo2.setContactNumber(addStudentFamilyMemberOccupationalTelNoField2.getText()); }
+                    if(LocalUtility.validateNumeric(addStudentFamilyMemberOccupationalTelNoField2.getText())){ familyInfo2.setContactNumber(addStudentFamilyMemberOccupationalTelNoField2.getText()); }
                     else{ LocalUtility.alertWarning(addStudentFamilyMemberOccupationalTelNo2.getText() + " " + Labels.labelTag.ALERT_MESSAGE_NUMBER_FORMAT_INCORRECT.getLabel()); return false; }
                 }
                 
@@ -380,7 +373,7 @@ public class AddStudentScreen extends AddScreen {
                     
                     if(addStudentFamilyMemberAgeField3.getText().isEmpty()){ Utility.log("AddStudentScreen | validateStudentForm | Age 3 empty."); flagFieldsEmpty = true; }
                     else{
-                        if(LocalUtility.isNumeric(addStudentFamilyMemberAgeField3.getText())){ familyInfo3.setAge(LocalUtility.convertStringToInteger(addStudentFamilyMemberAgeField3.getText())); }
+                        if(LocalUtility.validateNumeric(addStudentFamilyMemberAgeField3.getText())){ familyInfo3.setAge(LocalUtility.convertStringToInteger(addStudentFamilyMemberAgeField3.getText())); }
                         else{ LocalUtility.alertWarning(addStudentFamilyMemberAge3.getText() + " " + Labels.labelTag.ALERT_MESSAGE_NUMBER_FORMAT_INCORRECT.getLabel()); return false; }
                     }
                     
@@ -392,7 +385,7 @@ public class AddStudentScreen extends AddScreen {
                     
                     if(addStudentFamilyMemberOccupationalTelNoField3.getText().isEmpty()){ Utility.log("AddStudentScreen | validateStudentForm | Occupational Tel. No. 3 empty."); flagFieldsEmpty = true; }
                     else{
-                        if(LocalUtility.isNumeric(addStudentFamilyMemberOccupationalTelNoField3.getText())){ familyInfo3.setContactNumber(addStudentFamilyMemberOccupationalTelNoField3.getText()); }
+                        if(LocalUtility.validateNumeric(addStudentFamilyMemberOccupationalTelNoField3.getText())){ familyInfo3.setContactNumber(addStudentFamilyMemberOccupationalTelNoField3.getText()); }
                         else{ LocalUtility.alertWarning(addStudentFamilyMemberOccupationalTelNo3.getText() + " " + Labels.labelTag.ALERT_MESSAGE_NUMBER_FORMAT_INCORRECT.getLabel()); return false; }
                     }
                     
@@ -404,7 +397,7 @@ public class AddStudentScreen extends AddScreen {
                         
                         if(addStudentFamilyMemberAgeField4.getText().isEmpty()){ Utility.log("AddStudentScreen | validateStudentForm | Age 4 empty."); flagFieldsEmpty = true; }
                         else{
-                            if(LocalUtility.isNumeric(addStudentFamilyMemberAgeField4.getText())){ familyInfo4.setAge(LocalUtility.convertStringToInteger(addStudentFamilyMemberAgeField4.getText())); }
+                            if(LocalUtility.validateNumeric(addStudentFamilyMemberAgeField4.getText())){ familyInfo4.setAge(LocalUtility.convertStringToInteger(addStudentFamilyMemberAgeField4.getText())); }
                             else{ LocalUtility.alertWarning(addStudentFamilyMemberAge4.getText() + " " + Labels.labelTag.ALERT_MESSAGE_NUMBER_FORMAT_INCORRECT.getLabel()); return false; }
                         }
                         
@@ -416,7 +409,7 @@ public class AddStudentScreen extends AddScreen {
                         
                         if(addStudentFamilyMemberOccupationalTelNoField4.getText().isEmpty()){ Utility.log("AddStudentScreen | validateStudentForm | Occupational Tel. No. 4 empty."); flagFieldsEmpty = true; }
                         else{
-                            if(LocalUtility.isNumeric(addStudentFamilyMemberOccupationalTelNoField4.getText())){ familyInfo4.setContactNumber(addStudentFamilyMemberOccupationalTelNoField4.getText()); }
+                            if(LocalUtility.validateNumeric(addStudentFamilyMemberOccupationalTelNoField4.getText())){ familyInfo4.setContactNumber(addStudentFamilyMemberOccupationalTelNoField4.getText()); }
                             else{ LocalUtility.alertWarning(addStudentFamilyMemberOccupationalTelNo4.getText() + " " + Labels.labelTag.ALERT_MESSAGE_NUMBER_FORMAT_INCORRECT.getLabel()); return false; }
                         }
                         
@@ -428,7 +421,7 @@ public class AddStudentScreen extends AddScreen {
                             
                             if(addStudentFamilyMemberAgeField5.getText().isEmpty()){ Utility.log("AddStudentScreen | validateStudentForm | Age 5 empty."); flagFieldsEmpty = true; }
                             else{
-                                if(LocalUtility.isNumeric(addStudentFamilyMemberAgeField5.getText())){ familyInfo5.setAge(LocalUtility.convertStringToInteger(addStudentFamilyMemberAgeField5.getText())); }
+                                if(LocalUtility.validateNumeric(addStudentFamilyMemberAgeField5.getText())){ familyInfo5.setAge(LocalUtility.convertStringToInteger(addStudentFamilyMemberAgeField5.getText())); }
                                 else{ LocalUtility.alertWarning(addStudentFamilyMemberAge5.getText() + " " + Labels.labelTag.ALERT_MESSAGE_NUMBER_FORMAT_INCORRECT.getLabel()); return false; }
                             }
                             
@@ -440,7 +433,7 @@ public class AddStudentScreen extends AddScreen {
                             
                             if(addStudentFamilyMemberOccupationalTelNoField5.getText().isEmpty()){ Utility.log("AddStudentScreen | validateStudentForm | Occupational Tel. No. 5 empty."); flagFieldsEmpty = true; }
                             else{
-                                if(LocalUtility.isNumeric(addStudentFamilyMemberOccupationalTelNoField5.getText())){ familyInfo5.setContactNumber(addStudentFamilyMemberOccupationalTelNoField5.getText()); }
+                                if(LocalUtility.validateNumeric(addStudentFamilyMemberOccupationalTelNoField5.getText())){ familyInfo5.setContactNumber(addStudentFamilyMemberOccupationalTelNoField5.getText()); }
                                 else{ LocalUtility.alertWarning(addStudentFamilyMemberOccupationalTelNo5.getText() + " " + Labels.labelTag.ALERT_MESSAGE_NUMBER_FORMAT_INCORRECT.getLabel()); return false; }
                             }
                             
@@ -452,7 +445,7 @@ public class AddStudentScreen extends AddScreen {
                                 
                                 if(addStudentFamilyMemberAgeField6.getText().isEmpty()){ Utility.log("AddStudentScreen | validateStudentForm | Age 6 empty."); flagFieldsEmpty = true; }
                                 else{
-                                    if(LocalUtility.isNumeric(addStudentFamilyMemberAgeField6.getText())){ familyInfo6.setAge(LocalUtility.convertStringToInteger(addStudentFamilyMemberAgeField6.getText())); }
+                                    if(LocalUtility.validateNumeric(addStudentFamilyMemberAgeField6.getText())){ familyInfo6.setAge(LocalUtility.convertStringToInteger(addStudentFamilyMemberAgeField6.getText())); }
                                     else{ LocalUtility.alertWarning(addStudentFamilyMemberAge6.getText() + " " + Labels.labelTag.ALERT_MESSAGE_NUMBER_FORMAT_INCORRECT.getLabel()); return false; }
                                 }
                                 
@@ -464,7 +457,7 @@ public class AddStudentScreen extends AddScreen {
                                 
                                 if(addStudentFamilyMemberOccupationalTelNoField6.getText().isEmpty()){ Utility.log("AddStudentScreen | validateStudentForm | Occupational Tel. No. 6 empty."); flagFieldsEmpty = true; }
                                 else{
-                                    if(LocalUtility.isNumeric(addStudentFamilyMemberOccupationalTelNoField6.getText())){ familyInfo6.setContactNumber(addStudentFamilyMemberOccupationalTelNoField6.getText()); }
+                                    if(LocalUtility.validateNumeric(addStudentFamilyMemberOccupationalTelNoField6.getText())){ familyInfo6.setContactNumber(addStudentFamilyMemberOccupationalTelNoField6.getText()); }
                                     else{ LocalUtility.alertWarning(addStudentFamilyMemberOccupationalTelNo6.getText() + " " + Labels.labelTag.ALERT_MESSAGE_NUMBER_FORMAT_INCORRECT.getLabel()); return false; }
                                 }
                             }
@@ -493,7 +486,7 @@ public class AddStudentScreen extends AddScreen {
         else{ student.setDate(addStudentDateDatePicker.getValue().toString()); }
 
         if(flagFieldsEmpty){ 
-            if(LocalUtility.alertConfirmationFieldIsEmpty(addStudentFirstName.getText())){ return true; }
+            if(LocalUtility.alertConfirmationFieldIsEmpty()){ return true; }
             else{ Utility.log("AddStudentScreen | validateStudentForm | Please fill up the remaining fields before saving."); return false; }
         } else { return true; }
     }

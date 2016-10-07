@@ -124,7 +124,7 @@ public class AddTeacherScreen extends AddScreen{
                 else{ back(); }
             }
             else{ Utility.log("AddTeacherScreen | saveTeacherRecord | Error saving teacher record."); LocalUtility.alertErrorSave(); }
-        }
+        } else{ Utility.log("AddTeacherScreen | saveTeacherRecord | validation of teacher record failed. Exiting."); }
     }
     private boolean validateForm(){
         Utility.log("AddTeacherScreen | validateForm");
@@ -134,13 +134,54 @@ public class AddTeacherScreen extends AddScreen{
         if(addTeacherFirstNameField.getText().isEmpty()){ Utility.log("AddTeacherScreen | validateForm | First Name empty."); LocalUtility.alertWarningFieldIsEmpty(Labels.labelTag.ADD_TEACHER_FIRST_NAME.getLabel()); return false; }
         else{ teacher.setFirstName(addTeacherFirstNameField.getText()); }
         
+        if(addTeacherMiddleNameField.getText().isEmpty()){ Utility.log("AddTeacherScreen | validateForm | Middle Name empty."); flagFieldsEmpty = true; }
+        else{ teacher.setMiddleName(addTeacherMiddleNameField.getText()); }
+        
+        if(addTeacherLastNameField.getText().isEmpty()){ Utility.log("AddTeacherScreen | validateForm | Last Name empty."); flagFieldsEmpty = true; }
+        else{ teacher.setLastName(addTeacherLastNameField.getText()); }
+        
+        if(addTeacherAddressField.getText().isEmpty()){ Utility.log("AddTeacherScreen | validateForm | Address empty."); flagFieldsEmpty = true; }
+        else{ teacher.setAddress(addTeacherAddressField.getText()); }
+        
         if(addTeacherEmailField.getText().isEmpty()){ Utility.log("AddTeacherScreen | validateScreen | email-id field empty."); flagFieldsEmpty = true; }
         else{
-            if(!LocalUtility.validateEmail(addTeacherEmailField.getText())){ Utility.log("AddTeacher | validateForm | email-id not valid."); LocalUtility.alertWarning(Labels.labelTag.ALERT_MESSAGE_EMAIL_FORMAT_INCORRECT.getLabel()); }
+            if(!LocalUtility.validateEmail(addTeacherEmailField.getText())){ Utility.log("AddTeacher | validateForm | email-id not valid."); LocalUtility.alertWarning(Labels.labelTag.ALERT_MESSAGE_EMAIL_FORMAT_INCORRECT.getLabel()); return false; }
             else{ teacher.setEmailId(addTeacherEmailField.getText()); }
         }
         
-        return true;
+        if(addTeacherDateOfBirthPicker.valueProperty().isNull().getValue()){ Utility.log("AddTeacherScreen | validateForm | DOB empty."); flagFieldsEmpty = true; }
+        else{ teacher.setDob(addTeacherDateOfBirthPicker.getValue().toString()); }
+        
+        if(addTeacherEmergencyContactPersonField.getText().isEmpty()){ Utility.log("AddTeacher | validateForm | EmergencyContactPerson name is empty."); flagFieldsEmpty = true; }
+        else{
+            teacher.setEmergencyContactPerson(addTeacherEmergencyContactPersonField.getText());
+            
+            if(addTeacherEmergencyContactTelNoField.getText().isEmpty()){ Utility.log("AddTeacher | validateForm | EmergencyContactTelNo. empty."); flagFieldsEmpty = true; }
+            else{
+                if(!LocalUtility.validateNumeric(addTeacherEmergencyContactTelNoField.getText())){ LocalUtility.alertWarning(addTeacherEmergencyContactTelNo.getText() + " " + Labels.labelTag.ALERT_MESSAGE_NUMBER_FORMAT_INCORRECT.getLabel()); return false; }
+                else{ teacher.setEmergencyContactNumber(LocalUtility.convertStringToInteger(addTeacherEmergencyContactTelNoField.getText())); }
+            }
+        }
+        
+        if(addTeacherSalaryField.getText().isEmpty()){ Utility.log("AddTeacher | validateForm | Salary field empty."); flagFieldsEmpty = true; }
+        else{ 
+            if(!LocalUtility.validateNumeric(addTeacherSalaryField.getText())){ LocalUtility.alertWarning(addTeacherSalary.getText() + " " + Labels.labelTag.ALERT_MESSAGE_NUMBER_FORMAT_INCORRECT.getLabel()); return false; }
+            else{ teacher.setSalary(LocalUtility.convertStringToInteger(addTeacherSalaryField.getText())); }
+        }
+        
+        if(addTeacherDateOfResignationPicker.valueProperty().isNull().getValue()){ Utility.log("AddTeacher | validateForm | date of resignation empty."); flagFieldsEmpty = true; }
+        else{ teacher.setDateOfResignation(addTeacherDateOfResignationPicker.getValue().toString()); }
+        
+        if(addTeacherPlaceField.getText().isEmpty()){ LocalUtility.alertWarningFieldIsEmpty(addTeacherPlace.getText()); return false; }
+        else{ teacher.setPlace(addTeacherPlaceField.getText()); }
+        
+        if(addTeacherDatePicker.valueProperty().isNull().getValue()){ LocalUtility.alertWarningFieldIsEmpty(addTeacherDate.getText()); return false; }
+        else{ teacher.setDate(addTeacherDatePicker.getValue().toString()); }
+
+        if(flagFieldsEmpty){ 
+            if(LocalUtility.alertConfirmationFieldIsEmpty()){ return true; }
+            else{ Utility.log("AddStudentScreen | validateStudentForm | Please fill up the remaining fields before saving."); return false; }
+        } else { return true; }
     }
     private void setID(){
         addTeacherPersonalDetailsHBox.setId("sectionBG");
