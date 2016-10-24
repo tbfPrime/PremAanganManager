@@ -8,16 +8,20 @@ package premaanganmanager.configurable.sceneComponents;
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Date;
-import java.util.GregorianCalendar;
+import java.time.LocalDate;
+import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -25,6 +29,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.util.Callback;
 import premaanganmanager.base.controller.UIModel;
 import premaanganmanager.base.controller.Utility;
 import premaanganmanager.configurable.Labels;
@@ -117,6 +122,9 @@ public class AddStudentScreen extends AddScreen {
     @FXML
     private HBox addStudentPersonalDetailsHBox, addStudentOfficeUseOnlyHBox, addStudentFamilyDetailsHBox, addStudentEmergencyContactHBox;
     
+    @FXML
+    private ScrollPane addStudentScrollPane;
+    
     // Help Student
     @FXML
     private Text addStudentHelpBody;
@@ -186,8 +194,7 @@ public class AddStudentScreen extends AddScreen {
     private void addStudentDOBAction(){
         Utility.log("AddStudentScreen | addStudentDOBAction");
         if(addStudentDOBDatePicker.getValue() != null){
-            Date selectedDate = new GregorianCalendar(addStudentDOBDatePicker.getValue().getYear(), addStudentDOBDatePicker.getValue().getMonthValue(), addStudentDOBDatePicker.getValue().getDayOfMonth()).getTime();
-            if(selectedDate.getTime() < Settings.getDOBMinimum().getTime() || selectedDate.getTime() > Settings.getDOBMaximum().getTime()){
+            if(!LocalUtility.validateDOB(new DatePicker().getChronology().date(addStudentDOBDatePicker.getValue().getYear(), addStudentDOBDatePicker.getValue().getMonthValue(), addStudentDOBDatePicker.getValue().getDayOfMonth()))){
                 LocalUtility.alertWarning(Labels.labelTag.ALERT_MESSAGE_DOB_FORMAT_INCORRECT.getLabel());
                 addStudentDOBDatePicker.getEditor().clear();
             }
@@ -289,7 +296,13 @@ public class AddStudentScreen extends AddScreen {
         }
         
         if(addStudentDOBDatePicker.getValue() == null){ Utility.log("AddStudentScreen | validateStudentForm | DOB empty."); flagFieldsEmpty = true; } 
-        else{ student.setDob(addStudentDOBDatePicker.getValue().toString()); }
+        else{ 
+            if(!LocalUtility.validateDOB(new DatePicker().getChronology().date(addStudentDOBDatePicker.getValue().getYear(), addStudentDOBDatePicker.getValue().getMonthValue(), addStudentDOBDatePicker.getValue().getDayOfMonth()))){
+                LocalUtility.alertWarning(Labels.labelTag.ALERT_MESSAGE_DOB_FORMAT_INCORRECT.getLabel());
+                LocalUtility.ensureVisible(addStudentScrollPane, addStudentDOBDatePicker);
+                return false;
+            } else{ student.setDob(addStudentDOBDatePicker.getValue().toString()); }
+        }
         
         if(addStudentPlaceOfBirthField.getText().isEmpty()){ Utility.log("AddStudentScreen | validateStudentForm | Place of Birth empty."); flagFieldsEmpty = true; }
         else{ student.setPlaceOfBirth(addStudentPlaceOfBirthField.getText()); }
@@ -541,6 +554,41 @@ public class AddStudentScreen extends AddScreen {
         addStudentFamilyMemberOccupationField6.disableProperty().bind(Bindings.or(addStudentFamilyMemberNameField6.disabledProperty(), addStudentFamilyMemberNameField6.textProperty().isEmpty()));
         addStudentFamilyMemberOccupationalAddressField6.disableProperty().bind(Bindings.or(addStudentFamilyMemberNameField6.disabledProperty(), addStudentFamilyMemberNameField6.textProperty().isEmpty()));
         addStudentFamilyMemberOccupationalTelNoField6.disableProperty().bind(Bindings.or(addStudentFamilyMemberNameField6.disabledProperty(), addStudentFamilyMemberNameField6.textProperty().isEmpty()));                
+        
+        final Callback<DatePicker,DateCell> dobDayCellFactory = new Callback<DatePicker,DateCell>(){
+            @Override public DateCell call(final DatePicker datepicker){
+                return new DateCell(){
+                    @Override public void updateItem(LocalDate item, boolean empty){
+                        super.updateItem(item,empty);
+                        setDisable(!LocalUtility.validateDOB(new DatePicker().getChronology().date(item.getYear(), item.getMonthValue(), item.getDayOfMonth())));
+                    }
+                };
+            }
+        };
+        final Callback<DatePicker,DateCell> dateDayCellFactory = new Callback<DatePicker,DateCell>(){
+            @Override public DateCell call(final DatePicker datePicker){
+                return new DateCell(){
+                    @Override public void updateItem(LocalDate item, boolean empty){
+                        if(item.isAfter(LocalDate.now())){
+                            setDisable(true);
+                        }
+                    }
+                };
+            }
+        };
+        addStudentDOBDatePicker.showingProperty().addListener(new ChangeListener<Boolean>(){
+            @Override public void changed(ObservableValue obValue, Boolean oldValue, Boolean newValue){
+                if(addStudentDOBDatePicker.valueProperty().isNull().get()){
+                    addStudentDOBDatePicker.setValue((LocalDate)Settings.getDOBMaximum());
+                    Platform.runLater(() -> {
+                        addStudentDOBDatePicker.getEditor().clear();
+                    });
+                }
+            }
+        });
+        addStudentDOBDatePicker.setDayCellFactory(dobDayCellFactory);
+        addStudentDateDatePicker.setDayCellFactory(dateDayCellFactory);
+        addStudentDateDatePicker.setValue(LocalDate.now());
         
         Settings.getFlagDataUnsavedProperty().bind(
                 addStudentFirstNameField.textProperty().isNotEmpty().or(

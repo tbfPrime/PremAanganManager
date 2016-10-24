@@ -84,7 +84,7 @@ public class UIModel {
     }
     
     public boolean saveStudentForm(Student student){
-        Utility.log("UIModel | saveStudentForm | student name: " + student.getFirstName() + " " + student.getMiddleName() + " " + student.getLastName());
+        Utility.log("UIModel | saveStudentForm | student name: " + student.getFirstName() + " " + student.getMiddleName() + " " + student.getLastName() + " | id: " + student.getStudentId());
         
         createDBObjects();
         try{
@@ -92,7 +92,7 @@ public class UIModel {
             em.persist(student);
             em.getTransaction().commit();
             
-            Utility.log("UIModel | saveStudentForm | Entry saved.");
+            Utility.log("UIModel | saveStudentForm | Entry saved. | student ID: " + student.getStudentId());
             return true;
         } catch(Exception e){
             Utility.errorLog("UIModel | saveStudentForm | Error saving student data. Message: " + e);
@@ -300,7 +300,7 @@ public class UIModel {
             em.persist(teacher);
             em.getTransaction().commit();
             
-            Utility.log("UIModel | saveTeacherForm | Entry saved.");
+            Utility.log("UIModel | saveTeacherForm | Entry saved. | teacher ID: " + teacher.getTeacherId());
             return true;
         } catch(Exception e){
             Utility.errorLog("UIModel | saveTeacherForm | Error saving teacher data. Message: " + e);

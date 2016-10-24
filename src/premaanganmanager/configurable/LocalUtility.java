@@ -5,9 +5,12 @@
  */
 package premaanganmanager.configurable;
 
+import java.time.chrono.ChronoLocalDate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ScrollPane;
 import premaanganmanager.base.controller.Utility;
 
 /**
@@ -80,6 +83,10 @@ public class LocalUtility {
             return false;
         }
     }
+    public static boolean validateDOB(ChronoLocalDate dob){
+        Utility.log("LocalUtility | validateDOB | dob: " + dob);
+        return (dob.isEqual(Settings.getDOBMaximum()) || dob.isEqual(Settings.getDOBMinimum()) || (dob.isBefore(Settings.getDOBMaximum()) && dob.isAfter(Settings.getDOBMinimum())));
+    }
     public static Integer convertStringToInteger(String value){
         Utility.log("LocalUtility | convertStringToInteger | value: " + value);
         try{
@@ -88,5 +95,14 @@ public class LocalUtility {
             Utility.errorLog("UIControl | convertStringToInteger | Error: " + e);
             return null;
         }        
+    }
+    public static void ensureVisible(ScrollPane pane, Node node) {
+        double width = pane.getContent().getBoundsInLocal().getWidth();
+        double height = pane.getContent().getBoundsInLocal().getHeight();
+        double x = node.getBoundsInParent().getMaxX();
+        double y = node.getBoundsInParent().getMaxY();
+        pane.setVvalue(y/height);
+        pane.setHvalue(x/width);
+        node.requestFocus();
     }
 }

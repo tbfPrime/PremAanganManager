@@ -9,15 +9,17 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Trevor Fernandes
+ * @author TBF
  */
 @Entity
 @Table(name = "teacher")
@@ -31,27 +33,21 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Teacher.findByLastName", query = "SELECT t FROM Teacher t WHERE t.lastName = :lastName"),
     @NamedQuery(name = "Teacher.findByAddress", query = "SELECT t FROM Teacher t WHERE t.address = :address"),
     @NamedQuery(name = "Teacher.findByDob", query = "SELECT t FROM Teacher t WHERE t.dob = :dob"),
-    @NamedQuery(name = "Teacher.findByPlaceOfBirth", query = "SELECT t FROM Teacher t WHERE t.placeOfBirth = :placeOfBirth"),
-    @NamedQuery(name = "Teacher.findByReligion", query = "SELECT t FROM Teacher t WHERE t.religion = :religion"),
-    @NamedQuery(name = "Teacher.findByOtherReligion", query = "SELECT t FROM Teacher t WHERE t.otherReligion = :otherReligion"),
     @NamedQuery(name = "Teacher.findByEmailId", query = "SELECT t FROM Teacher t WHERE t.emailId = :emailId"),
     @NamedQuery(name = "Teacher.findByEmergencyContactPerson", query = "SELECT t FROM Teacher t WHERE t.emergencyContactPerson = :emergencyContactPerson"),
     @NamedQuery(name = "Teacher.findByEmergencyContactNumber", query = "SELECT t FROM Teacher t WHERE t.emergencyContactNumber = :emergencyContactNumber"),
-    @NamedQuery(name = "Teacher.findByEducationalBackground", query = "SELECT t FROM Teacher t WHERE t.educationalBackground = :educationalBackground"),
-    @NamedQuery(name = "Teacher.findByLanguages", query = "SELECT t FROM Teacher t WHERE t.languages = :languages"),
-    @NamedQuery(name = "Teacher.findByHobbies", query = "SELECT t FROM Teacher t WHERE t.hobbies = :hobbies"),
     @NamedQuery(name = "Teacher.findByPlace", query = "SELECT t FROM Teacher t WHERE t.place = :place"),
-    @NamedQuery(name = "Teacher.findByDate", query = "SELECT t FROM Teacher t WHERE t.date = :date")})
+    @NamedQuery(name = "Teacher.findByDate", query = "SELECT t FROM Teacher t WHERE t.date = :date"),
+    @NamedQuery(name = "Teacher.findBySalary", query = "SELECT t FROM Teacher t WHERE t.salary = :salary"),
+    @NamedQuery(name = "Teacher.findByDateOfResignation", query = "SELECT t FROM Teacher t WHERE t.dateOfResignation = :dateOfResignation")})
 public class Teacher implements Serializable {
-
-    @Column(name = "date_of_resignation")
-    private String dateOfResignation;
-
-    @Column(name = "salary")
-    private Integer salary;
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(generator="teacherGenerator")
+    @TableGenerator(name="teacherGenerator", table="sqlite_sequence",
+    pkColumnName="name", valueColumnName="seq",
+    pkColumnValue="teacher", allocationSize=1)
     @Basic(optional = false)
     @Column(name = "teacher_id")
     private Integer teacherId;
@@ -68,28 +64,20 @@ public class Teacher implements Serializable {
     private String address;
     @Column(name = "dob")
     private String dob;
-    @Column(name = "place_of_birth")
-    private String placeOfBirth;
-    @Column(name = "religion")
-    private String religion;
-    @Column(name = "other_religion")
-    private String otherReligion;
     @Column(name = "email_id")
     private String emailId;
     @Column(name = "emergency_contact_person")
     private String emergencyContactPerson;
     @Column(name = "emergency_contact_number")
     private Integer emergencyContactNumber;
-    @Column(name = "educational_background")
-    private String educationalBackground;
-    @Column(name = "languages")
-    private String languages;
-    @Column(name = "hobbies")
-    private String hobbies;
     @Column(name = "place")
     private String place;
     @Column(name = "date")
     private String date;
+    @Column(name = "salary")
+    private Integer salary;
+    @Column(name = "date_of_resignation")
+    private String dateOfResignation;
 
     public Teacher() {
     }
@@ -159,30 +147,6 @@ public class Teacher implements Serializable {
         this.dob = dob;
     }
 
-    public String getPlaceOfBirth() {
-        return placeOfBirth;
-    }
-
-    public void setPlaceOfBirth(String placeOfBirth) {
-        this.placeOfBirth = placeOfBirth;
-    }
-
-    public String getReligion() {
-        return religion;
-    }
-
-    public void setReligion(String religion) {
-        this.religion = religion;
-    }
-
-    public String getOtherReligion() {
-        return otherReligion;
-    }
-
-    public void setOtherReligion(String otherReligion) {
-        this.otherReligion = otherReligion;
-    }
-
     public String getEmailId() {
         return emailId;
     }
@@ -207,30 +171,6 @@ public class Teacher implements Serializable {
         this.emergencyContactNumber = emergencyContactNumber;
     }
 
-    public String getEducationalBackground() {
-        return educationalBackground;
-    }
-
-    public void setEducationalBackground(String educationalBackground) {
-        this.educationalBackground = educationalBackground;
-    }
-
-    public String getLanguages() {
-        return languages;
-    }
-
-    public void setLanguages(String languages) {
-        this.languages = languages;
-    }
-
-    public String getHobbies() {
-        return hobbies;
-    }
-
-    public void setHobbies(String hobbies) {
-        this.hobbies = hobbies;
-    }
-
     public String getPlace() {
         return place;
     }
@@ -245,6 +185,22 @@ public class Teacher implements Serializable {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public Integer getSalary() {
+        return salary;
+    }
+
+    public void setSalary(Integer salary) {
+        this.salary = salary;
+    }
+
+    public String getDateOfResignation() {
+        return dateOfResignation;
+    }
+
+    public void setDateOfResignation(String dateOfResignation) {
+        this.dateOfResignation = dateOfResignation;
     }
 
     @Override
@@ -269,23 +225,7 @@ public class Teacher implements Serializable {
 
     @Override
     public String toString() {
-        return "premaanganmanager.base.controller.background.Teacher[ teacherId=" + teacherId + " ]";
-    }
-
-    public Integer getSalary() {
-        return salary;
-    }
-
-    public void setSalary(Integer salary) {
-        this.salary = salary;
-    }
-
-    public String getDateOfResignation() {
-        return dateOfResignation;
-    }
-
-    public void setDateOfResignation(String dateOfResignation) {
-        this.dateOfResignation = dateOfResignation;
+        return "premaanganmanager.configurable.entity.Teacher[ teacherId=" + teacherId + " ]";
     }
     
 }

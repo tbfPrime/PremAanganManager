@@ -5,11 +5,13 @@
  */
 package premaanganmanager.configurable;
 
+import java.time.chrono.ChronoLocalDate;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.scene.control.DatePicker;
 import javafx.stage.Screen;
 import premaanganmanager.base.controller.UIModel;
 import premaanganmanager.base.controller.Utility;
@@ -51,8 +53,10 @@ public class Settings {
     private final static String PNG_MENU_BROWSE = "MenuBrowse.png";
     private final static String PNG_MENU_SEARCH = "MenuSearch.png";
     private final static String PNG_MENU_SETTINGS = "MenuSettings.png";
-    private final static Date DOB_MIN = new GregorianCalendar(1950, Calendar.JANUARY, 01).getTime();
-    private final static Date DOB_MAX = new GregorianCalendar(2012, Calendar.DECEMBER, 31).getTime();
+//    private final static Date DOB_MIN = new GregorianCalendar(1950, Calendar.JANUARY, 01).getTime();
+//    private final static Date DOB_MAX = new GregorianCalendar(2012, Calendar.DECEMBER, 31).getTime();
+    private final static ChronoLocalDate DOB_MIN = new DatePicker().getChronology().date(1950, 1, 01);
+    private final static ChronoLocalDate DOB_MAX = new DatePicker().getChronology().date(2012, 12, 31);
     private final static int BUTTON_FONT_SIZE = 35;
     private final static int TABLE_MAX_ITEMS = 10;
     private final static int REFERENCE_NO_LENGTH = 10;
@@ -134,8 +138,8 @@ public class Settings {
     
     public static double getAppWidth(){ return appWidth; }    
     public static double getAppHeight(){ return appHeight; }
-    public static Date getDOBMinimum(){ return DOB_MIN; }
-    public static Date getDOBMaximum(){ return DOB_MAX; }
+    public static ChronoLocalDate getDOBMinimum(){ return DOB_MIN; }
+    public static ChronoLocalDate getDOBMaximum(){ return DOB_MAX; }
     public static int getTABLE_MAX_ITEMS(){ return TABLE_MAX_ITEMS; }
     public static int getDefaultButtonFontSize(){ return BUTTON_FONT_SIZE; }
     public static int getReferenceNoLength(){ return REFERENCE_NO_LENGTH; }

@@ -5,15 +5,24 @@
  */
 package premaanganmanager.configurable.sceneComponents;
 
+import java.io.File;
+import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
+import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
+import javafx.util.Callback;
 import premaanganmanager.base.controller.UIModel;
 import premaanganmanager.base.controller.Utility;
 import premaanganmanager.configurable.Labels;
@@ -91,6 +100,20 @@ public class AddTeacherScreen extends AddScreen{
         Utility.log("AddTeacherScreen | save");
         saveTeacherRecord();
     }
+    @Override
+    public void flushScreenData(){
+        if(photoFileExtension.isEmpty()){ Utility.log("AddTeacherScreen | flushScreenData | No Photo File to flush."); }
+        else{
+            Path tempPhotoFilePath = Paths.get(Settings.getPhotoDir(),(Settings.getTempPhotoFilename() + "." + photoFileExtension));
+            File tempPhotoFile = new File(tempPhotoFilePath.toAbsolutePath().toString());
+            if(tempPhotoFile.exists()){ tempPhotoFile.delete(); }
+        }
+        addTeacherFirstNameField.clear();
+//        addTeacherMiddleNameField.clear();
+//        addTeacherLastNameField.clear();
+        addTeacherPlaceField.clear();
+        addTeacherDatePicker.setValue(null);
+    } 
 
     // private methods
     @FXML
@@ -101,10 +124,73 @@ public class AddTeacherScreen extends AddScreen{
     @FXML
     private void addTeacherDOBAction(){
         Utility.log("AddTeacherScreen | addTeacherDOBAction");
+        if(addTeacherDateOfBirthPicker.getValue() != null){
+            if(!LocalUtility.validateDOB(new DatePicker().getChronology().date(addTeacherDateOfBirthPicker.getValue().getYear(), addTeacherDateOfBirthPicker.getValue().getMonth().getValue(), addTeacherDateOfBirthPicker.getValue().getDayOfMonth()))){
+                LocalUtility.alertWarning(addTeacherDOB.getText() + " " + Labels.labelTag.ALERT_MESSAGE_DOB_FORMAT_INCORRECT.getLabel());
+                addTeacherDateOfBirthPicker.getEditor().clear();
+            }
+        } else{
+            Utility.log("AddTeacherScreen | addTeacherDOBAction | No DOB to validate.");
+        }
     }
     private void setTeacherFormConditions(){
         Utility.log("AddTeacherScreen | setTeacherFormConditions");
         addTeacherEmergencyContactTelNoField.disableProperty().bind(addTeacherEmergencyContactPersonField.textProperty().isEmpty());
+        final Callback<DatePicker,DateCell> dobDayCellFactory = new Callback<DatePicker,DateCell>(){
+          @Override
+          public DateCell call(final DatePicker datePicker){
+              return new DateCell(){
+                  @Override
+                  public void updateItem(LocalDate item, boolean empty){
+                      super.updateItem(item,empty);
+                      setDisable(!LocalUtility.validateDOB(new DatePicker().getChronology().date(item.getYear(), item.getMonthValue(), item.getDayOfMonth())));
+                  };
+              };
+          }
+        };
+        final Callback<DatePicker,DateCell> dorDayCellFactory = new Callback<DatePicker,DateCell>(){
+            @Override
+            public DateCell call(final DatePicker datePicker){
+                return new DateCell(){
+                    @Override
+                    public void updateItem(LocalDate item, boolean empty){
+                        super.updateItem(item,empty);
+                        if(item.isBefore(addTeacherDatePicker.getValue().plusDays(1))){
+                            setDisable(true);
+                        }
+                    }
+                };
+            }
+        };
+        final Callback<DatePicker,DateCell> dateDayCellFactory = new Callback<DatePicker,DateCell>(){
+            @Override
+            public DateCell call(final DatePicker datePicker){
+                return new DateCell(){
+                    @Override
+                    public void updateItem(LocalDate item, boolean empty){
+                        super.updateItem(item, empty);
+                        if(item.isAfter(LocalDate.now())){
+                            setDisable(true);
+                        }
+                    }
+                };
+            }
+        };
+        addTeacherDateOfBirthPicker.setDayCellFactory(dobDayCellFactory);
+        addTeacherDateOfResignationPicker.setDayCellFactory(dorDayCellFactory);
+        addTeacherDatePicker.setDayCellFactory(dateDayCellFactory);
+        addTeacherDatePicker.setValue(LocalDate.now());
+        addTeacherDateOfBirthPicker.showingProperty().addListener(new ChangeListener<Boolean>(){
+            @Override 
+            public void changed(ObservableValue obValue,Boolean oldValue,Boolean newValue){
+                if(addTeacherDateOfBirthPicker.valueProperty().isNull().get()){ 
+                    addTeacherDateOfBirthPicker.setValue((LocalDate)Settings.getDOBMaximum());
+                    Platform.runLater(() -> {
+                        addTeacherDateOfBirthPicker.getEditor().clear();
+                    });
+                }
+            }
+        });
         
         Settings.getFlagDataUnsavedProperty().bind(
                 addTeacherFirstNameField.textProperty().isNotEmpty().or(
@@ -118,10 +204,14 @@ public class AddTeacherScreen extends AddScreen{
         if(validateForm()){
             Utility.log("AddTeacherScreen | saveTeacherRecord | about to save teacher record.");
             if(new UIModel().saveTeacherForm(teacher)){ 
+                Utility.log("AddTeacherScreen | saveTeacherRecord | teacher ID: " + teacher.getTeacherId());
+                savePhotoFile(Labels.labelTag.LABEL_TEACHER_PHOTO_PREFIX.getLabel() + teacher.getTeacherId());
                 Utility.log("AddTeacherScreen | saveTeacherRecord | teacher record saved successfully.");
                 String alertTeacherName = addTeacherFirstNameField.getText() + (addTeacherMiddleNameField.getText().isEmpty() ? "" : (" " + addTeacherMiddleNameField.getText())) + (addTeacherLastNameField.getText().isEmpty() ? "" : (" " + addTeacherLastNameField.getText()));
-                if(LocalUtility.alertInfo(Labels.labelTag.ALERT_MESSAGE_STUDENT_SAVE_SUCCESS.getLabel().replace("?",alertTeacherName))){ back(); }
-                else{ back(); }
+                if(LocalUtility.alertInfo(Labels.labelTag.ALERT_MESSAGE_TEACHER_SAVE_SUCCESS.getLabel().replace("?",alertTeacherName))){ Utility.log("AddTeacher | saveTeacherRecord | exiting after data saved. Ok selected."); }
+                else{ Utility.log("AddTeacher | saveTeacherRecord | exiting after data saved. Ok selected."); }
+                flushScreenData();
+                back();
             }
             else{ Utility.log("AddTeacherScreen | saveTeacherRecord | Error saving teacher record."); LocalUtility.alertErrorSave(); }
         } else{ Utility.log("AddTeacherScreen | saveTeacherRecord | validation of teacher record failed. Exiting."); }
@@ -150,7 +240,16 @@ public class AddTeacherScreen extends AddScreen{
         }
         
         if(addTeacherDateOfBirthPicker.valueProperty().isNull().getValue()){ Utility.log("AddTeacherScreen | validateForm | DOB empty."); flagFieldsEmpty = true; }
-        else{ teacher.setDob(addTeacherDateOfBirthPicker.getValue().toString()); }
+        else{ 
+            if(!LocalUtility.validateDOB(new DatePicker().getChronology().date(addTeacherDateOfBirthPicker.getValue().getYear(), addTeacherDateOfBirthPicker.getValue().getMonth().getValue(), addTeacherDateOfBirthPicker.getValue().getDayOfMonth()))){
+                LocalUtility.alertWarning(addTeacherDOB.getText() + " " + Labels.labelTag.ALERT_MESSAGE_DOB_FORMAT_INCORRECT.getLabel());
+                addTeacherDateOfBirthPicker.requestFocus();
+                return false;
+            } else{ teacher.setDob(addTeacherDateOfBirthPicker.getValue().toString()); }
+        }
+        
+        if(photoFileExtension.isEmpty()){ Utility.log("AddTeacher | validateForm | photoFileExtension is empty."); flagFieldsEmpty = true; }
+        else{ teacher.setTeacherPhotoId(photoFileExtension); }
         
         if(addTeacherEmergencyContactPersonField.getText().isEmpty()){ Utility.log("AddTeacher | validateForm | EmergencyContactPerson name is empty."); flagFieldsEmpty = true; }
         else{
