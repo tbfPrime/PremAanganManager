@@ -78,6 +78,9 @@ public class SceneContainer extends UIControl{
             case ADD_TEACHER:
                 managerScene.setAddTeacherScreen();
                 break;
+            case ADD_SUBJECT:
+                managerScene.setAddSubjectScreen();
+                break;
 //            case ADD_BATCH:
 ////                sceneContainer.screenContainer.manager.activeScreenContainer.setAddScreen();
 //                break;
@@ -85,9 +88,6 @@ public class SceneContainer extends UIControl{
 ////                sceneContainer.screenContainer.manager.activeScreenContainer.setAddScreen();
 //                break;
 //            case ADD_COURSE:
-////                sceneContainer.screenContainer.manager.activeScreenContainer.setAddScreen();
-//                break;
-//            case ADD_SUBJECT:
 ////                sceneContainer.screenContainer.manager.activeScreenContainer.setAddScreen();
 //                break;
 //            case ADD_TIMETABLE:

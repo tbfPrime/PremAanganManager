@@ -156,13 +156,7 @@ public class AddStudentScreen extends AddScreen {
         setReligionData();
         setPhotoView(addStudentPhotoView,Paths.get(Settings.getPlaceHolderDir(),Settings.getPlaceHolderStudentPhoto()));
         setLabels();
-        setID();
-    }
-    @Override
-    public void back(){
-        Utility.log("AddStudentScreen | back");
-        if(!managerScene.getSceneContainer().isUserDataSaved()){ return; }
-        managerScene.getSceneContainer().displayScreen(Settings.screenTag.ADD);;
+        setSectionID(new HBox[] {addStudentPersonalDetailsHBox, addStudentEmergencyContactHBox, addStudentFamilyDetailsHBox, addStudentOfficeUseOnlyHBox});
     }
     @Override
     public void save(){
@@ -606,10 +600,7 @@ public class AddStudentScreen extends AddScreen {
         addStudentReligionComboBox.getItems().add(Labels.labelTag.ADD_NEW_RELIGION.getLabel());
     }
     private void setID(){
-        addStudentPersonalDetailsHBox.setId("sectionBG");
-        addStudentEmergencyContactHBox.setId("sectionBG");
-        addStudentFamilyDetailsHBox.setId("sectionBG");
-        addStudentOfficeUseOnlyHBox.setId("sectionBG");
+        setSectionID(new HBox[] {addStudentPersonalDetailsHBox, addStudentEmergencyContactHBox, addStudentFamilyDetailsHBox, addStudentOfficeUseOnlyHBox});
     }
     private void setLabels(){
         addStudentPhotoButton.setText(Labels.labelTag.ADD_PHOTO.getLabel());

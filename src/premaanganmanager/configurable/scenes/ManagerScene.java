@@ -33,6 +33,7 @@ public class ManagerScene extends BorderPaneScene{
     private AddScreen addScreen;
     private AddStudentScreen addStudentScreen;
     private AddTeacherScreen addTeacherScreen;
+    private AddSubjectScreen addSubjectScreen;
     
     private BrowseScreen browseScreen;
     private SearchScreen searchScreen;
@@ -83,6 +84,11 @@ public class ManagerScene extends BorderPaneScene{
         Utility.log("ManagerScene | setAddTeacherScreen");
         addTeacherScreen = new AddTeacherScreen(this);
         setScreen(addTeacherScreen);
+    }
+    public void setAddSubjectScreen(){
+        Utility.log("ManagerScene | setAddSubjectScreen");
+        addSubjectScreen = new AddSubjectScreen(this);
+        setScreen(addSubjectScreen);
     }
     public void flushScreenData(){
         Utility.log("ManagerScene | flushScreenData");

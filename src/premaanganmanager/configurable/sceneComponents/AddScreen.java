@@ -15,6 +15,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import premaanganmanager.base.components.CustomButton;
 import premaanganmanager.base.controller.Utility;
@@ -123,6 +124,12 @@ public class AddScreen extends SimpleScreen implements FootControlInterface{
     private void addAttendanceAction(){
         if(!managerScene.getSceneContainer().displayScreen(Settings.screenTag.ADD_ATTENDANCE)){ Utility.errorLog("AddScreen | addAttendanceAction | Error."); };
     }
+    @Override
+    public void back(){
+        Utility.log("AddScreen | back");
+        if(!managerScene.getSceneContainer().isUserDataSaved()){ return; }
+        managerScene.getSceneContainer().displayScreen(Settings.screenTag.ADD);;
+    }
     private void setGraphics(){
         Path graphicPath;
         double graphicTextGap = 30;
@@ -199,6 +206,9 @@ public class AddScreen extends SimpleScreen implements FootControlInterface{
             addTimetableButton.setContentDisplay(ContentDisplay.TOP);
             addTimetableButton.setGraphicTextGap(graphicTextGap);
         }
+    }
+    public void setSectionID(HBox [] sectionHBox){
+        for(HBox unitSectionHBox : sectionHBox){ unitSectionHBox.setId("sectionBG"); }
     }
     private void setLabels(){
         addStudentButton.setText(Settings.screenTag.ADD_STUDENT.getTitle());

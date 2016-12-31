@@ -18,7 +18,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
@@ -87,13 +86,8 @@ public class AddTeacherScreen extends AddScreen{
         teacher = new Teacher();
         setTeacherFormConditions();
         setPhotoView(addTeacherPhotoView,Paths.get(Settings.getPlaceHolderDir(),Settings.getPlaceHolderTeacherPhoto()));
-        setID();
         setLabels();
-    }
-    @Override
-    public void back(){
-        Utility.log("AddTeacherScreen | back");
-        managerScene.getSceneContainer().displayScreen(Settings.screenTag.ADD);
+        setSectionID(new HBox[] {addTeacherPersonalDetailsHBox, addTeacherEmergencyContactHBox, addTeacherOfficeUseOnlyHBox});
     }
     @Override
     public void save(){
@@ -281,11 +275,6 @@ public class AddTeacherScreen extends AddScreen{
             if(LocalUtility.alertConfirmationFieldIsEmpty()){ return true; }
             else{ Utility.log("AddStudentScreen | validateStudentForm | Please fill up the remaining fields before saving."); return false; }
         } else { return true; }
-    }
-    private void setID(){
-        addTeacherPersonalDetailsHBox.setId("sectionBG");
-        addTeacherEmergencyContactHBox.setId("sectionBG");
-        addTeacherOfficeUseOnlyHBox.setId("sectionBG");
     }
     private void setLabels(){
         addTeacherPersonalDetails.setText(Labels.labelTag.ADD_TEACHER_PERSONAL_DETAILS.getLabel());

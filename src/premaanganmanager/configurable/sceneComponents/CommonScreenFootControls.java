@@ -55,6 +55,9 @@ public class CommonScreenFootControls {
             case ADD_TEACHER:
                 tagList = new controlsTag[]{controlsTag.BACK,controlsTag.SAVE};
                 break;
+            case ADD_SUBJECT:
+                tagList = new controlsTag[]{controlsTag.BACK,controlsTag.SAVE};
+                break;
         }
         updateControlList();
     }
