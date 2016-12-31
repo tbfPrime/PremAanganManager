@@ -21,12 +21,12 @@ public class PremAanganManager extends Application{
 //        applicationStage = new UIControl().getStageContainer().getActiveStage(); //getApplicationStage();
 //        applicationStage.show();
     }
-    
-    public static void launchApplication(String args[]){
-        launch(args);
-    }
+//    
+//    public static void launchApplication(String args[]){
+//    }
     
     public static void main(String args[]){
-        launchApplication(args);
+        launch(args);
+//        launchApplication(args);
     }
 }

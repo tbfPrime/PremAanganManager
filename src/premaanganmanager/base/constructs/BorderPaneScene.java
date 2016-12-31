@@ -193,8 +193,8 @@ abstract public class BorderPaneScene extends SceneParent{
      * @param fxmlContent 
      * @param root 
      */
-    public void loadBorderPaneUtility(positionTag tag, BorderPane root, FXMLLoader fxmlContent){
-        Utility.log("BorderPaneScene | loadBorderPaneUtility | fxmlContent: " + fxmlContent);
+    public void loadContentToBorderPane(positionTag tag, BorderPane root, FXMLLoader fxmlContent){
+        Utility.log("BorderPaneScene | loadContentToBorderPane | fxmlContent: " + fxmlContent);
         
         try{
             AnchorPane content = fxmlContent.load();
@@ -207,7 +207,7 @@ abstract public class BorderPaneScene extends SceneParent{
                 case CENTER: if(UIControl.debugMode){ content.setId("FillCenter"); } root.setCenter(content); break; 
             }
         } catch(Exception e){
-            Utility.errorLog("BorderPaneScene | loadBorderPaneUtility | Error: " + e);
+            Utility.errorLog("BorderPaneScene | loadContentToBorderPane | Error: " + e);
             Logger.getLogger(BorderPaneScene.class.getName()).log(Level.SEVERE, null, e);
         }
     }   

@@ -12,6 +12,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import premaanganmanager.base.controller.Utility;
 import premaanganmanager.configurable.Labels;
+import premaanganmanager.configurable.Settings;
 import premaanganmanager.configurable.scenes.ManagerScene;
 
 /**
@@ -29,7 +30,10 @@ public class AddSubjectScreen extends AddScreen{
     public AddSubjectScreen(ManagerScene managerScene){
         super(managerScene);
     }
-    
+    @Override
+    public void save(){
+        Utility.log("AddSubjectScreen | save");
+    }
     @Override
     public FXMLLoader getContent(){
         Utility.log("AddSubjectScreen | getContent");
@@ -42,7 +46,16 @@ public class AddSubjectScreen extends AddScreen{
         Utility.log("AddSubjectScreen | initializeScreen");
         setLabels();
         setSectionID(new HBox[] {addSubjectDetailsHBox});
-    }    
+        setSubjectFormConditions();
+    }
+
+    private void setSubjectFormConditions(){
+        Utility.log("AddSubjectScreen | setSubjectFormConditions");
+        Settings.getFlagDataUnsavedProperty().bind(
+                addSubjectNameField.textProperty().isNotEmpty().or(
+                addSubjectDescriptionField.textProperty().isNotEmpty())
+        );
+    }
     private void setLabels(){
         Utility.log("AddSubjectScreen | setLabels");
         addSubjectDetails.setText(Labels.labelTag.ADD_SUBJECT_DETAILS.getLabel());

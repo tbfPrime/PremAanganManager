@@ -130,8 +130,8 @@ public class ManagerScene extends BorderPaneScene{
         this.simpleScreen.setCSSFilename(sceneContainer.getActiveScreenTag().getCSS());
         screen.getStylesheets().add(Utility.getPathCSS(this.simpleScreen.getCSSFilename()));
         
-        loadBorderPaneUtility(positionTag.CENTER, screen, simpleScreen.getContent());
-        loadBorderPaneUtility(positionTag.BOTTOM, screen, commonScreenFootControls.getContent());
+        loadContentToBorderPane(positionTag.CENTER, screen, simpleScreen.getContent());
+        loadContentToBorderPane(positionTag.BOTTOM, screen, commonScreenFootControls.getContent());
         
         commonScreenFootControls.setTarget(simpleScreen);
         sceneContainer.loadSceneComponent(positionTag.CENTER, screen);
