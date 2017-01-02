@@ -213,7 +213,7 @@ public class AddScreen extends SimpleScreen implements FootControlInterface{
     private void setLabels(){
         addStudentButton.setText(Settings.screenTag.ADD_STUDENT.getTitle());
         addTeacherButton.setText(Settings.screenTag.ADD_TEACHER.getTitle());
-        addSubjectButton.setText(Settings.screenTag.ADD_TEACHER.getTitle());
+        addSubjectButton.setText(Settings.screenTag.ADD_SUBJECT.getTitle());
         addAttendanceButton.setText(Settings.screenTag.ADD_TEACHER.getTitle());
         addCourseButton.setText(Settings.screenTag.ADD_TEACHER.getTitle());
         addBatchButton.setText(Settings.screenTag.ADD_TEACHER.getTitle());

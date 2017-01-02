@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Trevor Fernandes
+ * @author TBF
  */
 @Entity
 @Table(name = "subject")
@@ -25,7 +25,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Subject.findAll", query = "SELECT s FROM Subject s"),
     @NamedQuery(name = "Subject.findBySubjectId", query = "SELECT s FROM Subject s WHERE s.subjectId = :subjectId"),
-    @NamedQuery(name = "Subject.findBySubjectName", query = "SELECT s FROM Subject s WHERE s.subjectName = :subjectName")})
+    @NamedQuery(name = "Subject.findBySubjectName", query = "SELECT s FROM Subject s WHERE s.subjectName = :subjectName"),
+    @NamedQuery(name = "Subject.findBySubjectDescription", query = "SELECT s FROM Subject s WHERE s.subjectDescription = :subjectDescription")})
 public class Subject implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -36,6 +37,8 @@ public class Subject implements Serializable {
     @Basic(optional = false)
     @Column(name = "subject_name")
     private String subjectName;
+    @Column(name = "subject_description")
+    private String subjectDescription;
 
     public Subject() {
     }
@@ -65,6 +68,14 @@ public class Subject implements Serializable {
         this.subjectName = subjectName;
     }
 
+    public String getSubjectDescription() {
+        return subjectDescription;
+    }
+
+    public void setSubjectDescription(String subjectDescription) {
+        this.subjectDescription = subjectDescription;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -87,7 +98,7 @@ public class Subject implements Serializable {
 
     @Override
     public String toString() {
-        return "premaanganmanager.base.controller.background.Subject[ subjectId=" + subjectId + " ]";
+        return "premaanganmanager.configurable.entity.Subject[ subjectId=" + subjectId + " ]";
     }
     
 }

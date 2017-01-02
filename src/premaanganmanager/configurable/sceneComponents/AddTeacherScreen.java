@@ -202,7 +202,7 @@ public class AddTeacherScreen extends AddScreen{
                 savePhotoFile(Labels.labelTag.LABEL_TEACHER_PHOTO_PREFIX.getLabel() + teacher.getTeacherId());
                 Utility.log("AddTeacherScreen | saveTeacherRecord | teacher record saved successfully.");
                 String alertTeacherName = addTeacherFirstNameField.getText() + (addTeacherMiddleNameField.getText().isEmpty() ? "" : (" " + addTeacherMiddleNameField.getText())) + (addTeacherLastNameField.getText().isEmpty() ? "" : (" " + addTeacherLastNameField.getText()));
-                if(LocalUtility.alertInfo(Labels.labelTag.ALERT_MESSAGE_TEACHER_SAVE_SUCCESS.getLabel().replace("?",alertTeacherName))){ Utility.log("AddTeacher | saveTeacherRecord | exiting after data saved. Ok selected."); }
+                if(LocalUtility.alertInfo(managerScene.getSceneContainer().getActiveScreenTag().getTitle() + Labels.labelTag.LABEL_SEPERATOR.getLabel() + " "  + alertTeacherName + " " + Labels.labelTag.ALERT_MESSAGE_SAVE_SUCCESS.getLabel())){ Utility.log("AddTeacher | saveTeacherRecord | exiting after data saved. Ok selected."); }
                 else{ Utility.log("AddTeacher | saveTeacherRecord | exiting after data saved. Ok selected."); }
                 flushScreenData();
                 back();
@@ -273,7 +273,7 @@ public class AddTeacherScreen extends AddScreen{
 
         if(flagFieldsEmpty){ 
             if(LocalUtility.alertConfirmationFieldIsEmpty()){ return true; }
-            else{ Utility.log("AddStudentScreen | validateStudentForm | Please fill up the remaining fields before saving."); return false; }
+            else{ Utility.log("AddStudentScreen | validateForm | Please fill up the remaining fields before saving."); return false; }
         } else { return true; }
     }
     private void setLabels(){

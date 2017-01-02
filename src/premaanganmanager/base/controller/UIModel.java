@@ -16,6 +16,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import premaanganmanager.configurable.entity.Subject;
 import premaanganmanager.configurable.entity.Teacher;
 
 /**
@@ -304,6 +305,27 @@ public class UIModel {
             return true;
         } catch(Exception e){
             Utility.errorLog("UIModel | saveTeacherForm | Error saving teacher data. Message: " + e);
+            closeDBObjects();
+            createDBObjects();
+            return false;
+        } finally{
+            closeDBObjects();
+        }
+    }
+    
+    public boolean saveSubjectForm(Subject subject){
+        Utility.log("UIModel | saveSubjectForm | name: " + subject.getSubjectName());
+        
+        createDBObjects();
+        try{
+            em.getTransaction().begin();
+            em.persist(subject);
+            em.getTransaction().commit();
+            
+            Utility.log("UIModel | saveSubjectForm | Entry saved. | Subject ID: " + subject.getSubjectId());
+            return true;
+        } catch(Exception e){
+            Utility.errorLog("UIModel | saveSubjectForm | Error saving subject data. Message: " + e);
             closeDBObjects();
             createDBObjects();
             return false;

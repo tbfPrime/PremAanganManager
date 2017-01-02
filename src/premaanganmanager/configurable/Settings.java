@@ -205,12 +205,15 @@ public class Settings {
     // private methods
     private static void setDefaultValuesToAllLabels(){
         new UIModel().fetchAllLabels().stream().forEach((tempLabels)->{
+            // Sets labels from DB to corresponding labels tag
             try{Labels.labelTag.valueOf(tempLabels.getTag()).setLabel(tempLabels.getValue()); return; }
             catch(IllegalArgumentException e){ if(showLabelLogs){ Utility.errorLog("Settings | setDefaultValuesToAllLabels | Label Error: " + e); }}
             
+            // Sets screenTag title; format in DB: screenTag_TITLE
             try{screenTag.valueOf(tempLabels.getTag().replace("_TITLE", "")).setTitle(tempLabels.getValue()); return; }
             catch(IllegalArgumentException e){ if(showLabelLogs){ Utility.errorLog("Settings | setScreenLabels | UIControl | TITLE | IllegalArgumentException: " + e); }}
             
+            // Sets screenTag subtitle; format in DB: screenTag_SUBTITLE
             try{screenTag.valueOf(tempLabels.getTag().replace("_SUBTITLE", "")).setSubtitle(tempLabels.getValue()); }
             catch(IllegalArgumentException e){ if(showLabelLogs){ Utility.errorLog("Settings | setScreenLabels | UIControl | SUBTITLE | IllegalArgumentException: " + e); }}
         });
