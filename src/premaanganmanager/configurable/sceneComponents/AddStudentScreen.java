@@ -587,9 +587,7 @@ public class AddStudentScreen extends AddScreen {
         Settings.getFlagDataUnsavedProperty().bind(
                 addStudentFirstNameField.textProperty().isNotEmpty().or(
                 addStudentMiddleNameField.textProperty().isNotEmpty().or(
-                addStudentLastNameField.textProperty().isNotEmpty().or(
-                addStudentDateDatePicker.valueProperty().isNotNull()
-                )))
+                addStudentLastNameField.textProperty().isNotEmpty()))
         );
     }
     private void setReligionData(){

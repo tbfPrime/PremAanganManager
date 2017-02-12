@@ -188,9 +188,7 @@ public class AddTeacherScreen extends AddScreen{
         
         Settings.getFlagDataUnsavedProperty().bind(
                 addTeacherFirstNameField.textProperty().isNotEmpty().or(
-                addTeacherPlaceField.textProperty().isNotEmpty().or(
-                addTeacherDatePicker.valueProperty().isNotNull()
-                ))
+                addTeacherPlaceField.textProperty().isNotEmpty())
         );
     }
     private void saveTeacherRecord(){
