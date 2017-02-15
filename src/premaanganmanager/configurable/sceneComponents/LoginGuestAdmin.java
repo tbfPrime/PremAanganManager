@@ -11,7 +11,7 @@ import premaanganmanager.base.components.CustomButton;
 import premaanganmanager.base.constructs.BorderPaneScene;
 import premaanganmanager.base.controller.Utility;
 import premaanganmanager.configurable.Labels;
-import premaanganmanager.configurable.Settings;
+import premaanganmanager.configurable.AppSettings;
 import premaanganmanager.configurable.scenes.LoginScene;
 
 /**
@@ -38,7 +38,7 @@ public class LoginGuestAdmin{
     }
     @FXML
     private void adminAction(){
-        loginScene.getSceneContainer().displayScreen(Settings.screenTag.LOGIN_ADMIN);
+        loginScene.getSceneContainer().displayScreen(AppSettings.screenTag.LOGIN_ADMIN);
     }
     private void setLabels(){
         guestButton.setText(Labels.labelTag.GUEST.getLabel());

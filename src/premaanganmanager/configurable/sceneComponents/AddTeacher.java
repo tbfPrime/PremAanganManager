@@ -26,7 +26,7 @@ import premaanganmanager.base.controller.UIModel;
 import premaanganmanager.base.controller.Utility;
 import premaanganmanager.configurable.Labels;
 import premaanganmanager.configurable.LocalUtility;
-import premaanganmanager.configurable.Settings;
+import premaanganmanager.configurable.AppSettings;
 import premaanganmanager.configurable.entity.Teacher;
 import premaanganmanager.configurable.scenes.ManagerScene;
 
@@ -34,7 +34,7 @@ import premaanganmanager.configurable.scenes.ManagerScene;
  *
  * @author TBF
  */
-public class AddTeacherScreen extends AddScreen{
+public class AddTeacher extends Add{
     Teacher teacher;
     @FXML
     private Text addTeacherPersonalDetails, addTeacherEmergencyContact, addTeacherOfficeUseOnly;
@@ -68,7 +68,7 @@ public class AddTeacherScreen extends AddScreen{
     @FXML
     private HBox addTeacherPersonalDetailsHBox, addTeacherEmergencyContactHBox, addTeacherOfficeUseOnlyHBox;
     
-    public AddTeacherScreen(ManagerScene managerScene){
+    public AddTeacher(ManagerScene managerScene){
         super(managerScene);
     }
     
@@ -85,7 +85,7 @@ public class AddTeacherScreen extends AddScreen{
         Utility.log("AddTeacherScreen | initializeScreen");
         teacher = new Teacher();
         setTeacherFormConditions();
-        setPhotoView(addTeacherPhotoView,Paths.get(Settings.getPlaceHolderDir(),Settings.getPlaceHolderTeacherPhoto()));
+        setPhotoView(addTeacherPhotoView,Paths.get(AppSettings.getPlaceHolderDir(),AppSettings.getPlaceHolderTeacherPhoto()));
         setLabels();
         setSectionID(new HBox[] {addTeacherPersonalDetailsHBox, addTeacherEmergencyContactHBox, addTeacherOfficeUseOnlyHBox});
     }
@@ -98,7 +98,7 @@ public class AddTeacherScreen extends AddScreen{
     public void flushScreenData(){
         if(photoFileExtension.isEmpty()){ Utility.log("AddTeacherScreen | flushScreenData | No Photo File to flush."); }
         else{
-            Path tempPhotoFilePath = Paths.get(Settings.getPhotoDir(),(Settings.getTempPhotoFilename() + "." + photoFileExtension));
+            Path tempPhotoFilePath = Paths.get(AppSettings.getPhotoDir(),(AppSettings.getTempPhotoFilename() + "." + photoFileExtension));
             File tempPhotoFile = new File(tempPhotoFilePath.toAbsolutePath().toString());
             if(tempPhotoFile.exists()){ tempPhotoFile.delete(); }
         }
@@ -178,7 +178,7 @@ public class AddTeacherScreen extends AddScreen{
             @Override 
             public void changed(ObservableValue obValue,Boolean oldValue,Boolean newValue){
                 if(addTeacherDateOfBirthPicker.valueProperty().isNull().get()){ 
-                    addTeacherDateOfBirthPicker.setValue((LocalDate)Settings.getDOBMaximum());
+                    addTeacherDateOfBirthPicker.setValue((LocalDate)AppSettings.getDOBMaximum());
                     Platform.runLater(() -> {
                         addTeacherDateOfBirthPicker.getEditor().clear();
                     });
@@ -186,7 +186,7 @@ public class AddTeacherScreen extends AddScreen{
             }
         });
         
-        Settings.getFlagDataUnsavedProperty().bind(
+        AppSettings.getFlagDataUnsavedProperty().bind(
                 addTeacherFirstNameField.textProperty().isNotEmpty().or(
                 addTeacherPlaceField.textProperty().isNotEmpty())
         );

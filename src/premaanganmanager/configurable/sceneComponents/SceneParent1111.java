@@ -13,7 +13,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import premaanganmanager.base.controller.Utility;
 import premaanganmanager.base.controller.UIControl;
-import premaanganmanager.configurable.Settings;
+import premaanganmanager.configurable.AppSettings;
 
 /**
  *
@@ -39,7 +39,7 @@ abstract public class SceneParent1111 {
                 root.getStylesheets().add(SceneParent1111.class.getResource("Debug.css").toExternalForm()); 
                 root.setId("FillScene");
             }
-//            tempScene = new Scene(root, Settings.getAppWidth(), Settings.getAppHeight());
+//            tempScene = new Scene(root, AppSettings.getAppWidth(), AppSettings.getAppHeight());
         } catch(Exception e){
             Utility.errorLog("Screen | setScene | Error: " + e);
             Logger.getLogger(SceneParent1111.class.getName()).log(Level.SEVERE, null, e);
@@ -54,7 +54,7 @@ abstract public class SceneParent1111 {
                 root.getStylesheets().add(SceneParent1111.class.getResource("Debug.css").toExternalForm()); 
                 root.setId("FillScene");
             }
-//            tempScene = new Scene(root, Settings.getAppWidth(), Settings.getAppHeight());
+//            tempScene = new Scene(root, AppSettings.getAppWidth(), AppSettings.getAppHeight());
         } catch(Exception e){
             Utility.errorLog("Screen | setScene | Error: " + e);
             Logger.getLogger(SceneParent1111.class.getName()).log(Level.SEVERE, null, e);

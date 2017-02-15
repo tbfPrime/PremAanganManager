@@ -13,18 +13,18 @@ import premaanganmanager.configurable.scenes.ManagerScene;
  *
  * @author TBF
  */
-public class SettingsScreen extends SimpleScreen implements FootControlInterface {
+public class Browse extends SimpleScreen implements FootControlInterface {
     private ManagerScene managerScene;
     
-    public SettingsScreen(ManagerScene managerScene){
+    public Browse(ManagerScene managerScene){
         this.managerScene = managerScene;
     }
     
     // public methods
     @Override
     public FXMLLoader getContent(){
-        FXMLLoader content = new FXMLLoader(Utility.getPathFXML("SettingsScreen.fxml"));
+        FXMLLoader content = new FXMLLoader(Utility.getPathFXML("BrowseScreen.fxml"));
         content.setController(this);
         return content;
-    }    
+    }
 }

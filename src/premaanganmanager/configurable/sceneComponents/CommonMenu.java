@@ -15,7 +15,7 @@ import javafx.scene.control.ContentDisplay;
 import javafx.scene.image.ImageView;
 import premaanganmanager.base.components.CustomToggleButton1;
 import premaanganmanager.base.controller.Utility;
-import premaanganmanager.configurable.Settings;
+import premaanganmanager.configurable.AppSettings;
 import premaanganmanager.configurable.scenes.ManagerScene;
 
 /**
@@ -24,7 +24,7 @@ import premaanganmanager.configurable.scenes.ManagerScene;
  */
 public class CommonMenu {
     private final ManagerScene managerScene;
-    private Settings.screenTag [] menuTag;
+    private AppSettings.screenTag [] menuTag;
     private CustomToggleButton1 previousActiveMenuButton;
     @FXML
     private List<CustomToggleButton1> menuButton;
@@ -34,15 +34,15 @@ public class CommonMenu {
         FXMLLoader content = new FXMLLoader(Utility.getPathFXML("CommonMenu.fxml"));
         content.setController(this);
         managerScene.setLeft(content);
-        menuTag = Settings.getMenuTags();
+        menuTag = AppSettings.getMenuTags();
         setGraphics();
         setLabels();
     }
     
     // public methods
     public void launchDefault(){
-        Utility.log("CommomMenu | launchDefault | index: " + Settings.getDefaultMenuIndex());
-        displayScreen(Settings.getDefaultMenuIndex());
+        Utility.log("CommomMenu | launchDefault | index: " + AppSettings.getDefaultMenuIndex());
+        displayScreen(AppSettings.getDefaultMenuIndex());
     }
     
     // private methods
@@ -68,11 +68,11 @@ public class CommonMenu {
     }
     private void setGraphics(){
         Path [] graphicPath = {
-            Paths.get(Settings.getPNGDir(),Settings.getPNGMenuHome()),
-            Paths.get(Settings.getPNGDir(),Settings.getPNGMenuAdd()),
-            Paths.get(Settings.getPNGDir(),Settings.getPNGMenuBrowse()),
-            Paths.get(Settings.getPNGDir(),Settings.getPNGMenuSearch()),
-            Paths.get(Settings.getPNGDir(),Settings.getPNGMenuSettings())
+            Paths.get(AppSettings.getPNGDir(),AppSettings.getPNGMenuHome()),
+            Paths.get(AppSettings.getPNGDir(),AppSettings.getPNGMenuAdd()),
+            Paths.get(AppSettings.getPNGDir(),AppSettings.getPNGMenuBrowse()),
+            Paths.get(AppSettings.getPNGDir(),AppSettings.getPNGMenuSearch()),
+            Paths.get(AppSettings.getPNGDir(),AppSettings.getPNGMenuSettings())
         };
         double graphicTextGap = 0;
         double graphicOpacity = 0.7;
@@ -91,7 +91,7 @@ public class CommonMenu {
     private void displayScreen(int index){
         for(CustomToggleButton1 button : menuButton){ button.setSelected(false); }
         index--;
-        Settings.screenTag tag = menuTag[index];
+        AppSettings.screenTag tag = menuTag[index];
         if(managerScene.getSceneContainer().displayScreen(tag)){ previousActiveMenuButton = menuButton.get(index); }
         previousActiveMenuButton.setSelected(true);
     }

@@ -6,9 +6,6 @@
 package premaanganmanager.configurable;
 
 import java.time.chrono.ChronoLocalDate;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.scene.control.DatePicker;
@@ -17,10 +14,10 @@ import premaanganmanager.base.controller.UIModel;
 import premaanganmanager.base.controller.Utility;
 
 /**
- * Settings class contains application global variables and get/set API to access them.
+ * AppSettings class contains application global variables and get/set API to access them.
  * @author Trevor Fernandes
  */
-public class Settings {
+public class AppSettings {
     // private member variables
     private final static String DIR_CSS = "/premaanganmanager/configurable/design/css/";       // Relative directory path for CSS files in string
     private final static String DIR_FXML = "/premaanganmanager/configurable/design/fxml/";     // Relative directory path for FXML files in string
@@ -117,7 +114,7 @@ public class Settings {
      *
      * Initializes Application wide variables.
      */   
-    public Settings(){
+    public AppSettings(){
         labels = new Labels();
     }
     

@@ -14,7 +14,7 @@ import premaanganmanager.base.controller.UIModel;
 import premaanganmanager.base.controller.Utility;
 import premaanganmanager.configurable.Labels;
 import premaanganmanager.configurable.LocalUtility;
-import premaanganmanager.configurable.Settings;
+import premaanganmanager.configurable.AppSettings;
 import premaanganmanager.configurable.entity.Subject;
 import premaanganmanager.configurable.scenes.ManagerScene;
 
@@ -22,7 +22,7 @@ import premaanganmanager.configurable.scenes.ManagerScene;
  *
  * @author TBF
  */
-public class AddSubjectScreen extends AddScreen{
+public class AddSubject extends Add{
     private Subject subject;
     @FXML
     private HBox addSubjectDetailsHBox;
@@ -31,7 +31,7 @@ public class AddSubjectScreen extends AddScreen{
     @FXML
     private TextField addSubjectNameField, addSubjectDescriptionField;
     
-    public AddSubjectScreen(ManagerScene managerScene){
+    public AddSubject(ManagerScene managerScene){
         super(managerScene);
     }
     @Override
@@ -63,7 +63,7 @@ public class AddSubjectScreen extends AddScreen{
 
     private void setSubjectFormConditions(){
         Utility.log("AddSubjectScreen | setSubjectFormConditions");
-        Settings.getFlagDataUnsavedProperty().bind(
+        AppSettings.getFlagDataUnsavedProperty().bind(
                 addSubjectNameField.textProperty().isNotEmpty().or(
                 addSubjectDescriptionField.textProperty().isNotEmpty())
         );

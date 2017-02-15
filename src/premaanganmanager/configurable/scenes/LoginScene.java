@@ -11,7 +11,7 @@ import premaanganmanager.base.controller.UIModel;
 import premaanganmanager.base.controller.Utility;
 import premaanganmanager.configurable.Labels;
 import premaanganmanager.configurable.SceneContainer;
-import premaanganmanager.configurable.Settings;
+import premaanganmanager.configurable.AppSettings;
 import premaanganmanager.configurable.sceneComponents.LoginAdmin;
 import premaanganmanager.configurable.sceneComponents.LoginCommons;
 import premaanganmanager.configurable.sceneComponents.LoginGuestAdmin;
@@ -39,27 +39,27 @@ public class LoginScene extends BorderPaneScene implements SceneInterface{
     public void setLoginGuestAdminScreen(){ loginGuestAdmin = new LoginGuestAdmin(this); }
     public void setLoginAdminScreen(){ loginAdmin = new LoginAdmin(this); }
     public final void verifyGuestlogin(){
-        if(new UIModel().isLoginCorrect(Settings.getGuestUsername(), Settings.getGuestPassword())){ 
+        if(new UIModel().isLoginCorrect(AppSettings.getGuestUsername(), AppSettings.getGuestPassword())){ 
             UIControl.setGuestMode(true);
-            Settings.setActiveUserTag(Labels.labelTag.GUEST);
+            AppSettings.setActiveUserTag(Labels.labelTag.GUEST);
             sceneContainer.createManagerScene();
         }
     }
     public final void verifyAdminlogin(String userName, String password){
         if(new UIModel().isLoginCorrect(userName, password)){ 
-            Settings.setActiveUserTag(loginAdmin.selectedAdmin.getLabelTag());
+            AppSettings.setActiveUserTag(loginAdmin.selectedAdmin.getLabelTag());
             sceneContainer.createManagerScene();
         }
     }
 
     @Override
-    public final void back(){ sceneContainer.displayScreen(Settings.screenTag.LOGIN_GUEST_ADMIN); }
+    public final void back(){ sceneContainer.displayScreen(AppSettings.screenTag.LOGIN_GUEST_ADMIN); }
     @Override
     public final void createDefaultScene(){
         Utility.log("LoginScene | createDefaultScreen | creating Login scene");
-        setScene(Settings.getAppWidth(),Settings.getAppHeight());
+        setScene(AppSettings.getAppWidth(),AppSettings.getAppHeight());
         sceneContainer.loadScene(this);
-        Settings.setGuestMode(false);
+        AppSettings.setGuestMode(false);
     }
     @Override
     public final void sceneReady(){

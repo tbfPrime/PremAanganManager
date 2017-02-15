@@ -19,18 +19,18 @@ import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import premaanganmanager.base.components.CustomButton;
 import premaanganmanager.base.controller.Utility;
-import premaanganmanager.configurable.Settings;
+import premaanganmanager.configurable.AppSettings;
 import premaanganmanager.configurable.scenes.ManagerScene;
 
 /**
  *
  * @author Trevor Fernandes
  */
-public class AddScreen extends SimpleScreen implements FootControlInterface{
+public class Add extends SimpleScreen implements FootControlInterface{
     protected String photoFileExtension = "";
     protected ManagerScene managerScene;
     
-    public AddScreen(ManagerScene managerScene){
+    public Add(ManagerScene managerScene){
         this.managerScene = managerScene;
     }
     
@@ -55,7 +55,7 @@ public class AddScreen extends SimpleScreen implements FootControlInterface{
         File photoFile = photoFileChooser.showOpenDialog(managerScene.getSceneContainer().getActiveStage());
         Utility.log("AddScreen | getPhotoPath | photoFile: " + photoFile.getPath());
         photoFileExtension = Utility.getFileExtensionFromString(photoFile.getPath());
-        Path copyTo = Paths.get(Settings.getPhotoDir(),(Settings.getTempPhotoFilename() + "." + photoFileExtension));
+        Path copyTo = Paths.get(AppSettings.getPhotoDir(),(AppSettings.getTempPhotoFilename() + "." + photoFileExtension));
         try{
             Files.copy(photoFile.toPath(),copyTo,StandardCopyOption.REPLACE_EXISTING);
             Utility.log("AddScreen | getPhotoPath | copy successful");
@@ -79,8 +79,8 @@ public class AddScreen extends SimpleScreen implements FootControlInterface{
     protected void savePhotoFile(String filename){
         if(photoFileExtension.isEmpty()){ Utility.log("AddScreen | savePhotoFile | No Photo File to save."); }
         else{
-            Path fromPhotoFilePath = Paths.get(Settings.getPhotoDir(),(Settings.getTempPhotoFilename() + "." + photoFileExtension));
-            Path toPhotoFilePath = Paths.get(Settings.getPhotoDir(),(filename + "." + photoFileExtension));
+            Path fromPhotoFilePath = Paths.get(AppSettings.getPhotoDir(),(AppSettings.getTempPhotoFilename() + "." + photoFileExtension));
+            Path toPhotoFilePath = Paths.get(AppSettings.getPhotoDir(),(filename + "." + photoFileExtension));
             File fromPhotoFile = new File(fromPhotoFilePath.toAbsolutePath().toString());
             File toPhotoFile = new File(toPhotoFilePath.toAbsolutePath().toString());
             if(fromPhotoFile.exists()){ 
@@ -94,48 +94,48 @@ public class AddScreen extends SimpleScreen implements FootControlInterface{
     private CustomButton addStudentButton, addTeacherButton, addBatchButton, addClassButton, addCourseButton, addSubjectButton, addTimetableButton, addAttendanceButton;
     @FXML
     private void addStudentAction(){
-        if(!managerScene.getSceneContainer().displayScreen(Settings.screenTag.ADD_STUDENT)){ Utility.errorLog("AddScreen | addStudentAction | Error."); };
+        if(!managerScene.getSceneContainer().displayScreen(AppSettings.screenTag.ADD_STUDENT)){ Utility.errorLog("AddScreen | addStudentAction | Error."); };
     }
     @FXML
     private void addTeacherAction(){
-        if(!managerScene.getSceneContainer().displayScreen(Settings.screenTag.ADD_TEACHER)){ Utility.errorLog("AddScreen | addTeacherAction | Error."); };
+        if(!managerScene.getSceneContainer().displayScreen(AppSettings.screenTag.ADD_TEACHER)){ Utility.errorLog("AddScreen | addTeacherAction | Error."); };
     }
     @FXML
     private void addBatchAction(){
-        if(!managerScene.getSceneContainer().displayScreen(Settings.screenTag.ADD_BATCH)){ Utility.errorLog("AddScreen | addBatchAction | Error."); };
+        if(!managerScene.getSceneContainer().displayScreen(AppSettings.screenTag.ADD_BATCH)){ Utility.errorLog("AddScreen | addBatchAction | Error."); };
     }
     @FXML
     private void addClassAction(){
-        if(!managerScene.getSceneContainer().displayScreen(Settings.screenTag.ADD_CLASS)){ Utility.errorLog("AddScreen | addClassAction | Error."); };
+        if(!managerScene.getSceneContainer().displayScreen(AppSettings.screenTag.ADD_CLASS)){ Utility.errorLog("AddScreen | addClassAction | Error."); };
     }
     @FXML
     private void addCourseAction(){
-        if(!managerScene.getSceneContainer().displayScreen(Settings.screenTag.ADD_COURSE)){ Utility.errorLog("AddScreen | addCourseAction | Error."); };
+        if(!managerScene.getSceneContainer().displayScreen(AppSettings.screenTag.ADD_COURSE)){ Utility.errorLog("AddScreen | addCourseAction | Error."); };
     }
     @FXML
     private void addSubjectAction(){
-        if(!managerScene.getSceneContainer().displayScreen(Settings.screenTag.ADD_SUBJECT)){ Utility.errorLog("AddScreen | addSubjectAction | Error."); };
+        if(!managerScene.getSceneContainer().displayScreen(AppSettings.screenTag.ADD_SUBJECT)){ Utility.errorLog("AddScreen | addSubjectAction | Error."); };
     }
     @FXML
     private void addTimetableAction(){
-        if(!managerScene.getSceneContainer().displayScreen(Settings.screenTag.ADD_TIMETABLE)){ Utility.errorLog("AddScreen | addTimetableAction | Error."); };
+        if(!managerScene.getSceneContainer().displayScreen(AppSettings.screenTag.ADD_TIMETABLE)){ Utility.errorLog("AddScreen | addTimetableAction | Error."); };
     }
     @FXML
     private void addAttendanceAction(){
-        if(!managerScene.getSceneContainer().displayScreen(Settings.screenTag.ADD_ATTENDANCE)){ Utility.errorLog("AddScreen | addAttendanceAction | Error."); };
+        if(!managerScene.getSceneContainer().displayScreen(AppSettings.screenTag.ADD_ATTENDANCE)){ Utility.errorLog("AddScreen | addAttendanceAction | Error."); };
     }
     @Override
     public void back(){
         Utility.log("AddScreen | back");
         if(!managerScene.getSceneContainer().isUserDataSaved()){ return; }
-        managerScene.getSceneContainer().displayScreen(Settings.screenTag.ADD);;
+        managerScene.getSceneContainer().displayScreen(AppSettings.screenTag.ADD);;
     }
     private void setGraphics(){
         Path graphicPath;
         double graphicTextGap = 30;
         double graphicOpacity = 0.7;
         
-        graphicPath = Paths.get(Settings.getPNGDir(),Settings.getPNGAddStudent());
+        graphicPath = Paths.get(AppSettings.getPNGDir(),AppSettings.getPNGAddStudent());
         if(new File(graphicPath.toUri()).exists()){
             ImageView graphic = new ImageView(graphicPath.toUri().toString());
             graphic.setOpacity(graphicOpacity);
@@ -144,7 +144,7 @@ public class AddScreen extends SimpleScreen implements FootControlInterface{
             addStudentButton.setGraphicTextGap(graphicTextGap);
         }
         
-        graphicPath = Paths.get(Settings.getPNGDir(),Settings.getPNGAddTeacher());
+        graphicPath = Paths.get(AppSettings.getPNGDir(),AppSettings.getPNGAddTeacher());
         if(new File(graphicPath.toUri()).exists()){
             ImageView graphic = new ImageView(graphicPath.toUri().toString());
             graphic.setOpacity(graphicOpacity);
@@ -153,7 +153,7 @@ public class AddScreen extends SimpleScreen implements FootControlInterface{
             addTeacherButton.setGraphicTextGap(graphicTextGap);
         }
         
-        graphicPath = Paths.get(Settings.getPNGDir(),Settings.getPNGAddSubject());
+        graphicPath = Paths.get(AppSettings.getPNGDir(),AppSettings.getPNGAddSubject());
         if(new File(graphicPath.toUri()).exists()){
             ImageView graphic = new ImageView(graphicPath.toUri().toString());
             graphic.setOpacity(graphicOpacity);
@@ -162,7 +162,7 @@ public class AddScreen extends SimpleScreen implements FootControlInterface{
             addSubjectButton.setGraphicTextGap(graphicTextGap);
         }
         
-        graphicPath = Paths.get(Settings.getPNGDir(),Settings.getPNGAddAttendance());
+        graphicPath = Paths.get(AppSettings.getPNGDir(),AppSettings.getPNGAddAttendance());
         if(new File(graphicPath.toUri()).exists()){
             ImageView graphic = new ImageView(graphicPath.toUri().toString());
             graphic.setOpacity(graphicOpacity);
@@ -171,7 +171,7 @@ public class AddScreen extends SimpleScreen implements FootControlInterface{
             addAttendanceButton.setGraphicTextGap(graphicTextGap);
         }
         
-        graphicPath = Paths.get(Settings.getPNGDir(),Settings.getPNGAddCourse());
+        graphicPath = Paths.get(AppSettings.getPNGDir(),AppSettings.getPNGAddCourse());
         if(new File(graphicPath.toUri()).exists()){
             ImageView graphic = new ImageView(graphicPath.toUri().toString());
             graphic.setOpacity(graphicOpacity);
@@ -180,7 +180,7 @@ public class AddScreen extends SimpleScreen implements FootControlInterface{
             addCourseButton.setGraphicTextGap(graphicTextGap);
         }
         
-        graphicPath = Paths.get(Settings.getPNGDir(),Settings.getPNGAddBatch());
+        graphicPath = Paths.get(AppSettings.getPNGDir(),AppSettings.getPNGAddBatch());
         if(new File(graphicPath.toUri()).exists()){
             ImageView graphic = new ImageView(graphicPath.toUri().toString());
             graphic.setOpacity(graphicOpacity);
@@ -189,7 +189,7 @@ public class AddScreen extends SimpleScreen implements FootControlInterface{
             addBatchButton.setGraphicTextGap(graphicTextGap);
         }
         
-        graphicPath = Paths.get(Settings.getPNGDir(),Settings.getPNGAddClass());
+        graphicPath = Paths.get(AppSettings.getPNGDir(),AppSettings.getPNGAddClass());
         if(new File(graphicPath.toUri()).exists()){
             ImageView graphic = new ImageView(graphicPath.toUri().toString());
             graphic.setOpacity(graphicOpacity);
@@ -198,7 +198,7 @@ public class AddScreen extends SimpleScreen implements FootControlInterface{
             addClassButton.setGraphicTextGap(graphicTextGap);
         }
         
-        graphicPath = Paths.get(Settings.getPNGDir(),Settings.getPNGAddTimetable());
+        graphicPath = Paths.get(AppSettings.getPNGDir(),AppSettings.getPNGAddTimetable());
         if(new File(graphicPath.toUri()).exists()){
             ImageView graphic = new ImageView(graphicPath.toUri().toString());
             graphic.setOpacity(graphicOpacity);
@@ -211,13 +211,13 @@ public class AddScreen extends SimpleScreen implements FootControlInterface{
         for(HBox unitSectionHBox : sectionHBox){ unitSectionHBox.setId("sectionBG"); }
     }
     private void setLabels(){
-        addStudentButton.setText(Settings.screenTag.ADD_STUDENT.getTitle());
-        addTeacherButton.setText(Settings.screenTag.ADD_TEACHER.getTitle());
-        addSubjectButton.setText(Settings.screenTag.ADD_SUBJECT.getTitle());
-        addAttendanceButton.setText(Settings.screenTag.ADD_TEACHER.getTitle());
-        addCourseButton.setText(Settings.screenTag.ADD_TEACHER.getTitle());
-        addBatchButton.setText(Settings.screenTag.ADD_TEACHER.getTitle());
-        addClassButton.setText(Settings.screenTag.ADD_TEACHER.getTitle());
-        addTimetableButton.setText(Settings.screenTag.ADD_TEACHER.getTitle());
+        addStudentButton.setText(AppSettings.screenTag.ADD_STUDENT.getTitle());
+        addTeacherButton.setText(AppSettings.screenTag.ADD_TEACHER.getTitle());
+        addSubjectButton.setText(AppSettings.screenTag.ADD_SUBJECT.getTitle());
+        addAttendanceButton.setText(AppSettings.screenTag.ADD_TEACHER.getTitle());
+        addCourseButton.setText(AppSettings.screenTag.ADD_TEACHER.getTitle());
+        addBatchButton.setText(AppSettings.screenTag.ADD_TEACHER.getTitle());
+        addClassButton.setText(AppSettings.screenTag.ADD_TEACHER.getTitle());
+        addTimetableButton.setText(AppSettings.screenTag.ADD_TEACHER.getTitle());
     }
 }

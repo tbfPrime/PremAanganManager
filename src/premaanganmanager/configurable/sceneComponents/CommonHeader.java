@@ -13,7 +13,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.layout.AnchorPane;
 import premaanganmanager.base.controller.Utility;
 import premaanganmanager.configurable.Labels;
-import premaanganmanager.configurable.Settings;
+import premaanganmanager.configurable.AppSettings;
 import premaanganmanager.configurable.scenes.ManagerScene;
 
 /**
@@ -54,9 +54,9 @@ public class CommonHeader {
     @FXML
     private void logoutAction(){
         if(logoutComboBox.getValue().toString().equalsIgnoreCase(Labels.labelTag.HEADER_SWITCH_ADMIN.getLabel())){
-            if(!managerScene.getSceneContainer().displayScreen(Settings.screenTag.LOGIN_ADMIN)){ setLabels(); }
+            if(!managerScene.getSceneContainer().displayScreen(AppSettings.screenTag.LOGIN_ADMIN)){ setLabels(); }
         } else if(logoutComboBox.getValue().toString().equalsIgnoreCase(Labels.labelTag.HEADER_LOGOUT.getLabel())){
-            if(!managerScene.getSceneContainer().displayScreen(Settings.screenTag.LOGIN_GUEST_ADMIN)){ setLabels(); }
+            if(!managerScene.getSceneContainer().displayScreen(AppSettings.screenTag.LOGIN_GUEST_ADMIN)){ setLabels(); }
         }
     }
     
@@ -66,7 +66,7 @@ public class CommonHeader {
         logoutComboBox.getItems().addAll(
                 Labels.labelTag.HEADER_SWITCH_ADMIN.getLabel(),
                 Labels.labelTag.HEADER_LOGOUT.getLabel());
-        logoutComboBox.setPromptText(Settings.getActiveUserTag().getLabel());
+        logoutComboBox.setPromptText(AppSettings.getActiveUserTag().getLabel());
     }
     
     private void setStyling(){

@@ -13,10 +13,10 @@ import premaanganmanager.configurable.scenes.ManagerScene;
  *
  * @author TBF
  */
-public class SearchScreen extends SimpleScreen implements FootControlInterface {
+public class Search extends SimpleScreen implements FootControlInterface {
     private ManagerScene managerScene;
     
-    public SearchScreen(ManagerScene managerScene){
+    public Search(ManagerScene managerScene){
         this.managerScene = managerScene;
     }
     

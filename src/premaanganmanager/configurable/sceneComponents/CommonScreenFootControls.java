@@ -11,7 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import premaanganmanager.base.components.CustomButton;
 import premaanganmanager.base.controller.Utility;
-import premaanganmanager.configurable.Settings;
+import premaanganmanager.configurable.AppSettings;
 
 /**
  *
@@ -32,7 +32,7 @@ public class CommonScreenFootControls {
         return content;
     }
     
-    public void updateControls(Settings.screenTag tag){
+    public void updateControls(AppSettings.screenTag tag){
         switch(tag){
             case HOME: 
                 tagList = new controlsTag[]{controlsTag.BACK};
@@ -99,7 +99,7 @@ public class CommonScreenFootControls {
                 case BACK: back.setVisible(true); back.setManaged(true); break;
             }
         });
-        save.disableProperty().bind(Settings.getFlagDataUnsavedProperty().not());
+        save.disableProperty().bind(AppSettings.getFlagDataUnsavedProperty().not());
     }
     
     private void hideAllControls(){

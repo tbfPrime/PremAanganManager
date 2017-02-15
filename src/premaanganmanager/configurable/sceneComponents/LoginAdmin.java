@@ -13,7 +13,7 @@ import premaanganmanager.base.components.CustomToggleButton1;
 import premaanganmanager.base.constructs.BorderPaneScene;
 import premaanganmanager.base.controller.Utility;
 import premaanganmanager.configurable.Labels;
-import premaanganmanager.configurable.Settings;
+import premaanganmanager.configurable.AppSettings;
 import premaanganmanager.configurable.scenes.LoginScene;
 
 /**
@@ -32,9 +32,9 @@ public class LoginAdmin {
     private final LoginScene loginScene;
 
     public enum adminTag{ 
-        ADMIN1(Settings.getAdmin1Username(), Labels.labelTag.ADMIN1), 
-        ADMIN2(Settings.getAdmin2Username(), Labels.labelTag.ADMIN2), 
-        ADMIN3(Settings.getAdmin3Username(), Labels.labelTag.ADMIN3);
+        ADMIN1(AppSettings.getAdmin1Username(), Labels.labelTag.ADMIN1), 
+        ADMIN2(AppSettings.getAdmin2Username(), Labels.labelTag.ADMIN2), 
+        ADMIN3(AppSettings.getAdmin3Username(), Labels.labelTag.ADMIN3);
         
         private final String USERNAME;
         private final String LABEL;

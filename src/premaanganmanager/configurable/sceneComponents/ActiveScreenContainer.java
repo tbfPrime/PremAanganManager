@@ -26,8 +26,8 @@ public class ActiveScreenContainer {
     private final ManagerScene11111 manager;
     private BorderPane root;
     
-    private HomeScreen homeScreen;
-    private AddScreen addScreen;
+    private Home homeScreen;
+    private Add addScreen;
     
     // constructor
     public ActiveScreenContainer(ManagerScene11111 manager){
@@ -45,7 +45,7 @@ public class ActiveScreenContainer {
     
     // public methods
     public void setHomeScreen(){
-//        homeScreen = new HomeScreen(this);
+//        homeScreen = new Home(this);
 //        setCenter(homeScreen.getContent());
 //        manager.commonHeader.initializeHeaderText();
 ////        commonScreenFootControls.updateControls(UIControl.screenTag.HOME);
@@ -53,7 +53,7 @@ public class ActiveScreenContainer {
     }
     
     public void setAddScreen(){
-//        addScreen = new AddScreen(this);
+//        addScreen = new Add(this);
         setCenter(addScreen.getContent());
         commonScreenFootControls.setTarget(addScreen);
     }

@@ -34,7 +34,7 @@ import premaanganmanager.base.controller.UIModel;
 import premaanganmanager.base.controller.Utility;
 import premaanganmanager.configurable.Labels;
 import premaanganmanager.configurable.LocalUtility;
-import premaanganmanager.configurable.Settings;
+import premaanganmanager.configurable.AppSettings;
 import premaanganmanager.configurable.entity.FamilyInfo;
 import premaanganmanager.configurable.entity.Religion;
 import premaanganmanager.configurable.entity.Student;
@@ -44,7 +44,7 @@ import premaanganmanager.configurable.scenes.ManagerScene;
  *
  * @author TBF
  */
-public class AddStudentScreen extends AddScreen {
+public class AddStudent extends Add {
     private Student student;
     private Religion religion;
     private FamilyInfo familyInfo1;
@@ -129,7 +129,7 @@ public class AddStudentScreen extends AddScreen {
     @FXML
     private Text addStudentHelpBody;
     
-    public AddStudentScreen(ManagerScene managerScene){
+    public AddStudent(ManagerScene managerScene){
         super(managerScene);
     }
     
@@ -154,7 +154,7 @@ public class AddStudentScreen extends AddScreen {
         
         setAddStudentFormConditions();
         setReligionData();
-        setPhotoView(addStudentPhotoView,Paths.get(Settings.getPlaceHolderDir(),Settings.getPlaceHolderStudentPhoto()));
+        setPhotoView(addStudentPhotoView,Paths.get(AppSettings.getPlaceHolderDir(),AppSettings.getPlaceHolderStudentPhoto()));
         setLabels();
         setSectionID(new HBox[] {addStudentPersonalDetailsHBox, addStudentEmergencyContactHBox, addStudentFamilyDetailsHBox, addStudentOfficeUseOnlyHBox});
     }
@@ -167,7 +167,7 @@ public class AddStudentScreen extends AddScreen {
     public void flushScreenData(){
         if(photoFileExtension.isEmpty()){ Utility.log("AddStudentScreen | flushScreenData | No Photo File to flush."); }
         else{
-            Path tempPhotoFilePath = Paths.get(Settings.getPhotoDir(),(Settings.getTempPhotoFilename() + "." + photoFileExtension));
+            Path tempPhotoFilePath = Paths.get(AppSettings.getPhotoDir(),(AppSettings.getTempPhotoFilename() + "." + photoFileExtension));
             File tempPhotoFile = new File(tempPhotoFilePath.toAbsolutePath().toString());
             if(tempPhotoFile.exists()){ tempPhotoFile.delete(); }
         }
@@ -573,7 +573,7 @@ public class AddStudentScreen extends AddScreen {
         addStudentDOBDatePicker.showingProperty().addListener(new ChangeListener<Boolean>(){
             @Override public void changed(ObservableValue obValue, Boolean oldValue, Boolean newValue){
                 if(addStudentDOBDatePicker.valueProperty().isNull().get()){
-                    addStudentDOBDatePicker.setValue((LocalDate)Settings.getDOBMaximum());
+                    addStudentDOBDatePicker.setValue((LocalDate)AppSettings.getDOBMaximum());
                     Platform.runLater(() -> {
                         addStudentDOBDatePicker.getEditor().clear();
                     });
@@ -584,7 +584,7 @@ public class AddStudentScreen extends AddScreen {
         addStudentDateDatePicker.setDayCellFactory(dateDayCellFactory);
         addStudentDateDatePicker.setValue(LocalDate.now());
         
-        Settings.getFlagDataUnsavedProperty().bind(
+        AppSettings.getFlagDataUnsavedProperty().bind(
                 addStudentFirstNameField.textProperty().isNotEmpty().or(
                 addStudentMiddleNameField.textProperty().isNotEmpty().or(
                 addStudentLastNameField.textProperty().isNotEmpty()))

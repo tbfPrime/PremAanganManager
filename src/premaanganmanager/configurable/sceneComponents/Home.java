@@ -12,7 +12,7 @@ import premaanganmanager.base.controller.Utility;
  *
  * @author Trevor Fernandes
  */
-public class HomeScreen extends SimpleScreen implements FootControlInterface{
+public class Home extends SimpleScreen implements FootControlInterface{
 
     // public methods
     @Override

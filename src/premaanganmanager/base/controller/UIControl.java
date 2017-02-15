@@ -143,7 +143,7 @@ public abstract class UIControl implements PropertyChangeListener{
     public UIModel uiModel;
     public SceneContainer sceneContainer;
     public StageContainer stageContainer;
-    public Settings p_settings;
+    public AppSettings p_settings;
 
     public screenTag p_activeScreenTag;
     public String activeUserLabel;
@@ -177,7 +177,7 @@ public abstract class UIControl implements PropertyChangeListener{
     // constructor
 //    public UIControl(){
 //        uiModel = new UIModel();
-//        p_settings = new Settings();
+//        p_settings = new AppSettings();
 //        sceneContainer = new SceneContainer();
 //        stageContainer = new StageContainer();
 //        

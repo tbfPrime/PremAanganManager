@@ -21,36 +21,36 @@ public class LocalUtility {
     // public methods
     public static boolean alertNone(String title, String message){
         Utility.log("LocalUtility | alertNone");
-        return Utility.alert(Alert.AlertType.NONE, title, message, Utility.getPathCSS(Settings.getAlertCSS()));
+        return Utility.alert(Alert.AlertType.NONE, title, message, Utility.getPathCSS(AppSettings.getAlertCSS()));
     }
     public static boolean alertInfo(String message){
         Utility.log("LocalUtility | alertInfo");
-        return Utility.alert(Alert.AlertType.INFORMATION, Labels.labelTag.ALERT_INFO.getLabel(), message, Utility.getPathCSS(Settings.getAlertCSS()));
+        return Utility.alert(Alert.AlertType.INFORMATION, Labels.labelTag.ALERT_INFO.getLabel(), message, Utility.getPathCSS(AppSettings.getAlertCSS()));
     }
     public static boolean alertWarning(String message){
         Utility.log("LocalUtility | alertWarning");
-        return Utility.alert(Alert.AlertType.WARNING, Labels.labelTag.ALERT_WARNING.getLabel(), message, Utility.getPathCSS(Settings.getAlertCSS()));
+        return Utility.alert(Alert.AlertType.WARNING, Labels.labelTag.ALERT_WARNING.getLabel(), message, Utility.getPathCSS(AppSettings.getAlertCSS()));
     }
     public static boolean alertWarningFieldIsEmpty(String message){
         Utility.log("LocalUtility | alertWarningFieldIsEmpty");
         String msg = message + " " + Labels.labelTag.ALERT_MESSAGE_IS_EMPTY.getLabel();
-        return Utility.alert(Alert.AlertType.WARNING, Labels.labelTag.ALERT_WARNING.getLabel(), msg, Utility.getPathCSS(Settings.getAlertCSS()));
+        return Utility.alert(Alert.AlertType.WARNING, Labels.labelTag.ALERT_WARNING.getLabel(), msg, Utility.getPathCSS(AppSettings.getAlertCSS()));
     }
     public static boolean alertError(String message){
         Utility.log("LocalUtility | alertError");
-        return Utility.alert(Alert.AlertType.ERROR, Labels.labelTag.ALERT_ERROR.getLabel(), Labels.labelTag.ALERT_MESSAGE_ERROR_SAVE.getLabel(), Utility.getPathCSS(Settings.getAlertCSS()));
+        return Utility.alert(Alert.AlertType.ERROR, Labels.labelTag.ALERT_ERROR.getLabel(), Labels.labelTag.ALERT_MESSAGE_ERROR_SAVE.getLabel(), Utility.getPathCSS(AppSettings.getAlertCSS()));
     }
     public static boolean alertErrorSave(){
         Utility.log("LocalUtility | alertErrorSave");
-        return Utility.alert(Alert.AlertType.ERROR, Labels.labelTag.ALERT_ERROR.getLabel(), Labels.labelTag.ALERT_MESSAGE_ERROR_SAVE.getLabel(), Utility.getPathCSS(Settings.getAlertCSS()));
+        return Utility.alert(Alert.AlertType.ERROR, Labels.labelTag.ALERT_ERROR.getLabel(), Labels.labelTag.ALERT_MESSAGE_ERROR_SAVE.getLabel(), Utility.getPathCSS(AppSettings.getAlertCSS()));
     }
     public static boolean alertConfirmation(String message){
         Utility.log("LocalUtility | alertConfirmation");
-        return Utility.alert(Alert.AlertType.CONFIRMATION, Labels.labelTag.ALERT_CONFIRMATION.getLabel(), message, Utility.getPathCSS(Settings.getAlertCSS()));
+        return Utility.alert(Alert.AlertType.CONFIRMATION, Labels.labelTag.ALERT_CONFIRMATION.getLabel(), message, Utility.getPathCSS(AppSettings.getAlertCSS()));
     }
     public static boolean alertConfirmationFieldIsEmpty(){
         Utility.log("LocalUtility | alertConfirmationFieldIsEmpty");
-        return Utility.alert(Alert.AlertType.CONFIRMATION, Labels.labelTag.ALERT_CONFIRMATION.getLabel(), Labels.labelTag.ALERT_MESSAGE_CONFIRM_FIELD_EMPTY.getLabel(), Utility.getPathCSS(Settings.getAlertCSS()));
+        return Utility.alert(Alert.AlertType.CONFIRMATION, Labels.labelTag.ALERT_CONFIRMATION.getLabel(), Labels.labelTag.ALERT_MESSAGE_CONFIRM_FIELD_EMPTY.getLabel(), Utility.getPathCSS(AppSettings.getAlertCSS()));
     }
     public static boolean validateEmail(String value){
         Utility.log("LocalUtility | validateEmail | value: " + value);
@@ -61,14 +61,14 @@ public class LocalUtility {
     }
     public static boolean validateReferenceNo(String value){
         Utility.log("LocalUtility | validateReferenceNo | value: " + value);
-        String referenceNoPattern = "(^\\D\\d{" + Settings.getReferenceNoLength() + "}$)";
+        String referenceNoPattern = "(^\\D\\d{" + AppSettings.getReferenceNoLength() + "}$)";
         Pattern p = Pattern.compile(referenceNoPattern);
         Matcher m = p.matcher(value);
         return m.find();
     }
     public static boolean validateEnrollmentNo(String value){
         Utility.log("LocalUtility | validateEnrollmentNo | value: " + value);
-        String enrollmentNoPattern = "(^\\d{" + Settings.getEnrollmentNoLength() + "}$)";
+        String enrollmentNoPattern = "(^\\d{" + AppSettings.getEnrollmentNoLength() + "}$)";
         Pattern p = Pattern.compile(enrollmentNoPattern);
         Matcher m = p.matcher(value);
         return m.find();
@@ -85,7 +85,7 @@ public class LocalUtility {
     }
     public static boolean validateDOB(ChronoLocalDate dob){
         Utility.log("LocalUtility | validateDOB | dob: " + dob);
-        return (dob.isEqual(Settings.getDOBMaximum()) || dob.isEqual(Settings.getDOBMinimum()) || (dob.isBefore(Settings.getDOBMaximum()) && dob.isAfter(Settings.getDOBMinimum())));
+        return (dob.isEqual(AppSettings.getDOBMaximum()) || dob.isEqual(AppSettings.getDOBMinimum()) || (dob.isBefore(AppSettings.getDOBMaximum()) && dob.isAfter(AppSettings.getDOBMinimum())));
     }
     public static Integer convertStringToInteger(String value){
         Utility.log("LocalUtility | convertStringToInteger | value: " + value);

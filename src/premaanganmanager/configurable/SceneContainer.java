@@ -6,23 +6,23 @@ import premaanganmanager.base.controller.Utility;
 import premaanganmanager.base.controller.UIControl;
 
 public class SceneContainer extends UIControl{
-    private Settings.screenTag activeScreenTag;
+    private AppSettings.screenTag activeScreenTag;
     private LoginScene loginScene;
     private ManagerScene managerScene;
     
     public SceneContainer(){
-        setCSSDir(Settings.getCSSDir());
-        setFXMLDir(Settings.getFXMLDir());
-        setComponentCSSFilename(Settings.getComponentCSSFilename());
-        setButtonFontSize(Settings.getDefaultButtonFontSize());
+        setCSSDir(AppSettings.getCSSDir());
+        setFXMLDir(AppSettings.getFXMLDir());
+        setComponentCSSFilename(AppSettings.getComponentCSSFilename());
+        setButtonFontSize(AppSettings.getDefaultButtonFontSize());
     }
 
     // public methods    
     @Override
     public void initializeStage(){
-        displayScreen(Settings.screenTag.LOGIN_GUEST_ADMIN);
+        displayScreen(AppSettings.screenTag.LOGIN_GUEST_ADMIN);
     }
-    public Settings.screenTag getActiveScreenTag(){ return activeScreenTag; }
+    public AppSettings.screenTag getActiveScreenTag(){ return activeScreenTag; }
     public void createLoginScene(){
         Utility.log("SceneContainer | createLoginScene");
         loginScene = new LoginScene(this);
@@ -34,7 +34,7 @@ public class SceneContainer extends UIControl{
         managerScene.launchDefaultScreen();
     }
     public boolean isUserDataSaved(){
-        if(Settings.getFlagDataUnsaved()){
+        if(AppSettings.getFlagDataUnsaved()){
             if(LocalUtility.alertConfirmation(Labels.labelTag.ALERT_UNSAVED_DATA.getLabel())){ 
                 if(getActiveScene().equals(managerScene)){ managerScene.flushScreenData(); }
                 return true;
@@ -42,7 +42,7 @@ public class SceneContainer extends UIControl{
         }
         return true;
     }
-    public boolean displayScreen(Settings.screenTag tag){
+    public boolean displayScreen(AppSettings.screenTag tag){
         if(tag.equals(activeScreenTag)){ Utility.log("SceneContainer | displayScreen | No Change in tag. Exiting."); return false; }
         if(!isUserDataSaved()){ return false; }
         getPropertyChangeSupport().firePropertyChange("screenTag", activeScreenTag, tag);

@@ -12,7 +12,7 @@ import premaanganmanager.base.constructs.BorderPaneScene;
 import premaanganmanager.base.controller.Utility;
 import premaanganmanager.configurable.Labels;
 import premaanganmanager.configurable.SceneContainer;
-import premaanganmanager.configurable.Settings;
+import premaanganmanager.configurable.AppSettings;
 import premaanganmanager.configurable.sceneComponents.*;
 
 /**
@@ -28,16 +28,16 @@ public class ManagerScene extends BorderPaneScene{
     private BorderPane screen;
     
     private SimpleScreen simpleScreen;
-    private HomeScreen homeScreen;
+    private Home homeScreen;
     
-    private AddScreen addScreen;
-    private AddStudentScreen addStudentScreen;
-    private AddTeacherScreen addTeacherScreen;
-    private AddSubjectScreen addSubjectScreen;
+    private Add addScreen;
+    private AddStudent addStudentScreen;
+    private AddTeacher addTeacherScreen;
+    private AddSubject addSubjectScreen;
     
-    private BrowseScreen browseScreen;
-    private SearchScreen searchScreen;
-    private SettingsScreen settingsScreen;
+    private Browse browseScreen;
+    private Search searchScreen;
+    private Settings settingsScreen;
     
     public ManagerScene(SceneContainer sceneContainer){
         this.sceneContainer = sceneContainer;
@@ -52,42 +52,42 @@ public class ManagerScene extends BorderPaneScene{
     public void launchDefaultScreen(){ commonMenu.launchDefault(); }
     public void setHomeScreen(){
         Utility.log("ManagerScene | setHomeScreen");
-        homeScreen = new HomeScreen();
+        homeScreen = new Home();
         setScreen(homeScreen);
     }
     public void setAddScreen(){
         Utility.log("ManagerScene | setAddScreen");
-        addScreen = new AddScreen(this);
+        addScreen = new Add(this);
         setScreen(addScreen);
     }
     public void setBrowseScreen(){
         Utility.log("ManagerScene | setBrowseScreen");
-        browseScreen = new BrowseScreen(this);
+        browseScreen = new Browse(this);
         setScreen(browseScreen);
     }
     public void setSearchScreen(){
         Utility.log("ManagerScene | setSearchScreen");
-        searchScreen = new SearchScreen(this);
+        searchScreen = new Search(this);
         setScreen(searchScreen);
     }
     public void setSettingsScreen(){
         Utility.log("ManagerScene | setSettingsScreen");
-        settingsScreen = new SettingsScreen(this);
+        settingsScreen = new Settings(this);
         setScreen(settingsScreen);
     }
     public void setAddStudentScreen(){
         Utility.log("ManagerScene | setAddStudentScreen");
-        addStudentScreen = new AddStudentScreen(this);
+        addStudentScreen = new AddStudent(this);
         setScreen(addStudentScreen);
     }
     public void setAddTeacherScreen(){
         Utility.log("ManagerScene | setAddTeacherScreen");
-        addTeacherScreen = new AddTeacherScreen(this);
+        addTeacherScreen = new AddTeacher(this);
         setScreen(addTeacherScreen);
     }
     public void setAddSubjectScreen(){
         Utility.log("ManagerScene | setAddSubjectScreen");
-        addSubjectScreen = new AddSubjectScreen(this);
+        addSubjectScreen = new AddSubject(this);
         setScreen(addSubjectScreen);
     }
     public void flushScreenData(){
@@ -97,7 +97,7 @@ public class ManagerScene extends BorderPaneScene{
     @Override
     public final void createDefaultScene(){
         Utility.log("ManagerScene | createDefaultScreen");
-        setScene(Settings.getAppWidth(),Settings.getAppHeight());
+        setScene(AppSettings.getAppWidth(),AppSettings.getAppHeight());
         sceneContainer.loadScene(this);
     }
     @Override
